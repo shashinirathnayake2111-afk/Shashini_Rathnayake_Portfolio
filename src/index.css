@@ -1,0 +1,39 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Chakra Petch', sans-serif;
+  background-color: #121212;
+  color: #ffffff;
+  overflow-x: hidden;
+
+  /* Firefox modern scrollbar */
+  scrollbar-width: thin;
+  scrollbar-color: #7c3aed #1e1e2e;
+}
+
+/* Chrome, Edge, Safari scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1e1e2e;
+  border-radius: 100px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #7c3aed, #a855f7, #ec4899);
+  border-radius: 100px;
+  border: 1px solid transparent;
+  background-clip: padding-box;
+  transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #6d28d9, #9333ea, #db2777);
+  border-radius: 100px;
+}
