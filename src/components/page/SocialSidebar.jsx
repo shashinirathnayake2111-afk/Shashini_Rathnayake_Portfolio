@@ -1,5 +1,5 @@
 import React from 'react';
-import './SocialSidebar.css';
+import '../styles/SocialSidebar.css';
 
 const SocialSidebar = ({ isLoaded }) => {
   return (

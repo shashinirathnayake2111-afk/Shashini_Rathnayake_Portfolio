@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import './HeroSection.css';
-import profileImg from '../assets/profile.png';
+import '../styles/HeroSection.css';
+import profileImg from '../../assets/profile.png';
 
 const roles = ['UI/UX DESIGNER', 'FULL STACK DEVELOPER', 'SOFTWARE ENGINEER'];
 

@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&display=swap');
+
+.loading-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: radial-gradient(ellipse at 50% 40%, #171310 0%, #0a0806 45%, #000000 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  transition: opacity 0.8s ease-out, visibility 0.8s ease-out;
+}
+
+.loading-container.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.loading-laptop-wrap {
+  width: clamp(160px, 22vw, 240px);
+  margin-bottom: 1.8rem;
+  filter: drop-shadow(0 0 18px rgba(233, 223, 199, 0.35));
+}
+
+.loading-laptop-svg {
+  width: 100%;
+  display: block;
+  /* Reveals the laptop top-to-bottom in blocky "pixel row" steps */
+  animation: pixel-row-reveal 1.7s steps(14, end) forwards;
+  animation-delay: 0.15s;
+  clip-path: inset(0 0 100% 0);
+}
+
+@keyframes pixel-row-reveal {
+  from {
+    clip-path: inset(0 0 100% 0);
+  }
+  to {
+    clip-path: inset(0 0 0% 0);
+  }
+}
+
+.loading-text {
+  font-family: 'Orbitron', 'Chakra Petch', sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #f0e6d2;
+  letter-spacing: 0.5rem;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+}
+
+.loading-bar-wrapper {
+  width: 260px;
+  height: 5px;
+  background-color: rgba(233, 223, 199, 0.12);
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.loading-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #e9dfc7, #f5efe0);
+  border-radius: 10px;
+  transition: width 0.1s ease;
+  box-shadow: 0 0 8px rgba(233, 223, 199, 0.6);
+}
+
+.loading-percentage {
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 1rem;
+  color: rgba(240, 230, 210, 0.7);
+  margin-top: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.1rem;
+}

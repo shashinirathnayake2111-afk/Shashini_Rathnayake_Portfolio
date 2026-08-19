@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import './App.css'
-import LoadingScreen from './components/LoadingScreen'
-import HeroSection from './components/HeroSection'
-import AboutSection from './components/AboutSection'
-import Navbar from './components/Navbar'
-import SocialSidebar from './components/SocialSidebar'
+import LoadingScreen from './components/page/LoadingScreen'
+import HeroSection from './components/page/HeroSection'
+import AboutSection from './components/page/AboutSection'
+import Navbar from './components/page/Navbar'
+import SocialSidebar from './components/page/SocialSidebar'
 
 function App() {
   const [isLoading, setIsLoading] = useState(true)

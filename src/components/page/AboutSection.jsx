@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
-import './AboutSection.css';
+import '../styles/AboutSection.css';
 import ProfileSketch from './ProfileSketch';
-import resumePDF from '../assets/resume.pdf';
+import resumePDF from '../../assets/resume.pdf';
 
 const techStack = ['React', 'Node.js', 'TypeScript', 'Python', 'MySQL', 'Figma'];
 
