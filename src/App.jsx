@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import Lenis from 'lenis'
 import './App.css'
 import LoadingScreen from './components/page/LoadingScreen'
 import HeroSection from './components/page/HeroSection'
@@ -16,6 +17,30 @@ function App() {
     document.body.style.overflow = isLoading ? 'hidden' : ''
     return () => {
       document.body.style.overflow = ''
+    }
+  }, [isLoading])
+
+  useEffect(() => {
+    if (isLoading) return
+
+    const lenis = new Lenis({
+      duration: 1.15,
+      easing: (t) => Math.min(1, 1 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+      wheelMultiplier: 1,
+      touchMultiplier: 1.5,
+    })
+
+    let rafId
+    function raf(time) {
+      lenis.raf(time)
+      rafId = requestAnimationFrame(raf)
+    }
+    rafId = requestAnimationFrame(raf)
+
+    return () => {
+      cancelAnimationFrame(rafId)
+      lenis.destroy()
     }
   }, [isLoading])
 
