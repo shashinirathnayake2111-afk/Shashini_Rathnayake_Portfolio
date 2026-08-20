@@ -33,6 +33,18 @@ const LoadingScreen = ({ onComplete }) => {
 
   return (
     <div className={`loading-container ${isHidden ? 'hidden' : ''}`}>
+
+      {/* ── Awwwards corner labels ── */}
+      <div className="lc-corner lc-top-left">
+        <span className="lc-corner-sub">PORTFOLIO</span>
+      </div>
+      <div className="lc-corner lc-top-right">
+        <span className="lc-initials">SR</span>
+      </div>
+      <div className="lc-corner lc-bottom-left">
+        <span className="lc-year">2026</span>
+      </div>
+
       <div className="loading-laptop-wrap">
         <svg
           viewBox="0 0 240 170"
@@ -68,7 +80,7 @@ const LoadingScreen = ({ onComplete }) => {
           />
         </svg>
       </div>
-      <div className="loading-text">LOADING</div>
+      <div className="loading-text">Full Stack Developer & UI/UX Designer</div>
       <div className="loading-bar-wrapper">
         <div className="loading-bar" style={{ width: `${progress}%` }}></div>
       </div>

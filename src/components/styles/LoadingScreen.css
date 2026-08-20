@@ -45,13 +45,15 @@
 }
 
 .loading-text {
-  font-family: 'Orbitron', 'Chakra Petch', sans-serif;
-  font-size: 2rem;
-  font-weight: 700;
-  color: #f0e6d2;
-  letter-spacing: 0.5rem;
-  margin-bottom: 1.5rem;
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: clamp(0.65rem, 1.4vw, 0.9rem);
+  font-weight: 500;
+  color: rgba(240, 230, 210, 0.55);
+  letter-spacing: 0.28em;
+  margin-bottom: 1.6rem;
   text-transform: uppercase;
+  text-align: center;
+  white-space: nowrap;
 }
 
 .loading-bar-wrapper {
@@ -79,4 +81,93 @@
   margin-top: 1rem;
   font-weight: 600;
   letter-spacing: 0.1rem;
+}
+
+/* ── Awwwards corner labels ─────────────────────────────── */
+
+.lc-corner {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  animation: lc-fade-in 0.7s ease forwards;
+}
+
+@keyframes lc-fade-in {
+  to { opacity: 1; }
+}
+
+/* top-left: thin horizontal rule + "PORTFOLIO" */
+.lc-top-left {
+  top: 2rem;
+  left: 2.2rem;
+  gap: 6px;
+  animation-delay: 0.2s;
+}
+
+.lc-corner-line {
+  display: block;
+  width: 36px;
+  height: 1px;
+  background: rgba(240, 230, 210, 0.28);
+}
+
+.lc-corner-sub {
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  color: rgba(240, 230, 210, 0.38);
+  text-transform: uppercase;
+}
+
+/* top-right: "SR" bold initials */
+.lc-top-right {
+  top: 1.8rem;
+  right: 2.2rem;
+  align-items: flex-end;
+  animation-delay: 0.3s;
+}
+
+.lc-initials {
+  font-family: 'Orbitron', 'Chakra Petch', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: rgba(240, 230, 210, 0.82);
+  line-height: 1;
+}
+
+/* bottom-left: large year */
+.lc-bottom-left {
+  bottom: 2rem;
+  left: 2.2rem;
+  animation-delay: 0.4s;
+}
+
+.lc-year {
+  font-family: 'Orbitron', 'Chakra Petch', sans-serif;
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: rgba(240, 230, 210, 0.32);
+  line-height: 1;
+}
+
+/* bottom-right: full name tag */
+.lc-bottom-right {
+  bottom: 2rem;
+  right: 2.2rem;
+  align-items: flex-end;
+  animation-delay: 0.5s;
+}
+
+.lc-corner-tag {
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  color: rgba(240, 230, 210, 0.28);
+  text-transform: uppercase;
+  white-space: nowrap;
 }

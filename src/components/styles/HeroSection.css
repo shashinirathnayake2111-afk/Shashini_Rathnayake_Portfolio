@@ -3,44 +3,34 @@
 .hero-section {
   width: 100vw;
   height: 100vh;
-  background: linear-gradient(135deg, #371848 0%, #1a0826 100%);
+  background: linear-gradient(135deg, #0d0d0c 0%, #050505 100%);
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  color: #ffffff;
+  color: #f2ead9;
   position: relative;
   overflow: hidden;
 }
 
 .hero-bg-role {
   position: absolute;
-  top: 30%;
-  left: 50%;
+  top: 15%;
   transform: translate(-50%, -50%);
   font-family: 'Bebas Neue', 'Arial Black', sans-serif;
-  font-size: clamp(5rem, 13vw, 13rem);
+  font-size: clamp(6rem, 12vw, 11rem);
   font-weight: 900;
   letter-spacing: 0.05em;
   white-space: nowrap;
   color: transparent;
-  -webkit-text-stroke: 2px rgba(255, 255, 255, 0.18);
-  text-stroke: 2px rgba(255, 255, 255, 0.18);
+  -webkit-text-stroke: 2px rgba(242, 234, 217, 0.15);
+  text-stroke: 2px rgba(242, 234, 217, 0.15);
   user-select: none;
   pointer-events: none;
-  transition: opacity 0.5s ease, transform 0.5s ease;
   z-index: 0;
   text-align: center;
   width: 100%;
-}
-
-.hero-bg-role.fade-in {
-  opacity: 1;
-  transform: translate(-50%, -50%) scale(1);
-}
-
-.hero-bg-role.fade-out {
-  opacity: 0;
-  transform: translate(-50%, -50%) scale(1.04);
+  max-width: none;
+  overflow: visible;
 }
 
 .hero-profile-wrapper {
@@ -57,7 +47,7 @@
   position: relative;
   width: clamp(220px, 28vw, 400px);
   perspective: 800px;
-  filter: drop-shadow(0 20px 60px rgba(0, 0, 0, 0.7));
+  filter: drop-shadow(0 20px 50px rgba(0, 0, 0, 0.85));
 }
 
 .hero-profile-img {
@@ -70,6 +60,7 @@
   border-radius: 0;
   -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
   mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+  filter: grayscale(15%) contrast(1.05);
 }
 
 .hero-profile-img:hover {
@@ -83,26 +74,51 @@
   transform: translateX(-50%);
   width: 90%;
   height: 30px;
-  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.55) 0%, transparent 80%);
+  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.7) 0%, transparent 80%);
   border-radius: 50%;
 }
 
 .hero-profile-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
   font-family: 'Bebas Neue', 'Arial Black', sans-serif;
-  font-size: clamp(1.1rem, 2vw, 1.6rem);
-  letter-spacing: 0.45em;
-  color: rgba(255, 255, 255, 0.3);
-  margin-top: 6px;
+  font-size: clamp(0.9rem, 1.5vw, 1.2rem);
+  letter-spacing: 0.3em;
+  color: rgba(242, 234, 217, 0.45);
+  margin-top: 0;
   user-select: none;
+  text-align: center;
+  margin-right: -0.3em;
+  transform: translateY(-10px);
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #10b981;
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.6);
+  animation: pulse-dot 2s infinite;
+}
+
+@keyframes pulse-dot {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+  70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
 }
 
 .hero-overlay-text {
   position: absolute;
-  bottom: 6%;
-  left: 5%;
+  bottom: 12%;
+  right: 12%;
+  left: auto;
   z-index: 3;
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
   gap: 0;
 }
 
@@ -110,7 +126,7 @@
   font-family: cursive;
   font-weight: 300;
   font-size: clamp(1rem, 2vw, 1.5rem);
-  color: rgba(255, 255, 255, 0.75);
+  color: rgba(242, 234, 217, 0.7);
   letter-spacing: 0.02em;
 }
 
@@ -119,37 +135,75 @@
   font-size: clamp(2.8rem, 6vw, 5.5rem);
   font-weight: 900;
   line-height: 1;
-  color: #ffffff;
+  color: #f2ead9;
   letter-spacing: 0.04em;
   margin: 0;
-  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
 }
 
-.hero-tagline {
-  position: absolute;
-  bottom: 8%;
-  right: 5%;
-  z-index: 3;
-  text-align: left;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 6px;
-}
-
-.hero-tagline-dot {
-  font-size: 1.1rem;
-  color: rgba(255, 255, 255, 0.5);
-}
-
-.hero-tagline p {
+.hero-role-subtitle {
   font-family: 'Poppins', sans-serif;
-  font-size: clamp(0.65rem, 1.1vw, 0.9rem);
-  color: rgba(255, 255, 255, 0.6);
-  line-height: 1.6;
-  margin: 0;
-  letter-spacing: 0.02em;
+  font-size: clamp(0.7rem, 1.3vw, 1rem);
+  font-style: italic;
+  font-weight: 300;
+  color: rgba(242, 234, 217, 0.5);
+  letter-spacing: 0.06em;
+  margin-top: 6px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.8s ease 1.6s, transform 0.8s ease 1.6s;
 }
+
+.hero-role-subtitle.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hero-projects-btn {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 30px;
+  padding: 12px 32px;
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: #f2ead9;
+  text-decoration: none;
+  text-transform: uppercase;
+  border: 1px solid rgba(242, 234, 217, 0.3);
+  border-radius: 50px;
+  background: transparent;
+  backdrop-filter: blur(5px);
+  transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  opacity: 0;
+  transform: translateY(15px);
+}
+
+.hero-projects-btn.visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 1.8s;
+}
+
+.hero-projects-btn .btn-arrow {
+  font-size: 1.1rem;
+  transition: transform 0.4s ease;
+}
+
+.hero-projects-btn:hover {
+  background: #f2ead9;
+  color: #0d0d0c;
+  border-color: #f2ead9;
+  box-shadow: 0 4px 20px rgba(242, 234, 217, 0.2);
+}
+
+.hero-projects-btn:hover .btn-arrow {
+  transform: translate(3px, -3px) rotate(15deg);
+}
+
 
 .scroll-down-indicator {
   position: absolute;
@@ -166,42 +220,39 @@
 }
 
 .scroll-down-indicator:hover .scroll-mouse {
-  border-color: #a855f7;
-  box-shadow: 0 0 18px rgba(168, 85, 247, 0.55), 0 0 40px rgba(168, 85, 247, 0.2);
+  border-color: #f2ead9;
 }
 
 .scroll-down-indicator:hover .scroll-label {
-  color: #a855f7;
+  color: #f2ead9;
   letter-spacing: 0.3em;
 }
 
 .scroll-mouse {
   width: 26px;
   height: 42px;
-  border: 2px solid rgba(255, 255, 255, 0.45);
+  border: 2px solid rgba(242, 234, 217, 0.4);
   border-radius: 13px;
   display: flex;
   justify-content: center;
   align-items: flex-start;
   padding-top: 7px;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 0 10px rgba(168, 85, 247, 0.15);
+  transition: border-color 0.3s ease;
 }
 
 .scroll-dot {
   width: 5px;
   height: 5px;
-  background: linear-gradient(180deg, #a855f7, #ec4899);
+  background: #f2ead9;
   border-radius: 50%;
   animation: scroll-dot-move 1.6s ease-in-out infinite;
-  box-shadow: 0 0 6px rgba(168, 85, 247, 0.8);
 }
 
 .scroll-label {
   font-family: 'Bebas Neue', 'Arial Black', sans-serif;
   font-size: 0.65rem;
   letter-spacing: 0.25em;
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(242, 234, 217, 0.4);
   transition: color 0.3s ease, letter-spacing 0.3s ease;
 }
 

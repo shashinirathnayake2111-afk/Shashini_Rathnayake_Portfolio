@@ -4,7 +4,6 @@ import '../styles/SocialSidebar.css';
 const SocialSidebar = ({ isLoaded }) => {
   return (
     <div className={`social-sidebar ${isLoaded ? 'sidebar-enter' : ''}`}>
-      <div className="sidebar-line"></div>
 
       <a href="https://www.linkedin.com/in/shashini-rathnayake-628983326/" className="social-link" aria-label="LinkedIn">
         <svg viewBox="0 0 24 24">

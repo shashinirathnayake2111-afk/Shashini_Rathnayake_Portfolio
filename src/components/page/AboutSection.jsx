@@ -110,7 +110,7 @@ const AboutSection = () => {
             </div>
 
             <h2 className="about-title">
-              BEYOND THE <span className="text-pink">CODE.</span>
+              Who I <span className="text-pink">am.</span>
             </h2>
             <p className="about-subtitle">Full Stack Developer&nbsp;•&nbsp;UI/UX Designer&nbsp;•&nbsp;Creative Thinker</p>
 

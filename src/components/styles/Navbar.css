@@ -78,8 +78,8 @@
 }
 
 .nav-cta {
-  background-color: #d659fc;
-  color: #111827;
+  background-color: #e9dfc7;
+  color: #0a0806;
   font-family: 'Poppins', sans-serif;
   font-weight: 600;
   font-size: 0.8rem;
@@ -91,7 +91,38 @@
 }
 
 .nav-cta:hover {
-  background-color: #e27bfd;
+  background-color: #f5efe0;
   transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(214, 89, 252, 0.4);
+  box-shadow: 0 4px 15px rgba(233, 223, 199, 0.35);
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.theme-toggle-btn {
+  background: transparent;
+  border: none;
+  color: #e5e7eb;
+  cursor: pointer;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.theme-toggle-btn:hover {
+  color: #d659fc;
+  background: rgba(255, 255, 255, 0.1);
+  transform: rotate(20deg);
+}
+
+.theme-toggle-btn svg {
+  width: 20px;
+  height: 20px;
 }

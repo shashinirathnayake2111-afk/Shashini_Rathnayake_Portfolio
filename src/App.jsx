@@ -10,6 +10,8 @@ import SocialSidebar from './components/page/SocialSidebar'
 const HAS_LOADED_KEY = 'portfolioHasLoaded'
 
 function App() {
+  // Skip the loading screen if it already played once this session
+  // (e.g. navigating back, refreshing, or opening a second page).
   const alreadyLoaded = sessionStorage.getItem(HAS_LOADED_KEY) === 'true'
   const [isLoading, setIsLoading] = useState(!alreadyLoaded)
 
@@ -20,6 +22,9 @@ function App() {
     }
   }, [isLoading])
 
+  // Cinematic smooth scroll — weighted, glides instead of jumping.
+  // Only starts once the loading screen is done, so it never fights
+  // with the body-scroll-lock above.
   useEffect(() => {
     if (isLoading) return
 
