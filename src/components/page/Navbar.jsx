@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import '../styles/Navbar.css';
 
-const Navbar = ({ isLoaded }) => {
+const Navbar = ({ isLoaded, onContactClick }) => {
   const [isDarkMode, setIsDarkMode] = useState(true);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     if (isDarkMode) {
@@ -16,17 +19,37 @@ const Navbar = ({ isLoaded }) => {
     setIsDarkMode(!isDarkMode);
   };
 
+  const handleScrollToSection = (e, id) => {
+    e.preventDefault();
+    if (location.pathname !== '/') {
+      navigate('/');
+      setTimeout(() => {
+        document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    } else {
+      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <nav className={`navbar-container ${isLoaded ? 'nav-enter' : ''}`}>
-      <a href="#" className="nav-logo">
+      <Link to="/" className="nav-logo">
         Shashini Rathnayake<span className="nav-dot">.</span>
-      </a>
+      </Link>
       
       <ul className="nav-links">
-        <li><a href="#about" className="nav-link">About</a></li>
-        <li><a href="#skills" className="nav-link">Skills</a></li>
-        <li><a href="#experience" className="nav-link">Experience</a></li>
-        <li><a href="#projects" className="nav-link">Projects</a></li>
+        <li>
+          <Link to="/about" className="nav-link">About</Link>
+        </li>
+        <li>
+          <a href="#skills" className="nav-link" onClick={(e) => handleScrollToSection(e, 'skills')}>Skills</a>
+        </li>
+        <li>
+          <a href="#experience" className="nav-link" onClick={(e) => handleScrollToSection(e, 'experience')}>Experience</a>
+        </li>
+        <li>
+          <a href="#projects" className="nav-link" onClick={(e) => handleScrollToSection(e, 'projects')}>Projects</a>
+        </li>
       </ul>
 
       <div className="nav-actions">
@@ -42,7 +65,7 @@ const Navbar = ({ isLoaded }) => {
             </svg>
           )}
         </button>
-        <button className="nav-cta">Let's talk</button>
+        <button className="nav-cta" onClick={onContactClick}>Let's talk</button>
       </div>
     </nav>
   );

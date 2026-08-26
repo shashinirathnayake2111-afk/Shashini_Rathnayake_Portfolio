@@ -116,3 +116,18 @@
     transform: translateY(-50%) translateX(0);
   }
 }
+
+/* ── Show / Hide based on hero section visibility ── */
+.sidebar-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(-50%) translateX(0);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.sidebar-hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-50%) translateX(-15px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}

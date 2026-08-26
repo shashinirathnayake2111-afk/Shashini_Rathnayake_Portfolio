@@ -1,9 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../styles/SocialSidebar.css';
 
-const SocialSidebar = ({ isLoaded }) => {
+const SocialSidebar = ({ isLoaded, isVisible = true }) => {
+  const [animDone, setAnimDone] = useState(false);
+
+  // After entrance animation finishes, switch to inline style control
+  // so the animation's fill-mode doesn't block our hide/show logic
+  const inlineStyle = animDone
+    ? {
+        opacity: isVisible ? 1 : 0,
+        transform: isVisible
+          ? 'translateY(-50%) translateX(0)'
+          : 'translateY(-50%) translateX(-15px)',
+        pointerEvents: isVisible ? 'auto' : 'none',
+        transition: 'opacity 0.5s ease, transform 0.5s ease',
+      }
+    : {};
+
   return (
-    <div className={`social-sidebar ${isLoaded ? 'sidebar-enter' : ''}`}>
+    <div
+      className={`social-sidebar ${isLoaded && !animDone ? 'sidebar-enter' : ''}`}
+      style={inlineStyle}
+      onAnimationEnd={() => setAnimDone(true)}
+    >
 
       <a href="https://www.linkedin.com/in/shashini-rathnayake-628983326/" className="social-link" aria-label="LinkedIn">
         <svg viewBox="0 0 24 24">

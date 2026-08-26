@@ -57,7 +57,11 @@ const HeroSection = ({ isLoaded }) => {
         className="hero-bg-role"
         style={{ y: bgRoleY, opacity: bgRoleOpacity, scale: bgRoleScale }}
       >
-        <span>BUILD. DESIGN. INSPIRE.</span>
+        {"BUILD. DESIGN. INSPIRE.".split('').map((char, index) => (
+          <span key={index} className="bg-hover-letter">
+            {char === ' ' ? '\u00A0' : char}
+          </span>
+        ))}
       </motion.div>
 
       <motion.div
@@ -74,9 +78,9 @@ const HeroSection = ({ isLoaded }) => {
             <img src={profileImg} alt="Profile" className="hero-profile-img" />
             <div className="hero-profile-shadow" />
           </div>
-            <div className="hero-profile-label">
-              <span className="status-dot"></span> AVAILABLE FOR HIRE
-            </div>
+          <div className="hero-profile-label">
+            <span className="status-dot"></span> AVAILABLE FOR WORK
+          </div>
         </div>
       </motion.div>
 
@@ -104,7 +108,14 @@ const HeroSection = ({ isLoaded }) => {
           Full Stack Developer&nbsp;&amp;&nbsp;UI/UX Designer
         </p>
 
-        <a href="#projects" className={`hero-projects-btn ${mounted ? 'visible' : ''}`}>
+        <a
+          href="#projects"
+          className={`hero-projects-btn ${mounted ? 'visible' : ''}`}
+          onClick={(e) => {
+            e.preventDefault();
+            document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
+          }}
+        >
           View My Projects <span className="btn-arrow">↗</span>
         </a>
       </motion.div>

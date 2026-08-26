@@ -1,205 +1,282 @@
 import React, { useEffect, useRef, useState } from 'react';
 import '../styles/AboutSection.css';
-import ProfileSketch from './ProfileSketch';
 import resumePDF from '../../assets/resume.pdf';
 
-const techStack = ['React', 'Node.js', 'TypeScript', 'Python', 'MySQL', 'Figma'];
+/* ── Tab Definitions ── */
+const TABS = ['About', 'Skills', 'Education', 'Experience'];
 
-const AboutSection = () => {
-  const sectionRef = useRef(null);
-  const tiltCardRef = useRef(null);
-  const hasAnimated = useRef(false);
+/* ── Skills Data ── */
+const skillCategories = [
+  {
+    label: 'Frontend',
+    skills: ['React', 'Next.js', 'TypeScript', 'HTML/CSS', 'Framer Motion', 'Tailwind'],
+  },
+  {
+    label: 'Backend',
+    skills: ['Node.js', 'Express', 'Python', 'REST APIs', 'MySQL', 'MongoDB'],
+  },
+  {
+    label: 'Design',
+    skills: ['Figma', 'UI/UX Design', 'Prototyping', 'Design Systems', 'Wireframing'],
+  },
+  {
+    label: 'Tools',
+    skills: ['Git', 'GitHub', 'VS Code', 'Postman', 'Firebase', 'Vercel'],
+  },
+];
+
+/* ── Education Data ── */
+const education = [
+  {
+    year: '2022 – Present',
+    title: 'BSc (Hons) in Information Technology',
+    place: 'Sri Lanka Institute of Information Technology',
+    desc: 'Specializing in Software Engineering. Covering full-stack development, software architecture, databases, and UI/UX design.',
+  },
+  {
+    year: '2023',
+    title: 'Google UX Design Certificate',
+    place: 'Google / Coursera',
+    desc: 'Completed 7-course program covering empathy mapping, wireframing, prototyping, and usability testing.',
+  },
+  {
+    year: '2022',
+    title: 'Meta Front-End Developer Certificate',
+    place: 'Meta / Coursera',
+    desc: 'React, advanced HTML/CSS, responsive design, and front-end best practices.',
+  },
+];
+
+/* ── Experience Data ── */
+const experience = [
+  {
+    year: '2024 – 2025',
+    title: 'Full Stack Developer Intern',
+    place: 'XYZ Tech (Pvt) Ltd',
+    desc: '8-month internship. Built and maintained web applications using React, Node.js, and MySQL. Collaborated in agile sprints and contributed to UI redesign projects.',
+    tags: ['React', 'Node.js', 'MySQL'],
+  },
+  {
+    year: '2023 – Present',
+    title: 'Freelance UI/UX Designer',
+    place: 'Self-employed',
+    desc: 'Designed and delivered end-to-end UI/UX projects for local businesses — from research and wireframes to high-fidelity Figma prototypes.',
+    tags: ['Figma', 'UI/UX', 'Prototyping'],
+  },
+  {
+    year: '2023',
+    title: 'Open Source Contributor',
+    place: 'GitHub',
+    desc: 'Contributed bug fixes and feature PRs to open-source React component libraries and documentation improvements.',
+    tags: ['React', 'Open Source'],
+  },
+];
+
+/* ── About Panel ── */
+const AboutPanel = () => {
   const [counts, setCounts] = useState({ exp: 0, projects: 0, certs: 0 });
+  const animated = useRef(false);
 
-  useEffect(() => {
-    const card = tiltCardRef.current;
-    if (!card) return;
-
-    const handleMouseMove = (e) => {
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      const cx = rect.width / 2;
-      const cy = rect.height / 2;
-      const rotX = ((y - cy) / cy) * -10;
-      const rotY = ((x - cx) / cx) * 10;
-      card.style.setProperty('--rot-x', `${rotX}deg`);
-      card.style.setProperty('--rot-y', `${rotY}deg`);
-    };
-
-    const handleMouseLeave = () => {
-      card.style.setProperty('--rot-x', '0deg');
-      card.style.setProperty('--rot-y', '0deg');
-    };
-
-    card.addEventListener('mousemove', handleMouseMove);
-    card.addEventListener('mouseleave', handleMouseLeave);
-    return () => {
-      card.removeEventListener('mousemove', handleMouseMove);
-      card.removeEventListener('mouseleave', handleMouseLeave);
-    };
-  }, []);
-
-  const animateCounter = (target, key, duration = 1600) => {
+  const animateCounter = (target, key, duration = 1400) => {
     const start = performance.now();
     const step = (now) => {
       const p = Math.min((now - start) / duration, 1);
       const eased = 1 - Math.pow(1 - p, 4);
-      setCounts(prev => ({ ...prev, [key]: Math.floor(eased * target) }));
+      setCounts((prev) => ({ ...prev, [key]: Math.floor(eased * target) }));
       if (p < 1) requestAnimationFrame(step);
     };
     requestAnimationFrame(step);
   };
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-            if (!hasAnimated.current && entry.target.classList.contains('stats-trigger')) {
-              hasAnimated.current = true;
-              animateCounter(8, 'exp', 1200);
-              animateCounter(7, 'projects', 1600);
-              animateCounter(5, 'certs', 2000);
-            }
-          }
-        });
-      },
-      { threshold: 0.2 }
-    );
+    if (animated.current) return;
+    animated.current = true;
+    animateCounter(8, 'exp', 1200);
+    animateCounter(7, 'projects', 1600);
+    animateCounter(5, 'certs', 2000);
+  }, []);
 
-    const elements = sectionRef.current?.querySelectorAll('.reveal-item');
-    elements?.forEach((el) => observer.observe(el));
+  return (
+    <div className="tab-panel-about">
+      <div className="otw-badge">
+        <span className="otw-dot" />
+        <span className="otw-label">Open to Work</span>
+      </div>
+
+      <h2 className="about-title">
+        Who I <span className="title-stroke">am.</span>
+      </h2>
+      <p className="about-subtitle">Full Stack Developer&nbsp;•&nbsp;UI/UX Designer&nbsp;•&nbsp;Creative Thinker</p>
+
+      <p className="about-bio">
+        I&apos;m a passionate <span className="highlight-text">Full Stack Developer &amp; UI/UX Designer</span> who
+        believes great software isn&apos;t just functional — it&apos;s an experience that feels alive, intuitive, and beautiful.
+      </p>
+      <p className="about-bio">
+        With a strong foundation in both frontend and backend, I love bridging the gap between engineering and design.
+        Always eager to learn, build, and push creative boundaries.
+      </p>
+
+      <div className="about-stats-row">
+        <div className="about-stat">
+          <span className="about-stat-num">{counts.exp}</span>
+          <span className="about-stat-desc">Months<br />Experience</span>
+        </div>
+        <div className="about-stat-divider" />
+        <div className="about-stat">
+          <span className="about-stat-num">{counts.projects}<span className="stat-plus">+</span></span>
+          <span className="about-stat-desc">Projects<br />Built</span>
+        </div>
+        <div className="about-stat-divider" />
+        <div className="about-stat">
+          <span className="about-stat-num">{counts.certs}<span className="stat-plus">+</span></span>
+          <span className="about-stat-desc">Certificates<br />Earned</span>
+        </div>
+      </div>
+
+      <div className="about-actions">
+        <a href={resumePDF} download="Shashini_Rathnayake_Resume.pdf" className="btn-primary">
+          <span>Download CV</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+            <polyline points="7 10 12 15 17 10" />
+            <line x1="12" y1="15" x2="12" y2="3" />
+          </svg>
+        </a>
+        <a href="https://github.com/shashinirathnayake2111-afk" className="btn-secondary" target="_blank" rel="noreferrer">
+          <span>GitHub</span>
+          <span className="btn-arrow">↗</span>
+        </a>
+      </div>
+    </div>
+  );
+};
+
+/* ── Skills Panel ── */
+const SkillsPanel = () => (
+  <div className="tab-panel-skills">
+    {skillCategories.map((cat) => (
+      <div className="skill-category" key={cat.label}>
+        <div className="skill-cat-label">{cat.label}</div>
+        <div className="skill-pills">
+          {cat.skills.map((s, i) => (
+            <span className="skill-pill" key={s} style={{ '--spd': `${i * 0.06}s` }}>{s}</span>
+          ))}
+        </div>
+      </div>
+    ))}
+  </div>
+);
+
+/* ── Timeline Item ── */
+const TimelineItem = ({ year, title, place, desc, tags, index }) => (
+  <div className="timeline-item" style={{ '--tid': `${index * 0.12}s` }}>
+    <div className="timeline-left">
+      <div className="timeline-year">{year}</div>
+    </div>
+    <div className="timeline-connector">
+      <div className="timeline-dot" />
+      <div className="timeline-line" />
+    </div>
+    <div className="timeline-body">
+      <div className="timeline-title">{title}</div>
+      <div className="timeline-place">{place}</div>
+      <p className="timeline-desc">{desc}</p>
+      {tags && (
+        <div className="timeline-tags">
+          {tags.map((t) => <span className="timeline-tag" key={t}>{t}</span>)}
+        </div>
+      )}
+    </div>
+  </div>
+);
+
+/* ── Education Panel ── */
+const EducationPanel = () => (
+  <div className="tab-panel-timeline">
+    {education.map((e, i) => (
+      <TimelineItem key={i} index={i} {...e} />
+    ))}
+  </div>
+);
+
+/* ── Experience Panel ── */
+const ExperiencePanel = () => (
+  <div className="tab-panel-timeline">
+    {experience.map((e, i) => (
+      <TimelineItem key={i} index={i} {...e} />
+    ))}
+  </div>
+);
+
+const PANELS = [AboutPanel, SkillsPanel, EducationPanel, ExperiencePanel];
+
+/* ── Main Component ── */
+const AboutSection = () => {
+  const [active, setActive] = useState(0);
+  const [animKey, setAnimKey] = useState(0);
+  const sectionRef = useRef(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) setVisible(true); },
+      { threshold: 0.1 }
+    );
+    if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
   }, []);
+
+  const handleTabClick = (i) => {
+    if (i === active) return;
+    setActive(i);
+    setAnimKey((k) => k + 1);
+  };
+
+  const PanelComponent = PANELS[active];
 
   return (
     <section className="about-section" id="about" ref={sectionRef}>
 
-      <div className="ambient-mesh">
-        <div className="mesh-blob blue-blob"></div>
-        <div className="mesh-blob purple-blob"></div>
-        <div className="mesh-blob cyan-blob"></div>
+      {/* Background watermark */}
+      <div className="about-watermark" aria-hidden="true">
+        {TABS[active].toUpperCase()}
       </div>
 
-      {/* ── Auto Pencil Drawing Sketch ── */}
-      <ProfileSketch className="about-bg-sketch reveal-item" style={{ '--delay': '0.5s' }} />
+      <div className={`aww-layout ${visible ? 'aww-visible' : ''}`}>
 
-      <div className="particles-field" aria-hidden="true">
-        {[...Array(18)].map((_, i) => (
-          <span key={i} className="particle" style={{
-            '--px': `${(i * 37 + 11) % 100}%`,
-            '--py': `${(i * 53 + 7) % 100}%`,
-            '--ps': `${2 + (i % 4)}px`,
-            '--pd': `${5 + (i % 7)}s`,
-            '--pdelay': `${(i * 0.7) % 6}s`,
-          }} />
-        ))}
-      </div>
+        {/* ── Left Tab Rail ── */}
+        <nav className="tab-rail" aria-label="Section navigation">
 
-      <div className="about-container">
+          <div className="tab-rail-section-label">02 / PROFILE</div>
 
-        <div className="about-split reveal-item" style={{ '--delay': '0s' }}>
+          <ul className="tab-list">
+            {TABS.map((tab, i) => (
+              <li key={tab}>
+                <button
+                  className={`tab-btn ${active === i ? 'tab-btn--active' : ''}`}
+                  onClick={() => handleTabClick(i)}
+                  aria-current={active === i ? 'true' : undefined}
+                >
+                  <span className="tab-btn-index">0{i + 1}</span>
+                  <span className="tab-btn-name">{tab}</span>
+                  <span className="tab-btn-line" />
+                </button>
+              </li>
+            ))}
+          </ul>
 
-          <div className="about-left">
-
-            <div className="otw-badge">
-              <span className="otw-dot"></span>
-              <span className="otw-label">Open to Work</span>
-            </div>
-
-            <h2 className="about-title">
-              Who I <span className="text-pink">am.</span>
-            </h2>
-            <p className="about-subtitle">Full Stack Developer&nbsp;•&nbsp;UI/UX Designer&nbsp;•&nbsp;Creative Thinker</p>
-
-            <p className="about-bio">
-              I'm a passionate <span className="highlight-pink">Full Stack Developer & UI/UX Designer</span> who believes great software isn't just functional — it's an experience that feels alive, intuitive, and beautiful.
-            </p>
-            <p className="about-bio">
-              With a strong foundation in both frontend and backend, I love bridging the gap between engineering and design. Always eager to learn, build, and push creative boundaries.
-            </p>
-
-            <div className="tech-pills">
-              {techStack.map((t) => (
-                <span key={t} className="tech-pill">{t}</span>
-              ))}
-            </div>
-
-            <div className="about-actions">
-              <a href={resumePDF} download="Shashini_Rathnayake_Resume.pdf" className="btn-primary">Download CV</a>
-              <a href="https://github.com/shashinirathnayake2111-afk" className="btn-secondary" target="_blank" rel="noreferrer">
-                GitHub&nbsp;↗
-              </a>
-            </div>
+          <div className="tab-rail-counter">
+            <span className="trc-active">0{active + 1}</span>
+            <span className="trc-sep"> — </span>
+            <span className="trc-total">0{TABS.length}</span>
           </div>
+        </nav>
 
-          <div className="about-right">
-            <div className="card-float-wrapper">
-              <div className="card-3d" ref={tiltCardRef}>
-                <div className="card-border-glow"></div>
-
-                <div className="code-block">
-                  <div className="code-dots">
-                    <span className="dot dot-red"></span>
-                    <span className="dot dot-yellow"></span>
-                    <span className="dot dot-green"></span>
-                  </div>
-                  <div className="code-body">
-                    <div className="code-line"><span className="ck">const</span> <span className="cv">shashini</span> = {'{'}</div>
-                    <div className="code-line pl"><span className="ck">role</span>: <span className="cs">"Full Stack Dev"</span>,</div>
-                    <div className="code-line pl"><span className="ck">passion</span>: <span className="cs">"UI/UX Design"</span>,</div>
-                    <div className="code-line pl"><span className="ck">status</span>: <span className="cg">"Open to Work ✓"</span>,</div>
-                    <div className="code-line pl"><span className="ck">building</span>: <span className="cs">"something great"</span> 🚀</div>
-                    <div className="code-line">{'}'}</div>
-                  </div>
-                </div>
-
-                <div className="card-mini-badges">
-                  <span className="mini-badge">⚡ Fast Learner</span>
-                  <span className="mini-badge">🎨 Design‑First</span>
-                  <span className="mini-badge">🚀 Builder</span>
-                </div>
-
-                <div className="c-orb c-orb-1"></div>
-                <div className="c-orb c-orb-2"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="stats-strip-card reveal-item stats-trigger" style={{ '--delay': '0.25s' }}>
-          <div className="stats-strip">
-
-            <div className="strip-stat">
-              <div className="stat-number text-purple">{counts.exp}</div>
-              <div className="stat-label">
-                <span className="stat-unit">Months</span>
-                <span className="stat-desc">Industry Experience<br />(Internship)</span>
-              </div>
-            </div>
-
-            <div className="strip-divider"></div>
-
-            <div className="strip-stat">
-              <div className="stat-number text-gradient">{counts.projects}+</div>
-              <div className="stat-label">
-                <span className="stat-unit">Projects</span>
-                <span className="stat-desc">Built &amp; Deployed</span>
-              </div>
-            </div>
-
-            <div className="strip-divider"></div>
-
-            <div className="strip-stat">
-              <div className="stat-number text-pink">{counts.certs}+</div>
-              <div className="stat-label">
-                <span className="stat-unit">Certificates</span>
-                <span className="stat-desc">Professional &amp; Online Courses</span>
-              </div>
-            </div>
-
+        {/* ── Content Panel ── */}
+        <div className="panel-area">
+          <div key={animKey} className="panel-enter">
+            <PanelComponent />
           </div>
         </div>
 
