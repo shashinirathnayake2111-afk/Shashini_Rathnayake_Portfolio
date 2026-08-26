@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Mail, Phone } from 'lucide-react';
 import '../styles/ContactDrawer.css';
 
 const ContactDrawer = ({ isOpen, onClose }) => {
@@ -20,7 +21,10 @@ const ContactDrawer = ({ isOpen, onClose }) => {
         onClick={onClose}
         aria-hidden="true"
       />
-      <div className={`contact-drawer ${isOpen ? 'open' : ''}`}>
+      <div 
+        className={`contact-drawer ${isOpen ? 'open' : ''}`}
+        data-lenis-prevent="true"
+      >
         <div className="drawer-header">
           <h2 className="drawer-title">Let's Talk.</h2>
           <button className="drawer-close-btn" onClick={onClose} aria-label="Close">
@@ -55,8 +59,14 @@ const ContactDrawer = ({ isOpen, onClose }) => {
           </form>
           
           <div className="drawer-footer">
-            <p>Or email me directly at:</p>
-            <a href="mailto:hello@example.com" className="direct-email">hello@example.com</a>
+            <a href="mailto:shashinirathnayake2111@gmail.com" className="contact-icon-btn" title="Email Me">
+              <Mail size={20} />
+              <span className="contact-text">shashinirathnayake2111@gmail.com</span>
+            </a>
+            <a href="tel:+94742949504" className="contact-icon-btn" title="Call Me">
+              <Phone size={20} />
+              <span className="contact-text">074 2949504</span>
+            </a>
           </div>
         </div>
       </div>
