@@ -1,9 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
+import { MapPin, ChevronDown } from 'lucide-react';
 import '../styles/HeroSection.css';
 import profileImg from '../../assets/profile.png';
-
-
 
 /* Split a word into animated letter spans */
 const AnimatedWord = ({ word, baseDelay = 0, className = '' }) => (
@@ -79,7 +78,7 @@ const HeroSection = ({ isLoaded }) => {
             <div className="hero-profile-shadow" />
           </div>
           <div className="hero-profile-label">
-            <span className="status-dot"></span> AVAILABLE FOR WORK
+            <MapPin size={18} strokeWidth={2.5} /> COLOMBO, SRI LANKA
           </div>
         </div>
       </motion.div>
@@ -131,6 +130,7 @@ const HeroSection = ({ isLoaded }) => {
         </div>
         <span className="scroll-label">EXPLORE</span>
       </div>
+
     </section>
   );
 };

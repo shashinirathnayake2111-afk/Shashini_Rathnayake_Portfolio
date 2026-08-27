@@ -4,6 +4,7 @@ import Lenis from 'lenis'
 import './App.css'
 import LoadingScreen from './components/page/LoadingScreen'
 import HeroSection from './components/page/HeroSection'
+import IntroStatement from './components/page/IntroStatement'
 import AboutSection from './components/page/AboutSection'
 import Navbar from './components/page/Navbar'
 import SocialSidebar from './components/page/SocialSidebar'
@@ -26,9 +27,9 @@ function App() {
 
   useEffect(() => {
     // Only lock scrolling if loading, otherwise the drawer will handle its own locking
-    if (isLoading) {
+    if (isLoading || isContactOpen) {
       document.body.style.overflow = 'hidden'
-    } else if (!isContactOpen) {
+    } else {
       document.body.style.overflow = ''
     }
     
@@ -62,14 +63,16 @@ function App() {
   }, [isLoading])
 
   useEffect(() => {
-    if (!heroRef.current) return
-    const observer = new IntersectionObserver(
-      ([entry]) => setIsInHero(entry.isIntersecting),
-      { threshold: 0.1 }
-    )
-    observer.observe(heroRef.current)
-    return () => observer.disconnect()
-  }, [isLoading, location.pathname]) // re-run if path changes
+    const handleScroll = () => {
+      setIsInHero(window.scrollY < 100)
+    }
+    
+    // Check initial position
+    handleScroll()
+    
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [location.pathname]) // Re-run when path changes to check new top position
 
   const handleLoadingComplete = () => {
     sessionStorage.setItem(HAS_LOADED_KEY, 'true')
@@ -79,7 +82,7 @@ function App() {
   return (
     <div className="app-container">
       {isLoading && <LoadingScreen onComplete={handleLoadingComplete} />}
-      <Navbar isLoaded={!isLoading} onContactClick={() => setIsContactOpen(true)} />
+      <Navbar isLoaded={!isLoading} onContactClick={() => setIsContactOpen(true)} isInHero={isInHero} />
       
       <Routes>
         <Route path="/" element={
@@ -88,6 +91,7 @@ function App() {
             <div ref={heroRef}>
               <HeroSection isLoaded={!isLoading} />
             </div>
+            <IntroStatement />
           </>
         } />
         <Route path="/about" element={
