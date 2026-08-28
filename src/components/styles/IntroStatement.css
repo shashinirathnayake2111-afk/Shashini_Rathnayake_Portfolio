@@ -171,3 +171,87 @@
     align-self: start;
   }
 }
+
+/* Wrapper to hold both static badge & slider */
+.marquee-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-top: 40px;
+  overflow: hidden;
+  padding: 5px;
+}
+
+/* Static Badge Box (Left Side) */
+.tech-badge {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  padding: 10px 20px;
+  box-shadow: 10px 0 20px rgba(0, 0, 0, 0.8);
+  white-space: nowrap;
+  margin-top: 40px;
+  width: 150px;
+  height: 50px;
+  background: rgba(242, 234, 217, 0.35);
+  background: rgba(255, 255, 255, 0.05);
+  /* Semi-transparent background */
+  backdrop-filter: blur(50px);
+  /* Background blur effect */
+  -webkit-backdrop-filter: blur(50px);
+  /* Safari support */
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  /* Soft dark shadow */
+}
+
+.marquee-container {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  margin-top: 40px;
+  padding: 15px 0;
+  display: flex;
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.marquee-track {
+  display: flex;
+  gap: 3.5rem;
+  width: max-content;
+
+  /* Continuous Left to Right Smooth Scroll */
+  animation: scrollLeftToRight 20s linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+.tech-icon img {
+  height: 40px;
+  width: 40px;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.tech-icon img:hover {
+  transform: scale(1.25);
+}
+
+/* Perfect Loop Formula */
+@keyframes scrollLeftToRight {
+  0% {
+    transform: translateX(-33.33%);
+  }
+
+  100% {
+    transform: translateX(0%);
+  }
+}
