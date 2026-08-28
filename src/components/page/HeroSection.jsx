@@ -52,6 +52,14 @@ const HeroSection = ({ isLoaded }) => {
 
   return (
     <section className="hero-section" ref={sectionRef}>
+      {/* Premium Ambient Background Effects */}
+      <div className="hero-background-effects">
+        <div className="noise-overlay"></div>
+        <div className="glow-orb orb-1"></div>
+        <div className="glow-orb orb-2"></div>
+        <div className="glow-orb orb-3"></div>
+      </div>
+
       <motion.div
         className="hero-bg-role"
         style={{ y: bgRoleY, opacity: bgRoleOpacity, scale: bgRoleScale }}

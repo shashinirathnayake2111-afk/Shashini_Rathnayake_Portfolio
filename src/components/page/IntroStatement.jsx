@@ -13,11 +13,6 @@ const IntroStatement = () => {
   return (
     <section className="intro-statement-section" id="intro">
 
-      {/* Status pill */}
-      <div className="intro-sticky-nav">
-        <span className="intro-status-dot"></span> AVAILABLE FOR WORK
-      </div>
-
       <div className="intro-bg-text" aria-hidden="true">DESIGN&nbsp;&nbsp;CODE</div>
       <div className="intro-split">
 

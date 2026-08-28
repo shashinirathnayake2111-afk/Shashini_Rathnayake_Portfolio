@@ -64,7 +64,7 @@ function App() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsInHero(window.scrollY < 100)
+      setIsInHero(window.scrollY < window.innerHeight - 20)
     }
     
     // Check initial position
