@@ -13,14 +13,13 @@ const IntroStatement = () => {
   return (
     <section className="intro-statement-section" id="intro">
 
-      <div className="intro-bg-text" aria-hidden="true">DESIGN&nbsp;&nbsp;CODE</div>
       <div className="intro-split">
 
         <motion.div className="intro-left" {...fadeUp(0)}>
           <span className="intro-eyebrow">WHO I AM</span>
           <p className="intro-paragraph">
             Bridging the gap between design and engineering from crafting
-            intuitive UI/UX prototypes to building scalable full-stack web
+            intuitive UI/UX prototypes to building scalable full stack web
             applications.
           </p>
         </motion.div>
