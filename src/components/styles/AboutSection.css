@@ -50,12 +50,14 @@
   width: 100%;
   max-width: 1300px;
   min-height: 100vh;
-  display: grid;
-  grid-template-columns: 240px 1fr;
-  padding: 0 5% 0 2%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 8%;
   opacity: 0;
   transform: translateY(30px);
   transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1), transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  box-sizing: border-box;
 }
 
 .aww-visible {
@@ -174,11 +176,13 @@
 }
 
 .panel-area {
-  padding: 0 0 0 72px;
+  padding: 0;
   display: flex;
   align-items: center;
+  justify-content: center;
   min-height: 100vh;
   overflow: hidden;
+  width: 100%;
 }
 
 /* Panel slide-in animation */
@@ -603,10 +607,8 @@
 ══════════════════════════════════════ */
 @media (max-width: 900px) {
   .aww-layout {
-    grid-template-columns: 1fr;
     min-height: auto;
     padding: 80px 5%;
-    gap: 48px;
   }
 
   .tab-rail {

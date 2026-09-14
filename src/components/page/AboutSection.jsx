@@ -245,34 +245,6 @@ const AboutSection = () => {
 
       <div className={`aww-layout ${visible ? 'aww-visible' : ''}`}>
 
-        {/* ── Left Tab Rail ── */}
-        <nav className="tab-rail" aria-label="Section navigation">
-
-          <div className="tab-rail-section-label">02 / PROFILE</div>
-
-          <ul className="tab-list">
-            {TABS.map((tab, i) => (
-              <li key={tab}>
-                <button
-                  className={`tab-btn ${active === i ? 'tab-btn--active' : ''}`}
-                  onClick={() => handleTabClick(i)}
-                  aria-current={active === i ? 'true' : undefined}
-                >
-                  <span className="tab-btn-index">0{i + 1}</span>
-                  <span className="tab-btn-name">{tab}</span>
-                  <span className="tab-btn-line" />
-                </button>
-              </li>
-            ))}
-          </ul>
-
-          <div className="tab-rail-counter">
-            <span className="trc-active">0{active + 1}</span>
-            <span className="trc-sep"> — </span>
-            <span className="trc-total">0{TABS.length}</span>
-          </div>
-        </nav>
-
         {/* ── Content Panel ── */}
         <div className="panel-area">
           <div key={animKey} className="panel-enter">

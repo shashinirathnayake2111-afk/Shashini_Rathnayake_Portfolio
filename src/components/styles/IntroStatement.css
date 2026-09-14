@@ -10,8 +10,8 @@
   align-items: center;
   background-color: #050505;
   background-image:
-    radial-gradient(circle at 15% 50%, rgba(16, 185, 129, 0.08), transparent 50%),
-    radial-gradient(circle at 85% 30%, rgba(6, 182, 212, 0.08), transparent 50%);
+    radial-gradient(circle at 15% 50%, rgba(242, 234, 217, 0.05), transparent 50%),
+    radial-gradient(circle at 85% 30%, rgba(212, 175, 55, 0.05), transparent 50%);
   background-size: 200% 200%;
   animation: liquid-bg 15s ease-in-out infinite alternate;
   padding: 100px 8% 80px 10%;
@@ -171,8 +171,8 @@
   left: var(--x, 50%);
   top: var(--y, 50%);
   border-radius: 50%;
-  background: var(--c, #10b981);
-  box-shadow: 0 0 6px 1px var(--c, #10b981);
+  background: var(--c, #f2ead9);
+  box-shadow: 0 0 8px 1px var(--c, rgba(242, 234, 217, 0.7));
   pointer-events: none;
   animation: dust-drift var(--dr, 3s) ease-in-out var(--dl, 0s) infinite alternate;
   z-index: 2;
@@ -222,11 +222,11 @@
   inset: 0;
   border-radius: 50px;
   background: linear-gradient(120deg,
-      #10b981 0%,
-      #06b6d4 25%,
-      #8b5cf6 50%,
-      #f59e0b 75%,
-      #10b981 100%);
+      #f2ead9 0%,
+      #e8d5b5 25%,
+      #d4af37 50%,
+      #fdf6e2 75%,
+      #e2c99b 100%);
   background-size: 300% 300%;
   clip-path: circle(0% at 100% 50%);
   transition: clip-path 0.75s cubic-bezier(0.4, 0, 0.2, 1);
@@ -242,10 +242,10 @@
 .intro-highlight span.highlighted-word:hover {
   color: #050505;
   font-weight: 600;
-  border-color: transparent;
+  border-color: rgba(242, 234, 217, 0.5);
   /* scale only, no vertical lift */
   transform: scale(1.06);
-  box-shadow: 0 12px 40px rgba(16, 185, 129, 0.4);
+  box-shadow: 0 12px 35px rgba(242, 234, 217, 0.25);
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
 }

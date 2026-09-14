@@ -96,7 +96,13 @@ const Navbar = ({ isLoaded, onContactClick, isInHero }) => {
         <div className="hamburger-line"></div>
       </button>
 
-      {/* Fullscreen Overlay Menu */}
+      {/* Backdrop */}
+      <div
+        className={`nav-overlay-backdrop ${isMenuOpen ? 'open' : ''}`}
+        onClick={() => setIsMenuOpen(false)}
+      />
+
+      {/* Left Slide-in Drawer Menu */}
       <div className={`nav-overlay-menu ${isMenuOpen ? 'open' : ''}`}>
         <button className="menu-close-btn" onClick={() => setIsMenuOpen(false)}>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -104,7 +110,7 @@ const Navbar = ({ isLoaded, onContactClick, isInHero }) => {
             <line x1="6" y1="6" x2="18" y2="18"></line>
           </svg>
         </button>
-        
+
         <div className="overlay-content">
           <Link to="/" className="overlay-logo" onClick={() => setIsMenuOpen(false)}>
             Shashini<span className="nav-dot">.</span>
@@ -115,6 +121,9 @@ const Navbar = ({ isLoaded, onContactClick, isInHero }) => {
             <li><a href="#experience" onClick={(e) => handleScrollToSection(e, 'experience')}>Experience</a></li>
             <li><a href="#projects" onClick={(e) => handleScrollToSection(e, 'projects')}>Projects</a></li>
           </ul>
+        </div>
+
+        <div className="overlay-bottom">
           <button className="overlay-cta" onClick={() => { setIsMenuOpen(false); onContactClick(); }}>Let's talk</button>
         </div>
       </div>

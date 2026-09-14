@@ -1,0 +1,74 @@
+/* Custom Cursor Styling - Black & Cream Luxury aesthetic */
+
+@media (pointer: coarse) {
+  .custom-cursor-follower,
+  .custom-cursor-dot {
+    display: none !important;
+  }
+}
+
+.custom-cursor-follower {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 38px;
+  height: 38px;
+  margin-top: -19px;
+  margin-left: -19px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(242, 234, 217, 0.45);
+  background: radial-gradient(circle, rgba(242, 234, 217, 0.1) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 99999;
+  will-change: transform;
+  transition: width 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
+              height 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
+              margin 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
+              border-color 0.3s ease,
+              background 0.3s ease,
+              opacity 0.2s ease;
+}
+
+.custom-cursor-follower.hovered {
+  width: 60px;
+  height: 60px;
+  margin-top: -30px;
+  margin-left: -30px;
+  border-color: rgba(242, 234, 217, 0.85);
+  background: radial-gradient(circle, rgba(242, 234, 217, 0.2) 0%, transparent 80%);
+  backdrop-filter: blur(1px);
+}
+
+.custom-cursor-follower.clicked {
+  width: 28px;
+  height: 28px;
+  margin-top: -14px;
+  margin-left: -14px;
+  background: rgba(242, 234, 217, 0.35);
+}
+
+.custom-cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  margin-top: -3px;
+  margin-left: -3px;
+  background-color: #f2ead9;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 100000;
+  will-change: transform;
+  box-shadow: 0 0 10px rgba(242, 234, 217, 0.8);
+  transition: transform 0.05s ease-out, opacity 0.2s ease, width 0.2s ease, height 0.2s ease;
+}
+
+.custom-cursor-dot.hovered {
+  width: 8px;
+  height: 8px;
+  margin-top: -4px;
+  margin-left: -4px;
+  background-color: #ffffff;
+  box-shadow: 0 0 14px rgba(242, 234, 217, 1);
+}
