@@ -126,10 +126,9 @@
   text-align: center;
   position: relative;
   z-index: 2;
-  padding: 0 20px;
+  padding: 0 15px;
   margin-top: 20px;
-  perspective: 1200px;
-  /* added for 3D animation */
+  perspective: 100px;
 }
 
 .intro-highlight {
@@ -137,7 +136,7 @@
   font-size: clamp(2rem, 3.8vw, 4rem);
   font-weight: 400;
   color: rgba(242, 234, 217, 0.7);
-  line-height: 1.6;
+  line-height: 1.8;
   margin: 0;
   letter-spacing: -0.01em;
 }
@@ -149,17 +148,28 @@
 
 /* ─── Dust Particles ─────────────────────────────────── */
 @keyframes dust-drift {
-  0%   { transform: translate(0, 0) scale(1);    opacity: 0.8; }
-  50%  { transform: translate(var(--dx), calc(var(--dy) * 0.6)) scale(1.4); opacity: 1; }
-  100% { transform: translate(calc(var(--dx) * -0.4), var(--dy)) scale(0.7); opacity: 0.3; }
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.8;
+  }
+
+  50% {
+    transform: translate(var(--dx), calc(var(--dy) * 0.6)) scale(1.4);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(calc(var(--dx) * -0.4), var(--dy)) scale(0.7);
+    opacity: 0.3;
+  }
 }
 
 .dp {
   position: absolute;
-  width:  var(--sz, 3px);
-  height: var(--sz, 3px);
-  left:   var(--x, 50%);
-  top:    var(--y, 50%);
+  width: var(--sz, 3px);
+  height: var(--sz, 2px);
+  left: var(--x, 50%);
+  top: var(--y, 50%);
   border-radius: 50%;
   background: var(--c, #10b981);
   box-shadow: 0 0 6px 1px var(--c, #10b981);
@@ -170,9 +180,17 @@
 }
 
 @keyframes rainbow-shimmer {
-  0%   { background-position: 0%   50%; }
-  50%  { background-position: 100% 50%; }
-  100% { background-position: 0%   50%; }
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 .intro-highlight span.highlighted-word {
@@ -203,14 +221,12 @@
   position: absolute;
   inset: 0;
   border-radius: 50px;
-  background: linear-gradient(
-    120deg,
-    #10b981 0%,
-    #06b6d4 25%,
-    #8b5cf6 50%,
-    #f59e0b 75%,
-    #10b981 100%
-  );
+  background: linear-gradient(120deg,
+      #10b981 0%,
+      #06b6d4 25%,
+      #8b5cf6 50%,
+      #f59e0b 75%,
+      #10b981 100%);
   background-size: 300% 300%;
   clip-path: circle(0% at 100% 50%);
   transition: clip-path 0.75s cubic-bezier(0.4, 0, 0.2, 1);
@@ -248,7 +264,7 @@
 
   .intro-highlight {
     font-size: clamp(1.6rem, 5vw, 2.5rem);
-    line-height: 1.5;
+    line-height: 1.9;
   }
 
   .intro-highlight span.highlighted-word {
