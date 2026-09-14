@@ -2,10 +2,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import '../styles/AboutSection.css';
 import resumePDF from '../../assets/resume.pdf';
 
-/* ── Tab Definitions ── */
 const TABS = ['About', 'Skills', 'Education', 'Experience'];
 
-/* ── Skills Data ── */
 const skillCategories = [
   {
     label: 'Frontend',
@@ -25,7 +23,6 @@ const skillCategories = [
   },
 ];
 
-/* ── Education Data ── */
 const education = [
   {
     year: '2022 – Present',
@@ -47,7 +44,6 @@ const education = [
   },
 ];
 
-/* ── Experience Data ── */
 const experience = [
   {
     year: '2024 – 2025',
@@ -72,65 +68,90 @@ const experience = [
   },
 ];
 
-/* ── About Panel ── */
 const AboutPanel = () => {
   const [counts, setCounts] = useState({ exp: 0, projects: 0, certs: 0 });
-  const animated = useRef(false);
-
-  const animateCounter = (target, key, duration = 1400) => {
-    const start = performance.now();
-    const step = (now) => {
-      const p = Math.min((now - start) / duration, 1);
-      const eased = 1 - Math.pow(1 - p, 4);
-      setCounts((prev) => ({ ...prev, [key]: Math.floor(eased * target) }));
-      if (p < 1) requestAnimationFrame(step);
-    };
-    requestAnimationFrame(step);
-  };
+  const panelRef = useRef(null);
+  const hasAnimated = useRef(false);
 
   useEffect(() => {
-    if (animated.current) return;
-    animated.current = true;
-    animateCounter(8, 'exp', 1200);
-    animateCounter(7, 'projects', 1600);
-    animateCounter(5, 'certs', 2000);
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasAnimated.current) {
+          hasAnimated.current = true;
+
+          const animate = (target, key, duration, delay = 0) => {
+            setTimeout(() => {
+              const start = performance.now();
+              const frame = (now) => {
+                const progress = Math.min((now - start) / duration, 1);
+                const ease = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+                setCounts((prev) => ({ ...prev, [key]: Math.floor(ease * target) }));
+                if (progress < 1) requestAnimationFrame(frame);
+              };
+              requestAnimationFrame(frame);
+            }, delay);
+          };
+
+          animate(8, 'exp', 1400, 100);
+          animate(7, 'projects', 1600, 250);
+          animate(5, 'certs', 1800, 400);
+        }
+      },
+      { threshold: 0.25 }
+    );
+
+    if (panelRef.current) observer.observe(panelRef.current);
+    return () => observer.disconnect();
   }, []);
 
   return (
-    <div className="tab-panel-about">
-      <div className="otw-badge">
-        <span className="otw-dot" />
-        <span className="otw-label">Open to Work</span>
-      </div>
+    <div className="tab-panel-about" ref={panelRef}>
 
       <h2 className="about-title">
-        Who I <span className="title-stroke">am.</span>
+        I build the whole thing — <br />
+        <span className="about-title-sub">
+          the interface and what runs <span className="title-stroke">behind it.</span>
+        </span>
       </h2>
-      <p className="about-subtitle">Full Stack Developer&nbsp;•&nbsp;UI/UX Designer&nbsp;•&nbsp;Creative Thinker</p>
 
-      <p className="about-bio">
-        I&apos;m a passionate <span className="highlight-text">Full Stack Developer &amp; UI/UX Designer</span> who
-        believes great software isn&apos;t just functional — it&apos;s an experience that feels alive, intuitive, and beautiful.
-      </p>
-      <p className="about-bio">
-        With a strong foundation in both frontend and backend, I love bridging the gap between engineering and design.
-        Always eager to learn, build, and push creative boundaries.
-      </p>
+      <div className="about-bio-block">
+        <p className="about-bio">
+          I&apos;m <span className="highlight-text">Shashini</span>, a full stack developer and UI/UX designer based in Sri Lanka. I like taking a project from a rough sketch in Figma to something people can actually click through and rely on, without losing sight of either half along the way.
+        </p>
 
-      <div className="about-stats-row">
-        <div className="about-stat">
-          <span className="about-stat-num">{counts.exp}</span>
-          <span className="about-stat-desc">Months<br />Experience</span>
+        <div className="about-quote-box">
+          <p className="about-quote-text">
+            &ldquo;Most of what I build starts from a real problem I&apos;ve noticed like someone tracking migraines who&apos;s tired of apps that don&apos;t get it. <span className="highlight-text">I&apos;d rather ship something useful than something that just looks good in a screenshot.</span>&rdquo;
+          </p>
         </div>
-        <div className="about-stat-divider" />
-        <div className="about-stat">
-          <span className="about-stat-num">{counts.projects}<span className="stat-plus">+</span></span>
-          <span className="about-stat-desc">Projects<br />Built</span>
+      </div>
+
+      <div className="about-bento-stats">
+        <div className="bento-stat-card">
+          <div className="bento-stat-top">
+            <span className="bento-stat-num">{counts.exp}</span>
+            <span className="bento-stat-unit">M</span>
+          </div>
+          <div className="bento-stat-label">Months Experience</div>
+          <div className="bento-stat-sub">Hands-on Software Development</div>
         </div>
-        <div className="about-stat-divider" />
-        <div className="about-stat">
-          <span className="about-stat-num">{counts.certs}<span className="stat-plus">+</span></span>
-          <span className="about-stat-desc">Certificates<br />Earned</span>
+
+        <div className="bento-stat-card highlight-card">
+          <div className="bento-stat-top">
+            <span className="bento-stat-num">{counts.projects}</span>
+            <span className="bento-stat-plus">+</span>
+          </div>
+          <div className="bento-stat-label">Projects Built</div>
+          <div className="bento-stat-sub">Full Stack &amp; UI/UX Endeavors</div>
+        </div>
+
+        <div className="bento-stat-card">
+          <div className="bento-stat-top">
+            <span className="bento-stat-num">{counts.certs}</span>
+            <span className="bento-stat-plus">+</span>
+          </div>
+          <div className="bento-stat-label">Certificates</div>
+          <div className="bento-stat-sub">Google, Meta &amp; Academic Honors</div>
         </div>
       </div>
 
@@ -144,7 +165,7 @@ const AboutPanel = () => {
           </svg>
         </a>
         <a href="https://github.com/shashinirathnayake2111-afk" className="btn-secondary" target="_blank" rel="noreferrer">
-          <span>GitHub</span>
+          <span>GitHub Profile</span>
           <span className="btn-arrow">↗</span>
         </a>
       </div>

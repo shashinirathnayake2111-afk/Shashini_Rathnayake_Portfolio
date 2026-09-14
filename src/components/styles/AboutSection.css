@@ -13,7 +13,6 @@
   z-index: 2;
 }
 
-/* Subtle top separator */
 .about-section::before {
   content: '';
   position: absolute;
@@ -48,12 +47,14 @@
   position: relative;
   z-index: 2;
   width: 100%;
-  max-width: 1300px;
+  max-width: 100%;
   min-height: 100vh;
+  margin: 0;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
   justify-content: center;
-  padding: 80px 8%;
+  padding: 95px 55px 60px;
   opacity: 0;
   transform: translateY(30px);
   transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1), transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
@@ -208,57 +209,75 @@
 .tab-panel-about {
   display: flex;
   flex-direction: column;
-  gap: 22px;
-  max-width: 640px;
+  gap: 20px;
+  width: 100%;
+  max-width: 100%;
 }
 
-/* ── Open to Work Badge ── */
+/* ── About Header Meta ── */
+.about-header-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.about-serial {
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.25em;
+  color: rgba(242, 234, 217, 0.3);
+}
+
+/* ── Open to Work Badge (Champagne Beacon) ── */
 .otw-badge {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  border: 1px solid rgba(242, 234, 217, 0.13);
+  border: 1px solid rgba(242, 234, 217, 0.18);
+  background: rgba(242, 234, 217, 0.04);
   border-radius: 100px;
-  padding: 7px 18px 7px 12px;
+  padding: 6px 16px 6px 12px;
   width: fit-content;
   backdrop-filter: blur(8px);
-  transition: border-color 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .otw-badge:hover {
-  border-color: rgba(16, 185, 129, 0.35);
+  border-color: rgba(242, 234, 217, 0.4);
+  background: rgba(242, 234, 217, 0.08);
 }
 
 .otw-dot {
-  width: 8px;
-  height: 8px;
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
-  background: #10b981;
+  background: #f2ead9;
   flex-shrink: 0;
-  box-shadow: 0 0 8px rgba(16, 185, 129, 0.6);
+  box-shadow: 0 0 10px rgba(242, 234, 217, 0.8);
   position: relative;
   animation: otw-pulse 2s ease-out infinite;
 }
 
 @keyframes otw-pulse {
   0% {
-    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6);
+    box-shadow: 0 0 0 0 rgba(242, 234, 217, 0.7);
   }
 
   70% {
-    box-shadow: 0 0 0 8px rgba(16, 185, 129, 0);
+    box-shadow: 0 0 0 8px rgba(242, 234, 217, 0);
   }
 
   100% {
-    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+    box-shadow: 0 0 0 0 rgba(242, 234, 217, 0);
   }
 }
 
 .otw-label {
   font-family: 'Chakra Petch', sans-serif;
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   font-weight: 600;
-  color: rgba(16, 185, 129, 0.85);
+  color: rgba(242, 234, 217, 0.85);
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
@@ -266,11 +285,16 @@
 /* ── Titles ── */
 .about-title {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(3.2rem, 6vw, 5.8rem);
-  line-height: 0.9;
-  letter-spacing: 0.02em;
+  font-size: clamp(2.4rem, 4.8vw, 4.6rem);
+  line-height: 1.04;
+  letter-spacing: 0.03em;
   color: #f2ead9;
   margin: 0;
+}
+
+.about-title-sub {
+  display: inline-block;
+  color: rgba(242, 234, 217, 0.85);
 }
 
 .title-stroke {
@@ -278,78 +302,147 @@
   -webkit-text-stroke: 2px rgba(242, 234, 217, 0.45);
 }
 
-.about-subtitle {
-  font-family: 'Poppins', sans-serif;
-  font-size: 0.78rem;
-  color: rgba(242, 234, 217, 0.3);
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  margin: 0;
+.about-bio-block {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
 }
 
 .about-bio {
   font-family: 'Poppins', sans-serif;
-  font-size: 0.95rem;
-  line-height: 1.85;
-  color: rgba(242, 234, 217, 0.52);
+  font-size: 0.98rem;
+  line-height: 1.8;
+  color: rgba(242, 234, 217, 0.62);
   margin: 0;
   font-weight: 300;
 }
 
-.highlight-text {
-  color: rgba(242, 234, 217, 0.9);
-  font-weight: 500;
-}
-
-/* ── Stats Row ── */
-.about-stats-row {
-  display: flex;
-  align-items: center;
-  gap: 32px;
-  padding: 28px 0;
-  border-top: 1px solid rgba(242, 234, 217, 0.07);
-  border-bottom: 1px solid rgba(242, 234, 217, 0.07);
+/* ── Problem-Solver Quote Box ── */
+.about-quote-box {
+  background: rgba(242, 234, 217, 0.03);
+  border: 1px solid rgba(242, 234, 217, 0.08);
+  border-left: 3px solid rgba(242, 234, 217, 0.45);
+  border-radius: 0 12px 12px 0;
+  padding: 16px 20px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   margin: 4px 0;
+  transition: all 0.3s ease;
 }
 
-.about-stat {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  cursor: default;
-  transition: transform 0.3s ease;
+.about-quote-box:hover {
+  background: rgba(242, 234, 217, 0.05);
+  border-left-color: rgba(242, 234, 217, 0.8);
 }
 
-.about-stat:hover {
-  transform: translateY(-3px);
-}
-
-.about-stat-num {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(2.6rem, 4vw, 3.8rem);
-  line-height: 0.9;
-  color: transparent;
-  -webkit-text-stroke: 2px rgba(242, 234, 217, 0.65);
-}
-
-.about-stat-desc {
+.about-quote-text {
   font-family: 'Poppins', sans-serif;
-  font-size: 0.72rem;
-  color: rgba(242, 234, 217, 0.32);
-  line-height: 1.5;
+  font-size: 0.92rem;
+  line-height: 1.75;
+  color: rgba(242, 234, 217, 0.7);
+  margin: 0;
+  font-style: italic;
   font-weight: 300;
 }
 
-.about-stat-divider {
-  width: 1px;
-  height: 48px;
-  background: linear-gradient(to bottom, transparent, rgba(242, 234, 217, 0.12), transparent);
-  flex-shrink: 0;
+.highlight-text {
+  color: #f2ead9;
+  font-weight: 500;
+  font-style: normal;
 }
 
-.stat-plus {
-  font-size: 0.55em;
-  vertical-align: super;
+/* ── Modern Bento Stats Cards ── */
+.about-bento-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin: 10px 0;
+}
+
+.bento-stat-card {
+  background: rgba(242, 234, 217, 0.03);
+  border: 1px solid rgba(242, 234, 217, 0.1);
+  border-radius: 14px;
+  padding: 20px 18px;
+  display: flex;
+  flex-direction: column;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+  cursor: default;
+  position: relative;
+  overflow: hidden;
+}
+
+.bento-stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(242, 234, 217, 0.25), transparent);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.bento-stat-card:hover {
+  transform: translateY(-4px);
+  background: rgba(242, 234, 217, 0.06);
+  border-color: rgba(242, 234, 217, 0.25);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4), 0 0 20px rgba(242, 234, 217, 0.05);
+}
+
+.bento-stat-card:hover::before {
+  opacity: 1;
+}
+
+.bento-stat-card.highlight-card {
+  border-color: rgba(242, 234, 217, 0.18);
+  background: rgba(242, 234, 217, 0.045);
+}
+
+.bento-stat-top {
+  display: flex;
+  align-items: baseline;
+  gap: 2px;
+}
+
+.bento-stat-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.8rem, 4vw, 3.8rem);
+  line-height: 0.95;
+  color: #f2ead9;
+  letter-spacing: 0.02em;
+  text-shadow: 0 2px 15px rgba(242, 234, 217, 0.25);
+}
+
+.bento-stat-plus,
+.bento-stat-unit {
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: rgba(242, 234, 217, 0.6);
+  margin-left: 2px;
+}
+
+.bento-stat-label {
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: #f2ead9;
+  text-transform: uppercase;
+  margin-top: 8px;
+}
+
+.bento-stat-sub {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.68rem;
+  color: rgba(242, 234, 217, 0.35);
+  margin-top: 4px;
+  line-height: 1.4;
+  font-weight: 300;
 }
 
 /* ── Buttons ── */
@@ -426,8 +519,6 @@
   width: 100%;
   max-width: 700px;
 }
-
-.skill-category {}
 
 .skill-cat-label {
   font-family: 'Chakra Petch', sans-serif;
@@ -679,14 +770,16 @@
   }
 }
 
-@media (max-width: 560px) {
-  .about-stats-row {
-    flex-wrap: wrap;
-    gap: 20px;
+@media (max-width: 768px) {
+  .about-bento-stats {
+    grid-template-columns: 1fr;
+    gap: 12px;
   }
+}
 
-  .about-stat-divider {
-    display: none;
+@media (max-width: 560px) {
+  .about-bento-stats {
+    grid-template-columns: 1fr;
   }
 
   .timeline-item {

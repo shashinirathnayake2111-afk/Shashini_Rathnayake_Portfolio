@@ -21,19 +21,17 @@ function App() {
   const heroRef = useRef(null)
   const location = useLocation()
 
-  // Scroll to top on route change
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [location.pathname])
 
   useEffect(() => {
-    // Only lock scrolling if loading, otherwise the drawer will handle its own locking
     if (isLoading || isContactOpen) {
       document.body.style.overflow = 'hidden'
     } else {
       document.body.style.overflow = ''
     }
-    
+
     return () => {
       document.body.style.overflow = ''
     }
@@ -67,13 +65,12 @@ function App() {
     const handleScroll = () => {
       setIsInHero(window.scrollY < window.innerHeight - 20)
     }
-    
-    // Check initial position
+
     handleScroll()
-    
+
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [location.pathname]) // Re-run when path changes to check new top position
+  }, [location.pathname])
 
   const handleLoadingComplete = () => {
     sessionStorage.setItem(HAS_LOADED_KEY, 'true')
@@ -85,7 +82,7 @@ function App() {
       <CustomCursor />
       {isLoading && <LoadingScreen onComplete={handleLoadingComplete} />}
       <Navbar isLoaded={!isLoading} onContactClick={() => setIsContactOpen(true)} isInHero={isInHero} />
-      
+
       <Routes>
         <Route path="/" element={
           <>
@@ -97,9 +94,7 @@ function App() {
           </>
         } />
         <Route path="/about" element={
-          <div style={{ paddingTop: '80px', minHeight: '100vh' }}>
-            <AboutSection />
-          </div>
+          <AboutSection />
         } />
       </Routes>
 
