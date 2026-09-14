@@ -9,6 +9,7 @@ import AboutSection from './components/page/AboutSection'
 import Navbar from './components/page/Navbar'
 import SocialSidebar from './components/page/SocialSidebar'
 import ContactDrawer from './components/page/ContactDrawer'
+import CustomCursor from './components/page/CustomCursor'
 
 const HAS_LOADED_KEY = 'portfolioHasLoaded'
 
@@ -81,6 +82,7 @@ function App() {
 
   return (
     <div className="app-container">
+      <CustomCursor />
       {isLoading && <LoadingScreen onComplete={handleLoadingComplete} />}
       <Navbar isLoaded={!isLoading} onContactClick={() => setIsContactOpen(true)} isInHero={isInHero} />
       
