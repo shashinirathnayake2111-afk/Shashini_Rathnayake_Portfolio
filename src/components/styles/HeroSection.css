@@ -3,13 +3,146 @@
 .hero-section {
   width: 100vw;
   height: 100vh;
-  background: linear-gradient(135deg, #0d0d0c 0%, #050505 100%);
+  background: #050505;
   display: flex;
   justify-content: center;
   align-items: flex-end;
   color: #f2ead9;
   position: relative;
   overflow: hidden;
+}
+
+/* --- Cinematic Moon & Clouds Background --- */
+.hero-cinematic-bg {
+  position: absolute;
+  top: -5%;
+  left: -5%;
+  width: 110%;
+  height: 110%;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.hero-cinematic-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 75% 15%;
+  filter: contrast(1.1) brightness(0.85);
+  transform-origin: center center;
+}
+
+.hero-cinematic-img.live-sky {
+  animation: liveSkyBreathing 22s ease-in-out infinite alternate;
+}
+
+@keyframes liveSkyBreathing {
+  0% {
+    transform: scale(1) translate(0, 0);
+    filter: contrast(1.1) brightness(0.85);
+  }
+  50% {
+    transform: scale(1.04) translate(-1%, -1%);
+    filter: contrast(1.15) brightness(0.92);
+  }
+  100% {
+    transform: scale(1.02) translate(1%, 0.5%);
+    filter: contrast(1.1) brightness(0.88);
+  }
+}
+
+/* Living Moonlight Glow Pulse */
+.moon-pulse-glow {
+  position: absolute;
+  top: 10%;
+  right: 20%;
+  width: 350px;
+  height: 350px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(242, 234, 217, 0.18) 0%, rgba(212, 175, 55, 0.08) 45%, transparent 70%);
+  filter: blur(40px);
+  pointer-events: none;
+  animation: moonPulse 7s ease-in-out infinite alternate;
+}
+
+@keyframes moonPulse {
+  0% {
+    opacity: 0.4;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 0.85;
+    transform: scale(1.15);
+  }
+}
+
+/* Drifting Cloud Mist */
+.drifting-cloud-layer {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 40% 60%, rgba(242, 234, 217, 0.04) 0%, transparent 60%);
+  mix-blend-mode: screen;
+  filter: blur(30px);
+  animation: cloudDrift 28s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+@keyframes cloudDrift {
+  0% {
+    transform: translateX(-40px) translateY(10px);
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateX(40px) translateY(-15px);
+    opacity: 0.7;
+  }
+}
+
+/* Twinkling Stars */
+.sky-stars {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: #f2ead9;
+  box-shadow: 0 0 6px 1px rgba(242, 234, 217, 0.8);
+  animation: starTwinkle var(--d, 3s) ease-in-out infinite alternate;
+}
+
+@keyframes starTwinkle {
+  0% {
+    opacity: 0.15;
+    transform: scale(0.7);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.4);
+    box-shadow: 0 0 10px 2px rgba(242, 234, 217, 1);
+  }
+  100% {
+    opacity: 0.2;
+    transform: scale(0.8);
+  }
+}
+
+.hero-cinematic-vignette {
+  position: absolute;
+  inset: 0;
+  background:
+    /* Deep fade at bottom for seamless transition to next section */
+    linear-gradient(to bottom, transparent 40%, rgba(5, 5, 5, 0.6) 75%, #050505 100%),
+    /* Soft dark wash on right side behind text */
+    linear-gradient(to right, transparent 30%, rgba(5, 5, 5, 0.45) 60%, rgba(5, 5, 5, 0.85) 100%),
+    /* Vignette darkening the corners */
+    radial-gradient(ellipse at 50% 40%, transparent 45%, rgba(5, 5, 5, 0.8) 100%);
+  pointer-events: none;
 }
 
 .hero-bg-role {

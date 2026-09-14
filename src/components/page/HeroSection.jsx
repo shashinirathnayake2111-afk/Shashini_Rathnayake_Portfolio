@@ -3,6 +3,7 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { MapPin, ChevronDown } from 'lucide-react';
 import '../styles/HeroSection.css';
 import profileImg from '../../assets/profile.png';
+import bgImg from '../../assets/bg.jpg';
 
 /* Split a word into animated letter spans */
 const AnimatedWord = ({ word, baseDelay = 0, className = '' }) => (
@@ -41,6 +42,11 @@ const HeroSection = ({ isLoaded }) => {
   const bgRoleOpacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
   const bgRoleScale = useTransform(scrollYProgress, [0, 1], [1, 1.3]);
 
+  // Parallax for the moon & clouds background image
+  const bgImageY = useTransform(scrollYProgress, [0, 1], [0, 100]);
+  const bgImageScale = useTransform(scrollYProgress, [0, 1], [1.05, 1.15]);
+  const bgImageOpacity = useTransform(scrollYProgress, [0, 0.8], [0.6, 0.1]);
+
   useEffect(() => {
     if (isLoaded) {
       const t = setTimeout(() => setMounted(true), 100);
@@ -48,10 +54,36 @@ const HeroSection = ({ isLoaded }) => {
     }
   }, [isLoaded]);
 
-
-
   return (
     <section className="hero-section" ref={sectionRef}>
+      {/* Cinematic Living Dark Moon & Cloud Atmosphere Background */}
+      <motion.div
+        className="hero-cinematic-bg"
+        style={{
+          y: bgImageY,
+          scale: bgImageScale,
+          opacity: bgImageOpacity,
+        }}
+      >
+        <img src={bgImg} alt="Dark Moon Sky" className="hero-cinematic-img live-sky" />
+        
+        {/* Living Moonlight Aura & Drifting Mist */}
+        <div className="moon-pulse-glow"></div>
+        <div className="drifting-cloud-layer"></div>
+
+        {/* Twinkling Stardust Elements */}
+        <div className="sky-stars">
+          <span className="star star-1" style={{ top: '18%', left: '22%', '--d': '3.2s' }}></span>
+          <span className="star star-2" style={{ top: '25%', left: '78%', '--d': '4.5s' }}></span>
+          <span className="star star-3" style={{ top: '12%', left: '60%', '--d': '2.8s' }}></span>
+          <span className="star star-4" style={{ top: '35%', left: '38%', '--d': '3.9s' }}></span>
+          <span className="star star-5" style={{ top: '22%', left: '88%', '--d': '5.1s' }}></span>
+          <span className="star star-6" style={{ top: '42%', left: '82%', '--d': '3.4s' }}></span>
+        </div>
+
+        <div className="hero-cinematic-vignette"></div>
+      </motion.div>
+
       {/* Premium Ambient Background Effects */}
       <div className="hero-background-effects">
         <div className="noise-overlay"></div>
