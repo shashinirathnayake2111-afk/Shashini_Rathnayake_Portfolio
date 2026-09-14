@@ -1,84 +1,123 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useCallback } from 'react';
+import { motion, AnimatePresence, useScroll, useTransform, useSpring, useMotionValue } from 'framer-motion';
 import '../styles/AboutSection.css';
 import resumePDF from '../../assets/resume.pdf';
 
-const TABS = ['About', 'Skills', 'Education', 'Experience'];
+const BentoCard3D = ({ num, unit, label, sub, highlight, delay }) => {
+  const cardRef = useRef(null);
+  const rotateX = useMotionValue(0);
+  const rotateY = useMotionValue(0);
+  const glareX = useMotionValue(50);
+  const glareY = useMotionValue(50);
 
-const skillCategories = [
-  {
-    label: 'Frontend',
-    skills: ['React', 'Next.js', 'TypeScript', 'HTML/CSS', 'Framer Motion', 'Tailwind'],
-  },
-  {
-    label: 'Backend',
-    skills: ['Node.js', 'Express', 'Python', 'REST APIs', 'MySQL', 'MongoDB'],
-  },
-  {
-    label: 'Design',
-    skills: ['Figma', 'UI/UX Design', 'Prototyping', 'Design Systems', 'Wireframing'],
-  },
-  {
-    label: 'Tools',
-    skills: ['Git', 'GitHub', 'VS Code', 'Postman', 'Firebase', 'Vercel'],
-  },
-];
+  const springConfig = { stiffness: 300, damping: 25 };
+  const rotX = useSpring(rotateX, springConfig);
+  const rotY = useSpring(rotateY, springConfig);
 
-const education = [
-  {
-    year: '2022 – Present',
-    title: 'BSc (Hons) in Information Technology',
-    place: 'Sri Lanka Institute of Information Technology',
-    desc: 'Specializing in Software Engineering. Covering full-stack development, software architecture, databases, and UI/UX design.',
-  },
-  {
-    year: '2023',
-    title: 'Google UX Design Certificate',
-    place: 'Google / Coursera',
-    desc: 'Completed 7-course program covering empathy mapping, wireframing, prototyping, and usability testing.',
-  },
-  {
-    year: '2022',
-    title: 'Meta Front-End Developer Certificate',
-    place: 'Meta / Coursera',
-    desc: 'React, advanced HTML/CSS, responsive design, and front-end best practices.',
-  },
-];
+  const handleMouseMove = useCallback((e) => {
+    const card = cardRef.current;
+    if (!card) return;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    rotateX.set(((y - centerY) / centerY) * -14);
+    rotateY.set(((x - centerX) / centerX) * 14);
+    glareX.set((x / rect.width) * 100);
+    glareY.set((y / rect.height) * 100);
+  }, [rotateX, rotateY, glareX, glareY]);
 
-const experience = [
-  {
-    year: '2024 – 2025',
-    title: 'Full Stack Developer Intern',
-    place: 'XYZ Tech (Pvt) Ltd',
-    desc: '8-month internship. Built and maintained web applications using React, Node.js, and MySQL. Collaborated in agile sprints and contributed to UI redesign projects.',
-    tags: ['React', 'Node.js', 'MySQL'],
-  },
-  {
-    year: '2023 – Present',
-    title: 'Freelance UI/UX Designer',
-    place: 'Self-employed',
-    desc: 'Designed and delivered end-to-end UI/UX projects for local businesses — from research and wireframes to high-fidelity Figma prototypes.',
-    tags: ['Figma', 'UI/UX', 'Prototyping'],
-  },
-  {
-    year: '2023',
-    title: 'Open Source Contributor',
-    place: 'GitHub',
-    desc: 'Contributed bug fixes and feature PRs to open-source React component libraries and documentation improvements.',
-    tags: ['React', 'Open Source'],
-  },
-];
+  const handleMouseLeave = useCallback(() => {
+    rotateX.set(0);
+    rotateY.set(0);
+    glareX.set(50);
+    glareY.set(50);
+  }, [rotateX, rotateY, glareX, glareY]);
+
+  return (
+    <motion.div
+      ref={cardRef}
+      className={`bento-stat-card ${highlight ? 'highlight-card' : ''}`}
+      style={{ rotateX: rotX, rotateY: rotY, transformStyle: 'preserve-3d', perspective: 800 }}
+      initial={{ opacity: 0, y: 40, scale: 0.9 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.7, delay, type: 'spring', bounce: 0.35 }}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      whileHover={{ z: 30 }}
+    >
+
+      <motion.div
+        className="bento-glare"
+        style={{
+          background: `radial-gradient(circle at ${glareX}% ${glareY}%, rgba(230,201,168,0.18) 0%, transparent 60%)`,
+        }}
+      />
+      <div className="bento-content" style={{ transform: 'translateZ(20px)' }}>
+        <div className="bento-stat-top">
+          <span className="bento-stat-num">{num}</span>
+          <span className="bento-stat-unit">{unit}</span>
+        </div>
+        <div className="bento-stat-label">{label}</div>
+        <div className="bento-stat-sub">{sub}</div>
+      </div>
+      <div className="bento-corner-accent" />
+    </motion.div>
+  );
+};
+
+const CinematicTitle = ({ text }) => {
+  const words = text.split(' ');
+  const strokeWords = ['behind', 'it.'];
+
+  const containerVariants = {
+    hidden: {},
+    visible: { transition: { staggerChildren: 0.065, delayChildren: 0.15 } },
+  };
+
+  const wordVariants = {
+    hidden: { opacity: 0, y: 24, filter: 'blur(12px)', scale: 0.96 },
+    visible: {
+      opacity: 1, y: 0, filter: 'blur(0px)', scale: 1,
+      transition: { duration: 0.75, ease: [0.22, 1, 0.36, 1] },
+    },
+  };
+
+  return (
+    <motion.h2
+      className="about-title"
+      variants={containerVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: '-60px' }}
+    >
+      {words.map((word, i) => (
+        <motion.span
+          key={i}
+          variants={wordVariants}
+          className={strokeWords.includes(word) ? 'title-stroke' : ''}
+          style={{ display: 'inline-block', marginRight: '0.28em' }}
+        >
+          {word}
+        </motion.span>
+      ))}
+    </motion.h2>
+  );
+};
 
 const AboutPanel = () => {
   const [counts, setCounts] = useState({ exp: 0, projects: 0, certs: 0 });
-  const panelRef = useRef(null);
   const hasAnimated = useRef(false);
+  const ref = useRef(null);
 
   useEffect(() => {
+    if (!ref.current) return;
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting && !hasAnimated.current) {
           hasAnimated.current = true;
-
           const animate = (target, key, duration, delay = 0) => {
             setTimeout(() => {
               const start = performance.now();
@@ -91,189 +130,134 @@ const AboutPanel = () => {
               requestAnimationFrame(frame);
             }, delay);
           };
-
           animate(8, 'exp', 1400, 100);
           animate(7, 'projects', 1600, 250);
           animate(5, 'certs', 1800, 400);
         }
       },
-      { threshold: 0.25 }
+      { threshold: 0.3 }
     );
-
-    if (panelRef.current) observer.observe(panelRef.current);
+    observer.observe(ref.current);
     return () => observer.disconnect();
   }, []);
 
   return (
-    <div className="tab-panel-about" ref={panelRef}>
+    <motion.div
+      className="tab-panel-about cinematic-grid"
+      ref={ref}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0, y: -20, filter: 'blur(6px)' }}
+      transition={{ duration: 0.5 }}
+    >
+      <div className="about-left-col">
+        <CinematicTitle text="I build the whole thing — the interface and what runs behind it." />
 
-      <h2 className="about-title">
-        I build the whole thing — <br />
-        <span className="about-title-sub">
-          the interface and what runs <span className="title-stroke">behind it.</span>
-        </span>
-      </h2>
+        <div className="about-bio-block">
+          <motion.p
+            className="about-bio"
+            initial={{ opacity: 0, x: -24, filter: 'blur(6px)' }}
+            whileInView={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          >
+            I&apos;m <span className="highlight-text">Shashini</span>, a full stack developer and UI/UX designer based in Sri Lanka. I like taking a project from a rough sketch in Figma to something people can actually click through and rely on.
+          </motion.p>
 
-      <div className="about-bio-block">
-        <p className="about-bio">
-          I&apos;m <span className="highlight-text">Shashini</span>, a full stack developer and UI/UX designer based in Sri Lanka. I like taking a project from a rough sketch in Figma to something people can actually click through and rely on, without losing sight of either half along the way.
-        </p>
+          <motion.div
+            className="about-quote-box"
+            initial={{ opacity: 0, scale: 0.94, filter: 'blur(6px)' }}
+            whileInView={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.85, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <p className="about-quote-text">
+              &ldquo;Most of what I build starts from a real problem I&apos;ve noticed. <span className="highlight-text">I&apos;d rather ship something useful than something that just looks good in a screenshot.</span>&rdquo;
+            </p>
+          </motion.div>
+        </div>
 
-        <div className="about-quote-box">
-          <p className="about-quote-text">
-            &ldquo;Most of what I build starts from a real problem I&apos;ve noticed like someone tracking migraines who&apos;s tired of apps that don&apos;t get it. <span className="highlight-text">I&apos;d rather ship something useful than something that just looks good in a screenshot.</span>&rdquo;
-          </p>
+        <div className="about-actions">
+          <motion.a whileHover={{ scale: 1.05, y: -3 }} whileTap={{ scale: 0.95 }} href={resumePDF} download className="btn-primary">
+            <span>Download CV</span>
+          </motion.a>
+          <motion.a whileHover={{ scale: 1.05, y: -3 }} whileTap={{ scale: 0.95 }} href="https://github.com/shashinirathnayake2111-afk" target="_blank" rel="noreferrer" className="btn-secondary">
+            <span>GitHub</span><span className="btn-arrow">↗</span>
+          </motion.a>
         </div>
       </div>
 
-      <div className="about-bento-stats">
-        <div className="bento-stat-card">
-          <div className="bento-stat-top">
-            <span className="bento-stat-num">{counts.exp}</span>
-            <span className="bento-stat-unit">M</span>
-          </div>
-          <div className="bento-stat-label">Months Experience</div>
-          <div className="bento-stat-sub">Hands-on Software Development</div>
-        </div>
-
-        <div className="bento-stat-card highlight-card">
-          <div className="bento-stat-top">
-            <span className="bento-stat-num">{counts.projects}</span>
-            <span className="bento-stat-plus">+</span>
-          </div>
-          <div className="bento-stat-label">Projects Built</div>
-          <div className="bento-stat-sub">Full Stack &amp; UI/UX Endeavors</div>
-        </div>
-
-        <div className="bento-stat-card">
-          <div className="bento-stat-top">
-            <span className="bento-stat-num">{counts.certs}</span>
-            <span className="bento-stat-plus">+</span>
-          </div>
-          <div className="bento-stat-label">Certificates</div>
-          <div className="bento-stat-sub">Google, Meta &amp; Academic Honors</div>
+      <div className="about-right-col">
+        <div className="about-bento-stats">
+          <BentoCard3D num={counts.exp} unit="M" label="Months Experience" sub="Hands-on Experience" delay={0.9} />
+          <BentoCard3D num={counts.projects} unit="+" label="Projects Built" sub="Full Stack & UI/UX" highlight delay={1.05} />
+          <BentoCard3D num={counts.certs} unit="+" label="Certificates" sub="IBM & Others" delay={1.2} />
         </div>
       </div>
-
-      <div className="about-actions">
-        <a href={resumePDF} download="Shashini_Rathnayake_Resume.pdf" className="btn-primary">
-          <span>Download CV</span>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-            <polyline points="7 10 12 15 17 10" />
-            <line x1="12" y1="15" x2="12" y2="3" />
-          </svg>
-        </a>
-        <a href="https://github.com/shashinirathnayake2111-afk" className="btn-secondary" target="_blank" rel="noreferrer">
-          <span>GitHub Profile</span>
-          <span className="btn-arrow">↗</span>
-        </a>
-      </div>
-    </div>
+    </motion.div>
   );
 };
 
-/* ── Skills Panel ── */
-const SkillsPanel = () => (
-  <div className="tab-panel-skills">
-    {skillCategories.map((cat) => (
-      <div className="skill-category" key={cat.label}>
-        <div className="skill-cat-label">{cat.label}</div>
-        <div className="skill-pills">
-          {cat.skills.map((s, i) => (
-            <span className="skill-pill" key={s} style={{ '--spd': `${i * 0.06}s` }}>{s}</span>
-          ))}
-        </div>
-      </div>
+const TABS = ['About'];
+const PANELS = [AboutPanel];
+
+const GlassTabs = ({ active, setActive }) => (
+  <div className="glass-tabs">
+    {TABS.map((tab, i) => (
+      <button
+        key={tab}
+        type="button"
+        className={`glass-tab ${active === i ? 'active' : ''}`}
+        onClick={() => setActive(i)}
+      >
+        {tab}
+      </button>
     ))}
   </div>
 );
 
-/* ── Timeline Item ── */
-const TimelineItem = ({ year, title, place, desc, tags, index }) => (
-  <div className="timeline-item" style={{ '--tid': `${index * 0.12}s` }}>
-    <div className="timeline-left">
-      <div className="timeline-year">{year}</div>
-    </div>
-    <div className="timeline-connector">
-      <div className="timeline-dot" />
-      <div className="timeline-line" />
-    </div>
-    <div className="timeline-body">
-      <div className="timeline-title">{title}</div>
-      <div className="timeline-place">{place}</div>
-      <p className="timeline-desc">{desc}</p>
-      {tags && (
-        <div className="timeline-tags">
-          {tags.map((t) => <span className="timeline-tag" key={t}>{t}</span>)}
-        </div>
-      )}
-    </div>
-  </div>
-);
-
-/* ── Education Panel ── */
-const EducationPanel = () => (
-  <div className="tab-panel-timeline">
-    {education.map((e, i) => (
-      <TimelineItem key={i} index={i} {...e} />
-    ))}
-  </div>
-);
-
-/* ── Experience Panel ── */
-const ExperiencePanel = () => (
-  <div className="tab-panel-timeline">
-    {experience.map((e, i) => (
-      <TimelineItem key={i} index={i} {...e} />
-    ))}
-  </div>
-);
-
-const PANELS = [AboutPanel, SkillsPanel, EducationPanel, ExperiencePanel];
-
-/* ── Main Component ── */
 const AboutSection = () => {
   const [active, setActive] = useState(0);
-  const [animKey, setAnimKey] = useState(0);
   const sectionRef = useRef(null);
-  const [visible, setVisible] = useState(false);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) setVisible(true); },
-      { threshold: 0.1 }
-    );
-    if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => observer.disconnect();
-  }, []);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start end', 'end start'],
+  });
 
-  const handleTabClick = (i) => {
-    if (i === active) return;
-    setActive(i);
-    setAnimKey((k) => k + 1);
-  };
+  const watermarkY = useTransform(scrollYProgress, [0, 1], [120, -120]);
+  const panelY = useTransform(scrollYProgress, [0, 1], [60, -60]);
+  const panelOpacity = useTransform(scrollYProgress, [0, 0.15, 0.85, 1], [0, 1, 1, 0]);
+  const bgGlowY = useTransform(scrollYProgress, [0, 1], [-40, 40]);
 
   const PanelComponent = PANELS[active];
 
   return (
     <section className="about-section" id="about" ref={sectionRef}>
 
-      {/* Background watermark */}
-      <div className="about-watermark" aria-hidden="true">
+      <motion.div className="about-ambient-glow" style={{ y: bgGlowY }} aria-hidden="true" />
+
+      <motion.div
+        className="about-watermark"
+        style={{ y: watermarkY, opacity: 0.028 }}
+        aria-hidden="true"
+      >
         {TABS[active].toUpperCase()}
-      </div>
+      </motion.div>
 
-      <div className={`aww-layout ${visible ? 'aww-visible' : ''}`}>
+      <motion.div className="aww-layout" style={{ opacity: panelOpacity, y: panelY }}>
 
-        {/* ── Content Panel ── */}
+        {/* Floating Glass Tabs */}
+        <GlassTabs active={active} setActive={setActive} />
+
+        {/* Content Panel */}
         <div className="panel-area">
-          <div key={animKey} className="panel-enter">
-            <PanelComponent />
-          </div>
+          <AnimatePresence mode="wait">
+            <PanelComponent key={active} />
+          </AnimatePresence>
         </div>
 
-      </div>
+      </motion.div>
     </section>
   );
 };
