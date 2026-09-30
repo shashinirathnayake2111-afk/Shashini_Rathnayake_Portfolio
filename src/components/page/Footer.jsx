@@ -1,111 +1,77 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import '../styles/Footer.css';
 
 const Footer = ({ onContactClick }) => {
   const currentYear = new Date().getFullYear();
 
-  const navLinks = [
-    { label: 'About', to: '/about' },
-    { label: 'Skills', href: '#skills' },
-    { label: 'Projects', href: '#projects' },
-    { label: 'Experience', href: '#experience' },
-  ];
-
   const socials = [
     { label: 'GitHub', url: 'https://github.com/shashinirathnayake2111-afk' },
     { label: 'LinkedIn', url: 'https://linkedin.com' },
+    { label: 'Dribbble', url: '#' },
   ];
 
   return (
     <footer className="footer-section">
+
+      {/* Wave — dark to cream seamless */}
+      <div className="footer-wave" aria-hidden="true">
+        <svg viewBox="0 0 1440 90" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M0,45 C240,90 480,0 720,45 C960,90 1200,10 1440,45 L1440,0 L0,0 Z"
+            fill="#050505"
+          />
+        </svg>
+      </div>
+
       <div className="footer-inner">
 
-        {/* Top row */}
-        <div className="footer-top">
-          <motion.div
-            className="footer-brand"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-          >
-            <span className="footer-logo">Shashini<span className="footer-dot">.</span></span>
-            <p className="footer-tagline">Full Stack Developer & UI/UX Designer</p>
-          </motion.div>
+        {/* ── Big CTA Hero ── */}
+        <motion.div
+          className="footer-hero"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
+          <p className="footer-eyebrow">Available for new opportunities</p>
+          <h2 className="footer-headline">
+            Let's build something <span className="footer-headline-accent">remarkable.</span>
+          </h2>
+          <button className="footer-cta-btn" onClick={onContactClick}>
+            Start a conversation <span className="footer-arrow">↗</span>
+          </button>
+        </motion.div>
 
-          <motion.div
-            className="footer-cta-block"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-          >
-            <p className="footer-cta-label">Got a project in mind?</p>
-            <button className="footer-cta-btn" onClick={onContactClick}>
-              Let's talk <span className="footer-arrow">↗</span>
-            </button>
-          </motion.div>
-        </div>
-
-        {/* Divider */}
+        {/* ── Divider ── */}
         <div className="footer-divider" />
 
-        {/* Middle row */}
-        <div className="footer-mid">
-          <div className="footer-links-col">
-            <span className="footer-col-label">Navigation</span>
-            <ul className="footer-links">
-              {navLinks.map((link) =>
-                link.to ? (
-                  <li key={link.label}>
-                    <Link to={link.to} className="footer-link">{link.label}</Link>
-                  </li>
-                ) : (
-                  <li key={link.label}>
-                    <a href={link.href} className="footer-link">{link.label}</a>
-                  </li>
-                )
-              )}
-            </ul>
+        {/* ── Bottom Bar ── */}
+        <div className="footer-bottom-bar">
+          <div className="footer-bottom-left">
+            <span className="footer-copy">© {currentYear} Shashini Rathnayake · Colombo, Sri Lanka</span>
           </div>
 
-          <div className="footer-links-col">
-            <span className="footer-col-label">Socials</span>
-            <ul className="footer-links">
-              {socials.map((s) => (
-                <li key={s.label}>
-                  <a href={s.url} target="_blank" rel="noreferrer" className="footer-link footer-social-link">
-                    {s.label} <span className="footer-ext">↗</span>
-                  </a>
-                </li>
-              ))}
-            </ul>
+          <div className="footer-socials-row">
+            {socials.map((s, i) => (
+              <a
+                key={s.label}
+                href={s.url}
+                target="_blank"
+                rel="noreferrer"
+                className="footer-social-link"
+              >
+                {s.label} <span className="footer-ext">↗</span>
+              </a>
+            ))}
           </div>
-
-          <div className="footer-status-col">
-            <div className="footer-available">
-              <span className="footer-status-dot"></span>
-              <span className="footer-status-text">Available for work</span>
-            </div>
-            <p className="footer-location">Sri Lanka 🇱🇰</p>
-          </div>
-        </div>
-
-        {/* Divider */}
-        <div className="footer-divider" />
-
-        {/* Bottom row */}
-        <div className="footer-bottom">
-          <span className="footer-copy">© {currentYear} Shashini Rathnayake. All rights reserved.</span>
-          <span className="footer-made">Designed & Built with ♥</span>
         </div>
 
       </div>
 
-      {/* Large watermark */}
+      {/* Watermark */}
       <div className="footer-watermark" aria-hidden="true">SR</div>
+
     </footer>
   );
 };
