@@ -164,6 +164,57 @@ const CaseStudyModal = ({ project, onClose }) => {
 
 const ProjectsSection = () => {
   const [selectedProject, setSelectedProject] = useState(null);
+  const wrapperRef = useRef(null);
+  const isDragging = useRef(false);
+  const startX = useRef(0);
+  const scrollLeft = useRef(0);
+
+  const handleMouseDown = (e) => {
+    isDragging.current = true;
+    startX.current = e.pageX - wrapperRef.current.offsetLeft;
+    scrollLeft.current = wrapperRef.current.scrollLeft;
+    wrapperRef.current.style.cursor = 'grabbing';
+  };
+  const handleMouseLeave = () => {
+    isDragging.current = false;
+    if (wrapperRef.current) wrapperRef.current.style.cursor = 'grab';
+  };
+  const handleMouseUp = () => {
+    isDragging.current = false;
+    if (wrapperRef.current) wrapperRef.current.style.cursor = 'grab';
+  };
+  const handleMouseMove = (e) => {
+    if (!isDragging.current) return;
+    e.preventDefault();
+    const x = e.pageX - wrapperRef.current.offsetLeft;
+    const walk = (x - startX.current) * 1.5;
+    wrapperRef.current.scrollLeft = scrollLeft.current - walk;
+  };
+
+  const bentoProjects = projectData.slice(0, 4);
+  const overflowProjects = projectData.slice(4);
+
+  const renderCard = (project, i, delay = 0) => (
+    <motion.div
+      key={project.id}
+      className={`bento-item ${project.gridClass}`}
+      initial={{ opacity: 0, scale: 0.9 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ duration: 0.5, delay: delay }}
+      onClick={() => setSelectedProject(project)}
+    >
+      <div className="bento-item-bg" style={{ backgroundImage: `url(${project.image})` }}></div>
+      <div className="bento-item-overlay"></div>
+      <div className="bento-item-content">
+        <span className="project-category">{project.category}</span>
+        <h3 className="project-title">{project.title}</h3>
+      </div>
+      <div className="bento-item-hover-actions">
+        <span className="view-btn">View Case Study <span className="arrow">↗</span></span>
+      </div>
+    </motion.div>
+  );
 
   return (
     <section className="projects-section" id="projects">
@@ -180,30 +231,27 @@ const ProjectsSection = () => {
           <h2 className="section-title">Featured Projects</h2>
         </motion.div>
 
-        <div className="bento-grid">
-          {projectData.map((project, i) => (
-            <motion.div 
-              key={project.id}
-              className={`bento-item ${project.gridClass}`}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.6, delay: (i > 5 ? 5 : i) * 0.1 }}
-              onClick={() => setSelectedProject(project)}
-            >
-              <div className="bento-item-bg" style={{ backgroundImage: `url(${project.image})` }}></div>
-              <div className="bento-item-overlay"></div>
-              
-              <div className="bento-item-content">
-                <span className="project-category">{project.category}</span>
-                <h3 className="project-title">{project.title}</h3>
-              </div>
+        <div 
+          className="projects-carousel-wrapper"
+          ref={wrapperRef}
+          onMouseDown={handleMouseDown}
+          onMouseLeave={handleMouseLeave}
+          onMouseUp={handleMouseUp}
+          onMouseMove={handleMouseMove}
+        >
+          <div className="projects-drag-row">
+            {/* Fixed bento block: first 4 cards */}
+            <div className="bento-grid">
+              {bentoProjects.map((project, i) => renderCard(project, i, i * 0.08))}
+            </div>
 
-              <div className="bento-item-hover-actions">
-                <span className="view-btn">View Case Study <span className="arrow">↗</span></span>
+            {/* Overflow cards: stack in pairs of 2 vertically, extending to the right */}
+            {overflowProjects.length > 0 && (
+              <div className="overflow-cards">
+                {overflowProjects.map((project, i) => renderCard(project, i, 0.3 + i * 0.08))}
               </div>
-            </motion.div>
-          ))}
+            )}
+          </div>
         </div>
 
       </div>

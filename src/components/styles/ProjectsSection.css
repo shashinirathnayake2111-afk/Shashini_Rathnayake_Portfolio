@@ -35,38 +35,71 @@
   margin: 0;
 }
 
-/* ── Bento Grid ── */
+.projects-carousel-wrapper {
+  overflow-x: scroll;
+  overflow-y: hidden;
+  width: 100%;
+  padding-bottom: 0;
+  cursor: grab;
+  /* Completely hide scrollbar */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.projects-carousel-wrapper:active {
+  cursor: grabbing;
+}
+.projects-carousel-wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+/* ── Drag Row ── */
+.projects-drag-row {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 20px;
+  width: max-content;
+  padding-bottom: 8px;
+}
+
+/* ── Bento Grid (first 4 cards) ── */
+.projects-container {
+  --gap: 20px;
+  --container-padding: 128px;
+  --available-width: min(calc(100vw - var(--container-padding)), 1172px);
+  --col-width: calc((var(--available-width) - (var(--gap) * 2)) / 3);
+  --row-height: 240px;
+}
+
 .bento-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  grid-auto-columns: calc((100% - 40px) / 3);
-  grid-auto-rows: 240px;
-  gap: 20px;
-  overflow-x: auto;
-  overflow-y: hidden;
-  padding-bottom: 20px; /* Space for horizontal scrollbar */
+  grid-template-columns: repeat(3, var(--col-width));
+  grid-template-rows: repeat(2, var(--row-height));
+  gap: var(--gap);
+  flex-shrink: 0;
 }
 
-/* Custom scrollbar for bento grid */
-.bento-grid::-webkit-scrollbar {
-  height: 8px;
-}
-.bento-grid::-webkit-scrollbar-track {
-  background: transparent;
-}
-.bento-grid::-webkit-scrollbar-thumb {
-  background: rgba(242, 234, 217, 0.15);
-  border-radius: 10px;
-}
-.bento-grid::-webkit-scrollbar-thumb:hover {
-  background: rgba(242, 234, 217, 0.25);
+/* Explicit placement for 4-card bento layout */
+.bento-grid > .bento-item:nth-child(1) { grid-area: 1 / 1 / 2 / 2; }
+.bento-grid > .bento-item:nth-child(2) { grid-area: 1 / 2 / 2 / 3; }
+.bento-grid > .bento-item:nth-child(3) { grid-area: 1 / 3 / 3 / 4; }
+.bento-grid > .bento-item:nth-child(4) { grid-area: 2 / 1 / 3 / 3; }
+
+/* ── Overflow Cards (cards 5+) ── */
+.overflow-cards {
+  display: grid;
+  grid-template-columns: var(--col-width);
+  grid-auto-columns: var(--col-width);
+  grid-template-rows: repeat(2, var(--row-height));
+  grid-auto-flow: column;
+  gap: var(--gap);
+  flex-shrink: 0;
 }
 
-/* Force items after the 5th (nth-child(n+6)) to continue on the 3rd row horizontally */
-@media (min-width: 901px) {
-  .bento-grid > .bento-item:nth-child(n+6) {
-    grid-row: 3;
-  }
+/* Force overflow cards to always be 1x1 regardless of bento class */
+.overflow-cards > .bento-item {
+  grid-column: span 1 !important;
+  grid-row: span 1 !important;
 }
 
 .bento-item {
@@ -363,8 +396,12 @@
 
 /* Responsive */
 @media (max-width: 900px) {
+  .projects-container {
+    --col-width: calc((100vw - 128px - 20px) / 2);
+  }
   .bento-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, var(--col-width));
+    grid-auto-columns: var(--col-width);
   }
   
   .bento-tall {
@@ -374,16 +411,17 @@
 }
 
 @media (max-width: 600px) {
+  .projects-container {
+    padding: 0 32px;
+    --col-width: calc(100vw - 64px);
+  }
   .bento-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(1, var(--col-width));
+    grid-auto-columns: var(--col-width);
   }
   
   .bento-wide, .bento-tall {
     grid-column: span 1;
     grid-row: span 1;
-  }
-  
-  .projects-container {
-    padding: 0 32px;
   }
 }

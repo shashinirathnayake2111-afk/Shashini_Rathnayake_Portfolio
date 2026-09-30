@@ -22,21 +22,20 @@ const Navbar = ({ isLoaded, onContactClick, isInHero }) => {
 
   useEffect(() => {
     lastScrollYRef.current = window.scrollY;
-    
+
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      
+
       if (!isInHero) {
-        // We are scrolled down past hero
         const isScrollingUp = currentScrollY < lastScrollYRef.current - 15;
-        
+
         if (isScrollingUp) {
           setShowPill(true);
           if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current);
           scrollTimeoutRef.current = setTimeout(() => setShowPill(false), 2000);
         }
       }
-      
+
       if (Math.abs(currentScrollY - lastScrollYRef.current) > 15) {
         lastScrollYRef.current = currentScrollY;
       }
@@ -80,7 +79,6 @@ const Navbar = ({ isLoaded, onContactClick, isInHero }) => {
     <>
       <nav className={`navbar-container ${isLoaded ? 'nav-enter' : ''} ${!isInHero ? 'nav-scrolled' : ''} ${(!isInHero && !showPill) ? 'nav-fully-hidden' : ''}`}>
 
-        {/* Full Navbar Content */}
         <div className={`nav-full ${!isInHero ? 'nav-hidden' : ''}`}>
           <Link to="/" className="nav-logo">
             Shashini Rathnayake<span className="nav-dot">.</span>
