@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
-import { motion, AnimatePresence, useScroll, useTransform, useSpring, useMotionValue } from 'framer-motion';
+import { motion, useScroll, useTransform, useSpring, useMotionValue } from 'framer-motion';
 import '../styles/AboutSection.css';
 import resumePDF from '../../assets/resume.pdf';
+import pencilArt from '../../assets/pencilart.png';
 
 const BentoCard3D = ({ num, unit, label, sub, highlight, delay }) => {
   const cardRef = useRef(null);
@@ -48,7 +49,6 @@ const BentoCard3D = ({ num, unit, label, sub, highlight, delay }) => {
       onMouseLeave={handleMouseLeave}
       whileHover={{ z: 30 }}
     >
-
       <motion.div
         className="bento-glare"
         style={{
@@ -68,6 +68,65 @@ const BentoCard3D = ({ num, unit, label, sub, highlight, delay }) => {
   );
 };
 
+/* ── Pencil Art with draw-in reveal ── */
+const PencilArtReveal = () => {
+  const imgRef = useRef(null);
+  const [revealed, setRevealed] = useState(false);
+
+  useEffect(() => {
+    if (!imgRef.current) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setRevealed(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.25 }
+    );
+    observer.observe(imgRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <motion.div
+      ref={imgRef}
+      className="pencilart-wrapper"
+      initial={{ opacity: 0, y: 20 }}
+      animate={revealed ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+    >
+      {/* Aura glow behind image */}
+      <div className="pencilart-aura" />
+
+      {/* The image — clip-path draw wipe from bottom */}
+      <div className={`pencilart-clip-wrap ${revealed ? 'draw-in' : ''}`}>
+        <img
+          src={pencilArt}
+          alt="Pencil Art Portrait"
+          className="pencilart-img"
+        />
+      </div>
+
+      {/* Subtle cream frame line */}
+      <div className="pencilart-frame" />
+
+      {/* Label under image */}
+      <motion.div
+        className="pencilart-label"
+        initial={{ opacity: 0 }}
+        animate={revealed ? { opacity: 1 } : {}}
+        transition={{ duration: 0.6, delay: 1.2 }}
+      >
+        <span className="pencilart-line" />
+        <span className="pencilart-label-text">SHASHINI RATHNAYAKE</span>
+        <span className="pencilart-line" />
+      </motion.div>
+    </motion.div>
+  );
+};
+
+/* ── Cinematic Title ── */
 const CinematicTitle = ({ text }) => {
   const words = text.split(' ');
   const strokeWords = ['behind', 'it.'];
@@ -107,6 +166,7 @@ const CinematicTitle = ({ text }) => {
   );
 };
 
+/* ── About Panel ── */
 const AboutPanel = () => {
   const [counts, setCounts] = useState({ exp: 0, projects: 0, certs: 0 });
   const hasAnimated = useRef(false);
@@ -150,7 +210,21 @@ const AboutPanel = () => {
       exit={{ opacity: 0, y: -20, filter: 'blur(6px)' }}
       transition={{ duration: 0.5 }}
     >
+      {/* ── Left Column ── */}
       <div className="about-left-col">
+
+        {/* Eyebrow label */}
+        <motion.div
+          className="about-eyebrow"
+          initial={{ opacity: 0, x: -16 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <span className="about-eyebrow-line" />
+          <span className="about-eyebrow-text">ABOUT</span>
+        </motion.div>
+
         <CinematicTitle text="I build the whole thing — the interface and what runs behind it." />
 
         <div className="about-bio-block">
@@ -161,7 +235,7 @@ const AboutPanel = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
           >
-            I&apos;m <span className="highlight-text">Shashini</span>, a full stack developer and UI/UX designer based in Sri Lanka. I like taking a project from a rough sketch in Figma to something people can actually click through and rely on.
+            I'm a full stack developer and UI/UX designer, blending aesthetics with robust engineering. I enjoy taking projects from a rough sketch in Figma to building the scalable backend architecture that powers it, delivering solutions people can actually rely on.
           </motion.p>
 
           <motion.div
@@ -187,7 +261,13 @@ const AboutPanel = () => {
         </div>
       </div>
 
+      {/* ── Right Column ── */}
       <div className="about-right-col">
+
+        {/* Pencil Art — above the cards */}
+        <PencilArtReveal />
+
+        {/* Stat Cards */}
         <div className="about-bento-stats">
           <BentoCard3D num={counts.exp} unit="M" label="Months Experience" sub="Hands-on Experience" delay={0.9} />
           <BentoCard3D num={counts.projects} unit="+" label="Projects Built" sub="Full Stack & UI/UX" highlight delay={1.05} />
@@ -198,26 +278,7 @@ const AboutPanel = () => {
   );
 };
 
-const TABS = ['About'];
-const PANELS = [AboutPanel];
-
-const GlassTabs = ({ active, setActive }) => (
-  <div className="glass-tabs">
-    {TABS.map((tab, i) => (
-      <button
-        key={tab}
-        type="button"
-        className={`glass-tab ${active === i ? 'active' : ''}`}
-        onClick={() => setActive(i)}
-      >
-        {tab}
-      </button>
-    ))}
-  </div>
-);
-
 const AboutSection = () => {
-  const [active, setActive] = useState(0);
   const sectionRef = useRef(null);
 
   const { scrollYProgress } = useScroll({
@@ -230,8 +291,6 @@ const AboutSection = () => {
   const panelOpacity = useTransform(scrollYProgress, [0, 0.15, 0.85, 1], [0, 1, 1, 0]);
   const bgGlowY = useTransform(scrollYProgress, [0, 1], [-40, 40]);
 
-  const PanelComponent = PANELS[active];
-
   return (
     <section className="about-section" id="about" ref={sectionRef}>
 
@@ -242,21 +301,13 @@ const AboutSection = () => {
         style={{ y: watermarkY, opacity: 0.028 }}
         aria-hidden="true"
       >
-        {TABS[active].toUpperCase()}
+        ABOUT
       </motion.div>
 
       <motion.div className="aww-layout" style={{ opacity: panelOpacity, y: panelY }}>
-
-        {/* Floating Glass Tabs */}
-        <GlassTabs active={active} setActive={setActive} />
-
-        {/* Content Panel */}
         <div className="panel-area">
-          <AnimatePresence mode="wait">
-            <PanelComponent key={active} />
-          </AnimatePresence>
+          <AboutPanel />
         </div>
-
       </motion.div>
     </section>
   );
