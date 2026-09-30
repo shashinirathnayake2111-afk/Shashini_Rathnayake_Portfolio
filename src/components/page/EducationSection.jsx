@@ -153,26 +153,11 @@ const StackCard = ({ card, index, cardsLength, setCards }) => {
   );
 };
 
-const CodeBanner = () => (
-  <motion.section
-    className="code-banner-section"
-    initial={{ opacity: 0 }}
-    whileInView={{ opacity: 1 }}
-    viewport={{ once: true }}
-    transition={{ duration: 1 }}
-  >
-    <div className="code-banner-img-wrap">
-      <img src={codeImg} alt="Code" className="code-banner-img" />
-      <div className="code-banner-overlay"></div>
-    </div>
-  </motion.section>
-);
 
 const EducationSection = () => {
   const [cards, setCards] = useState([...certData].reverse()); // Reverse so first item is on top
 
   return (
-    <>
     <section className="edu-section" id="education">
       <div className="edu-container">
 
@@ -236,10 +221,22 @@ const EducationSection = () => {
             ))}
           </div>
         </div>
+
+        {/* Decorative code image — bottom right corner */}
+        <motion.div
+          className="edu-code-corner"
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+        >
+          <img src={codeImg} alt="Code" className="edu-code-img" />
+          <div className="edu-code-overlay"></div>
+        </motion.div>
+
       </div>
     </section>
-    <CodeBanner />
-  </>);
+  );
 }
 
 export default EducationSection;

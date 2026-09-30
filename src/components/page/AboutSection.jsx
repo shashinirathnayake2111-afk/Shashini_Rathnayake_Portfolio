@@ -4,7 +4,7 @@ import '../styles/AboutSection.css';
 import resumePDF from '../../assets/resume.pdf';
 import pencilArt from '../../assets/pencilart.png';
 
-const BentoCard3D = ({ num, unit, label, sub, highlight, delay }) => {
+const BentoCard3D = ({ num, unit, label, sub, highlight, delay, href }) => {
   const cardRef = useRef(null);
   const rotateX = useMotionValue(0);
   const rotateY = useMotionValue(0);
@@ -36,10 +36,10 @@ const BentoCard3D = ({ num, unit, label, sub, highlight, delay }) => {
     glareY.set(50);
   }, [rotateX, rotateY, glareX, glareY]);
 
-  return (
+  const cardInner = (
     <motion.div
       ref={cardRef}
-      className={`bento-stat-card ${highlight ? 'highlight-card' : ''}`}
+      className={`bento-stat-card ${highlight ? 'highlight-card' : ''} ${href ? 'bento-clickable' : ''}`}
       style={{ rotateX: rotX, rotateY: rotY, transformStyle: 'preserve-3d', perspective: 800 }}
       initial={{ opacity: 0, y: 40, scale: 0.9 }}
       whileInView={{ opacity: 1, y: 0, scale: 1 }}
@@ -62,10 +62,16 @@ const BentoCard3D = ({ num, unit, label, sub, highlight, delay }) => {
         </div>
         <div className="bento-stat-label">{label}</div>
         <div className="bento-stat-sub">{sub}</div>
+        {href && <div className="bento-nav-hint">View ↗</div>}
       </div>
       <div className="bento-corner-accent" />
     </motion.div>
   );
+
+  if (href) {
+    return <a href={href} className="bento-card-link">{cardInner}</a>;
+  }
+  return cardInner;
 };
 
 /* ── Pencil Art with draw-in reveal ── */
@@ -310,9 +316,9 @@ const AboutPanel = () => {
 
         {/* Stat Cards */}
         <div className="about-bento-stats">
-          <BentoCard3D num={counts.exp} unit="M" label="Months Experience" sub="Hands-on Experience" delay={0.9} />
-          <BentoCard3D num={counts.projects} unit="+" label="Projects Built" sub="Full Stack & UI/UX" highlight delay={1.05} />
-          <BentoCard3D num={counts.certs} unit="+" label="Certificates" sub="IBM & Others" delay={1.2} />
+          <BentoCard3D num={counts.exp} unit="M" label="Months Experience" sub="Hands-on Experience" delay={0.9} href="#experience" />
+          <BentoCard3D num={counts.projects} unit="+" label="Projects Built" sub="Full Stack & UI/UX" highlight delay={1.05} href="#projects" />
+          <BentoCard3D num={counts.certs} unit="+" label="Certificates" sub="IBM & Others" delay={1.2} href="/about#education" />
         </div>
       </div>
     </motion.div>

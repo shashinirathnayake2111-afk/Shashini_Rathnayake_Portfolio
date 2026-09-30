@@ -17,12 +17,17 @@ const Navbar = ({ isLoaded, onContactClick, isInHero }) => {
     }
   }, [isDarkMode]);
 
+  const pillShownRef = React.useRef(false);
+
   useEffect(() => {
-    if (!isInHero) {
+    if (!isInHero && !pillShownRef.current) {
+      pillShownRef.current = true;
       setShowPill(true);
-      const timer = setTimeout(() => setShowPill(false), 2000);
+      const timer = setTimeout(() => setShowPill(false), 1000);
       return () => clearTimeout(timer);
-    } else {
+    }
+    if (isInHero) {
+      pillShownRef.current = false;
       setShowPill(false);
     }
   }, [isInHero]);
