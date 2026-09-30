@@ -210,6 +210,18 @@ const EducationSection = () => {
           </motion.div>
 
           <div className="cert-stack-container">
+            {/* Decorative code image — bottom right corner */}
+            <motion.div
+              className="edu-code-corner"
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+            >
+              <img src={codeImg} alt="Code" className="edu-code-img" />
+              <div className="edu-code-overlay"></div>
+            </motion.div>
+
             {cards.map((card, index) => (
               <StackCard
                 key={card.id}
@@ -221,18 +233,6 @@ const EducationSection = () => {
             ))}
           </div>
         </div>
-
-        {/* Decorative code image — bottom right corner */}
-        <motion.div
-          className="edu-code-corner"
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-        >
-          <img src={codeImg} alt="Code" className="edu-code-img" />
-          <div className="edu-code-overlay"></div>
-        </motion.div>
 
       </div>
     </section>

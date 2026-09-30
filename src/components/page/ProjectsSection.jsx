@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import '../styles/ProjectsSection.css';
 import codeImg from '../../assets/code.png';
@@ -188,7 +188,7 @@ const ProjectsSection = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.6, delay: i * 0.1 }}
+              transition={{ duration: 0.6, delay: (i > 5 ? 5 : i) * 0.1 }}
               onClick={() => setSelectedProject(project)}
             >
               <div className="bento-item-bg" style={{ backgroundImage: `url(${project.image})` }}></div>

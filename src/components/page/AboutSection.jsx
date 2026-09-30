@@ -317,7 +317,7 @@ const AboutPanel = () => {
         {/* Stat Cards */}
         <div className="about-bento-stats">
           <BentoCard3D num={counts.exp} unit="M" label="Months Experience" sub="Hands-on Experience" delay={0.9} href="#experience" />
-          <BentoCard3D num={counts.projects} unit="+" label="Projects Built" sub="Full Stack & UI/UX" highlight delay={1.05} href="#projects" />
+          <BentoCard3D num={counts.projects} unit="+" label="Projects Built" sub="Full Stack & UI/UX" highlight delay={1.05} href="/#projects" />
           <BentoCard3D num={counts.certs} unit="+" label="Certificates" sub="IBM & Others" delay={1.2} href="/about#education" />
         </div>
       </div>
