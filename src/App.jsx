@@ -10,6 +10,8 @@ import Navbar from './components/page/Navbar'
 import SocialSidebar from './components/page/SocialSidebar'
 import ContactDrawer from './components/page/ContactDrawer'
 import CustomCursor from './components/page/CustomCursor'
+import SkillsMarquee from './components/page/SkillsMarquee'
+import EducationSection from './components/page/EducationSection'
 
 const HAS_LOADED_KEY = 'portfolioHasLoaded'
 
@@ -94,7 +96,11 @@ function App() {
           </>
         } />
         <Route path="/about" element={
-          <AboutSection />
+          <div className="about-page-wrapper">
+            <AboutSection />
+            <SkillsMarquee />
+            <EducationSection />
+          </div>
         } />
       </Routes>
 

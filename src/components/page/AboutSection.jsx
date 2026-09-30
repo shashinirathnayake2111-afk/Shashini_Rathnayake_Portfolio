@@ -126,6 +126,46 @@ const PencilArtReveal = () => {
   );
 };
 
+/* ── Staggered Text Reveal ── */
+const StaggeredText = ({ text, className, delay = 0 }) => {
+  const words = text.split(' ');
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.015, delayChildren: delay },
+    },
+  };
+
+  const wordVariants = {
+    hidden: { opacity: 0, y: 12, filter: 'blur(4px)' },
+    visible: {
+      opacity: 1,
+      y: 0,
+      filter: 'blur(0px)',
+      transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
+    },
+  };
+
+  return (
+    <motion.p
+      className={className}
+      variants={containerVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: '-40px' }}
+      style={{ display: 'flex', flexWrap: 'wrap', gap: '0.28em' }}
+    >
+      {words.map((word, i) => (
+        <motion.span key={i} variants={wordVariants} style={{ display: 'inline-block' }}>
+          {word}
+        </motion.span>
+      ))}
+    </motion.p>
+  );
+};
+
 /* ── Cinematic Title ── */
 const CinematicTitle = ({ text }) => {
   const words = text.split(' ');
@@ -228,15 +268,16 @@ const AboutPanel = () => {
         <CinematicTitle text="I build the whole thing — the interface and what runs behind it." />
 
         <div className="about-bio-block">
-          <motion.p
+          <StaggeredText
             className="about-bio"
-            initial={{ opacity: 0, x: -24, filter: 'blur(6px)' }}
-            whileInView={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          >
-            I'm a full stack developer and UI/UX designer, blending aesthetics with robust engineering. I enjoy taking projects from a rough sketch in Figma to building the scalable backend architecture that powers it, delivering solutions people can actually rely on.
-          </motion.p>
+            text="I'm a full stack developer and UI/UX designer, blending aesthetics with robust engineering. I enjoy taking projects from a rough sketch in Figma to building the scalable backend architecture that powers it, delivering solutions people can actually rely on."
+            delay={0.6}
+          />
+          <StaggeredText
+            className="about-bio about-bio-secondary"
+            text="I genuinely love learning new things — whether it's diving into a new framework, experimenting with AI tooling, or figuring out how something works under the hood. That curiosity is what keeps my work evolving."
+            delay={1.0}
+          />
 
           <motion.div
             className="about-quote-box"

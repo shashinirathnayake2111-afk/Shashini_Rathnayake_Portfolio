@@ -1,0 +1,339 @@
+.edu-section {
+  width: 100vw;
+  padding: 120px 0;
+  background: #050505;
+  color: #f2ead9;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+}
+
+.edu-container {
+  width: 100%;
+  max-width: 1300px;
+  padding: 0 64px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 100px;
+}
+
+.edu-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 48px;
+}
+
+.edu-eyebrow-line {
+  display: block;
+  width: 40px;
+  height: 1px;
+  background: rgba(230, 201, 168, 0.5);
+}
+
+.edu-heading {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.5rem;
+  letter-spacing: 0.05em;
+  color: rgba(242, 234, 217, 0.85);
+  margin: 0;
+}
+
+/* ── Timeline ── */
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  position: relative;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 3px;
+  width: 1px;
+  background: linear-gradient(to bottom, rgba(230, 201, 168, 0.3), rgba(230, 201, 168, 0.05));
+}
+
+.timeline-item {
+  position: relative;
+  padding-left: 32px;
+}
+
+.timeline-dot {
+  position: absolute;
+  top: 6px;
+  left: -1px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #050505;
+  border: 2px solid #E6C9A8;
+  box-shadow: 0 0 10px rgba(230, 201, 168, 0.4);
+}
+
+.timeline-year {
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 0.8rem;
+  color: #E6C9A8;
+  letter-spacing: 0.1em;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.timeline-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin: 0 0 4px 0;
+  color: #f2ead9;
+}
+
+.timeline-inst {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.9rem;
+  color: rgba(242, 234, 217, 0.5);
+  display: block;
+  margin-bottom: 12px;
+}
+
+.timeline-desc {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.95rem;
+  color: rgba(242, 234, 217, 0.7);
+  line-height: 1.6;
+  margin: 0;
+  font-weight: 300;
+}
+
+/* ── Certifications Stack ── */
+.cert-stack-container {
+  position: relative;
+  width: 100%;
+  height: 380px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1000px;
+}
+
+.stacked-card {
+  position: absolute;
+  width: 320px;
+  height: 420px;
+  border-radius: 16px;
+  border: 1px solid rgba(230, 201, 168, 0.15);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+  cursor: grab;
+  overflow: hidden;
+  text-align: center;
+  top: 20px;
+}
+
+.stacked-card:active {
+  cursor: grabbing;
+}
+
+.card-bg-img {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.15;
+  mix-blend-mode: luminosity;
+  z-index: 0;
+  transition: opacity 0.4s ease;
+}
+
+.stacked-card:hover .card-bg-img {
+  opacity: 0.3;
+}
+
+.card-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
+.card-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2rem;
+  letter-spacing: 0.05em;
+  color: #E6C9A8;
+  margin: 0 0 8px 0;
+  line-height: 1.1;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+}
+
+.card-issuer {
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 0.85rem;
+  color: rgba(242, 234, 217, 0.6);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin: 0;
+}
+
+/* Hover Description */
+.card-description-hover {
+  margin-top: 24px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.4s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.stacked-card:hover .card-description-hover {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.card-description-hover p {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.85rem;
+  color: rgba(242, 234, 217, 0.8);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.card-btn {
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #050505;
+  background: #E6C9A8;
+  padding: 8px 16px;
+  border-radius: 100px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.card-btn:hover {
+  background: #f2ead9;
+  transform: scale(1.05);
+}
+
+/* Decorative Corners */
+.card-corner {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border: 1px solid rgba(230, 201, 168, 0.4);
+  z-index: 1;
+}
+
+.card-corner.top-left {
+  top: 12px;
+  left: 12px;
+  border-right: none;
+  border-bottom: none;
+}
+
+.card-corner.top-right {
+  top: 12px;
+  right: 12px;
+  border-left: none;
+  border-bottom: none;
+}
+
+.card-corner.bottom-left {
+  bottom: 12px;
+  left: 12px;
+  border-right: none;
+  border-top: none;
+}
+
+.card-corner.bottom-right {
+  bottom: 12px;
+  right: 12px;
+  border-left: none;
+  border-top: none;
+}
+
+.swipe-hint {
+  position: absolute;
+  bottom: 24px;
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 0.7rem;
+  color: rgba(230, 201, 168, 0.4);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  animation: pulse-hint 2s infinite;
+}
+
+@keyframes pulse-hint {
+
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: translateX(0);
+  }
+
+  50% {
+    opacity: 0.8;
+    transform: translateX(5px);
+  }
+}
+
+@media (max-width: 900px) {
+  .edu-container {
+    grid-template-columns: 1fr;
+    gap: 80px;
+  }
+}
+
+/* ── Code Banner ── */
+.code-banner-section {
+  width: 100%;
+  background: #050505;
+  padding: 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.code-banner-img-wrap {
+  position: relative;
+  width: 100%;
+  max-height: 420px;
+  overflow: hidden;
+}
+
+.code-banner-img {
+  width: 100%;
+  height: 100%;
+  max-height: 420px;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  filter: brightness(0.7) contrast(1.1) saturate(0.8);
+}
+
+.code-banner-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(5, 5, 5, 0.2) 0%,
+    rgba(5, 5, 5, 0.0) 40%,
+    rgba(5, 5, 5, 0.6) 80%,
+    rgba(5, 5, 5, 1) 100%
+  );
+}

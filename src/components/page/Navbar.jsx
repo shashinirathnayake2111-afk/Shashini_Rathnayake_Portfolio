@@ -5,6 +5,7 @@ import '../styles/Navbar.css';
 const Navbar = ({ isLoaded, onContactClick, isInHero }) => {
   const [isDarkMode, setIsDarkMode] = useState(true);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [showPill, setShowPill] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -15,6 +16,16 @@ const Navbar = ({ isLoaded, onContactClick, isInHero }) => {
       document.body.classList.add('light-mode');
     }
   }, [isDarkMode]);
+
+  useEffect(() => {
+    if (!isInHero) {
+      setShowPill(true);
+      const timer = setTimeout(() => setShowPill(false), 2000);
+      return () => clearTimeout(timer);
+    } else {
+      setShowPill(false);
+    }
+  }, [isInHero]);
 
   const toggleTheme = () => {
     setIsDarkMode(!isDarkMode);
@@ -36,13 +47,13 @@ const Navbar = ({ isLoaded, onContactClick, isInHero }) => {
   return (
     <>
       <nav className={`navbar-container ${isLoaded ? 'nav-enter' : ''} ${!isInHero ? 'nav-scrolled' : ''}`}>
-        
+
         {/* Full Navbar Content */}
         <div className={`nav-full ${!isInHero ? 'nav-hidden' : ''}`}>
           <Link to="/" className="nav-logo">
             Shashini Rathnayake<span className="nav-dot">.</span>
           </Link>
-          
+
           <ul className="nav-links">
             <li>
               <Link to="/about" className="nav-link">About</Link>
@@ -76,8 +87,8 @@ const Navbar = ({ isLoaded, onContactClick, isInHero }) => {
         </div>
 
         {/* Scrolled Pill Content */}
-        <div 
-          className={`nav-pill ${isInHero ? 'nav-hidden' : ''}`}
+        <div
+          className={`nav-pill ${!showPill ? 'nav-hidden' : ''}`}
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
         >
           <div className="status-dot"></div>
@@ -86,7 +97,7 @@ const Navbar = ({ isLoaded, onContactClick, isInHero }) => {
       </nav>
 
       {/* Floating Hamburger Menu for Scrolled State */}
-      <button 
+      <button
         className={`scrolled-hamburger ${(!isInHero && !isMenuOpen) ? 'visible' : ''}`}
         onClick={() => setIsMenuOpen(true)}
         aria-label="Open Menu"
