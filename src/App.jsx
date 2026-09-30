@@ -12,6 +12,8 @@ import ContactDrawer from './components/page/ContactDrawer'
 import CustomCursor from './components/page/CustomCursor'
 import SkillsMarquee from './components/page/SkillsMarquee'
 import EducationSection from './components/page/EducationSection'
+import ProjectsSection from './components/page/ProjectsSection'
+import Footer from './components/page/Footer'
 
 const HAS_LOADED_KEY = 'portfolioHasLoaded'
 
@@ -93,6 +95,8 @@ function App() {
               <HeroSection isLoaded={!isLoading} />
             </div>
             <IntroStatement />
+            <ProjectsSection />
+            <Footer onContactClick={() => setIsContactOpen(true)} />
           </>
         } />
         <Route path="/about" element={
@@ -100,6 +104,7 @@ function App() {
             <AboutSection />
             <SkillsMarquee />
             <EducationSection />
+            <Footer onContactClick={() => setIsContactOpen(true)} />
           </div>
         } />
       </Routes>

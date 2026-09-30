@@ -23,7 +23,7 @@ const Navbar = ({ isLoaded, onContactClick, isInHero }) => {
     if (!isInHero && !pillShownRef.current) {
       pillShownRef.current = true;
       setShowPill(true);
-      const timer = setTimeout(() => setShowPill(false), 1000);
+      const timer = setTimeout(() => setShowPill(false), 2000);
       return () => clearTimeout(timer);
     }
     if (isInHero) {
@@ -93,7 +93,7 @@ const Navbar = ({ isLoaded, onContactClick, isInHero }) => {
 
         {/* Scrolled Pill Content */}
         <div
-          className={`nav-pill ${!showPill ? 'nav-hidden' : ''}`}
+          className={`nav-pill ${!showPill ? 'nav-pill-hidden' : ''}`}
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
         >
           <div className="status-dot"></div>
