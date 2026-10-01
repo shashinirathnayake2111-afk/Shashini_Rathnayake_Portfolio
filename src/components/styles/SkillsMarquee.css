@@ -35,7 +35,7 @@
 }
 
 .marquee-item {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: 'Bebas Neue', 'Bebas Neue Fallback', sans-serif;
   font-size: 1.6rem;
   color: #050505;
   letter-spacing: 0.08em;

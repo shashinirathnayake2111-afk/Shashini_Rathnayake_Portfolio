@@ -120,7 +120,7 @@
 }
 
 .status-text {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: 'Bebas Neue', 'Bebas Neue Fallback', sans-serif;
   font-size: 1.1rem;
   font-weight: normal;
   letter-spacing: 0.18em;
@@ -135,7 +135,7 @@
 }
 
 .nav-logo {
-  font-family: 'Sniglet', cursive;
+  font-family: 'Sniglet', 'Georgia', serif;
   font-size: 1rem;
   color: #ffffff;
   text-decoration: none;
@@ -389,7 +389,7 @@
 }
 
 .overlay-logo {
-  font-family: 'Sniglet', cursive;
+  font-family: 'Sniglet', 'Georgia', serif;
   font-size: 1.2rem;
   color: rgba(242, 234, 217, 0.9);
   text-decoration: none;

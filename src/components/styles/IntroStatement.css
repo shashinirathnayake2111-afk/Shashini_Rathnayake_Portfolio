@@ -56,7 +56,7 @@
 }
 
 .intro-anchor-text {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: 'Bebas Neue', 'Bebas Neue Fallback', sans-serif;
   font-size: 1.1rem;
   letter-spacing: 0.3em;
   color: rgba(242, 234, 217, 0.5);

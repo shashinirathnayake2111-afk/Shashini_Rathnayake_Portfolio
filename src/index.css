@@ -1,19 +1,40 @@
 /* ============================================================
-   FONT FALLBACK OVERRIDES
-   These @font-face rules fix the Vercel vs localhost font
-   rendering difference. When Bebas Neue hasn't loaded yet,
-   the browser uses Arial Black - which is wider. The
-   size-adjust property compensates so layout stays identical.
+   FONT SYSTEM — Global Font Loading & Fallback Fix
+
+   WHY THIS EXISTS:
+   On localhost, fonts are cached = instant. On Vercel (fresh
+   load), Google Fonts arrive 200-500ms later. During that gap,
+   fallback fonts (Arial Black, cursive) render with different
+   metrics = bigger/wider text. This fixes that for ALL sections.
+
+   Strategy:
+   - font-display:block on Bebas Neue = invisible until loaded
+     (no layout shift at all, tiny blank flash instead)
+   - Adjusted fallback @font-face with size-adjust to compensate
+     for metric differences when font IS swapping
+   - -webkit-font-smoothing: antialiased = consistent cross-OS
    ============================================================ */
+
+/* ── Bebas Neue (hero name, marquee, navbar pill, edu headings) ── */
 @font-face {
   font-family: 'Bebas Neue';
-  src: url('https://fonts.gstatic.com/s/bebasneus/v21/JTUSjIg69CK48gW7PXooxWtrzw.woff2') format('woff2'),
-       url('https://fonts.gstatic.com/s/bebasneus/v21/JTUSjIg69CK48gW7PXoo6Wt8.woff') format('woff');
+  src: url('https://fonts.gstatic.com/s/bebasneus/v21/JTUSjIg69CK48gW7PXooxWtrzw.woff2') format('woff2');
   font-weight: 400;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 
+/* Adjusted fallback: compensate Arial → Bebas Neue metric diff */
+@font-face {
+  font-family: 'Bebas Neue Fallback';
+  src: local('Arial Narrow'), local('Arial');
+  size-adjust: 73%;
+  ascent-override: 115%;
+  descent-override: 22%;
+  line-gap-override: 0%;
+}
+
+/* ── Chakra Petch (body, buttons, loading labels) ── */
 @font-face {
   font-family: 'Chakra Petch Fallback';
   src: local('Arial');
@@ -23,6 +44,9 @@
   line-gap-override: normal;
 }
 
+/* ============================================================
+   GLOBAL RESET
+   ============================================================ */
 * {
   margin: 0;
   padding: 0;
@@ -30,10 +54,15 @@
 }
 
 body {
-  font-family: 'Chakra Petch', sans-serif;
-  background-color: #121212;
-  color: #ffffff;
+  font-family: 'Chakra Petch', 'Chakra Petch Fallback', sans-serif;
+  background-color: #050505;
+  color: #f2ead9;
   overflow-x: hidden;
+
+  /* Consistent font rendering across Windows/Linux/macOS */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 
   /* Firefox modern scrollbar */
   scrollbar-width: thin;
@@ -62,3 +91,4 @@ body {
   background: linear-gradient(180deg, #6d28d9, #9333ea, #db2777);
   border-radius: 100px;
 }
+

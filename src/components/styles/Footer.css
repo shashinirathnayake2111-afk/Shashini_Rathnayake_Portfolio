@@ -124,7 +124,7 @@
 }
 
 .footer-logo {
-  font-family: 'Sniglet', cursive;
+  font-family: 'Sniglet', 'Georgia', serif;
   font-size: 1.6rem;
   color: #1a1208;
   display: block;
@@ -184,7 +184,7 @@
   position: absolute;
   bottom: -50px;
   right: -10px;
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: 'Bebas Neue', 'Bebas Neue Fallback', sans-serif;
   font-size: 20rem;
   color: rgba(26, 18, 8, 0.04);
   line-height: 1;
