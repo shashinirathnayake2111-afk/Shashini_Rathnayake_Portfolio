@@ -1,20 +1,20 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import '../styles/ProjectsSection.css';
-import codeImg from '../../assets/code.png';
+import codeImg from '../../assets/projects/sahaya.png';
 
 const projectData = [
   {
     id: 1,
-    title: "E-Commerce Platform",
-    category: "Full Stack",
+    title: "ForgeX Fitness Website",
+    category: "Full Stack Development",
     image: codeImg,
     gridClass: "bento-small",
-    links: { github: "#", live: "#" },
+    links: { github: "https://github.com/shashinirathnayake2111-afk/ForgeX-Fitness-Website.git", live: "https://forge-x-fitness-website.vercel.app/" },
     caseStudy: {
-      problem: "Local businesses lacked an easy way to sell online with local payment gateways.",
-      solution: "Developed a fully scalable e-commerce platform with custom payment integration and vendor dashboards.",
-      techStack: ["React", "Node.js", "MongoDB", "Stripe"]
+      problem: "Needed a website that manage home workout with coaches, diet plans and programs with the guidence using the wesite and coaches. Also needed to user will get the notifications and reminders for the workouts, live gym traffic to make sure they are going to the gym when it is not much crowd and track their progress etc.",
+      solution: "Developed a fully responsive fitness website with all the features mentioned above.",
+      techStack: ["Figma", "Prototyping", "React", "Tailwind CSS", "Node.js", ""]
     }
   },
   {
@@ -31,16 +31,16 @@ const projectData = [
     }
   },
   {
-    id: 3,
-    title: "Healthcare Analytics Dashboard",
-    category: "Full Stack",
+    id: 1,
+    title: "Sahaya.lk",
+    category: "UI/UX Design",
     image: codeImg,
-    gridClass: "bento-tall",
-    links: { github: "#", live: "#" },
+    gridClass: "bento-small",
+    links: { Figma: "https://www.figma.com/proto/Lmjj8NYAtiheZRg9SwmolG/Sahaya.lk?node-id=60-129&p=f&viewport=886%2C99%2C0.21&t=fUGS9LUvvaQxlXwZ-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=63%3A145&page-id=0%3A1" },
     caseStudy: {
-      problem: "Doctors needed a quick way to visualize patient data trends over time.",
-      solution: "Created a comprehensive dashboard with interactive charts and secure HIPAA-compliant data handling.",
-      techStack: ["Next.js", "Tailwind CSS", "PostgreSQL", "Chart.js"]
+      problem: "I needed a mobile app for all the females and other when they are in a danger, alert nearest police station or family memeber notify by sending GPS location with a alert system and 30 second audio record",
+      solution: "Developed a fully scalable mobile app with SOS button feature, GPS location and 30 second audio record feature and other safety features.",
+      techStack: ["Figma", "Prototyping", "Wireframing"]
     }
   },
   {
@@ -102,14 +102,14 @@ const CaseStudyModal = ({ project, onClose }) => {
 
   return (
     <AnimatePresence>
-      <motion.div 
+      <motion.div
         className="modal-backdrop"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         onClick={onClose}
       >
-        <motion.div 
+        <motion.div
           className="modal-content laser-border-wrapper"
           initial={{ opacity: 0, scale: 0.95, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -124,7 +124,7 @@ const CaseStudyModal = ({ project, onClose }) => {
               <span className="modal-category">{project.category}</span>
               <h3 className="modal-title">{project.title}</h3>
             </div>
-            
+
             <div className="modal-body">
               <div className="case-study-section">
                 <h4>The Problem</h4>
@@ -219,8 +219,8 @@ const ProjectsSection = () => {
   return (
     <section className="projects-section" id="projects">
       <div className="projects-container">
-        
-        <motion.div 
+
+        <motion.div
           className="projects-header"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -231,7 +231,7 @@ const ProjectsSection = () => {
           <h2 className="section-title">Featured Projects</h2>
         </motion.div>
 
-        <div 
+        <div
           className="projects-carousel-wrapper"
           ref={wrapperRef}
           onMouseDown={handleMouseDown}
@@ -257,9 +257,9 @@ const ProjectsSection = () => {
       </div>
 
       {selectedProject && (
-        <CaseStudyModal 
-          project={selectedProject} 
-          onClose={() => setSelectedProject(null)} 
+        <CaseStudyModal
+          project={selectedProject}
+          onClose={() => setSelectedProject(null)}
         />
       )}
     </section>

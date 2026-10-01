@@ -1,3 +1,28 @@
+/* ============================================================
+   FONT FALLBACK OVERRIDES
+   These @font-face rules fix the Vercel vs localhost font
+   rendering difference. When Bebas Neue hasn't loaded yet,
+   the browser uses Arial Black - which is wider. The
+   size-adjust property compensates so layout stays identical.
+   ============================================================ */
+@font-face {
+  font-family: 'Bebas Neue';
+  src: url('https://fonts.gstatic.com/s/bebasneus/v21/JTUSjIg69CK48gW7PXooxWtrzw.woff2') format('woff2'),
+       url('https://fonts.gstatic.com/s/bebasneus/v21/JTUSjIg69CK48gW7PXoo6Wt8.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Chakra Petch Fallback';
+  src: local('Arial');
+  size-adjust: 97%;
+  ascent-override: 95%;
+  descent-override: normal;
+  line-gap-override: normal;
+}
+
 * {
   margin: 0;
   padding: 0;
