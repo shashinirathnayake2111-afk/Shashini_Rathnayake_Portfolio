@@ -1,98 +1,76 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import '../styles/ProjectsSection.css';
-import codeImg from '../../assets/projects/sahaya.png';
+import SahayaImg from '../../assets/projects/sahaya.jpg';
+import LomieesImg from '../../assets/projects/lomiees.jpg';
+import ForgeImg from '../../assets/projects/forge.jpg';
+import RecoverImg from '../../assets/projects/recover.jpg';
+import FinanceImg from '../../assets/projects/finance_tracker.jpg';
 
 const projectData = [
   {
     id: 1,
     title: "ForgeX Fitness Website",
-    category: "Full Stack Development",
-    image: codeImg,
+    category: "UI/UX & Full Stack Development",
+    image: ForgeImg,
     gridClass: "bento-small",
-    links: { github: "https://github.com/shashinirathnayake2111-afk/ForgeX-Fitness-Website.git", live: "https://forge-x-fitness-website.vercel.app/" },
+    links: { figma: "https://www.figma.com/proto/48n3ngMXfR4CIYS1YkrCfh/Untitled?node-id=39-48&p=f&viewport=381%2C75%2C0.18&t=6EdjLAfq1DvFAplt-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=169%3A610&page-id=0%3A1", github: "https://github.com/shashinirathnayake2111-afk/ForgeX-Fitness-Website.git", live: "https://forge-x-fitness-website.vercel.app/" },
     caseStudy: {
-      problem: "Needed a website that manage home workout with coaches, diet plans and programs with the guidence using the wesite and coaches. Also needed to user will get the notifications and reminders for the workouts, live gym traffic to make sure they are going to the gym when it is not much crowd and track their progress etc.",
-      solution: "Developed a fully responsive fitness website with all the features mentioned above.",
-      techStack: ["Figma", "Prototyping", "React", "Tailwind CSS", "Node.js", ""]
+      problem: "Needed a website to manage home workouts with coaches, diet plans, and programs. Users required notifications and reminders for workouts, live gym traffic monitoring to choose less crowded times, and a progress tracking system.",
+      solution: "Developed a fully responsive fitness website featuring workout management, coach-guided programs, real-time gym traffic monitoring, push notifications, and a comprehensive progress tracking dashboard.",
+      techStack: ["Figma", "Prototyping", "React", "Tailwind CSS", "Node.js"]
     }
   },
   {
     id: 2,
-    title: "Task Management App",
-    category: "UI/UX & Frontend",
-    image: codeImg,
-    gridClass: "bento-small",
-    links: { figma: "#", github: "#" },
+    title: "Lomiees Clothing Store",
+    category: "UI/UX & Full Stack Development",
+    image: LomieesImg,
+    gridClass: "bento-wide",
+    links: { figma: "https://www.figma.com/proto/RFj22fyDJfxZtQMBsDJWMU/Lomiees-Clouthing?node-id=2-2&p=f&viewport=501%2C92%2C0.11&t=WLN2iOpby0reg7zw-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=2%3A2&page-id=0%3A1", github: "https://github.com/shashinirathnayake2111-afk/Lomiees-Website", live: "https://lomiees-website.vercel.app/" },
     caseStudy: {
-      problem: "Existing tools were too complex for small freelance teams.",
-      solution: "Designed a minimalist interface focusing on core task completion and real-time collaboration.",
-      techStack: ["Figma", "React", "Firebase"]
+      problem: "Lomiees required a modern e-commerce platform to sell clothing online. The platform needed to be user-friendly, visually appealing, and easy to manage.",
+      solution: "Developed a fully responsive e-commerce website with product browsing, cart management, and a seamless checkout experience tailored to the Lomiees brand identity.",
+      techStack: ["Figma", "Prototyping", "React", "Tailwind CSS", "Node.js"]
     }
   },
   {
-    id: 1,
+    id: 3,
     title: "Sahaya.lk",
     category: "UI/UX Design",
-    image: codeImg,
+    image: SahayaImg,
     gridClass: "bento-small",
-    links: { Figma: "https://www.figma.com/proto/Lmjj8NYAtiheZRg9SwmolG/Sahaya.lk?node-id=60-129&p=f&viewport=886%2C99%2C0.21&t=fUGS9LUvvaQxlXwZ-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=63%3A145&page-id=0%3A1" },
+    links: { figma: "https://www.figma.com/proto/Lmjj8NYAtiheZRg9SwmolG/Sahaya.lk?node-id=60-129&p=f&viewport=886%2C99%2C0.21&t=fUGS9LUvvaQxlXwZ-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=63%3A145&page-id=0%3A1" },
     caseStudy: {
-      problem: "I needed a mobile app for all the females and other when they are in a danger, alert nearest police station or family memeber notify by sending GPS location with a alert system and 30 second audio record",
-      solution: "Developed a fully scalable mobile app with SOS button feature, GPS location and 30 second audio record feature and other safety features.",
+      problem: "Women and vulnerable individuals lacked a reliable emergency safety app that could instantly alert the nearest police station or family members with their GPS location during a dangerous situation.",
+      solution: "Designed a fully scalable mobile app featuring a one-tap SOS button, real-time GPS location sharing, a 30-second audio recording feature, and additional personal safety tools.",
       techStack: ["Figma", "Prototyping", "Wireframing"]
     }
   },
   {
     id: 4,
-    title: "Real-Estate Finder",
-    category: "Full Stack",
-    image: codeImg,
+    title: "Recover.lk",
+    category: "UI/UX Design",
+    image: RecoverImg,
     gridClass: "bento-wide",
-    links: { github: "#", live: "#" },
+    links: { figma: "https://www.figma.com/proto/ai3v7JTZ7ZkN2V4lNasmEo/Recover.lk?page-id=0%3A1&node-id=63-163&p=f&viewport=522%2C154%2C0.12&t=A8iyX7QuN1ZMuSAR-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=63%3A163" },
     caseStudy: {
-      problem: "Finding apartments with specific pet-friendly filters was difficult.",
-      solution: "Built a specialized search engine for pet-friendly rentals with map integrations.",
-      techStack: ["React", "Express", "MongoDB", "Google Maps API"]
+      problem: "Migraine patients struggled to manage their daily tasks and office work during episodes, as most digital tools were not designed with their visual and cognitive sensitivity in mind.",
+      solution: "Built a web application with doctor channeling, symptom tracking, activity recording, a dark/light mode switcher, and a range of accessibility-focused features specifically designed for migraine patients.",
+      techStack: ["Research", "Wireframe", "Figma", "Prototyping"]
     }
   },
   {
     id: 5,
     title: "Finance Tracker UX",
     category: "UI/UX Design",
-    image: codeImg,
-    gridClass: "bento-small",
+    image: FinanceImg,
+    gridClass: "bento-full",
     links: { figma: "#" },
     caseStudy: {
-      problem: "Personal finance apps often overwhelm users with too much data.",
-      solution: "Designed an intuitive mobile-first experience focusing on daily budget remaining.",
+      problem: "Personal finance apps often overwhelm users with excessive data and complex interfaces, making it difficult to understand their actual spending at a glance.",
+      solution: "Designed an intuitive, mobile-first experience that focuses on daily budget remaining, clean spending visualizations, and effortless expense categorization.",
       techStack: ["Figma", "Prototyping", "Wireframing"]
-    }
-  },
-  {
-    id: 6,
-    title: "Social Media API",
-    category: "Backend",
-    image: codeImg,
-    gridClass: "bento-small",
-    links: { github: "#" },
-    caseStudy: {
-      problem: "Needed a scalable backend for a new niche social network.",
-      solution: "Engineered a robust REST API with JWT authentication and optimized graph queries.",
-      techStack: ["Node.js", "Express", "MySQL", "Redis"]
-    }
-  },
-  {
-    id: 7,
-    title: "Portfolio Template",
-    category: "Frontend",
-    image: codeImg,
-    gridClass: "bento-small",
-    links: { github: "#", live: "#" },
-    caseStudy: {
-      problem: "Developers struggle to create unique, cinematic portfolios.",
-      solution: "Built an open-source, easily customizable Awwwards-style portfolio template.",
-      techStack: ["React", "Framer Motion", "Vanilla CSS"]
     }
   }
 ];
@@ -191,9 +169,6 @@ const ProjectsSection = () => {
     wrapperRef.current.scrollLeft = scrollLeft.current - walk;
   };
 
-  const bentoProjects = projectData.slice(0, 4);
-  const overflowProjects = projectData.slice(4);
-
   const renderCard = (project, i, delay = 0) => (
     <motion.div
       key={project.id}
@@ -240,17 +215,9 @@ const ProjectsSection = () => {
           onMouseMove={handleMouseMove}
         >
           <div className="projects-drag-row">
-            {/* Fixed bento block: first 4 cards */}
             <div className="bento-grid">
-              {bentoProjects.map((project, i) => renderCard(project, i, i * 0.08))}
+              {projectData.map((project, i) => renderCard(project, i, i * 0.08))}
             </div>
-
-            {/* Overflow cards: stack in pairs of 2 vertically, extending to the right */}
-            {overflowProjects.length > 0 && (
-              <div className="overflow-cards">
-                {overflowProjects.map((project, i) => renderCard(project, i, 0.3 + i * 0.08))}
-              </div>
-            )}
           </div>
         </div>
 
