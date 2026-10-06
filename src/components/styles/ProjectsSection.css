@@ -2,6 +2,7 @@
   width: 100vw;
   padding: 120px 0;
   background: #050505;
+  background-image: radial-gradient(circle at 50% -20%, rgba(230, 201, 168, 0.05) 0%, transparent 70%);
   color: #f2ead9;
   position: relative;
   z-index: 2;
@@ -32,21 +33,58 @@
   font-family: 'Poppins', sans-serif;
   font-size: 2.5rem;
   font-weight: 600;
-  margin: 0;
+  margin: 0 0 16px 0;
 }
 
+/* Drag hint label */
+.drag-hint {
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 0.78rem;
+  color: rgba(230, 201, 168, 0.45);
+  letter-spacing: 0.12em;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  animation: drag-hint-pulse 2.5s ease-in-out infinite;
+}
+
+.drag-hint-icon {
+  font-size: 1rem;
+  display: inline-block;
+  animation: drag-hint-bounce 1.8s ease-in-out infinite alternate;
+}
+
+.drag-hint-icon:first-child {
+  animation-direction: alternate-reverse;
+}
+
+@keyframes drag-hint-pulse {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+@keyframes drag-hint-bounce {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(6px); }
+}
+
+/* ── Carousel outer wrapper ── */
+.carousel-outer {
+  position: relative;
+}
+
+/* ── Carousel scrollable area ── */
 .projects-carousel-wrapper {
   overflow-x: scroll;
   overflow-y: hidden;
   width: 100%;
-  padding-bottom: 0;
-  cursor: grab;
-  /* Completely hide scrollbar */
+  cursor: none; /* hide native cursor — we use custom one */
   scrollbar-width: none;
   -ms-overflow-style: none;
-}
-.projects-carousel-wrapper:active {
-  cursor: grabbing;
+  position: relative;
+  /* slight perspective for depth */
+  perspective: 1200px;
 }
 .projects-carousel-wrapper::-webkit-scrollbar {
   display: none;
@@ -62,77 +100,47 @@
   padding-bottom: 8px;
 }
 
-/* ── Bento Grid (first 4 cards) ── */
+/* ── Cinematic Layout Vars ── */
 .projects-container {
-  --gap: 20px;
-  --container-padding: 128px;
-  --available-width: min(calc(100vw - var(--container-padding)), 1172px);
-  --col-width: calc((var(--available-width) - (var(--gap) * 2)) / 3);
-  --row-height: 240px;
+  --gap: 32px;
+  --container-padding: 10vw;
+  --row-height: 300px;
+  --col-width: 380px;
 }
 
 .bento-grid {
   display: grid;
-  grid-template-columns: repeat(3, var(--col-width));
-  grid-template-rows: repeat(3, var(--row-height));
-  gap: var(--gap);
-  flex-shrink: 0;
-}
-
-/* Explicit placement for 5-card bento layout */
-.bento-grid > .bento-item:nth-child(1) { grid-area: 1 / 1 / 2 / 2; }
-.bento-grid > .bento-item:nth-child(2) { grid-area: 1 / 2 / 2 / 4; }
-.bento-grid > .bento-item:nth-child(3) { grid-area: 2 / 1 / 3 / 3; }
-.bento-grid > .bento-item:nth-child(4) { grid-area: 2 / 3 / 3 / 4; }
-.bento-grid > .bento-item:nth-child(5) { grid-area: 3 / 1 / 4 / 4; }
-
-/* ── Overflow Cards (cards 5+) ── */
-.overflow-cards {
-  display: grid;
-  grid-template-columns: var(--col-width);
-  grid-auto-columns: var(--col-width);
   grid-template-rows: repeat(2, var(--row-height));
-  grid-auto-flow: column;
+  grid-template-columns: repeat(9, var(--col-width));
   gap: var(--gap);
   flex-shrink: 0;
+  padding-right: 15vw;
 }
 
-/* Force overflow cards to always be 1x1 regardless of bento class */
-.overflow-cards > .bento-item {
-  grid-column: span 1 !important;
-  grid-row: span 1 !important;
-}
+/* Cinematic Placement for 8 Cards */
+.bento-grid > .cinematic-card-1 { grid-area: 1 / 1 / 3 / 3; } /* ForgeX: Huge */
+.bento-grid > .cinematic-card-2 { grid-area: 1 / 3 / 2 / 5; } /* Sahaya: Wide */
+.bento-grid > .cinematic-card-3 { grid-area: 2 / 3 / 3 / 4; } /* Eco Store: Small */
+.bento-grid > .cinematic-card-4 { grid-area: 2 / 4 / 3 / 5; } /* Travel Planner: Small */
+.bento-grid > .cinematic-card-5 { grid-area: 1 / 5 / 3 / 6; } /* Smart Home: Tall */
+.bento-grid > .cinematic-card-6 { grid-area: 1 / 6 / 3 / 8; } /* Lomiees: Huge */
+.bento-grid > .cinematic-card-7 { grid-area: 1 / 8 / 2 / 10; } /* Recover: Wide */
+.bento-grid > .cinematic-card-8 { grid-area: 2 / 8 / 3 / 10; } /* Finance: Wide */
 
+/* ── Cards ── */
 .bento-item {
   position: relative;
-  border-radius: 20px;
+  border-radius: 32px;
   overflow: hidden;
-  cursor: pointer;
+  cursor: none;
   background: #0d0d0d;
-  border: 1px solid rgba(242, 234, 217, 0.05);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease, border-color 0.4s ease;
-}
-
-/* Specific Grid Placements */
-.bento-small {
-  grid-column: span 1;
-  grid-row: span 1;
-}
-
-.bento-wide {
-  grid-column: span 2;
-  grid-row: span 1;
-}
-
-.bento-tall {
-  grid-column: span 1;
-  grid-row: span 2;
-}
-
-.bento-full {
-  grid-column: span 3;
-  grid-row: span 1;
+  border: 1px solid rgba(230, 201, 168, 0.15);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  transition:
+    transform 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.55s ease,
+    border-color 0.55s ease;
+  will-change: transform;
 }
 
 .bento-item-bg {
@@ -140,75 +148,64 @@
   inset: 0;
   background-size: cover;
   background-position: center top;
-  filter: brightness(0.45) saturate(0.9);
-  transition: filter 0.6s ease, transform 0.8s ease;
+  filter: brightness(0.85) saturate(1.05);
+  transition: filter 0.6s ease, transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .bento-item-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(5, 5, 5, 0.1) 0%,
-    rgba(5, 5, 5, 0.8) 100%
-  );
-  opacity: 0.8;
+  background: linear-gradient(to bottom, transparent 40%, rgba(5,5,5,0.95) 100%);
+  opacity: 1;
   transition: opacity 0.4s ease;
 }
 
 .bento-item-content {
   position: absolute;
-  bottom: 24px;
-  left: 24px;
-  right: 24px;
+  bottom: 32px;
+  left: 32px;
+  right: 32px;
   z-index: 2;
-  transition: transform 0.4s ease;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .project-category {
   font-family: 'Chakra Petch', sans-serif;
-  font-size: 0.7rem;
+  font-size: 0.85rem;
   color: #E6C9A8;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
   display: block;
-  margin-bottom: 6px;
+  margin-bottom: 8px;
 }
 
 .project-title {
   font-family: 'Poppins', sans-serif;
-  font-size: 1.25rem;
+  font-size: 2rem;
   font-weight: 500;
   margin: 0;
   color: #f2ead9;
-  line-height: 1.3;
+  line-height: 1.2;
 }
 
-.bento-wide .project-title {
-  font-size: 1.6rem;
+.cinematic-card-1 .project-title,
+.cinematic-card-6 .project-title {
+  font-size: 2.8rem;
 }
 
-/* Hover Effects */
+/* Hover */
 .bento-item:hover {
-  transform: translateY(-5px);
-  border-color: rgba(230, 201, 168, 0.4);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8), 0 0 20px rgba(230, 201, 168, 0.1);
+  transform: translateY(-8px) scale(1.02);
+  border-color: rgba(230, 201, 168, 0.6);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.9), 0 0 30px rgba(230, 201, 168, 0.15);
 }
-
 .bento-item:hover .bento-item-bg {
-  filter: brightness(0.6) saturate(1);
-  transform: scale(1.05);
+  filter: brightness(1) saturate(1.15);
+  transform: scale(1.08);
 }
+.bento-item:hover .bento-item-overlay { opacity: 0.8; }
+.bento-item:hover .bento-item-content { transform: translateY(-12px); }
 
-.bento-item:hover .bento-item-overlay {
-  opacity: 0.6;
-}
-
-.bento-item:hover .bento-item-content {
-  transform: translateY(-10px);
-}
-
-/* Hover Action Button */
 .bento-item-hover-actions {
   position: absolute;
   inset: 0;
@@ -217,15 +214,12 @@
   justify-content: center;
   z-index: 3;
   opacity: 0;
-  background: rgba(5, 5, 5, 0.4);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
+  background: rgba(5, 5, 5, 0.15);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   transition: opacity 0.4s ease;
 }
-
-.bento-item:hover .bento-item-hover-actions {
-  opacity: 1;
-}
+.bento-item:hover .bento-item-hover-actions { opacity: 1; }
 
 .view-btn {
   background: rgba(230, 201, 168, 0.1);
@@ -241,13 +235,79 @@
   transform: translateY(20px);
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
+.bento-item:hover .view-btn { transform: translateY(0); }
+.arrow { transition: transform 0.3s ease; }
+.view-btn:hover .arrow { transform: translate(3px, -3px); }
 
-.bento-item:hover .view-btn {
-  transform: translateY(0);
+/* ════════════════════════════════════
+   AWWWARDS DRAG CURSOR
+   ════════════════════════════════════ */
+.drag-cursor {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  background: rgba(230, 201, 168, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  pointer-events: none;
+  mix-blend-mode: difference;
+  box-shadow: 0 0 0 0 rgba(230, 201, 168, 0.5);
+  will-change: transform, opacity;
 }
 
+.drag-cursor::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 1px solid rgba(230, 201, 168, 0.3);
+  animation: cursor-ring-pulse 2s ease-in-out infinite;
+}
 
-/* ── Modal & Laser Border ── */
+@keyframes cursor-ring-pulse {
+  0%, 100% { transform: scale(1); opacity: 0.5; }
+  50%       { transform: scale(1.15); opacity: 0.2; }
+}
+
+.drag-cursor-label {
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: #050505;
+  mix-blend-mode: normal;
+  user-select: none;
+}
+
+/* ════════════════════════════════════
+   SCROLL PROGRESS BAR
+   ════════════════════════════════════ */
+.carousel-progress-track {
+  position: relative;
+  width: 100%;
+  height: 1px;
+  background: rgba(242, 234, 217, 0.08);
+  margin-top: 28px;
+  border-radius: 1px;
+  overflow: hidden;
+}
+
+.carousel-progress-fill {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(230,201,168,0.3), #E6C9A8);
+  border-radius: 1px;
+  transform-origin: left;
+}
+
+/* ════════════════════════════════════
+   MODAL & LASER BORDER
+   ════════════════════════════════════ */
 .modal-backdrop {
   position: fixed;
   inset: 0;
@@ -266,25 +326,20 @@
   width: 100%;
   max-width: 600px;
   border-radius: 20px;
-  padding: 2px; /* Space for the laser border */
+  padding: 2px;
   overflow: hidden;
 }
 
 .laser-border {
   position: absolute;
   inset: -50%;
-  background: conic-gradient(
-    from 0deg,
-    transparent 0deg,
-    transparent 280deg,
-    #E6C9A8 360deg
-  );
+  background: conic-gradient(from 0deg, transparent 0deg, transparent 280deg, #E6C9A8 360deg);
   animation: laser-spin 4s linear infinite;
   z-index: 1;
 }
 
 @keyframes laser-spin {
-  0% { transform: rotate(0deg); }
+  0%   { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
 
@@ -309,14 +364,9 @@
   cursor: pointer;
   transition: color 0.3s ease;
 }
+.modal-close:hover { color: #E6C9A8; }
 
-.modal-close:hover {
-  color: #E6C9A8;
-}
-
-.modal-header {
-  margin-bottom: 30px;
-}
+.modal-header { margin-bottom: 30px; }
 
 .modal-category {
   font-family: 'Chakra Petch', sans-serif;
@@ -335,9 +385,7 @@
   margin: 0;
 }
 
-.case-study-section {
-  margin-bottom: 24px;
-}
+.case-study-section { margin-bottom: 24px; }
 
 .case-study-section h4 {
   font-family: 'Poppins', sans-serif;
@@ -393,15 +441,17 @@
   font-weight: 500;
   transition: all 0.3s ease;
 }
-
 .btn-modal-link:hover {
   background: #f5efe0;
   transform: translateY(-2px);
   box-shadow: 0 4px 15px rgba(230, 201, 168, 0.3);
 }
 
-/* Responsive */
+/* ── Responsive ── */
 @media (max-width: 900px) {
+  .projects-carousel-wrapper { cursor: grab; }
+  .projects-carousel-wrapper:active { cursor: grabbing; }
+  .drag-cursor { display: none; }
   .projects-container {
     --col-width: calc((100vw - 128px - 20px) / 2);
   }
@@ -409,11 +459,7 @@
     grid-template-columns: repeat(2, var(--col-width));
     grid-auto-columns: var(--col-width);
   }
-  
-  .bento-tall {
-    grid-column: span 1;
-    grid-row: span 1; /* Reset on mobile */
-  }
+  .bento-tall { grid-column: span 1; grid-row: span 1; }
 }
 
 @media (max-width: 600px) {
@@ -425,9 +471,5 @@
     grid-template-columns: repeat(1, var(--col-width));
     grid-auto-columns: var(--col-width);
   }
-  
-  .bento-wide, .bento-tall {
-    grid-column: span 1;
-    grid-row: span 1;
-  }
+  .bento-wide, .bento-tall { grid-column: span 1; grid-row: span 1; }
 }

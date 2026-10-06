@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
 import Lenis from 'lenis'
+import { useScroll, useTransform, motion } from 'framer-motion'
 import './App.css'
 import LoadingScreen from './components/page/LoadingScreen'
 import HeroSection from './components/page/HeroSection'
@@ -17,6 +18,26 @@ import Footer from './components/page/Footer'
 
 const HAS_LOADED_KEY = 'portfolioHasLoaded'
 
+/* ── Cinematic scroll-reveal wrapper for sections below hero ── */
+const SectionReveal = ({ children, style }) => (
+  <motion.div
+    initial={{ opacity: 0, y: 60, clipPath: 'inset(8% 0% 0% 0% round 24px)' }}
+    whileInView={{
+      opacity: 1,
+      y: 0,
+      clipPath: 'inset(0% 0% 0% 0% round 0px)',
+    }}
+    viewport={{ once: true, margin: '-80px' }}
+    transition={{
+      duration: 1.1,
+      ease: [0.16, 1, 0.3, 1],
+    }}
+    style={style}
+  >
+    {children}
+  </motion.div>
+)
+
 function App() {
   const alreadyLoaded = sessionStorage.getItem(HAS_LOADED_KEY) === 'true'
   const [isLoading, setIsLoading] = useState(!alreadyLoaded)
@@ -24,6 +45,14 @@ function App() {
   const [isContactOpen, setIsContactOpen] = useState(false)
   const heroRef = useRef(null)
   const location = useLocation()
+
+  /* Hero scroll progress — drives the curtain reveal of the next section */
+  const { scrollYProgress: heroScroll } = useScroll({
+    target: heroRef,
+    offset: ['start start', 'end start'],
+  })
+
+
 
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -91,12 +120,24 @@ function App() {
         <Route path="/" element={
           <>
             <SocialSidebar isLoaded={!isLoading} isVisible={isInHero} />
+
+            {/* Hero — scroll target for reveal animation */}
             <div ref={heroRef}>
               <HeroSection isLoaded={!isLoading} />
             </div>
-            <IntroStatement />
-            <ProjectsSection />
-            <Footer onContactClick={() => setIsContactOpen(true)} />
+
+            <SectionReveal>
+              <IntroStatement />
+            </SectionReveal>
+
+            {/* ProjectsSection — whileInView slide-up reveal */}
+            <SectionReveal>
+              <ProjectsSection />
+            </SectionReveal>
+
+            <SectionReveal>
+              <Footer onContactClick={() => setIsContactOpen(true)} />
+            </SectionReveal>
           </>
         } />
         <Route path="/about" element={
