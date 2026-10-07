@@ -261,7 +261,7 @@
 .scrolled-hamburger {
   position: fixed;
   top: 20px;
-  left: 5%;
+  left: calc(5% + 16px);
   width: 44px;
   height: 44px;
   background: rgba(10, 10, 10, 0.7);

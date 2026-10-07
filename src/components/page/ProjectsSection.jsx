@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import '../styles/ProjectsSection.css';
-import SahayaImg from '../../assets/projects/sahaya.jpg';
-import LomieesImg from '../../assets/projects/lomiees.jpg';
-import ForgeImg from '../../assets/projects/forge.jpg';
-import RecoverImg from '../../assets/projects/recover.jpg';
+import SahayaImg from '../../assets/projects/sahaya.png';
+import LomieesImg from '../../assets/projects/lomiees.png';
+import ForgeImg from '../../assets/projects/forge.png';
+import RecoverImg from '../../assets/projects/recover.png';
 import FinanceImg from '../../assets/projects/finance_tracker.jpg';
 
 const projectData = [
@@ -12,6 +12,7 @@ const projectData = [
     id: 1,
     title: "ForgeX Fitness",
     category: "UI/UX & Full Stack Development",
+    type: "web",
     image: ForgeImg,
     links: { figma: "https://www.figma.com/proto/48n3ngMXfR4CIYS1YkrCfh/Untitled?node-id=39-48&p=f&viewport=381%2C75%2C0.18&t=6EdjLAfq1DvFAplt-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=169%3A610&page-id=0%3A1", github: "https://github.com/shashinirathnayake2111-afk/ForgeX-Fitness-Website.git", live: "https://forge-x-fitness-website.vercel.app/" },
     caseStudy: {
@@ -24,6 +25,7 @@ const projectData = [
     id: 2,
     title: "Sahaya.lk",
     category: "UI/UX Design",
+    type: "mobile",
     image: SahayaImg,
     links: { figma: "https://www.figma.com/proto/Lmjj8NYAtiheZRg9SwmolG/Sahaya.lk?node-id=60-129&p=f&viewport=886%2C99%2C0.21&t=fUGS9LUvvaQxlXwZ-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=63%3A145&page-id=0%3A1" },
     caseStudy: {
@@ -36,6 +38,7 @@ const projectData = [
     id: 3,
     title: "Eco Store App",
     category: "Mobile App Design",
+    type: "mobile",
     image: SahayaImg,
     links: { },
     caseStudy: {
@@ -48,6 +51,7 @@ const projectData = [
     id: 4,
     title: "Travel Planner",
     category: "UI/UX & Frontend",
+    type: "web",
     image: ForgeImg,
     links: { },
     caseStudy: {
@@ -60,6 +64,7 @@ const projectData = [
     id: 5,
     title: "Smart Home UI",
     category: "Web App Design",
+    type: "web",
     image: LomieesImg,
     links: { },
     caseStudy: {
@@ -72,6 +77,7 @@ const projectData = [
     id: 6,
     title: "Lomiees Store",
     category: "UI/UX & Full Stack Development",
+    type: "web",
     image: LomieesImg,
     links: { figma: "https://www.figma.com/proto/RFj22fyDJfxZtQMBsDJWMU/Lomiees-Clouthing?node-id=2-2&p=f&viewport=501%2C92%2C0.11&t=WLN2iOpby0reg7zw-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=2%3A2&page-id=0%3A1", github: "https://github.com/shashinirathnayake2111-afk/Lomiees-Website", live: "https://lomiees-website.vercel.app/" },
     caseStudy: {
@@ -84,6 +90,7 @@ const projectData = [
     id: 7,
     title: "Recover.lk",
     category: "UI/UX Design",
+    type: "web",
     image: RecoverImg,
     links: { figma: "https://www.figma.com/proto/ai3v7JTZ7ZkN2V4lNasmEo/Recover.lk?page-id=0%3A1&node-id=63-163&p=f&viewport=522%2C154%2C0.12&t=A8iyX7QuN1ZMuSAR-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=63%3A163" },
     caseStudy: {
@@ -96,6 +103,7 @@ const projectData = [
     id: 8,
     title: "Finance Tracker UX",
     category: "UI/UX Design",
+    type: "mobile",
     image: FinanceImg,
     links: { figma: "#" },
     caseStudy: {
@@ -170,91 +178,79 @@ const CaseStudyModal = ({ project, onClose }) => {
 
 const ProjectsSection = () => {
   const [selectedProject, setSelectedProject] = useState(null);
-  const [hoveredProject, setHoveredProject] = useState(null);
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [hoveredId, setHoveredId] = useState(null);
   const sectionRef = useRef(null);
-
-  useEffect(() => {
-    const handleMouseMove = (e) => {
-      setMousePos({ x: e.clientX, y: e.clientY });
-    };
-    
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, []);
 
   return (
     <section className="awwwards-projects-section" id="projects" ref={sectionRef}>
        <div className="awwwards-projects-header">
            <motion.div 
-             initial={{ opacity: 0, y: 50 }} 
+             initial={{ opacity: 0, y: 30 }} 
              whileInView={{ opacity: 1, y: 0 }}
              viewport={{ once: true }}
              transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
            >
-             <span className="awwwards-eyebrow">SELECTED WORKS</span>
-             <h2>FEATURED <br/><span className="outline-text">PROJECTS</span></h2>
+             <h2 className="projects-small-heading">WHAT I BUILD</h2>
            </motion.div>
        </div>
 
        <div className="awwwards-projects-list">
-         {projectData.map((project, idx) => (
-            <motion.div 
-              className="awwwards-project-row" 
-              key={project.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              onMouseEnter={() => setHoveredProject(project)}
-              onMouseLeave={() => setHoveredProject(null)}
-              onClick={() => setSelectedProject(project)}
-            >
-               <div className="awwwards-project-number">
-                 0{idx + 1}
-               </div>
-               
-               <div className="awwwards-project-title">
-                  {project.title}
-               </div>
-               
-               <div className="awwwards-project-category">
-                 {project.category}
-               </div>
-               
-               <div className="awwwards-project-arrow">
-                 <span>↗</span>
-               </div>
-            </motion.div>
-         ))}
-       </div>
+         {projectData.map((project, idx) => {
+           const isHovered = hoveredId === project.id;
+           
+           return (
+             /* Outer wrapper: only handles entrance stagger */
+             <motion.div
+               key={project.id}
+               initial={{ opacity: 0, y: 40 }}
+               whileInView={{ opacity: 1, y: 0 }}
+               viewport={{ once: true, margin: "-80px" }}
+               transition={{ duration: 0.7, delay: idx * 0.08, ease: [0.16, 1, 0.3, 1] }}
+             >
+               {/* Inner div: handles hover interaction independently */}
+               <div
+                 className="awwwards-project-row"
+                 onMouseEnter={() => setHoveredId(project.id)}
+                 onMouseLeave={() => setHoveredId(null)}
+                 onClick={() => setSelectedProject(project)}
+               >
+                 <div className="awwwards-project-top-line">
+                   <div className="awwwards-project-number">
+                     0{idx + 1}
+                   </div>
+                   
+                   <div className="awwwards-project-title">
+                      {project.title}
+                   </div>
+                   
+                   <div className="awwwards-project-category">
+                     {project.category}
+                   </div>
+                   
+                   <div className="awwwards-project-arrow">
+                     <span>↗</span>
+                   </div>
+                 </div>
 
-       {/* Floating Image Reveal */}
-       <motion.div 
-         className="awwwards-floating-image-wrapper"
-         animate={{
-           x: mousePos.x - 200, // center the image 400x500
-           y: mousePos.y - 250,
-           opacity: hoveredProject ? 1 : 0,
-           scale: hoveredProject ? 1 : 0.8,
-           rotate: hoveredProject ? (mousePos.x % 10 - 5) : 0 // subtle rotation based on mouse pos
-         }}
-         transition={{ type: "spring", stiffness: 150, damping: 25, mass: 0.5 }}
-       >
-         <AnimatePresence mode="wait">
-            {hoveredProject && (
-              <motion.img 
-                key={hoveredProject.id}
-                src={hoveredProject.image}
-                initial={{ opacity: 0, scale: 1.2 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.4 }}
-                className="awwwards-floating-image"
-              />
-            )}
-         </AnimatePresence>
-       </motion.div>
+                 {/* Image accordion — driven solely by hover state, no whileInView conflict */}
+                 <motion.div 
+                   className={`awwwards-row-image-container-vertical ${project.type === 'mobile' ? 'mobile-ratio' : 'web-ratio'}`}
+                   initial={false}
+                   animate={{ 
+                     height: isHovered ? (project.type === 'mobile' ? 500 : 450) : 0, 
+                     opacity: isHovered ? 1 : 0,
+                     marginTop: isHovered ? 30 : 0,
+                     marginBottom: isHovered ? 10 : 0
+                   }}
+                   transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                 >
+                    <img src={project.image} alt={project.title} className="awwwards-row-image-vertical" />
+                 </motion.div>
+               </div>
+             </motion.div>
+            );
+         })}
+       </div>
 
        {selectedProject && <CaseStudyModal project={selectedProject} onClose={() => setSelectedProject(null)} />}
     </section>

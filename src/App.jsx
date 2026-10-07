@@ -131,10 +131,8 @@ function App() {
               <IntroStatement />
             </SectionReveal>
 
-            {/* ProjectsSection — whileInView slide-up reveal */}
-            <SectionReveal>
-              <ProjectsSection />
-            </SectionReveal>
+            {/* ProjectsSection — has its own per-row entrance animations */}
+            <ProjectsSection />
 
             <SectionReveal>
               <Footer onContactClick={() => setIsContactOpen(true)} />
