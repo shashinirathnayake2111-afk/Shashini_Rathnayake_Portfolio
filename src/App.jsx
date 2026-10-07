@@ -15,6 +15,7 @@ import SkillsMarquee from './components/page/SkillsMarquee'
 import EducationSection from './components/page/EducationSection'
 import ProjectsSection from './components/page/ProjectsSection'
 import Footer from './components/page/Footer'
+import SkillsPage from './components/page/SkillsPage'
 
 const HAS_LOADED_KEY = 'portfolioHasLoaded'
 
@@ -147,6 +148,9 @@ function App() {
             <EducationSection />
             <Footer onContactClick={() => setIsContactOpen(true)} />
           </div>
+        } />
+        <Route path="/skills" element={
+          <SkillsPage onContactClick={() => setIsContactOpen(true)} />
         } />
       </Routes>
 

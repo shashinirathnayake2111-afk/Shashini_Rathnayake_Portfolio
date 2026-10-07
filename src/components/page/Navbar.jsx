@@ -89,7 +89,7 @@ const Navbar = ({ isLoaded, onContactClick, isInHero }) => {
               <Link to="/about" className="nav-link">About</Link>
             </li>
             <li>
-              <a href="#skills" className="nav-link" onClick={(e) => handleScrollToSection(e, 'skills')}>Skills</a>
+              <Link to="/skills" className="nav-link">Skills</Link>
             </li>
             <li>
               <a href="#experience" className="nav-link" onClick={(e) => handleScrollToSection(e, 'experience')}>Experience</a>
@@ -158,7 +158,7 @@ const Navbar = ({ isLoaded, onContactClick, isInHero }) => {
           </Link>
           <ul className="overlay-links">
             <li><Link to="/about" onClick={() => setIsMenuOpen(false)}>About</Link></li>
-            <li><a href="#skills" onClick={(e) => handleScrollToSection(e, 'skills')}>Skills</a></li>
+            <li><Link to="/skills" onClick={() => setIsMenuOpen(false)}>Skills</Link></li>
             <li><a href="#experience" onClick={(e) => handleScrollToSection(e, 'experience')}>Experience</a></li>
             <li><a href="#projects" onClick={(e) => handleScrollToSection(e, 'projects')}>Projects</a></li>
           </ul>

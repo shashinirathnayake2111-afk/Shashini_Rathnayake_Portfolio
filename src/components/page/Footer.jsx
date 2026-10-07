@@ -7,14 +7,13 @@ const Footer = ({ onContactClick }) => {
 
   const socials = [
     { label: 'GitHub', url: 'https://github.com/shashinirathnayake2111-afk' },
-    { label: 'LinkedIn', url: 'https://linkedin.com' },
-    { label: 'Dribbble', url: '#' },
+    { label: 'LinkedIn', url: 'https://www.linkedin.com/in/shashini-rathnayake-dev/' },
+    { label: 'Behance', url: 'https://www.behance.net/shashinirathnayke' },
   ];
 
   return (
     <footer className="footer-section">
 
-      {/* Wave — dark to cream seamless */}
       <div className="footer-wave" aria-hidden="true">
         <svg viewBox="0 0 1440 90" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
           <path

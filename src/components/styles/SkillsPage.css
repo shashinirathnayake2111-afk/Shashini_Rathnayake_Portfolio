@@ -1,0 +1,260 @@
+/* ══════════════════════════════
+   CINEMATIC SKILLS PAGE
+══════════════════════════════ */
+
+.cinematic-skills-wrapper {
+  position: relative;
+  background: #020202; /* Extremely dark */
+  color: #fff;
+  min-height: 100vh;
+  overflow: hidden;
+  padding-top: 140px;
+}
+
+/* Force dark mode behavior for this specific page */
+body .cinematic-skills-wrapper {
+  background: #020202;
+}
+
+/* ── Ambient Orbs ── */
+.cinematic-bg-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(140px);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.orb-1 {
+  width: 600px;
+  height: 600px;
+  background: rgba(160, 120, 64, 0.12); /* Subtle Gold */
+  top: 50px;
+  left: -200px;
+}
+
+.orb-2 {
+  width: 500px;
+  height: 500px;
+  background: rgba(100, 50, 200, 0.08); /* Subtle Purple */
+  bottom: 200px;
+  right: -150px;
+}
+
+.cinematic-noise-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background-image: url('data:image/svg+xml;utf8,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)"/%3E%3C/svg%3E');
+  opacity: 0.03;
+}
+
+/* ── Layout ── */
+.cinematic-skills-container {
+  position: relative;
+  z-index: 2;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 64px 120px 64px;
+}
+
+/* ── Hero Section ── */
+.cinematic-skills-hero {
+  margin-bottom: 120px;
+}
+
+.cinematic-eyebrow {
+  font-family: 'Chakra Petch', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.4em;
+  color: #a07840;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-bottom: 32px;
+}
+
+.cinematic-hero-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.5rem, 6vw, 5.5rem);
+  line-height: 0.9;
+  letter-spacing: 0.02em;
+  color: #f2ead9;
+  margin: 0;
+}
+
+.cinematic-hero-accent {
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(242, 234, 217, 0.25);
+}
+
+/* ── Rows ── */
+.cinematic-sections-stack {
+  display: flex;
+  flex-direction: column;
+}
+
+.cinematic-section-row {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+  padding: 80px 0;
+  gap: 64px;
+}
+
+.cinematic-section-left {
+  flex: 0 0 320px;
+  position: relative;
+}
+
+.cinematic-section-title-wrap {
+  position: sticky;
+  top: 140px;
+}
+
+.cinematic-section-title {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  font-size: 2.4rem;
+  letter-spacing: -0.02em;
+  color: #f2ead9;
+  line-height: 1.2;
+}
+
+.cinematic-section-title span {
+  display: block;
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  color: #a07840;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.cinematic-section-right {
+  flex: 1;
+}
+
+/* ── Grid & Cards ── */
+.cinematic-skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.cinematic-skill-card {
+  position: relative;
+  background: rgba(15, 15, 15, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  border-radius: 16px;
+  overflow: hidden;
+  backdrop-filter: blur(12px);
+  cursor: pointer;
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.4s ease, background 0.4s ease;
+}
+
+.cinematic-skill-card:hover {
+  border-color: rgba(160, 120, 64, 0.25);
+  background: rgba(25, 25, 25, 0.6);
+}
+
+.cinematic-skill-glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.cinematic-skill-card:hover .cinematic-skill-glow {
+  opacity: 1;
+}
+
+.cinematic-skill-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.cinematic-skill-icon {
+  font-size: 54px;
+  color: rgba(255, 255, 255, 0.2);
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  filter: grayscale(100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cinematic-skill-card:hover .cinematic-skill-icon {
+  color: #fff; /* Restores non-brand icon colors */
+  filter: grayscale(0%); /* Restores devicon original colors */
+  transform: scale(1.15);
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+}
+
+.cinematic-skill-name {
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.3);
+  transition: color 0.4s ease;
+  font-weight: 500;
+}
+
+.cinematic-skill-card:hover .cinematic-skill-name {
+  color: #f2ead9;
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .cinematic-skills-container {
+    padding: 0 40px 80px 40px;
+  }
+}
+
+@media (max-width: 900px) {
+  .cinematic-section-row {
+    flex-direction: column;
+    padding: 60px 0;
+    gap: 40px;
+  }
+  .cinematic-section-left {
+    flex: auto;
+  }
+  .cinematic-section-title-wrap {
+    position: relative;
+    top: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .cinematic-skills-container {
+    padding: 0 24px 60px 24px;
+  }
+  .cinematic-skills-hero {
+    margin-bottom: 80px;
+  }
+  .cinematic-skills-grid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 12px;
+  }
+  .cinematic-skill-card {
+    height: 140px;
+  }
+  .cinematic-skill-icon {
+    font-size: 40px;
+  }
+  .cinematic-section-title {
+    font-size: 2rem;
+  }
+}

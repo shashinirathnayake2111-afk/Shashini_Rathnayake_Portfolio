@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import '../styles/ProjectsSection.css';
 import SahayaImg from '../../assets/projects/sahaya.jpg';
@@ -10,7 +10,7 @@ import FinanceImg from '../../assets/projects/finance_tracker.jpg';
 const projectData = [
   {
     id: 1,
-    title: "ForgeX Fitness Website",
+    title: "ForgeX Fitness",
     category: "UI/UX & Full Stack Development",
     image: ForgeImg,
     links: { figma: "https://www.figma.com/proto/48n3ngMXfR4CIYS1YkrCfh/Untitled?node-id=39-48&p=f&viewport=381%2C75%2C0.18&t=6EdjLAfq1DvFAplt-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=169%3A610&page-id=0%3A1", github: "https://github.com/shashinirathnayake2111-afk/ForgeX-Fitness-Website.git", live: "https://forge-x-fitness-website.vercel.app/" },
@@ -58,7 +58,7 @@ const projectData = [
   },
   {
     id: 5,
-    title: "Smart Home Dashboard",
+    title: "Smart Home UI",
     category: "Web App Design",
     image: LomieesImg,
     links: { },
@@ -70,7 +70,7 @@ const projectData = [
   },
   {
     id: 6,
-    title: "Lomiees Clothing Store",
+    title: "Lomiees Store",
     category: "UI/UX & Full Stack Development",
     image: LomieesImg,
     links: { figma: "https://www.figma.com/proto/RFj22fyDJfxZtQMBsDJWMU/Lomiees-Clouthing?node-id=2-2&p=f&viewport=501%2C92%2C0.11&t=WLN2iOpby0reg7zw-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=2%3A2&page-id=0%3A1", github: "https://github.com/shashinirathnayake2111-afk/Lomiees-Website", live: "https://lomiees-website.vercel.app/" },
@@ -170,188 +170,93 @@ const CaseStudyModal = ({ project, onClose }) => {
 
 const ProjectsSection = () => {
   const [selectedProject, setSelectedProject] = useState(null);
-  const wrapperRef = useRef(null);
-
-  const isDragging = useRef(false);
-  const didDrag = useRef(false);
-  const startX = useRef(0);
-  const scrollLeftStart = useRef(0);
-  const velocity = useRef(0);
-  const lastX = useRef(0);
-  const lastTime = useRef(0);
-  const momentumId = useRef(null);
-
-  const [cursorVisible, setCursorVisible] = useState(false);
-  const [cursorDragging, setCursorDragging] = useState(false);
-  const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
-  const [scrollProgress, setScrollProgress] = useState(0);
-
-  const updateProgress = useCallback(() => {
-    const el = wrapperRef.current;
-    if (!el) return;
-    const max = el.scrollWidth - el.clientWidth;
-    setScrollProgress(max > 0 ? el.scrollLeft / max : 0);
-  }, []);
-
-  const runMomentum = useCallback(() => {
-    if (!wrapperRef.current) return;
-    velocity.current *= 0.92;
-    wrapperRef.current.scrollLeft += velocity.current;
-    updateProgress();
-    if (Math.abs(velocity.current) > 0.5) {
-      momentumId.current = requestAnimationFrame(runMomentum);
-    }
-  }, [updateProgress]);
-
-  const stopDrag = useCallback(() => {
-    isDragging.current = false;
-    setCursorDragging(false);
-    if (Math.abs(velocity.current) > 1) {
-      momentumId.current = requestAnimationFrame(runMomentum);
-    }
-  }, [runMomentum]);
-
-  const handleMouseEnter = () => setCursorVisible(true);
-  const handleMouseLeave = () => {
-    setCursorVisible(false);
-    if (isDragging.current) stopDrag();
-  };
-
-  const handleMouseMove = (e) => {
-    const rect = wrapperRef.current?.getBoundingClientRect();
-    if (rect) {
-      setCursorPos({ x: e.clientX - rect.left, y: e.clientY - rect.top });
-    }
-    if (!isDragging.current) return;
-    e.preventDefault();
-    const now = performance.now();
-    const dt = now - lastTime.current;
-    const x = e.pageX;
-    const walk = x - startX.current;
-    if (Math.abs(walk) > 3) didDrag.current = true;
-    if (dt > 0) {
-      velocity.current = (lastX.current - x) / dt * 12;
-    }
-    lastX.current = x;
-    lastTime.current = now;
-    wrapperRef.current.scrollLeft = scrollLeftStart.current - walk;
-    updateProgress();
-  };
-
-  const handleMouseDown = (e) => {
-    if (momentumId.current) cancelAnimationFrame(momentumId.current);
-    isDragging.current = true;
-    didDrag.current = false;
-    startX.current = e.pageX;
-    scrollLeftStart.current = wrapperRef.current.scrollLeft;
-    lastX.current = e.pageX;
-    lastTime.current = performance.now();
-    velocity.current = 0;
-    setCursorDragging(true);
-  };
-
-  const handleMouseUp = () => stopDrag();
-
-  const handleCardClick = (project) => {
-    if (didDrag.current) return;
-    setSelectedProject(project);
-  };
+  const [hoveredProject, setHoveredProject] = useState(null);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const sectionRef = useRef(null);
 
   useEffect(() => {
-    const el = wrapperRef.current;
-    if (!el) return;
-    el.addEventListener('scroll', updateProgress, { passive: true });
-    return () => el.removeEventListener('scroll', updateProgress);
-  }, [updateProgress]);
-
-  useEffect(() => () => {
-    if (momentumId.current) cancelAnimationFrame(momentumId.current);
+    const handleMouseMove = (e) => {
+      setMousePos({ x: e.clientX, y: e.clientY });
+    };
+    
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
-  const renderCard = (project, i) => (
-    <motion.div
-      key={project.id}
-      className={"bento-item cinematic-card-" + (i + 1)}
-      initial={{ opacity: 0, scale: 0.9, y: 40 }}
-      whileInView={{ opacity: 1, scale: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.6, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
-      onClick={() => handleCardClick(project)}
-    >
-      <div className="bento-item-bg" style={{ backgroundImage: "url(" + project.image + ")" }}></div>
-      <div className="bento-item-overlay"></div>
-      <div className="bento-item-content">
-        <span className="project-category">{project.category}</span>
-        <h3 className="project-title">{project.title}</h3>
-      </div>
-      <div className="bento-item-hover-actions">
-        <span className="view-btn">View Case Study <span className="arrow">↗</span></span>
-      </div>
-    </motion.div>
-  );
-
   return (
-    <section className="projects-section" id="projects">
-      <div className="projects-container">
-        <motion.div
-          className="projects-header"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <span className="section-eyebrow">SELECTED WORKS</span>
-          <h2 className="section-title">Featured Projects</h2>
-          <p className="drag-hint">
-            <span className="drag-hint-icon">⟵</span>
-            Drag to explore
-            <span className="drag-hint-icon">⟶</span>
-          </p>
-        </motion.div>
+    <section className="awwwards-projects-section" id="projects" ref={sectionRef}>
+       <div className="awwwards-projects-header">
+           <motion.div 
+             initial={{ opacity: 0, y: 50 }} 
+             whileInView={{ opacity: 1, y: 0 }}
+             viewport={{ once: true }}
+             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+           >
+             <span className="awwwards-eyebrow">SELECTED WORKS</span>
+             <h2>FEATURED <br/><span className="outline-text">PROJECTS</span></h2>
+           </motion.div>
+       </div>
 
-        <div className="carousel-outer">
-          <div
-            className="projects-carousel-wrapper"
-            ref={wrapperRef}
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-            onMouseDown={handleMouseDown}
-            onMouseUp={handleMouseUp}
-            onMouseMove={handleMouseMove}
-          >
-            <div className="projects-drag-row">
-              <div className="bento-grid">
-                {projectData.map((project, i) => renderCard(project, i))}
-              </div>
-            </div>
-
-            <motion.div
-              className="drag-cursor"
-              animate={{
-                opacity: cursorVisible ? 1 : 0,
-                scale: cursorDragging ? 0.85 : 1,
-                x: cursorPos.x - 44,
-                y: cursorPos.y - 44,
-              }}
-              transition={{
-                opacity: { duration: 0.2 },
-                scale: { duration: 0.25, ease: [0.16, 1, 0.3, 1] },
-                x: { duration: 0 },
-                y: { duration: 0 },
-              }}
+       <div className="awwwards-projects-list">
+         {projectData.map((project, idx) => (
+            <motion.div 
+              className="awwwards-project-row" 
+              key={project.id}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+              onMouseEnter={() => setHoveredProject(project)}
+              onMouseLeave={() => setHoveredProject(null)}
+              onClick={() => setSelectedProject(project)}
             >
-              <span className="drag-cursor-label">{cursorDragging ? 'HOLD' : 'DRAG'}</span>
+               <div className="awwwards-project-number">
+                 0{idx + 1}
+               </div>
+               
+               <div className="awwwards-project-title">
+                  {project.title}
+               </div>
+               
+               <div className="awwwards-project-category">
+                 {project.category}
+               </div>
+               
+               <div className="awwwards-project-arrow">
+                 <span>↗</span>
+               </div>
             </motion.div>
-          </div>
-        </div>
-      </div>
+         ))}
+       </div>
 
-      {selectedProject && (
-        <CaseStudyModal
-          project={selectedProject}
-          onClose={() => setSelectedProject(null)}
-        />
-      )}
+       {/* Floating Image Reveal */}
+       <motion.div 
+         className="awwwards-floating-image-wrapper"
+         animate={{
+           x: mousePos.x - 200, // center the image 400x500
+           y: mousePos.y - 250,
+           opacity: hoveredProject ? 1 : 0,
+           scale: hoveredProject ? 1 : 0.8,
+           rotate: hoveredProject ? (mousePos.x % 10 - 5) : 0 // subtle rotation based on mouse pos
+         }}
+         transition={{ type: "spring", stiffness: 150, damping: 25, mass: 0.5 }}
+       >
+         <AnimatePresence mode="wait">
+            {hoveredProject && (
+              <motion.img 
+                key={hoveredProject.id}
+                src={hoveredProject.image}
+                initial={{ opacity: 0, scale: 1.2 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.4 }}
+                className="awwwards-floating-image"
+              />
+            )}
+         </AnimatePresence>
+       </motion.div>
+
+       {selectedProject && <CaseStudyModal project={selectedProject} onClose={() => setSelectedProject(null)} />}
     </section>
   );
 };
