@@ -1,5 +1,5 @@
 .edu-section {
-  width: 100vw;
+  width: 100%;
   padding: 100px 0;
   background: #050505;
   color: #f2ead9;
@@ -7,7 +7,7 @@
   justify-content: center;
   position: relative;
   z-index: 2;
-  margin-left: -30px;
+  overflow: hidden;
 }
 
 .edu-container {
@@ -298,7 +298,53 @@
 @media (max-width: 900px) {
   .edu-container {
     grid-template-columns: 1fr;
-    gap: 80px;
+    gap: 60px;
+    padding: 0 32px;
+  }
+}
+
+@media (max-width: 640px) {
+  .edu-section {
+    padding: 70px 0 60px;
+  }
+
+  .edu-container {
+    padding: 0 20px;
+    gap: 48px;
+  }
+
+  .edu-heading {
+    font-size: 2.1rem;
+  }
+
+  .cert-stack-container {
+    height: 390px;
+  }
+
+  .stacked-card {
+    width: min(300px, 86vw);
+    height: 380px;
+    padding: 24px 20px;
+  }
+
+  .card-title {
+    font-size: 1.7rem;
+  }
+
+  .timeline-item {
+    padding-left: 24px;
+  }
+
+  .timeline-title {
+    font-size: 1.18rem;
+  }
+
+  .timeline-desc {
+    font-size: 0.92rem;
+  }
+
+  .edu-code-corner {
+    display: none;
   }
 }
 

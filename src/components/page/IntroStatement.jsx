@@ -1,6 +1,7 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import '../styles/IntroStatement.css';
+import girlImg from '../../assets/girl.jpg';
 
 const textContent = [
   { text: "I believe the best", highlight: false },
@@ -36,8 +37,37 @@ const wordVariant = {
 };
 
 const IntroStatement = () => {
+  const sectionRef = useRef(null);
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start end', 'end start']
+  });
+
+  // Parallax drifts on scroll
+  const bgImageY = useTransform(scrollYProgress, [0, 1], [-45, 45]);
+  const bgScale = useTransform(scrollYProgress, [0, 0.5, 1], [1.02, 1.07, 1.02]);
+  const textY = useTransform(scrollYProgress, [0, 1], [25, -25]);
+
   return (
-    <section className="intro-statement-section" id="intro">
+    <section className="intro-statement-section" id="intro" ref={sectionRef}>
+
+      {/* Proportional Full-Height Background Canvas */}
+      <motion.div
+        className="intro-celestial-canvas"
+        style={{ y: bgImageY }}
+      >
+        <div className="intro-image-frame">
+          <img
+            src={girlImg}
+            alt="Celestial Night Sky and Stargazer"
+            className="intro-proportional-img"
+          />
+
+          {/* Seamless Edge Feathering & Blend Overlay */}
+          <div className="intro-edge-blend" />
+        </div>
+      </motion.div>
 
       {/* Left Vertical Anchor */}
       <motion.div
@@ -52,13 +82,8 @@ const IntroStatement = () => {
         <div className="intro-anchor-line bottom"></div>
       </motion.div>
 
-      {/* Floating 3D Visual Background */}
-      <div className="intro-floating-visual">
-        <img src="/abstract-orb.jpg" alt="Premium 3D Abstract Visual" />
-      </div>
-
-      {/* Main Animated Highlight Text */}
-      <div className="intro-content">
+      {/* Main Animated Highlight Text (Centered foreground on top of the blended background) */}
+      <motion.div className="intro-content" style={{ y: textY }}>
         <motion.h2
           className="intro-highlight"
           variants={containerVariant}
@@ -90,7 +115,8 @@ const IntroStatement = () => {
             ));
           })}
         </motion.h2>
-      </div>
+      </motion.div>
+
     </section>
   );
 };

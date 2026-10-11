@@ -1,6 +1,6 @@
 .skills-marquee-section {
   position: relative;
-  width: 100vw;
+  width: 100%;
   padding: 45px 0;
   background: #050505;
   overflow: hidden;
@@ -68,4 +68,24 @@
 /* Hover to pause */
 .marquee-wrapper:hover .marquee-inner {
   animation-play-state: paused;
+}
+
+@media (max-width: 640px) {
+  .skills-marquee-section {
+    padding: 30px 0;
+    margin-top: -30px;
+  }
+
+  .marquee-wrapper {
+    padding: 10px 0;
+  }
+
+  .marquee-item {
+    font-size: 1.25rem;
+    padding: 0 16px;
+  }
+
+  .marquee-dot {
+    margin-right: 16px;
+  }
 }

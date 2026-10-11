@@ -9,3 +9,9 @@
   z-index: 99999;
   mix-blend-mode: screen;
 }
+
+@media (hover: none) and (pointer: coarse) {
+  .splash-cursor-canvas {
+    display: none !important;
+  }
+}

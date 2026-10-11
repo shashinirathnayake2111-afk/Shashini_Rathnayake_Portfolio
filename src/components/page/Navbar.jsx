@@ -112,7 +112,16 @@ const Navbar = ({ isLoaded, onContactClick, isInHero }) => {
                 </svg>
               )}
             </button>
-            <button className="nav-cta" onClick={onContactClick}>Let's talk</button>
+            <button className="nav-cta desktop-only-cta" onClick={onContactClick}>Let's talk</button>
+            <button
+              className="mobile-hamburger-btn"
+              onClick={() => setIsMenuOpen(true)}
+              aria-label="Open Navigation Menu"
+            >
+              <div className="hamburger-line"></div>
+              <div className="hamburger-line"></div>
+              <div className="hamburger-line"></div>
+            </button>
           </div>
         </div>
 

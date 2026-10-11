@@ -51,13 +51,13 @@
 
 .footer-headline {
   font-family: 'Poppins', sans-serif;
-  font-size: clamp(2.2rem, 4vw, 4.2rem);
+  font-size: clamp(2rem, 4vw, 4.2rem);
   font-weight: 700;
-  line-height: 1.1;
+  line-height: 1.18;
   color: #1a1208;
   margin: 0 0 40px 0;
   letter-spacing: -0.02em;
-  white-space: nowrap;
+  white-space: normal;
 }
 
 .footer-headline-accent {
@@ -203,7 +203,11 @@
 }
 
 @media (max-width: 600px) {
-  .footer-headline { font-size: 2.2rem; }
-  .footer-socials-row { gap: 20px; }
-  .footer-bottom-bar { flex-direction: column; align-items: flex-start; }
+  .footer-inner { padding: 0 20px; }
+  .footer-hero { margin-bottom: 44px; }
+  .footer-headline { font-size: clamp(1.75rem, 6.8vw, 2.3rem); margin-bottom: 24px; }
+  .footer-cta-btn { width: 100%; justify-content: center; padding: 14px 24px; }
+  .footer-socials-row { gap: 16px; flex-wrap: wrap; }
+  .footer-bottom-bar { flex-direction: column; align-items: flex-start; gap: 16px; }
+  .footer-watermark { display: none; }
 }

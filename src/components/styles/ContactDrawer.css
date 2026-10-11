@@ -352,7 +352,26 @@
 /* Responsive */
 @media (max-width: 768px) {
   .contact-drawer {
-    width: 90vw;
-    padding: 30px 20px;
+    width: 85vw;
+    max-width: 460px;
+    padding: 32px 24px;
+  }
+}
+
+@media (max-width: 500px) {
+  .contact-drawer {
+    width: 100vw;
+    min-width: 100vw;
+    max-width: 100vw;
+    border-left: none;
+    padding: 24px 18px;
+  }
+
+  .drawer-title {
+    font-size: 2.2rem;
+  }
+
+  .contact-icon-btn {
+    height: 40px;
   }
 }
