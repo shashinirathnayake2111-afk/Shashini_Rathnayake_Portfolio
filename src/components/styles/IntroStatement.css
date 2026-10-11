@@ -113,15 +113,11 @@
   inset: 0;
   pointer-events: none;
   background:
-    /* Delicate fade on outer left edge only (0-12%), so girl in white dress is crystal clear */
     linear-gradient(to right, #050505 0%, rgba(5, 5, 5, 0.65) 4%, rgba(5, 5, 5, 0.2) 8%, transparent 15%),
-    /* Soft fade on top border into #050505 */
     linear-gradient(to bottom, #050505 0%, rgba(5, 5, 5, 0.6) 3%, transparent 10%),
-    /* Soft fade on bottom border into #050505 */
     linear-gradient(to top, #050505 0%, rgba(5, 5, 5, 0.65) 4%, transparent 12%);
 }
 
-/* ─── Foreground Content Layout ─────────────────────────── */
 .intro-content {
   max-width: 1120px;
   text-align: center;
@@ -212,7 +208,6 @@
   transition: color 0.5s ease, transform 0.35s ease, border-color 0.5s ease, box-shadow 0.5s ease;
   cursor: default;
   overflow: hidden;
-  /* prevent pill from jumping up */
   vertical-align: middle;
   z-index: 0;
 }
@@ -235,7 +230,6 @@
   z-index: -1;
 }
 
-/* Hover: circle expands from right → left, rainbow shimmer */
 .intro-highlight span.highlighted-word:hover::before {
   clip-path: circle(160% at 100% 50%);
   animation: rainbow-shimmer 3s ease infinite;
@@ -245,7 +239,6 @@
   color: #050505;
   font-weight: 600;
   border-color: rgba(242, 234, 217, 0.5);
-  /* scale only, no vertical lift */
   transform: scale(1.06);
   box-shadow: 0 12px 35px rgba(242, 234, 217, 0.25);
   backdrop-filter: none;
