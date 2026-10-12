@@ -86,13 +86,13 @@ const Navbar = ({ isLoaded, onContactClick, isInHero }) => {
 
           <ul className="nav-links">
             <li>
-              <Link to="/about" className="nav-link">About</Link>
+              <Link to="/about" className={`nav-link ${location.pathname === '/about' ? 'active' : ''}`}>About</Link>
             </li>
             <li>
-              <Link to="/skills" className="nav-link">Skills</Link>
+              <Link to="/skills" className={`nav-link ${location.pathname === '/skills' ? 'active' : ''}`}>Skills</Link>
             </li>
             <li>
-              <a href="#experience" className="nav-link" onClick={(e) => handleScrollToSection(e, 'experience')}>Experience</a>
+              <Link to="/experience" className={`nav-link ${location.pathname === '/experience' ? 'active' : ''}`}>Experience</Link>
             </li>
             <li>
               <a href="#projects" className="nav-link" onClick={(e) => handleScrollToSection(e, 'projects')}>Projects</a>
@@ -166,9 +166,9 @@ const Navbar = ({ isLoaded, onContactClick, isInHero }) => {
             Shashini<span className="nav-dot">.</span>
           </Link>
           <ul className="overlay-links">
-            <li><Link to="/about" onClick={() => setIsMenuOpen(false)}>About</Link></li>
-            <li><Link to="/skills" onClick={() => setIsMenuOpen(false)}>Skills</Link></li>
-            <li><a href="#experience" onClick={(e) => handleScrollToSection(e, 'experience')}>Experience</a></li>
+            <li><Link to="/about" className={location.pathname === '/about' ? 'active' : ''} onClick={() => setIsMenuOpen(false)}>About</Link></li>
+            <li><Link to="/skills" className={location.pathname === '/skills' ? 'active' : ''} onClick={() => setIsMenuOpen(false)}>Skills</Link></li>
+            <li><Link to="/experience" className={location.pathname === '/experience' ? 'active' : ''} onClick={() => setIsMenuOpen(false)}>Experience</Link></li>
             <li><a href="#projects" onClick={(e) => handleScrollToSection(e, 'projects')}>Projects</a></li>
           </ul>
         </div>

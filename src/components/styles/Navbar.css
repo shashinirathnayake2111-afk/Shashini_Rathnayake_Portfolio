@@ -183,6 +183,14 @@
   color: #d659fc;
 }
 
+.nav-link.active {
+  color: #d659fc;
+}
+
+.nav-link.active::after {
+  width: 100%;
+}
+
 /* Click animation for nav links */
 .nav-link:active {
   transform: scale(0.9);
@@ -454,6 +462,17 @@
 .overlay-links a:hover::after {
   opacity: 1;
   transform: translateX(0);
+}
+
+.overlay-links a.active {
+  color: #d659fc;
+  padding-left: 8px;
+}
+
+.overlay-links a.active::after {
+  opacity: 1;
+  transform: translateX(0);
+  color: #d659fc;
 }
 
 /* Bottom CTA area */

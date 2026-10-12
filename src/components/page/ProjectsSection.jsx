@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import '../styles/ProjectsSection.css';
 import SahayaImg from '../../assets/projects/sahaya.png';
@@ -199,6 +199,8 @@ const ProjectCard = ({ project, index, isCenter, onClick }) => {
           src={project.image}
           alt={project.title}
           className="pcard__img"
+          draggable="false"
+          onDragStart={(e) => e.preventDefault()}
           loading="lazy"
         />
       </div>
@@ -326,13 +328,13 @@ const ProjectsSection = () => {
   const [selectedProject, setSelectedProject] = useState(null);
   const [direction, setDirection] = useState(SLIDE_DIR.NONE);
   const [isCursorGrabbing, setIsCursorGrabbing] = useState(false);
+  const [dragOffset, setDragOffset] = useState(0);
 
-  /* Pointer-capture drag refs */
-  const pointerStartX = useRef(0);
-  const pointerDeltaX = useRef(0);
-  const isPointerDown = useRef(false);
-  const didDrag = useRef(false);
-  const DRAG_THRESHOLD = 50;
+  const isDraggingRef = useRef(false);
+  const startXRef = useRef(0);
+  const hasDraggedRef = useRef(false);
+  const lastWheelTimeRef = useRef(0);
+  const currentDragOffsetRef = useRef(0);
 
   const filtered = projectData.filter(p =>
     filter === 'all' ? true : p.category === filter
@@ -352,29 +354,88 @@ const ProjectsSection = () => {
   const prev = () => go(SLIDE_DIR.RIGHT);
   const next = () => go(SLIDE_DIR.LEFT);
 
-  const onPointerDown = (e) => {
-    isPointerDown.current = true;
-    didDrag.current = false;
-    pointerStartX.current = e.clientX;
-    pointerDeltaX.current = 0;
-    e.currentTarget.setPointerCapture(e.pointerId);
+  /* Tactile live drag handlers */
+  const handleDragStart = (clientX) => {
+    isDraggingRef.current = true;
+    hasDraggedRef.current = false;
+    startXRef.current = clientX;
+    currentDragOffsetRef.current = 0;
     setIsCursorGrabbing(true);
   };
 
-  const onPointerMove = (e) => {
-    if (!isPointerDown.current) return;
-    pointerDeltaX.current = e.clientX - pointerStartX.current;
-    if (Math.abs(pointerDeltaX.current) > 8) didDrag.current = true;
+  const handleDragMove = (clientX) => {
+    if (!isDraggingRef.current) return;
+    const diff = clientX - startXRef.current;
+    if (Math.abs(diff) > 8) {
+      hasDraggedRef.current = true;
+    }
+    // Real-time tactile feedback - card moves along with cursor/touch
+    currentDragOffsetRef.current = diff * 0.72;
+    setDragOffset(diff * 0.72);
   };
 
-  const onPointerUp = () => {
-    if (!isPointerDown.current) return;
-    isPointerDown.current = false;
+  const handleDragEnd = () => {
+    if (!isDraggingRef.current) return;
+    isDraggingRef.current = false;
     setIsCursorGrabbing(false);
-    const delta = pointerDeltaX.current;
-    if (delta < -DRAG_THRESHOLD) next();
-    else if (delta > DRAG_THRESHOLD) prev();
-    pointerDeltaX.current = 0;
+
+    const threshold = 30;
+    const offset = currentDragOffsetRef.current;
+    if (offset < -threshold) {
+      next();
+    } else if (offset > threshold) {
+      prev();
+    }
+    setDragOffset(0);
+    currentDragOffsetRef.current = 0;
+  };
+
+  const handleDragEndRef = useRef(handleDragEnd);
+  handleDragEndRef.current = handleDragEnd;
+
+  const handleDragMoveRef = useRef(handleDragMove);
+  handleDragMoveRef.current = handleDragMove;
+
+  /* Global mouse listeners ensure smooth dragging even when cursor sweeps off cards */
+  useEffect(() => {
+    const onGlobalMouseMove = (e) => {
+      if (isDraggingRef.current) {
+        handleDragMoveRef.current(e.clientX);
+      }
+    };
+    const onGlobalMouseUp = () => {
+      if (isDraggingRef.current) {
+        handleDragEndRef.current();
+      }
+    };
+
+    window.addEventListener('mousemove', onGlobalMouseMove);
+    window.addEventListener('mouseup', onGlobalMouseUp);
+    return () => {
+      window.removeEventListener('mousemove', onGlobalMouseMove);
+      window.removeEventListener('mouseup', onGlobalMouseUp);
+    };
+  }, []);
+
+  /* Universal bidirectional wheel & trackpad handler: scrolls both LEFT and RIGHT smoothly */
+  const handleWheel = (e) => {
+    // Detect dominant scroll: horizontal swipe (deltaX) or vertical mouse wheel (deltaY)
+    const delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
+
+    if (Math.abs(delta) < 10) return;
+
+    const now = Date.now();
+    if (now - lastWheelTimeRef.current < 320) return;
+
+    if (delta > 0) {
+      // Scroll Down / Swipe Left -> Advance NEXT (Right)
+      lastWheelTimeRef.current = now;
+      next();
+    } else if (delta < 0) {
+      // Scroll Up / Swipe Right -> Go PREV (Left)
+      lastWheelTimeRef.current = now;
+      prev();
+    }
   };
 
   /* Direction-aware slide variants */
@@ -440,21 +501,30 @@ const ProjectsSection = () => {
       </div>
 
       {/* ── 3-Card Spotlight Carousel ── */}
-      <div className="carousel-wrapper">
+      <div
+        className="carousel-wrapper"
+        onWheel={handleWheel}
+      >
         <button className="carousel-nav carousel-nav--left" onClick={prev} aria-label="Previous">
           <span className="carousel-nav-icon">‹</span>
         </button>
 
-        {/* Pointer-capture drag surface */}
+        {/* Tactile drag & touch & wheel surface */}
         <div
           className="carousel-stage-wrap"
-          onPointerDown={onPointerDown}
-          onPointerMove={onPointerMove}
-          onPointerUp={onPointerUp}
-          onPointerCancel={onPointerUp}
+          onMouseDown={(e) => handleDragStart(e.clientX)}
+          onMouseMove={(e) => handleDragMove(e.clientX)}
+          onMouseUp={handleDragEnd}
+          onTouchStart={(e) => handleDragStart(e.touches[0].clientX)}
+          onTouchMove={(e) => handleDragMove(e.touches[0].clientX)}
+          onTouchEnd={handleDragEnd}
           style={{ cursor: isCursorGrabbing ? 'grabbing' : 'grab' }}
         >
-          <div className="carousel-stage">
+          <motion.div
+            className="carousel-stage"
+            animate={{ x: dragOffset }}
+            transition={isDraggingRef.current ? { duration: 0 } : { type: 'spring', stiffness: 340, damping: 30 }}
+          >
             <AnimatePresence mode="popLayout" custom={direction}>
               {visibleCards.map(({ project, originalIdx, offset }) => (
                 <motion.div
@@ -470,7 +540,7 @@ const ProjectsSection = () => {
                     index={originalIdx}
                     isCenter={offset === 0}
                     onClick={() => {
-                      if (didDrag.current) return;
+                      if (hasDraggedRef.current) return;
                       if (offset === 0) setSelectedProject(project);
                       else if (offset < 0) prev();
                       else next();
@@ -479,7 +549,7 @@ const ProjectsSection = () => {
                 </motion.div>
               ))}
             </AnimatePresence>
-          </div>
+          </motion.div>
         </div>
 
         <button className="carousel-nav carousel-nav--right" onClick={next} aria-label="Next">
@@ -508,7 +578,7 @@ const ProjectsSection = () => {
 
       {/* Drag hint */}
       <div className="carousel-drag-hint">
-        <span>← drag to navigate →</span>
+        <span>← SWIPE / DRAG TO EXPLORE →</span>
       </div>
 
       {/* Modal */}

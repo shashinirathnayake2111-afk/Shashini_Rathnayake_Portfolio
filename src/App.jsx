@@ -16,6 +16,7 @@ import EducationSection from './components/page/EducationSection'
 import ProjectsSection from './components/page/ProjectsSection'
 import Footer from './components/page/Footer'
 import SkillsPage from './components/page/SkillsPage'
+import ExperiencePage from './components/page/ExperiencePage'
 
 const HAS_LOADED_KEY = 'portfolioHasLoaded'
 
@@ -149,6 +150,9 @@ function App() {
         } />
         <Route path="/skills" element={
           <SkillsPage onContactClick={() => setIsContactOpen(true)} />
+        } />
+        <Route path="/experience" element={
+          <ExperiencePage onContactClick={() => setIsContactOpen(true)} />
         } />
       </Routes>
 

@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, useScroll, useTransform, useSpring, useMotionValue } from 'framer-motion';
 import '../styles/AboutSection.css';
 import resumePDF from '../../assets/resume.pdf';
@@ -69,6 +70,9 @@ const BentoCard3D = ({ num, unit, label, sub, highlight, delay, href }) => {
   );
 
   if (href) {
+    if (href.startsWith('/')) {
+      return <Link to={href} className="bento-card-link">{cardInner}</Link>;
+    }
     return <a href={href} className="bento-card-link">{cardInner}</a>;
   }
   return cardInner;
@@ -316,7 +320,7 @@ const AboutPanel = () => {
 
         {/* Stat Cards */}
         <div className="about-bento-stats">
-          <BentoCard3D num={counts.exp} unit="M" label="Months Experience" sub="Hands-on Experience" delay={0.9} href="#experience" />
+          <BentoCard3D num={counts.exp} unit="M" label="Months Experience" sub="Hands-on Experience" delay={0.9} href="/experience" />
           <BentoCard3D num={counts.projects} unit="+" label="Projects Built" sub="Full Stack & UI/UX" highlight delay={1.05} href="/#projects" />
           <BentoCard3D num={counts.certs} unit="+" label="Certificates" sub="IBM & Others" delay={1.2} href="/about#education" />
         </div>
