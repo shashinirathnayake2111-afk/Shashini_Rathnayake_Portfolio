@@ -3,8 +3,8 @@
   top: 20px;
   left: 50%;
   transform: translateX(-50%);
-  width: 90%;
-  max-width: 1200px;
+  width: 72%;
+  max-width: 980px;
   height: 60px;
   box-sizing: border-box;
   background: rgba(255, 255, 255, 0.05);
@@ -29,7 +29,7 @@
 
 .navbar-container.nav-scrolled:hover {
   background: rgba(20, 20, 18, 0.95);
-  border-color: rgba(214, 89, 252, 0.4);
+  border-color: rgba(230, 201, 168, 0.35);
 }
 
 .navbar-container.nav-fully-hidden {
@@ -121,9 +121,9 @@
 
 .status-text {
   font-family: 'Bebas Neue', 'Bebas Neue Fallback', sans-serif;
-  font-size: 1.1rem;
+  font-size: 0.98rem;
   font-weight: normal;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.16em;
   color: #f2ead9;
   white-space: nowrap;
   transition: color 0.3s ease;
@@ -131,33 +131,35 @@
 }
 
 .navbar-container.nav-scrolled:hover .status-text {
-  color: #d659fc;
+  color: #E6C9A8;
 }
 
 .nav-logo {
   font-family: 'Poppins', sans-serif;
-  font-size: 1rem;
+  font-size: 0.92rem;
   color: #ffffff;
   text-decoration: none;
-  letter-spacing: 0.05rem;
+  letter-spacing: 0.04rem;
 }
 
 .nav-dot {
-  color: #d659fc;
+  color: #E6C9A8;
+  transition: color 0.3s ease;
 }
 
 .nav-links {
   display: flex;
-  gap: 30px;
+  gap: 26px;
   list-style: none;
 }
 
 .nav-link {
   font-family: 'Poppins', sans-serif;
-  color: #e5e7eb;
+  color: rgba(242, 234, 217, 0.82);
   text-decoration: none;
-  font-size: 0.85rem;
+  font-size: 0.78rem;
   font-weight: 500;
+  letter-spacing: 0.03em;
   transition: all 0.3s ease;
   position: relative;
   display: inline-block;
@@ -171,7 +173,8 @@
   bottom: -4px;
   left: 50%;
   transform: translateX(-50%);
-  background-color: #d659fc;
+  background-color: #E6C9A8;
+  box-shadow: 0 0 8px rgba(230, 201, 168, 0.5);
   transition: width 0.3s ease;
 }
 
@@ -180,25 +183,27 @@
 }
 
 .nav-link:hover {
-  color: #d659fc;
+  color: #E6C9A8;
 }
 
 .nav-link.active {
-  color: #d659fc;
+  color: #E6C9A8;
 }
 
 .nav-link.active::after {
   width: 100%;
 }
 
-/* Click animation for nav links */
+/* Click animation for nav links — elegant gold pulse instead of purple */
 .nav-link:active {
-  transform: scale(0.9);
-  color: #e27bfd;
+  transform: scale(0.92);
+  color: #f7e7d2;
+  text-shadow: 0 0 10px rgba(230, 201, 168, 0.6);
 }
 
 .nav-link:active::after {
-  background-color: #e27bfd;
+  background-color: #f7e7d2;
+  box-shadow: 0 0 10px rgba(230, 201, 168, 0.7);
 }
 
 .nav-cta {
@@ -206,9 +211,10 @@
   color: #0a0806;
   font-family: 'Poppins', sans-serif;
   font-weight: 600;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.02em;
   border: none;
-  padding: 8px 20px;
+  padding: 7px 18px;
   border-radius: 30px;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -426,14 +432,33 @@
   transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
-.nav-overlay-menu.open .overlay-links li:nth-child(1) { opacity: 1; transform: translateX(0); transition-delay: 0.15s; }
-.nav-overlay-menu.open .overlay-links li:nth-child(2) { opacity: 1; transform: translateX(0); transition-delay: 0.22s; }
-.nav-overlay-menu.open .overlay-links li:nth-child(3) { opacity: 1; transform: translateX(0); transition-delay: 0.29s; }
-.nav-overlay-menu.open .overlay-links li:nth-child(4) { opacity: 1; transform: translateX(0); transition-delay: 0.36s; }
+.nav-overlay-menu.open .overlay-links li:nth-child(1) {
+  opacity: 1;
+  transform: translateX(0);
+  transition-delay: 0.15s;
+}
+
+.nav-overlay-menu.open .overlay-links li:nth-child(2) {
+  opacity: 1;
+  transform: translateX(0);
+  transition-delay: 0.22s;
+}
+
+.nav-overlay-menu.open .overlay-links li:nth-child(3) {
+  opacity: 1;
+  transform: translateX(0);
+  transition-delay: 0.29s;
+}
+
+.nav-overlay-menu.open .overlay-links li:nth-child(4) {
+  opacity: 1;
+  transform: translateX(0);
+  transition-delay: 0.36s;
+}
 
 .overlay-links a {
   font-family: 'Poppins', sans-serif;
-  font-size: 1.5rem;
+  font-size: 1.35rem;
   font-weight: 500;
   letter-spacing: 0.02em;
   color: rgba(242, 234, 217, 0.75);
@@ -441,7 +466,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px 0;
+  padding: 18px 0;
   transition: color 0.3s ease, padding-left 0.3s ease;
 }
 
@@ -455,24 +480,25 @@
 }
 
 .overlay-links a:hover {
-  color: #f2ead9;
+  color: #E6C9A8;
   padding-left: 8px;
 }
 
 .overlay-links a:hover::after {
   opacity: 1;
   transform: translateX(0);
+  color: #E6C9A8;
 }
 
 .overlay-links a.active {
-  color: #d659fc;
+  color: #E6C9A8;
   padding-left: 8px;
 }
 
 .overlay-links a.active::after {
   opacity: 1;
   transform: translateX(0);
-  color: #d659fc;
+  color: #E6C9A8;
 }
 
 /* Bottom CTA area */
@@ -588,7 +614,7 @@
   }
 
   .nav-logo {
-    font-size: 0.95rem;
+    font-size: 0.86rem;
   }
 
   .scrolled-hamburger {
@@ -611,7 +637,7 @@
   }
 
   .nav-logo {
-    font-size: 0.88rem;
+    font-size: 0.8rem;
     letter-spacing: 0.02rem;
   }
 
