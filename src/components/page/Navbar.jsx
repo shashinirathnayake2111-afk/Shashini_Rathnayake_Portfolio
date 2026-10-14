@@ -50,7 +50,7 @@ const Navbar = ({ isLoaded, onContactClick, isInHero }) => {
       pillShownRef.current = true;
       setShowPill(true);
       if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current);
-      scrollTimeoutRef.current = setTimeout(() => setShowPill(false), 2000);
+      scrollTimeoutRef.current = setTimeout(() => setShowPill(false), 2800);
     }
     if (isInHero) {
       pillShownRef.current = false;

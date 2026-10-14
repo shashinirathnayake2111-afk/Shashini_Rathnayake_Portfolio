@@ -4,16 +4,16 @@ import '../styles/SocialSidebar.css';
 const SocialSidebar = ({ isLoaded, isVisible = true }) => {
   const [animDone, setAnimDone] = useState(false);
 
-  // After entrance animation finishes, switch to inline style control
-  // so the animation's fill-mode doesn't block our hide/show logic
-  const inlineStyle = animDone
+  // Switch to inline style control after entrance animation finishes,
+  // or immediately if isVisible becomes false (e.g. fast scrolling out of hero)
+  const inlineStyle = (animDone || !isVisible)
     ? {
         opacity: isVisible ? 1 : 0,
         transform: isVisible
           ? 'translateY(-50%) translateX(0)'
-          : 'translateY(-50%) translateX(-15px)',
+          : 'translateY(-50%) translateX(-20px)',
         pointerEvents: isVisible ? 'auto' : 'none',
-        transition: 'opacity 0.5s ease, transform 0.5s ease',
+        transition: 'opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1), transform 0.45s cubic-bezier(0.16, 1, 0.3, 1)',
       }
     : {};
 

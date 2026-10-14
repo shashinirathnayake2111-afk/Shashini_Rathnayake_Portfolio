@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
 import Lenis from 'lenis'
-import { useScroll, useTransform, motion } from 'framer-motion'
+import { useScroll, useTransform, useMotionValueEvent, motion } from 'framer-motion'
 import './App.css'
 import LoadingScreen from './components/page/LoadingScreen'
 import HeroSection from './components/page/HeroSection'
@@ -54,18 +54,28 @@ function App() {
     offset: ['start start', 'end end'],
   })
 
-  // ── Hero layer: fades + blurs out quickly, then goes behind everything ──
-  const heroOpacity = useTransform(trackProgress, [0, 0.22], [1, 0])
-  const heroFilter = useTransform(trackProgress, [0, 0.22], ['blur(0px)', 'blur(12px)'])
-  const heroScale  = useTransform(trackProgress, [0, 0.22], [1, 0.94])
-  // Hard-hide hero once faded so it never bleeds through intro
-  const heroVisibility = useTransform(trackProgress, (v) => v >= 0.22 ? 'hidden' : 'visible')
-  const heroPointerEvents = useTransform(trackProgress, (v) => v > 0.1 ? 'none' : 'auto')
+  // ── Hero layer: fades + blurs out with cinematic camera pushback & depth ──
+  const heroOpacity = useTransform(trackProgress, [0, 0.35], [1, 0])
+  const heroFilter  = useTransform(trackProgress, [0, 0.38], ['blur(0px) brightness(1)', 'blur(10px) brightness(0.35)'])
+  const heroScale   = useTransform(trackProgress, [0, 0.42], [1, 0.90])
+  // Hard-hide hero once faded so it never consumes GPU or bleeds through
+  const heroVisibility = useTransform(trackProgress, (v) => v >= 0.38 ? 'hidden' : 'visible')
+  const heroPointerEvents = useTransform(trackProgress, (v) => v > 0.05 ? 'none' : 'auto')
 
-  // ── Intro layer: full-width slide-up (NO scale shrink = no corner bleed) ──
-  // Starts below viewport, slides up and fades in — always 100vw wide
-  const introY       = useTransform(trackProgress, [0, 0.05, 0.35], ['100vh', '60px', '0px'])
-  const introOpacity = useTransform(trackProgress, [0, 0.05, 0.32], [0, 0.7, 1])
+  // ── Intro layer: Awwwards elevated card reveal with glowing horizon rim ──
+  const introY            = useTransform(trackProgress, [0, 0.42], ['100vh', '0px'])
+  const introScale        = useTransform(trackProgress, [0.06, 0.42], [0.94, 1])
+  const introOpacity      = useTransform(trackProgress, [0, 0.08, 0.36], [0, 0.75, 1])
+  const introBorderRadius = useTransform(trackProgress, [0, 0.38], ['36px 36px 0px 0px', '0px 0px 0px 0px'])
+  const introBoxShadow    = useTransform(
+    trackProgress,
+    [0, 0.32, 0.44],
+    [
+      '0 -25px 80px rgba(230, 201, 168, 0.22)',
+      '0 -10px 40px rgba(230, 201, 168, 0.1)',
+      '0 0px 0px rgba(0, 0, 0, 0)'
+    ]
+  )
   const introPointerEvents = useTransform(trackProgress, (v) => v > 0.08 ? 'auto' : 'none')
 
 
@@ -110,14 +120,31 @@ function App() {
     }
   }, [isLoading])
 
+  // Sync isInHero state with trackProgress for instant responsiveness during transition
+  useMotionValueEvent(trackProgress, 'change', (latest) => {
+    if (location.pathname === '/') {
+      if (latest < 0.04 && window.scrollY < 35) {
+        setIsInHero(true)
+      } else if (latest >= 0.04 || window.scrollY >= 35) {
+        setIsInHero(false)
+      }
+    }
+  })
+
   useEffect(() => {
+    if (location.pathname !== '/') {
+      setIsInHero(false)
+      return
+    }
+
     const handleScroll = () => {
-      setIsInHero(window.scrollY < window.innerHeight * 0.45)
+      // In Hero only when scroll is at the very top (first 35px)
+      setIsInHero(window.scrollY < 35)
     }
 
     handleScroll()
 
-    window.addEventListener('scroll', handleScroll)
+    window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [location.pathname])
 
@@ -155,12 +182,15 @@ function App() {
                   <HeroSection isLoaded={!isLoading} />
                 </motion.div>
 
-                {/* Intro Section — full-width slide-up, always covers hero fully */}
+                {/* Intro Section — elevated Awwwards card, slides up with glowing rim and docks */}
                 <motion.div
                   className="intro-stage-layer"
                   style={{
                     y: introY,
+                    scale: introScale,
                     opacity: introOpacity,
+                    borderRadius: introBorderRadius,
+                    boxShadow: introBoxShadow,
                     pointerEvents: introPointerEvents,
                   }}
                 >

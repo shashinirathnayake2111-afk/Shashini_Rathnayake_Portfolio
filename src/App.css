@@ -12,7 +12,7 @@
 .home-center-bloom-track {
   position: relative;
   width: 100%;
-  height: 115vh;
+  height: 200vh;
 }
 
 /* Sticky viewport stage */
@@ -35,7 +35,7 @@
   will-change: transform, opacity, filter, visibility;
 }
 
-/* Intro Layer — always 100% wide, slides up from below, no corner bleed */
+/* Intro Layer — elevated Awwwards card, slides up from below with glowing horizon rim */
 .intro-stage-layer {
   position: absolute;
   inset: 0;
@@ -44,7 +44,7 @@
   z-index: 2;
   overflow: hidden;
   background-color: #050505;
-  will-change: transform, opacity;
+  will-change: transform, opacity, border-radius, box-shadow;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -60,6 +60,6 @@
 
 @media (max-width: 768px) {
   .home-center-bloom-track {
-    height: 105vh;
+    height: 145vh;
   }
 }
