@@ -274,7 +274,7 @@
 /* --- Floating Hamburger Menu --- */
 .scrolled-hamburger {
   position: fixed;
-  top: 20px;
+  top: 15px;
   left: calc(5% + 16px);
   width: 44px;
   height: 44px;
@@ -288,7 +288,7 @@
   z-index: 1000;
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-  border: none;
+  border: 1px solid rgba(242, 234, 217, 0.15);
   border-radius: 50%;
   opacity: 0;
   transform: translateY(-20px) scale(0.9);
@@ -304,7 +304,8 @@
 
 .scrolled-hamburger:hover {
   background: rgba(20, 20, 18, 0.95);
-  border-color: rgba(214, 89, 252, 0.4);
+  border-color: rgba(230, 201, 168, 0.4);
+  box-shadow: 0 0 15px rgba(230, 201, 168, 0.2);
 }
 
 .hamburger-line {
@@ -630,6 +631,12 @@
     width: 94%;
     top: 12px;
     height: 48px;
+  }
+
+  .navbar-container.nav-scrolled {
+    width: 215px;
+    height: 44px;
+    top: 12px;
   }
 
   .nav-full {

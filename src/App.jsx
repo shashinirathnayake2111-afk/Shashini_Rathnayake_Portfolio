@@ -119,22 +119,16 @@ function App() {
     }
   }, [isLoading])
 
-  // Sync isInHero state with scroll for instant responsiveness
+  // On all pages (Hero, About, Skills, Experience), show full navbar at page top (scrollY < 50).
+  // When scrolling down past 50px (into intro, education, projects, etc.),
+  // hide full navbar and show hamburger menu + "AVAILABLE FOR WORK" pill.
   useMotionValueEvent(scrollY, 'change', (latest) => {
-    if (location.pathname === '/') {
-      setIsInHero(latest < 40)
-    }
+    setIsInHero(latest < 50)
   })
 
   useEffect(() => {
-    if (location.pathname !== '/') {
-      setIsInHero(false)
-      return
-    }
-
     const handleScroll = () => {
-      // In Hero only when scroll is at the very top (first 40px)
-      setIsInHero(window.scrollY < 40)
+      setIsInHero(window.scrollY < 50)
     }
 
     handleScroll()

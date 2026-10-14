@@ -5,12 +5,8 @@ import '../styles/Navbar.css';
 const Navbar = ({ isLoaded, onContactClick, isInHero }) => {
   const [isDarkMode, setIsDarkMode] = useState(true);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [showPill, setShowPill] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
-  const pillShownRef = React.useRef(false);
-  const scrollTimeoutRef = React.useRef(null);
-  const lastScrollYRef = React.useRef(0);
 
   useEffect(() => {
     if (isDarkMode) {
@@ -19,45 +15,6 @@ const Navbar = ({ isLoaded, onContactClick, isInHero }) => {
       document.body.classList.add('light-mode');
     }
   }, [isDarkMode]);
-
-  useEffect(() => {
-    lastScrollYRef.current = window.scrollY;
-
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-
-      if (!isInHero) {
-        const isScrollingUp = currentScrollY < lastScrollYRef.current - 15;
-
-        if (isScrollingUp) {
-          setShowPill(true);
-          if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current);
-          scrollTimeoutRef.current = setTimeout(() => setShowPill(false), 2000);
-        }
-      }
-
-      if (Math.abs(currentScrollY - lastScrollYRef.current) > 15) {
-        lastScrollYRef.current = currentScrollY;
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [isInHero]);
-
-  useEffect(() => {
-    if (!isInHero && !pillShownRef.current) {
-      pillShownRef.current = true;
-      setShowPill(true);
-      if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current);
-      scrollTimeoutRef.current = setTimeout(() => setShowPill(false), 2800);
-    }
-    if (isInHero) {
-      pillShownRef.current = false;
-      setShowPill(false);
-      if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current);
-    }
-  }, [isInHero]);
   const toggleTheme = () => {
     setIsDarkMode(!isDarkMode);
   };
@@ -77,7 +34,7 @@ const Navbar = ({ isLoaded, onContactClick, isInHero }) => {
 
   return (
     <>
-      <nav className={`navbar-container ${isLoaded ? 'nav-enter' : ''} ${!isInHero ? 'nav-scrolled' : ''} ${(!isInHero && !showPill) ? 'nav-fully-hidden' : ''}`}>
+      <nav className={`navbar-container ${isLoaded ? 'nav-enter' : ''} ${!isInHero ? 'nav-scrolled' : ''}`}>
 
         <div className={`nav-full ${!isInHero ? 'nav-hidden' : ''}`}>
           <Link to="/" className="nav-logo">
@@ -126,21 +83,17 @@ const Navbar = ({ isLoaded, onContactClick, isInHero }) => {
         </div>
 
         {/* Scrolled Pill — always visible when outside hero */}
-        <div
-          className={`nav-pill ${isInHero ? 'nav-pill-hidden' : ''}`}
-          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-        >
+        <div className={`nav-pill ${isInHero ? 'nav-pill-hidden' : ''}`}
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
           <div className="status-dot"></div>
           <span className="status-text">AVAILABLE FOR WORK</span>
         </div>
       </nav>
 
       {/* Floating Hamburger Menu for Scrolled State */}
-      <button
-        className={`scrolled-hamburger ${(!isInHero && !isMenuOpen) ? 'visible' : ''}`}
+      <button className={`scrolled-hamburger ${(!isInHero && !isMenuOpen) ? 'visible' : ''}`}
         onClick={() => setIsMenuOpen(true)}
-        aria-label="Open Menu"
-      >
+        aria-label="Open Menu">
         <div className="hamburger-line"></div>
         <div className="hamburger-line"></div>
         <div className="hamburger-line"></div>
