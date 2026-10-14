@@ -45,38 +45,37 @@ function App() {
   const [isLoading, setIsLoading] = useState(!alreadyLoaded)
   const [isInHero, setIsInHero] = useState(true)
   const [isContactOpen, setIsContactOpen] = useState(false)
-  const heroTrackRef = useRef(null)
   const location = useLocation()
+  const [viewportH, setViewportH] = useState(typeof window !== 'undefined' ? window.innerHeight : 800)
 
-  /* Scroll progress through the Hero → Intro transition track (0 → 1) */
-  const { scrollYProgress: trackProgress } = useScroll({
-    target: heroTrackRef,
-    offset: ['start start', 'end end'],
-  })
+  useEffect(() => {
+    const updateH = () => setViewportH(window.innerHeight)
+    window.addEventListener('resize', updateH)
+    return () => window.removeEventListener('resize', updateH)
+  }, [])
+
+  /* Scroll progress driven by window scroll */
+  const { scrollY } = useScroll()
 
   // ── Hero layer: fades + blurs out with cinematic camera pushback & depth ──
-  const heroOpacity = useTransform(trackProgress, [0, 0.35], [1, 0])
-  const heroFilter  = useTransform(trackProgress, [0, 0.38], ['blur(0px) brightness(1)', 'blur(10px) brightness(0.35)'])
-  const heroScale   = useTransform(trackProgress, [0, 0.42], [1, 0.90])
-  // Hard-hide hero once faded so it never consumes GPU or bleeds through
-  const heroVisibility = useTransform(trackProgress, (v) => v >= 0.38 ? 'hidden' : 'visible')
-  const heroPointerEvents = useTransform(trackProgress, (v) => v > 0.05 ? 'none' : 'auto')
+  const heroOpacity = useTransform(scrollY, [0, viewportH * 0.75], [1, 0])
+  const heroFilter  = useTransform(scrollY, [0, viewportH * 0.8], ['blur(0px) brightness(1)', 'blur(10px) brightness(0.35)'])
+  const heroScale   = useTransform(scrollY, [0, viewportH], [1, 0.92])
+  // Hard-hide hero once covered so it never consumes GPU or interferes with page
+  const heroVisibility = useTransform(scrollY, (y) => y >= viewportH ? 'hidden' : 'visible')
+  const heroPointerEvents = useTransform(scrollY, (y) => y > 40 ? 'none' : 'auto')
 
   // ── Intro layer: Awwwards elevated card reveal with glowing horizon rim ──
-  const introY            = useTransform(trackProgress, [0, 0.42], ['100vh', '0px'])
-  const introScale        = useTransform(trackProgress, [0.06, 0.42], [0.94, 1])
-  const introOpacity      = useTransform(trackProgress, [0, 0.08, 0.36], [0, 0.75, 1])
-  const introBorderRadius = useTransform(trackProgress, [0, 0.38], ['36px 36px 0px 0px', '0px 0px 0px 0px'])
+  const introBorderRadius = useTransform(scrollY, [0, viewportH * 0.9], ['36px 36px 0px 0px', '0px 0px 0px 0px'])
   const introBoxShadow    = useTransform(
-    trackProgress,
-    [0, 0.32, 0.44],
+    scrollY,
+    [0, viewportH * 0.7, viewportH],
     [
       '0 -25px 80px rgba(230, 201, 168, 0.22)',
       '0 -10px 40px rgba(230, 201, 168, 0.1)',
       '0 0px 0px rgba(0, 0, 0, 0)'
     ]
   )
-  const introPointerEvents = useTransform(trackProgress, (v) => v > 0.08 ? 'auto' : 'none')
 
 
 
@@ -120,14 +119,10 @@ function App() {
     }
   }, [isLoading])
 
-  // Sync isInHero state with trackProgress for instant responsiveness during transition
-  useMotionValueEvent(trackProgress, 'change', (latest) => {
+  // Sync isInHero state with scroll for instant responsiveness
+  useMotionValueEvent(scrollY, 'change', (latest) => {
     if (location.pathname === '/') {
-      if (latest < 0.04 && window.scrollY < 35) {
-        setIsInHero(true)
-      } else if (latest >= 0.04 || window.scrollY >= 35) {
-        setIsInHero(false)
-      }
+      setIsInHero(latest < 40)
     }
   })
 
@@ -138,8 +133,8 @@ function App() {
     }
 
     const handleScroll = () => {
-      // In Hero only when scroll is at the very top (first 35px)
-      setIsInHero(window.scrollY < 35)
+      // In Hero only when scroll is at the very top (first 40px)
+      setIsInHero(window.scrollY < 40)
     }
 
     handleScroll()
@@ -164,43 +159,32 @@ function App() {
           <div className="home-scroll-container">
             <SocialSidebar isLoaded={!isLoading} isVisible={isInHero} />
 
-            {/* Pinned Transition Stage: Intro blooms and emerges directly from the center of the Hero */}
-            <div className="home-center-bloom-track" ref={heroTrackRef}>
-              <div className="bloom-sticky-stage">
+            {/* Fixed Hero Stage — stays behind during initial scroll, fades with depth */}
+            <motion.div
+              className="hero-fixed-stage"
+              style={{
+                scale: heroScale,
+                opacity: heroOpacity,
+                filter: heroFilter,
+                visibility: heroVisibility,
+                pointerEvents: heroPointerEvents,
+              }}
+            >
+              <HeroSection isLoaded={!isLoading} />
+            </motion.div>
 
-                {/* Background Hero Layer — fades & blurs, then hidden */}
-                <motion.div
-                  className="hero-stage-layer"
-                  style={{
-                    scale: heroScale,
-                    opacity: heroOpacity,
-                    filter: heroFilter,
-                    visibility: heroVisibility,
-                    pointerEvents: heroPointerEvents,
-                  }}
-                >
-                  <HeroSection isLoaded={!isLoading} />
-                </motion.div>
+            {/* Elevated Intro Curtain — rises directly over Hero with curved glowing top, then docks */}
+            <motion.div
+              className="intro-elevation-stage"
+              style={{
+                borderRadius: introBorderRadius,
+                boxShadow: introBoxShadow,
+              }}
+            >
+              <IntroStatement />
+            </motion.div>
 
-                {/* Intro Section — elevated Awwwards card, slides up with glowing rim and docks */}
-                <motion.div
-                  className="intro-stage-layer"
-                  style={{
-                    y: introY,
-                    scale: introScale,
-                    opacity: introOpacity,
-                    borderRadius: introBorderRadius,
-                    boxShadow: introBoxShadow,
-                    pointerEvents: introPointerEvents,
-                  }}
-                >
-                  <IntroStatement />
-                </motion.div>
-
-              </div>
-            </div>
-
-            {/* Subsequent Homepage Sections */}
+            {/* Subsequent Homepage Sections — follow immediately with zero black screen gap */}
             <div className="home-subsequent-content">
               {/* ProjectsSection — has its own per-row entrance animations */}
               <ProjectsSection />
