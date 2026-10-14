@@ -417,22 +417,23 @@ const ProjectsSection = () => {
     };
   }, []);
 
-  /* Universal bidirectional wheel & trackpad handler: scrolls both LEFT and RIGHT smoothly */
+  /* Only horizontal gestures (scroll left/right or trackpad swipe) change project cards.
+     Vertical scrolling (page scroll up/down) passes through untouched so the page scrolls naturally. */
   const handleWheel = (e) => {
-    // Detect dominant scroll: horizontal swipe (deltaX) or vertical mouse wheel (deltaY)
-    const delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
-
-    if (Math.abs(delta) < 10) return;
+    // If the scroll has any vertical dominance, do NOT capture it — let the page scroll naturally
+    if (Math.abs(e.deltaX) <= Math.abs(e.deltaY) || Math.abs(e.deltaX) < 15) {
+      return;
+    }
 
     const now = Date.now();
     if (now - lastWheelTimeRef.current < 320) return;
 
-    if (delta > 0) {
-      // Scroll Down / Swipe Left -> Advance NEXT (Right)
+    if (e.deltaX > 0) {
+      // Horizontal scroll right / swipe left -> Next Card
       lastWheelTimeRef.current = now;
       next();
-    } else if (delta < 0) {
-      // Scroll Up / Swipe Right -> Go PREV (Left)
+    } else if (e.deltaX < 0) {
+      // Horizontal scroll left / swipe right -> Prev Card
       lastWheelTimeRef.current = now;
       prev();
     }
