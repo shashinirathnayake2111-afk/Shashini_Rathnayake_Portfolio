@@ -125,9 +125,9 @@ const Navbar = ({ isLoaded, onContactClick, isInHero }) => {
           </div>
         </div>
 
-        {/* Scrolled Pill Content */}
+        {/* Scrolled Pill — always visible when outside hero */}
         <div
-          className={`nav-pill ${!showPill ? 'nav-pill-hidden' : ''}`}
+          className={`nav-pill ${isInHero ? 'nav-pill-hidden' : ''}`}
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
         >
           <div className="status-dot"></div>

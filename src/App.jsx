@@ -45,14 +45,28 @@ function App() {
   const [isLoading, setIsLoading] = useState(!alreadyLoaded)
   const [isInHero, setIsInHero] = useState(true)
   const [isContactOpen, setIsContactOpen] = useState(false)
-  const heroRef = useRef(null)
+  const heroTrackRef = useRef(null)
   const location = useLocation()
 
-  /* Hero scroll progress — drives the curtain reveal of the next section */
-  const { scrollYProgress: heroScroll } = useScroll({
-    target: heroRef,
-    offset: ['start start', 'end start'],
+  /* Scroll progress through the Hero → Intro transition track (0 → 1) */
+  const { scrollYProgress: trackProgress } = useScroll({
+    target: heroTrackRef,
+    offset: ['start start', 'end end'],
   })
+
+  // ── Hero layer: fades + blurs out quickly, then goes behind everything ──
+  const heroOpacity = useTransform(trackProgress, [0, 0.22], [1, 0])
+  const heroFilter = useTransform(trackProgress, [0, 0.22], ['blur(0px)', 'blur(12px)'])
+  const heroScale  = useTransform(trackProgress, [0, 0.22], [1, 0.94])
+  // Hard-hide hero once faded so it never bleeds through intro
+  const heroVisibility = useTransform(trackProgress, (v) => v >= 0.22 ? 'hidden' : 'visible')
+  const heroPointerEvents = useTransform(trackProgress, (v) => v > 0.1 ? 'none' : 'auto')
+
+  // ── Intro layer: full-width slide-up (NO scale shrink = no corner bleed) ──
+  // Starts below viewport, slides up and fades in — always 100vw wide
+  const introY       = useTransform(trackProgress, [0, 0.05, 0.35], ['100vh', '60px', '0px'])
+  const introOpacity = useTransform(trackProgress, [0, 0.05, 0.32], [0, 0.7, 1])
+  const introPointerEvents = useTransform(trackProgress, (v) => v > 0.08 ? 'auto' : 'none')
 
 
 
@@ -98,7 +112,7 @@ function App() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsInHero(window.scrollY < window.innerHeight - 20)
+      setIsInHero(window.scrollY < window.innerHeight * 0.45)
     }
 
     handleScroll()
@@ -120,25 +134,52 @@ function App() {
 
       <Routes>
         <Route path="/" element={
-          <>
+          <div className="home-scroll-container">
             <SocialSidebar isLoaded={!isLoading} isVisible={isInHero} />
 
-            {/* Hero — scroll target for reveal animation */}
-            <div ref={heroRef}>
-              <HeroSection isLoaded={!isLoading} />
+            {/* Pinned Transition Stage: Intro blooms and emerges directly from the center of the Hero */}
+            <div className="home-center-bloom-track" ref={heroTrackRef}>
+              <div className="bloom-sticky-stage">
+
+                {/* Background Hero Layer — fades & blurs, then hidden */}
+                <motion.div
+                  className="hero-stage-layer"
+                  style={{
+                    scale: heroScale,
+                    opacity: heroOpacity,
+                    filter: heroFilter,
+                    visibility: heroVisibility,
+                    pointerEvents: heroPointerEvents,
+                  }}
+                >
+                  <HeroSection isLoaded={!isLoading} />
+                </motion.div>
+
+                {/* Intro Section — full-width slide-up, always covers hero fully */}
+                <motion.div
+                  className="intro-stage-layer"
+                  style={{
+                    y: introY,
+                    opacity: introOpacity,
+                    pointerEvents: introPointerEvents,
+                  }}
+                >
+                  <IntroStatement />
+                </motion.div>
+
+              </div>
             </div>
 
-            <SectionReveal>
-              <IntroStatement />
-            </SectionReveal>
+            {/* Subsequent Homepage Sections */}
+            <div className="home-subsequent-content">
+              {/* ProjectsSection — has its own per-row entrance animations */}
+              <ProjectsSection />
 
-            {/* ProjectsSection — has its own per-row entrance animations */}
-            <ProjectsSection />
-
-            <SectionReveal>
-              <Footer onContactClick={() => setIsContactOpen(true)} />
-            </SectionReveal>
-          </>
+              <SectionReveal>
+                <Footer onContactClick={() => setIsContactOpen(true)} />
+              </SectionReveal>
+            </div>
+          </div>
         } />
         <Route path="/about" element={
           <div className="about-page-wrapper">
