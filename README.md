@@ -2,7 +2,7 @@
 
 <div align="center">
 
-  <img src="public/og-image.png" alt="Shashini Rathnayake Portfolio Preview" width="10%" style="border-radius: 12px; border: 1px solid rgba(230,201,168,0.2);" />
+  <img src="public/og-image.png" alt="Shashini Rathnayake Portfolio Preview" width="20%" style="border-radius: 12px; border: 1px solid rgba(230,201,168,0.2);" />
 
   <br/><br/>
 
@@ -13,7 +13,7 @@
   </p>
 
   <p align="center">
-    <a href="https://shashinirathnayake.vercel.app/" target="_blank">
+    <a href="https://shashini-rathnayake-portfolio.vercel.app/" target="_blank">
       <img src="https://img.shields.io/badge/Live%20Demo-View%20Portfolio-E6C9A8?style=for-the-badge&logo=vercel&logoColor=black" alt="Live Demo" />
     </a>
     <a href="https://github.com/shashinirathnayake2111-afk/Shashini_Rathnayake_Portfolio" target="_blank">
@@ -179,7 +179,7 @@ The interface is styled around a bespoke luxury dark palette with warm gold acce
 
 ## 📬 Contact & Connect
 
-- **Portfolio**: [shashinirathnayake.vercel.app](https://shashinirathnayake.vercel.app/)
+- **Portfolio**: [shashinirathnayake.vercel.app](https://shashini-rathnayake-portfolio.vercel.app/)
 - **Email**: [shashinirathnayake2111@gmail.com](mailto:shashinirathnayake2111@gmail.com)
 - **LinkedIn**: [linkedin.com/in/shashini-rathnayake-dev](https://www.linkedin.com/in/shashini-rathnayake-dev/)
 - **GitHub**: [@shashinirathnayake2111-afk](https://github.com/shashinirathnayake2111-afk)
