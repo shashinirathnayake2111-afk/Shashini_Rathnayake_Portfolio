@@ -1,9 +1,37 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { ArrowUp, Copy, Check, FileDown, Sparkles } from 'lucide-react';
 import '../styles/Footer.css';
 
 const Footer = ({ onContactClick }) => {
   const currentYear = new Date().getFullYear();
+  const [copied, setCopied] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleCopyEmail = (e) => {
+    e.preventDefault();
+    navigator.clipboard.writeText('shashinirathnayake2111@gmail.com');
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2200);
+  };
+
+  const handleScrollTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleScrollToProjects = (e) => {
+    e.preventDefault();
+    if (location.pathname !== '/') {
+      navigate('/');
+      setTimeout(() => {
+        document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
+      }, 120);
+    } else {
+      document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   const socials = [
     { label: 'GitHub', url: 'https://github.com/shashinirathnayake2111-afk' },
@@ -33,14 +61,85 @@ const Footer = ({ onContactClick }) => {
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          <p className="footer-eyebrow">Available for new opportunities</p>
+          <div className="footer-status-pill">
+            <span className="footer-status-dot" />
+            <span>AVAILABLE FOR FULL-TIME &amp; CONTRACT ROLES</span>
+          </div>
+
           <h2 className="footer-headline">
             Let's build something <span className="footer-headline-accent">remarkable.</span>
           </h2>
-          <button className="footer-cta-btn" onClick={onContactClick}>
-            Start a conversation <span className="footer-arrow">↗</span>
-          </button>
+
+          <div className="footer-cta-row">
+            <button className="footer-cta-btn" onClick={onContactClick}>
+              <span>Start a conversation</span>
+              <span className="footer-arrow">↗</span>
+            </button>
+
+            <button
+              className={`footer-email-btn ${copied ? 'copied' : ''}`}
+              onClick={handleCopyEmail}
+              title="Copy Email to Clipboard"
+            >
+              {copied ? <Check size={16} /> : <Copy size={16} />}
+              <span>{copied ? 'Email Copied!' : 'shashinirathnayake2111@gmail.com'}</span>
+            </button>
+
+            <a
+              href="/resume.pdf"
+              download="Shashini_Rathnayake_CV.pdf"
+              className="footer-cv-btn"
+            >
+              <FileDown size={16} />
+              <span>Download CV</span>
+            </a>
+          </div>
         </motion.div>
+
+        {/* ── Mid Quick Links & Navigation ── */}
+        <div className="footer-nav-grid">
+          <div className="footer-brand-col">
+            <Link to="/" className="footer-brand-title">
+              Shashini Rathnayake<span className="footer-dot">.</span>
+            </Link>
+            <p className="footer-brand-desc">
+              Full Stack Developer &amp; UI/UX Designer crafting human-centered digital experiences and reliable software architecture.
+            </p>
+          </div>
+
+          <div className="footer-links-col">
+            <span className="footer-col-header">Explore</span>
+            <ul className="footer-links-list">
+              <li><Link to="/">Home</Link></li>
+              <li><Link to="/about">About &amp; Journey</Link></li>
+              <li><Link to="/skills">Skills &amp; Arsenal</Link></li>
+              <li><Link to="/experience">Career Experience</Link></li>
+              <li><a href="#projects" onClick={handleScrollToProjects}>Featured Work</a></li>
+            </ul>
+          </div>
+
+          <div className="footer-links-col">
+            <span className="footer-col-header">Connect</span>
+            <ul className="footer-links-list">
+              {socials.map((s) => (
+                <li key={s.label}>
+                  <a href={s.url} target="_blank" rel="noreferrer" className="footer-social-link">
+                    {s.label} <span className="footer-ext">↗</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="footer-action-col">
+            <button className="footer-back-to-top" onClick={handleScrollTop} aria-label="Back to top">
+              <span className="btt-label">Back to Top</span>
+              <div className="btt-circle">
+                <ArrowUp size={16} />
+              </div>
+            </button>
+          </div>
+        </div>
 
         {/* ── Divider ── */}
         <div className="footer-divider" />
@@ -48,21 +147,11 @@ const Footer = ({ onContactClick }) => {
         {/* ── Bottom Bar ── */}
         <div className="footer-bottom-bar">
           <div className="footer-bottom-left">
-            <span className="footer-copy">© {currentYear} Shashini Rathnayake · Colombo, Sri Lanka</span>
+            <span className="footer-copy">© {currentYear} Shashini Rathnayake · Handcrafted with modern React &amp; CSS</span>
           </div>
 
-          <div className="footer-socials-row">
-            {socials.map((s, i) => (
-              <a
-                key={s.label}
-                href={s.url}
-                target="_blank"
-                rel="noreferrer"
-                className="footer-social-link"
-              >
-                {s.label} <span className="footer-ext">↗</span>
-              </a>
-            ))}
+          <div className="footer-location-tag">
+            <span>Based in Colombo, Sri Lanka · Working Worldwide</span>
           </div>
         </div>
 

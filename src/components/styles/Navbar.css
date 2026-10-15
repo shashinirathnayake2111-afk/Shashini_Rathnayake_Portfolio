@@ -517,6 +517,33 @@
   transform: translateY(0);
 }
 
+.overlay-cv-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: rgba(230, 201, 168, 0.12);
+  color: #E6C9A8;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+  border: 1px solid rgba(230, 201, 168, 0.35);
+  padding: 13px 28px;
+  border-radius: 50px;
+  cursor: pointer;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.overlay-cv-btn:hover {
+  background: rgba(230, 201, 168, 0.24);
+  border-color: rgba(230, 201, 168, 0.7);
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(230, 201, 168, 0.2);
+}
+
 .overlay-cta {
   background: rgba(242, 234, 217, 0.08);
   color: #f2ead9;

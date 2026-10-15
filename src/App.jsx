@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
 import Lenis from 'lenis'
-import { useScroll, useTransform, useMotionValueEvent, motion } from 'framer-motion'
+import { useScroll, useTransform, useMotionValueEvent, motion, AnimatePresence } from 'framer-motion'
 import './App.css'
 import LoadingScreen from './components/page/LoadingScreen'
 import HeroSection from './components/page/HeroSection'
@@ -53,6 +53,11 @@ function App() {
     window.addEventListener('resize', updateH)
     return () => window.removeEventListener('resize', updateH)
   }, [])
+
+  // Auto scroll to top upon navigating to a new route
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
+  }, [location.pathname])
 
   /* Scroll progress driven by window scroll */
   const { scrollY } = useScroll()
@@ -148,62 +153,90 @@ function App() {
       {isLoading && <LoadingScreen onComplete={handleLoadingComplete} />}
       <Navbar isLoaded={!isLoading} onContactClick={() => setIsContactOpen(true)} isInHero={isInHero} />
 
-      <Routes>
-        <Route path="/" element={
-          <div className="home-scroll-container">
-            <SocialSidebar isLoaded={!isLoading} isVisible={isInHero} />
-
-            {/* Fixed Hero Stage — stays behind during initial scroll, fades with depth */}
+      <AnimatePresence mode="wait">
+        <Routes location={location} key={location.pathname}>
+          <Route path="/" element={
             <motion.div
-              className="hero-fixed-stage"
-              style={{
-                scale: heroScale,
-                opacity: heroOpacity,
-                filter: heroFilter,
-                visibility: heroVisibility,
-                pointerEvents: heroPointerEvents,
-              }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.35, ease: 'easeInOut' }}
+              className="home-scroll-container"
             >
-              <HeroSection isLoaded={!isLoading} />
-            </motion.div>
+              <SocialSidebar isLoaded={!isLoading} isVisible={isInHero} />
 
-            {/* Elevated Intro Curtain — rises directly over Hero with curved glowing top, then docks */}
+              {/* Fixed Hero Stage — stays behind during initial scroll, fades with depth */}
+              <motion.div
+                className="hero-fixed-stage"
+                style={{
+                  scale: heroScale,
+                  opacity: heroOpacity,
+                  filter: heroFilter,
+                  visibility: heroVisibility,
+                  pointerEvents: heroPointerEvents,
+                }}
+              >
+                <HeroSection isLoaded={!isLoading} />
+              </motion.div>
+
+              {/* Elevated Intro Curtain — rises directly over Hero with curved glowing top, then docks */}
+              <motion.div
+                className="intro-elevation-stage"
+                style={{
+                  borderRadius: introBorderRadius,
+                  boxShadow: introBoxShadow,
+                }}
+              >
+                <IntroStatement />
+              </motion.div>
+
+              {/* Subsequent Homepage Sections — follow immediately with zero black screen gap */}
+              <div className="home-subsequent-content">
+                {/* ProjectsSection — has its own per-row entrance animations */}
+                <ProjectsSection />
+
+                <SectionReveal>
+                  <Footer onContactClick={() => setIsContactOpen(true)} />
+                </SectionReveal>
+              </div>
+            </motion.div>
+          } />
+          <Route path="/about" element={
             <motion.div
-              className="intro-elevation-stage"
-              style={{
-                borderRadius: introBorderRadius,
-                boxShadow: introBoxShadow,
-              }}
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -15 }}
+              transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+              className="about-page-wrapper"
             >
-              <IntroStatement />
+              <AboutSection />
+              <SkillsMarquee />
+              <EducationSection />
+              <Footer onContactClick={() => setIsContactOpen(true)} />
             </motion.div>
-
-            {/* Subsequent Homepage Sections — follow immediately with zero black screen gap */}
-            <div className="home-subsequent-content">
-              {/* ProjectsSection — has its own per-row entrance animations */}
-              <ProjectsSection />
-
-              <SectionReveal>
-                <Footer onContactClick={() => setIsContactOpen(true)} />
-              </SectionReveal>
-            </div>
-          </div>
-        } />
-        <Route path="/about" element={
-          <div className="about-page-wrapper">
-            <AboutSection />
-            <SkillsMarquee />
-            <EducationSection />
-            <Footer onContactClick={() => setIsContactOpen(true)} />
-          </div>
-        } />
-        <Route path="/skills" element={
-          <SkillsPage onContactClick={() => setIsContactOpen(true)} />
-        } />
-        <Route path="/experience" element={
-          <ExperiencePage onContactClick={() => setIsContactOpen(true)} />
-        } />
-      </Routes>
+          } />
+          <Route path="/skills" element={
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -15 }}
+              transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <SkillsPage onContactClick={() => setIsContactOpen(true)} />
+            </motion.div>
+          } />
+          <Route path="/experience" element={
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -15 }}
+              transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <ExperiencePage onContactClick={() => setIsContactOpen(true)} />
+            </motion.div>
+          } />
+        </Routes>
+      </AnimatePresence>
 
       <ContactDrawer isOpen={isContactOpen} onClose={() => setIsContactOpen(false)} />
     </div>

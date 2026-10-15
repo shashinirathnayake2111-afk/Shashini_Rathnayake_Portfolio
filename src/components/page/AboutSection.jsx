@@ -240,7 +240,7 @@ const AboutPanel = () => {
               requestAnimationFrame(frame);
             }, delay);
           };
-          animate(8, 'exp', 1400, 100);
+          animate(1, 'exp', 1000, 100);
           animate(7, 'projects', 1600, 250);
           animate(5, 'certs', 1800, 400);
         }
@@ -263,19 +263,37 @@ const AboutPanel = () => {
       {/* ── Left Column ── */}
       <div className="about-left-col">
 
-        {/* Eyebrow label */}
+        {/* Eyebrow label matching Projects & Experience */}
         <motion.div
           className="about-eyebrow"
-          initial={{ opacity: 0, x: -16 }}
+          initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.6 }}
         >
           <span className="about-eyebrow-line" />
-          <span className="about-eyebrow-text">ABOUT</span>
+          <span className="about-eyebrow-text">WHO I AM &amp; BACKGROUND</span>
         </motion.div>
 
-        <CinematicTitle text="I build the whole thing — the interface and what runs behind it." />
+        <motion.h2
+          className="about-main-title"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.1 }}
+        >
+          BRIDGING DESIGN &amp; <span className="title-accent-gold">ROBUST CODE</span>
+        </motion.h2>
+
+        <motion.p
+          className="about-subtitle"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+        >
+          I build the whole thing — from interactive prototypes in Figma to scalable backend architectures that run behind them.
+        </motion.p>
 
         <div className="about-bio-block">
           <StaggeredText
@@ -303,7 +321,7 @@ const AboutPanel = () => {
         </div>
 
         <div className="about-actions">
-          <motion.a whileHover={{ scale: 1.05, y: -3 }} whileTap={{ scale: 0.95 }} href={resumePDF} download className="btn-primary">
+          <motion.a whileHover={{ scale: 1.05, y: -3 }} whileTap={{ scale: 0.95 }} href={resumePDF} download="Shashini_Rathnayake_CV.pdf" className="btn-primary">
             <span>Download CV</span>
           </motion.a>
           <motion.a whileHover={{ scale: 1.05, y: -3 }} whileTap={{ scale: 0.95 }} href="https://github.com/shashinirathnayake2111-afk" target="_blank" rel="noreferrer" className="btn-secondary">
@@ -320,7 +338,7 @@ const AboutPanel = () => {
 
         {/* Stat Cards */}
         <div className="about-bento-stats">
-          <BentoCard3D num={counts.exp} unit="M" label="Months Experience" sub="Hands-on Experience" delay={0.9} href="/experience" />
+          <BentoCard3D num={counts.exp} unit="+" label="Year Experience" sub="Hands-on Industry" delay={0.9} href="/experience" />
           <BentoCard3D num={counts.projects} unit="+" label="Projects Built" sub="Full Stack & UI/UX" highlight delay={1.05} href="/#projects" />
           <BentoCard3D num={counts.certs} unit="+" label="Certificates" sub="IBM & Others" delay={1.2} href="/about#education" />
         </div>
@@ -337,10 +355,10 @@ const AboutSection = () => {
     offset: ['start end', 'end start'],
   });
 
-  const watermarkY = useTransform(scrollYProgress, [0, 1], [120, -120]);
-  const panelY = useTransform(scrollYProgress, [0, 1], [60, -60]);
-  const panelOpacity = useTransform(scrollYProgress, [0, 0.15, 0.85, 1], [0, 1, 1, 0]);
-  const bgGlowY = useTransform(scrollYProgress, [0, 1], [-40, 40]);
+  const watermarkY = useTransform(scrollYProgress, [0, 1], [80, -80]);
+  const panelY = useTransform(scrollYProgress, [0, 1], [20, -20]);
+  const panelOpacity = useTransform(scrollYProgress, [0, 0.9, 1], [1, 1, 0.3]);
+  const bgGlowY = useTransform(scrollYProgress, [0, 1], [-30, 30]);
 
   return (
     <section className="about-section" id="about" ref={sectionRef}>

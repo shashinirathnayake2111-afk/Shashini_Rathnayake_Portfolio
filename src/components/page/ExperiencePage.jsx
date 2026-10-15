@@ -105,7 +105,7 @@ const ExperiencePage = ({ onContactClick }) => {
             <div className="company-badge-wrap">
               <span className="live-pill">
                 <span className="live-dot" />
-                8 MONTHS EXPERIENCE
+                1+ YEAR EXPERIENCE
               </span>
               <span className="tenure-badge">2024 – 2025</span>
             </div>
@@ -124,7 +124,7 @@ const ExperiencePage = ({ onContactClick }) => {
                   </span>
                   <span className="meta-sep">·</span>
                   <span className="company-duration">
-                    <Calendar size={14} className="inline-icon" /> 8 Months Hands-on
+                    <Calendar size={14} className="inline-icon" /> 1+ Year Hands-on
                   </span>
                 </div>
               </div>
@@ -141,7 +141,7 @@ const ExperiencePage = ({ onContactClick }) => {
           {/* Quick Metrics Bento */}
           <div className="experience-stats-grid">
             <div className="exp-stat-box">
-              <span className="exp-stat-num">8<span className="gold-unit">M</span></span>
+              <span className="exp-stat-num">1<span className="gold-unit">+ Yr</span></span>
               <span className="exp-stat-label">Duration</span>
               <span className="exp-stat-desc">Full-time hands-on experience</span>
             </div>
@@ -245,7 +245,7 @@ const ExperiencePage = ({ onContactClick }) => {
             <p className="cta-sub">Let&apos;s build scalable, beautifully designed software together.</p>
           </div>
           <div className="cta-right">
-            <a href={resumePDF} download className="btn-exp-download">
+            <a href={resumePDF} download="Shashini_Rathnayake_CV.pdf" className="btn-exp-download">
               <FileText size={16} />
               <span>Download CV</span>
             </a>

@@ -1,8 +1,17 @@
 /* Fonts loaded globally via index.html */
 
+.about-page-wrapper {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #050505;
+  overflow-x: hidden;
+  padding-top: 60px;
+}
+
 .about-section {
   position: relative;
-  width: 100vw;
+  width: 100%;
   min-height: 100vh;
   background: linear-gradient(180deg, #0d0d0c 0%, #080807 60%, #050505 100%);
   color: #f2ead9;
@@ -181,27 +190,28 @@
   padding-right: 5%;
 }
 
-/* ── Eyebrow Label ── */
+/* ── Eyebrow Label (Unified with Projects & Experience) ── */
 .about-eyebrow {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
+  margin-bottom: 20px;
 }
 
 .about-eyebrow-line {
   display: block;
-  width: 32px;
+  width: 36px;
   height: 1px;
-  background: rgba(230, 201, 168, 0.5);
+  background: #E6C9A8;
 }
 
 .about-eyebrow-text {
   font-family: 'Chakra Petch', sans-serif;
-  font-size: 0.68rem;
-  letter-spacing: 0.28em;
-  color: rgba(230, 201, 168, 0.6);
+  font-size: 0.78rem;
+  letter-spacing: 0.3em;
+  color: #a07840;
   text-transform: uppercase;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .pencilart-wrapper {
@@ -309,14 +319,31 @@
   max-width: 60px;
 }
 
-/* ── Cinematic Title ── */
+/* ── Main Title (Unified with Projects & Experience) ── */
+.about-main-title,
 .about-title {
   font-family: 'Bebas Neue', 'Bebas Neue Fallback', sans-serif;
-  font-size: clamp(2.4rem, 4.8vw, 4.4rem);
-  line-height: 1.06;
-  letter-spacing: 0.03em;
-  color: rgba(242, 234, 217, 0.85);
-  margin: 0;
+  font-size: clamp(3rem, 6.5vw, 5.5rem);
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: 0.02em;
+  color: #f2ead9;
+  margin: 0 0 20px;
+  text-transform: uppercase;
+}
+
+.title-accent-gold {
+  color: #a07840;
+}
+
+.about-subtitle {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(0.95rem, 1.35vw, 1.15rem);
+  line-height: 1.7;
+  color: rgba(242, 234, 217, 0.65);
+  font-weight: 300;
+  margin: 0 0 24px;
+  max-width: 680px;
 }
 
 .title-stroke {

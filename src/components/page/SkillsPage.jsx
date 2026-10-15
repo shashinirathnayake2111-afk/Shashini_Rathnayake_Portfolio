@@ -92,16 +92,23 @@ const SkillsPage = ({ onContactClick }) => {
       <div className="cinematic-skills-container">
 
         {/* Cinematic Header */}
+        {/* Hero Section matching Projects & Experience */}
         <motion.div
-          className="cinematic-skills-hero"
-          initial={{ opacity: 0, y: 50 }}
+          className="skills-hero-header"
+          initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
         >
-          <div className="cinematic-eyebrow">THE ARSENAL</div>
-          <h1 className="cinematic-hero-title">
-            TECHNICAL <span className="cinematic-hero-accent">CAPABILITIES</span>
+          <div className="skills-eyebrow">
+            <span className="skills-eyebrow-line" />
+            <span className="skills-eyebrow-text">TECHNICAL ARSENAL</span>
+          </div>
+          <h1 className="skills-main-title">
+            CORE SKILLS &amp; <span className="title-accent-gold">CAPABILITIES</span>
           </h1>
+          <p className="skills-subtitle">
+            A comprehensive, industry-tested tech stack spanning high-performance frontend interfaces, resilient backend architectures, and human-centered UI/UX prototypes.
+          </p>
         </motion.div>
 
         {/* Cinematic Sections Stack */}

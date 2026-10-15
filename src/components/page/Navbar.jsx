@@ -127,7 +127,19 @@ const Navbar = ({ isLoaded, onContactClick, isInHero }) => {
         </div>
 
         <div className="overlay-bottom">
-          <button className="overlay-cta" onClick={() => { setIsMenuOpen(false); onContactClick(); }}>Let's talk</button>
+          <a
+            href="/resume.pdf"
+            download="Shashini_Rathnayake_CV.pdf"
+            className="overlay-cv-btn"
+            onClick={() => setIsMenuOpen(false)}
+          >
+            <span>Download CV</span>
+            <span className="overlay-btn-arrow">↓</span>
+          </a>
+          <button className="overlay-cta" onClick={() => { setIsMenuOpen(false); onContactClick(); }}>
+            <span>Let's talk</span>
+            <span className="overlay-btn-arrow">↗</span>
+          </button>
         </div>
       </div>
     </>
