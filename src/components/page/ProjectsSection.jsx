@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import VanillaTilt from 'vanilla-tilt';
 import '../styles/ProjectsSection.css';
 import SahayaImg from '../../assets/projects/sahaya.png';
 import LomieesImg from '../../assets/projects/lomiees.png';
@@ -185,13 +186,39 @@ const IconFigma = () => (
 
 /* ── Single Project Card ── */
 const ProjectCard = ({ project, index, isCenter, onClick }) => {
+  const cardRef = useRef(null);
+
+  useEffect(() => {
+    const el = cardRef.current;
+    if (!el) return;
+
+    VanillaTilt.init(el, {
+      max: isCenter ? 10 : 6,
+      speed: 900,
+      glare: false,
+      perspective: 1200,
+      scale: isCenter ? 1.02 : 1.01,
+      easing: 'cubic-bezier(.03,.98,.52,.99)',
+      gyroscope: true,
+    });
+
+    return () => {
+      if (el?.vanillaTilt) {
+        el.vanillaTilt.destroy();
+      }
+    };
+  }, [isCenter]);
+
   return (
-    <motion.div
+    <div
+      ref={cardRef}
       className={`pcard ${isCenter ? 'pcard--center' : 'pcard--side'}`}
       onClick={onClick}
-      whileHover={isCenter ? { y: -6 } : { scale: 1.02 }}
-      transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
     >
+      {/* ── Running Border Glow along the perimeter only ── */}
+      <div className="pcard__border-tracer-glow" aria-hidden="true" />
+      <div className="pcard__border-tracer" aria-hidden="true" />
+
       {/* ── Image area with 4-side margin ── */}
       <div className="pcard__image-frame">
         <span className="pcard__index">0{index + 1}</span>
@@ -203,6 +230,17 @@ const ProjectCard = ({ project, index, isCenter, onClick }) => {
           onDragStart={(e) => e.preventDefault()}
           loading="lazy"
         />
+
+        {/* ── Dark Overlay on Hover (Clean & Deep) ── */}
+        <div className="pcard__overlay" aria-hidden="true">
+          <div className="pcard__overlay-backdrop" />
+          <div className="pcard__overlay-badge-wrap">
+            <span className="pcard__overlay-badge">
+              <span className="pcard__overlay-badge-text">Explore Case Study</span>
+              <span className="pcard__overlay-badge-arrow">↗</span>
+            </span>
+          </div>
+        </div>
       </div>
 
       {/* ── Info bar below image ── */}
@@ -234,7 +272,7 @@ const ProjectCard = ({ project, index, isCenter, onClick }) => {
           </button>
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 };
 
