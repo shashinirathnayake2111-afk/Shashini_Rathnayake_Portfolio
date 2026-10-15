@@ -70,14 +70,14 @@ function App() {
   const heroVisibility = useTransform(scrollY, (y) => y >= viewportH ? 'hidden' : 'visible')
   const heroPointerEvents = useTransform(scrollY, (y) => y > 40 ? 'none' : 'auto')
 
-  // ── Intro layer: Awwwards elevated card reveal with glowing horizon rim ──
-  const introBorderRadius = useTransform(scrollY, [0, viewportH * 0.9], ['36px 36px 0px 0px', '0px 0px 0px 0px'])
+  // ── Intro layer: Awwwards elevated card reveal with subtle horizon rim ──
+  const introBorderRadius = useTransform(scrollY, [0, viewportH * 0.9], ['28px 28px 0px 0px', '0px 0px 0px 0px'])
   const introBoxShadow    = useTransform(
     scrollY,
     [0, viewportH * 0.7, viewportH],
     [
-      '0 -25px 80px rgba(230, 201, 168, 0.22)',
-      '0 -10px 40px rgba(230, 201, 168, 0.1)',
+      '0 -5px 18px rgba(230, 201, 168, 0.05), 0 -12px 30px rgba(0, 0, 0, 0.7)',
+      '0 -3px 10px rgba(230, 201, 168, 0.03), 0 -6px 15px rgba(0, 0, 0, 0.4)',
       '0 0px 0px rgba(0, 0, 0, 0)'
     ]
   )

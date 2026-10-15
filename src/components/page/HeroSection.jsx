@@ -129,17 +129,18 @@ const HeroSection = ({ isLoaded }) => {
         style={{ y: textY, opacity: textOpacity, scale: textScale }}
       >
 
-        <span className={`hero-hello hello-fly-in ${mounted ? 'visible' : ''}`}>
-          Hello, I&apos;m
-        </span>
+        <div className={`hero-eyebrow-wrap hello-fly-in ${mounted ? 'visible' : ''}`}>
+          <span className="hero-eyebrow-line" />
+          <span className="hero-hello">HELLO, I&apos;M</span>
+        </div>
 
         <h1 className="hero-name">
           {mounted && (
-            <AnimatedWord word="Shashini" baseDelay={0.3} />
+            <AnimatedWord word="Shashini" baseDelay={0.3} className="name-first" />
           )}
           <br />
           {mounted && (
-            <AnimatedWord word="Rathnayake" baseDelay={0.85} />
+            <AnimatedWord word="Rathnayake" baseDelay={0.72} className="name-last" />
           )}
         </h1>
 

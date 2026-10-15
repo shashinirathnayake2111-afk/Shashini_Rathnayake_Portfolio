@@ -1,24 +1,6 @@
-/* ============================================================
-   FONT SYSTEM — Global Font Loading & Fallback Fix
-
-   WHY THIS EXISTS:
-   On localhost, fonts are cached = instant. On Vercel (fresh
-   load), Google Fonts arrive 200-500ms later. During that gap,
-   fallback fonts (Arial Black, cursive) render with different
-   metrics = bigger/wider text. This fixes that for ALL sections.
-
-   Strategy:
-   - font-display:block on Bebas Neue = invisible until loaded
-     (no layout shift at all, tiny blank flash instead)
-   - Adjusted fallback @font-face with size-adjust to compensate
-     for metric differences when font IS swapping
-   - -webkit-font-smoothing: antialiased = consistent cross-OS
-   ============================================================ */
-
-/* ── Bebas Neue (hero name, marquee, navbar pill, edu headings) ── */
 @font-face {
   font-family: 'Bebas Neue';
-  src: url('https://fonts.gstatic.com/s/bebasneus/v21/JTUSjIg69CK48gW7PXooxWtrzw.woff2') format('woff2');
+  src: url('https://fonts.gstatic.com/s/bebasneu/v21/JTUSjIg69CK48gW7PXooxWtrzw.woff2') format('woff2');
   font-weight: 400;
   font-style: normal;
   font-display: block;
@@ -44,9 +26,6 @@
   line-gap-override: normal;
 }
 
-/* ============================================================
-   GLOBAL RESET
-   ============================================================ */
 * {
   margin: 0;
   padding: 0;
@@ -91,4 +70,3 @@ body {
   background: linear-gradient(180deg, #6d28d9, #9333ea, #db2777);
   border-radius: 100px;
 }
-
