@@ -110,6 +110,7 @@ function App() {
       wheelMultiplier: 1,
       touchMultiplier: 1.5,
     })
+    window.lenis = lenis
 
     let rafId
     function raf(time) {
@@ -121,6 +122,7 @@ function App() {
     return () => {
       cancelAnimationFrame(rafId)
       lenis.destroy()
+      window.lenis = null
     }
   }, [isLoading])
 

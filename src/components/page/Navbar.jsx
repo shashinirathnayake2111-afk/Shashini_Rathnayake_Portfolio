@@ -19,16 +19,50 @@ const Navbar = ({ isLoaded, onContactClick, isInHero }) => {
     setIsDarkMode(!isDarkMode);
   };
 
-  const handleScrollToSection = (e, id) => {
-    e.preventDefault();
+  const handleLogoClick = (e) => {
+    if (e) e.preventDefault();
     setIsMenuOpen(false);
     if (location.pathname !== '/') {
       navigate('/');
       setTimeout(() => {
-        document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
-      }, 100);
+        if (window.lenis) {
+          window.lenis.scrollTo(0, { immediate: false, duration: 1.2 });
+        } else {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      }, 120);
     } else {
-      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+      if (window.lenis) {
+        window.lenis.scrollTo(0, { immediate: false, duration: 1.2 });
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+  };
+
+  const handleScrollToSection = (e, id) => {
+    if (e) e.preventDefault();
+    setIsMenuOpen(false);
+
+    const doScroll = () => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      // Compute absolute page Y so it works regardless of fixed/sticky ancestors
+      const rect = el.getBoundingClientRect();
+      const absoluteY = rect.top + window.pageYOffset + 20;
+      if (window.lenis) {
+        window.lenis.scrollTo(absoluteY, { duration: 1.4 });
+      } else {
+        window.scrollTo({ top: absoluteY, behavior: 'smooth' });
+      }
+    };
+
+    if (location.pathname !== '/') {
+      navigate('/');
+      // Wait for the new route to render then scroll
+      setTimeout(doScroll, 300);
+    } else {
+      doScroll();
     }
   };
 
@@ -37,7 +71,7 @@ const Navbar = ({ isLoaded, onContactClick, isInHero }) => {
       <nav className={`navbar-container ${isLoaded ? 'nav-enter' : ''} ${!isInHero ? 'nav-scrolled' : ''}`}>
 
         <div className={`nav-full ${!isInHero ? 'nav-hidden' : ''}`}>
-          <Link to="/" className="nav-logo">
+          <Link to="/" className="nav-logo" onClick={handleLogoClick}>
             Shashini Rathnayake<span className="nav-dot">.</span>
           </Link>
 
@@ -115,7 +149,7 @@ const Navbar = ({ isLoaded, onContactClick, isInHero }) => {
         </button>
 
         <div className="overlay-content">
-          <Link to="/" className="overlay-logo" onClick={() => setIsMenuOpen(false)}>
+          <Link to="/" className="overlay-logo" onClick={handleLogoClick}>
             Shashini<span className="nav-dot">.</span>
           </Link>
           <ul className="overlay-links">

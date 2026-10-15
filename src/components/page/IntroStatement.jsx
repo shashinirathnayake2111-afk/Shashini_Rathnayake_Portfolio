@@ -1,7 +1,6 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import '../styles/IntroStatement.css';
-import girlImg from '../../assets/girl.jpg';
 
 const textContent = [
   { text: "I believe the best", highlight: false },
@@ -44,30 +43,10 @@ const IntroStatement = () => {
     offset: ['start end', 'end start']
   });
 
-  // Parallax drifts on scroll
-  const bgImageY = useTransform(scrollYProgress, [0, 1], [-45, 45]);
-  const bgScale = useTransform(scrollYProgress, [0, 0.5, 1], [1.02, 1.07, 1.02]);
   const textY = useTransform(scrollYProgress, [0, 1], [25, -25]);
 
   return (
     <section className="intro-statement-section" id="intro" ref={sectionRef}>
-
-      {/* Proportional Full-Height Background Canvas */}
-      <motion.div
-        className="intro-celestial-canvas"
-        style={{ y: bgImageY }}
-      >
-        <div className="intro-image-frame">
-          <img
-            src={girlImg}
-            alt="Celestial Night Sky and Stargazer"
-            className="intro-proportional-img"
-          />
-
-          {/* Seamless Edge Feathering & Blend Overlay */}
-          <div className="intro-edge-blend" />
-        </div>
-      </motion.div>
 
       {/* Left Vertical Anchor */}
       <motion.div
@@ -82,7 +61,7 @@ const IntroStatement = () => {
         <div className="intro-anchor-line bottom"></div>
       </motion.div>
 
-      {/* Main Animated Highlight Text (Centered foreground on top of the blended background) */}
+      {/* Main Animated Highlight Text */}
       <motion.div className="intro-content" style={{ y: textY }}>
         <motion.h2
           className="intro-highlight"
@@ -102,12 +81,12 @@ const IntroStatement = () => {
               >
                 {chunk.highlight && (
                   <>
-                    <i className="dp" style={{'--sz':'4px','--c':'#f2ead9','--x':'12%','--y':'45%','--dx':'7px','--dy':'-6px','--dl':'0s',   '--dr':'2.8s'}} />
-                    <i className="dp" style={{'--sz':'3px','--c':'#e8d5b5','--x':'30%','--y':'65%','--dx':'-5px','--dy':'7px', '--dl':'0.6s', '--dr':'3.3s'}} />
-                    <i className="dp" style={{'--sz':'3px','--c':'#d4af37','--x':'62%','--y':'28%','--dx':'6px','--dy':'5px', '--dl':'1.1s', '--dr':'2.6s'}} />
-                    <i className="dp" style={{'--sz':'2.5px','--c':'#fdf6e2','--x':'80%','--y':'62%','--dx':'-6px','--dy':'-5px','--dl':'1.6s','--dr':'3.6s'}} />
-                    <i className="dp" style={{'--sz':'2px','--c':'#e2c99b','--x':'50%','--y':'52%','--dx':'4px','--dy':'-8px','--dl':'0.9s','--dr':'3.1s'}} />
-                    <i className="dp" style={{'--sz':'2px','--c':'#f2ead9','--x':'42%','--y':'20%','--dx':'-3px','--dy':'6px', '--dl':'2s',  '--dr':'2.4s'}} />
+                    <i className="dp" style={{ '--sz': '4px', '--c': '#f2ead9', '--x': '12%', '--y': '45%', '--dx': '7px', '--dy': '-6px', '--dl': '0s', '--dr': '2.8s' }} />
+                    <i className="dp" style={{ '--sz': '3px', '--c': '#e8d5b5', '--x': '30%', '--y': '65%', '--dx': '-5px', '--dy': '7px', '--dl': '0.6s', '--dr': '3.3s' }} />
+                    <i className="dp" style={{ '--sz': '3px', '--c': '#d4af37', '--x': '62%', '--y': '28%', '--dx': '6px', '--dy': '5px', '--dl': '1.1s', '--dr': '2.6s' }} />
+                    <i className="dp" style={{ '--sz': '2.5px', '--c': '#fdf6e2', '--x': '80%', '--y': '62%', '--dx': '-6px', '--dy': '-5px', '--dl': '1.6s', '--dr': '3.6s' }} />
+                    <i className="dp" style={{ '--sz': '2px', '--c': '#e2c99b', '--x': '50%', '--y': '52%', '--dx': '4px', '--dy': '-8px', '--dl': '0.9s', '--dr': '3.1s' }} />
+                    <i className="dp" style={{ '--sz': '2px', '--c': '#f2ead9', '--x': '42%', '--y': '20%', '--dx': '-3px', '--dy': '6px', '--dl': '2s', '--dr': '2.4s' }} />
                   </>
                 )}
                 {word}

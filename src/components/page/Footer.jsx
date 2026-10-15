@@ -61,10 +61,6 @@ const Footer = ({ onContactClick }) => {
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          <div className="footer-status-pill">
-            <span className="footer-status-dot" />
-            <span>AVAILABLE FOR FULL-TIME &amp; CONTRACT ROLES</span>
-          </div>
 
           <h2 className="footer-headline">
             Let's build something <span className="footer-headline-accent">remarkable.</span>
@@ -74,15 +70,6 @@ const Footer = ({ onContactClick }) => {
             <button className="footer-cta-btn" onClick={onContactClick}>
               <span>Start a conversation</span>
               <span className="footer-arrow">↗</span>
-            </button>
-
-            <button
-              className={`footer-email-btn ${copied ? 'copied' : ''}`}
-              onClick={handleCopyEmail}
-              title="Copy Email to Clipboard"
-            >
-              {copied ? <Check size={16} /> : <Copy size={16} />}
-              <span>{copied ? 'Email Copied!' : 'shashinirathnayake2111@gmail.com'}</span>
             </button>
 
             <a
@@ -96,62 +83,17 @@ const Footer = ({ onContactClick }) => {
           </div>
         </motion.div>
 
-        {/* ── Mid Quick Links & Navigation ── */}
-        <div className="footer-nav-grid">
-          <div className="footer-brand-col">
-            <Link to="/" className="footer-brand-title">
-              Shashini Rathnayake<span className="footer-dot">.</span>
-            </Link>
-            <p className="footer-brand-desc">
-              Full Stack Developer &amp; UI/UX Designer crafting human-centered digital experiences and reliable software architecture.
-            </p>
-          </div>
-
-          <div className="footer-links-col">
-            <span className="footer-col-header">Explore</span>
-            <ul className="footer-links-list">
-              <li><Link to="/">Home</Link></li>
-              <li><Link to="/about">About &amp; Journey</Link></li>
-              <li><Link to="/skills">Skills &amp; Arsenal</Link></li>
-              <li><Link to="/experience">Career Experience</Link></li>
-              <li><a href="#projects" onClick={handleScrollToProjects}>Featured Work</a></li>
-            </ul>
-          </div>
-
-          <div className="footer-links-col">
-            <span className="footer-col-header">Connect</span>
-            <ul className="footer-links-list">
-              {socials.map((s) => (
-                <li key={s.label}>
-                  <a href={s.url} target="_blank" rel="noreferrer" className="footer-social-link">
-                    {s.label} <span className="footer-ext">↗</span>
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="footer-action-col">
-            <button className="footer-back-to-top" onClick={handleScrollTop} aria-label="Back to top">
-              <span className="btt-label">Back to Top</span>
-              <div className="btt-circle">
-                <ArrowUp size={16} />
-              </div>
-            </button>
-          </div>
-        </div>
-
         {/* ── Divider ── */}
         <div className="footer-divider" />
 
         {/* ── Bottom Bar ── */}
         <div className="footer-bottom-bar">
           <div className="footer-bottom-left">
-            <span className="footer-copy">© {currentYear} Shashini Rathnayake · Handcrafted with modern React &amp; CSS</span>
+            <span className="footer-copy">© {currentYear} Shashini Rathnayake</span>
           </div>
 
           <div className="footer-location-tag">
-            <span>Based in Colombo, Sri Lanka · Working Worldwide</span>
+            <span>Based in Colombo, Sri Lanka</span>
           </div>
         </div>
 
