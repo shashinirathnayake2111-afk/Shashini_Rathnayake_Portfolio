@@ -48,7 +48,7 @@ const projectData = [
   },
   {
     id: 3,
-    title: "Eco Store App",
+    title: "Bean Cafe",
     category: "UI/UX",
     type: "mobile",
     tag: "UI/UX Design",
