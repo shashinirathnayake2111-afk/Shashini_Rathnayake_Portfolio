@@ -5,11 +5,30 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #050505;
+  background-color: #070910;
   padding: 120px 8% 100px;
   position: relative;
   z-index: 10;
   overflow: hidden;
+}
+
+/* Subtle center ambient gold glow behind the text cluster */
+.intro-statement-section::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70vw;
+  height: 60vh;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(180, 140, 60, 0.07) 0%,
+    rgba(160, 120, 40, 0.04) 40%,
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 0;
 }
 
 @keyframes liquid-bg {
@@ -39,18 +58,18 @@
 .intro-anchor-line {
   width: 1px;
   height: 25vh;
-  background: linear-gradient(to bottom, transparent, rgba(242, 234, 217, 0.3));
+  background: linear-gradient(to bottom, transparent, rgba(212, 175, 55, 0.42));
 }
 
 .intro-anchor-line.bottom {
-  background: linear-gradient(to top, transparent, rgba(242, 234, 217, 0.3));
+  background: linear-gradient(to top, transparent, rgba(212, 175, 55, 0.42));
 }
 
 .intro-anchor-text {
   font-family: 'Bebas Neue', 'Bebas Neue Fallback', sans-serif;
   font-size: 1.1rem;
   letter-spacing: 0.3em;
-  color: rgba(242, 234, 217, 0.5);
+  color: rgba(212, 175, 55, 0.6);
   writing-mode: vertical-rl;
   transform: rotate(180deg);
   white-space: nowrap;
@@ -125,11 +144,11 @@
   font-family: 'Poppins', sans-serif;
   font-size: clamp(2.1rem, 3.8vw, 4rem);
   font-weight: 400;
-  color: rgba(242, 234, 217, 0.86);
+  color: #EAE3D2;
   line-height: 1.85;
   margin: 0;
   letter-spacing: -0.01em;
-  text-shadow: 0 4px 35px rgba(0, 0, 0, 0.9);
+  text-shadow: 0 4px 35px rgba(0, 0, 0, 0.85);
 }
 
 
