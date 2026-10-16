@@ -11,22 +11,20 @@ import FinanceImg from '../../assets/projects/finance_tracker.jpg';
 const projectData = [
   {
     id: 1,
-    title: "ForgeX Fitness",
-    category: "Full Stack",
+    title: "Recover.lk",
+    category: "UI/UX",
     type: "web",
-    tag: "Full Stack",
-    image: ForgeImg,
-    summary: "A modern fitness platform with workout tracking, coach diet plans, and live gym traffic monitoring.",
+    tag: "Healthcare UX",
+    image: RecoverImg,
+    summary: "Accessibility-first web app for migraine patients featuring doctor channeling and cognitive-safe dark UI.",
     links: {
-      figma: "https://www.figma.com/proto/48n3ngMXfR4CIYS1YkrCfh/Untitled?node-id=39-48&p=f&viewport=381%2C75%2C0.18&t=6EdjLAfq1DvFAplt-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=169%3A610&page-id=0%3A1",
-      github: "https://github.com/shashinirathnayake2111-afk/ForgeX-Fitness-Website.git",
-      live: "https://forge-x-fitness-website.vercel.app/"
+      figma: "https://www.figma.com/proto/ai3v7JTZ7ZkN2V4lNasmEo/Recover.lk?page-id=0%3A1&node-id=63-163&p=f&viewport=522%2C154%2C0.12&t=A8iyX7QuN1ZMuSAR-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=63%3A163"
     },
     caseStudy: {
-      problem: "Needed a website to manage home workouts with coaches, diet plans, and programs. Users required notifications and reminders for workouts, live gym traffic monitoring to choose less crowded times, and a progress tracking system.",
-      solution: "Developed a fully responsive fitness website featuring workout management, coach-guided programs, real-time gym traffic monitoring, push notifications, and a comprehensive progress tracking dashboard.",
-      challenges: "Integrating real-time gym traffic data and ensuring smooth state management across the dashboard without causing performance bottlenecks.",
-      techStack: ["React", "Tailwind CSS", "Node.js", "Figma", "Prototyping"]
+      problem: "Migraine patients struggled to manage their daily tasks and office work during episodes, as most digital tools were not designed with their visual and cognitive sensitivity in mind.",
+      solution: "Built a web application with doctor channeling, symptom tracking, activity recording, a dark/light mode switcher, and a range of accessibility-focused features specifically designed for migraine patients.",
+      challenges: "Balancing high contrast ratios for readability while avoiding visual triggers like bright whites and sharp animations that could induce migraines.",
+      techStack: ["Research", "Figma", "Wireframe", "Prototyping"]
     }
   },
   {
@@ -55,7 +53,9 @@ const projectData = [
     tag: "UI/UX Design",
     image: SahayaImg,
     summary: "Sustainable shopping app with verified eco-friendly brands and personal carbon footprint tracking.",
-    links: {},
+    links: {
+      figma: "https://www.figma.com/proto/HujoDsKjzLU9OnmLvM8Cg2/Bean-Cafe?node-id=263-341&page-id=0%3A1&starting-point-node-id=263%3A341&t=H5vXhY8L9dUHxZPw-1"
+    },
     caseStudy: {
       problem: "Consumers struggle to find authentic eco-friendly products and verify the sustainability claims of different brands while shopping online.",
       solution: "Designed a mobile application that verifies eco-friendly brands, simplifies sustainable shopping, and provides a clear carbon footprint tracker for users.",
@@ -65,38 +65,26 @@ const projectData = [
   },
   {
     id: 4,
-    title: "Travel Planner",
+    title: "ForgeX Fitness",
     category: "Full Stack",
     type: "web",
-    tag: "Web App",
+    tag: "Full Stack",
     image: ForgeImg,
-    summary: "Collaborative trip planning dashboard to manage shared itineraries, split expenses, and bookings.",
-    links: {},
+    summary: "A modern fitness platform with workout tracking, coach diet plans, and live gym traffic monitoring.",
+    links: {
+      figma: "https://www.figma.com/proto/48n3ngMXfR4CIYS1YkrCfh/Untitled?node-id=39-48&p=f&viewport=381%2C75%2C0.18&t=6EdjLAfq1DvFAplt-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=169%3A610&page-id=0%3A1",
+      github: "https://github.com/shashinirathnayake2111-afk/ForgeX-Fitness-Website.git",
+      live: "https://forge-x-fitness-website.vercel.app/"
+    },
     caseStudy: {
-      problem: "Planning a trip with multiple people often becomes chaotic, with itineraries, budgets, and bookings scattered across different apps and messages.",
-      solution: "Created a collaborative travel planner that helps groups organize itineraries, split expenses, and manage bookings in one centralized, real-time platform.",
-      challenges: "Handling real-time collaborative editing for itineraries and ensuring expense calculations were always accurate across different currencies.",
-      techStack: ["React", "CSS", "Figma", "JavaScript"]
+      problem: "Needed a website to manage home workouts with coaches, diet plans, and programs. Users required notifications and reminders for workouts, live gym traffic monitoring to choose less crowded times, and a progress tracking system.",
+      solution: "Developed a fully responsive fitness website featuring workout management, coach-guided programs, real-time gym traffic monitoring, push notifications, and a comprehensive progress tracking dashboard.",
+      challenges: "Integrating real-time gym traffic data and ensuring smooth state management across the dashboard without causing performance bottlenecks.",
+      techStack: ["React", "Tailwind CSS", "Node.js", "Figma", "Prototyping"]
     }
   },
   {
     id: 5,
-    title: "Smart Home UI",
-    category: "UI/UX",
-    type: "web",
-    tag: "UI/UX Design",
-    image: LomieesImg,
-    summary: "Unified smart home management interface integrating multiple IoT devices into an intuitive control hub.",
-    links: {},
-    caseStudy: {
-      problem: "Smart home owners have to navigate between too many disparate apps to control their various devices, leading to a fragmented user experience.",
-      solution: "Designed a unified, customizable dashboard that integrates all smart home devices into a single, intuitive interface with quick-action widgets.",
-      challenges: "Designing scalable widgets that accommodate a wide variety of device types (lights, thermostats, locks) within a consistent design language.",
-      techStack: ["Figma", "Wireframing", "Prototyping", "Design System"]
-    }
-  },
-  {
-    id: 6,
     title: "Lomiees Store",
     category: "Full Stack",
     type: "web",
@@ -113,40 +101,6 @@ const projectData = [
       solution: "Developed a fully responsive e-commerce website with product browsing, cart management, and a seamless checkout experience tailored to the Lomiees brand identity.",
       challenges: "Optimizing product image loading times and creating a fluid, distraction-free checkout flow to maximize conversion rates.",
       techStack: ["React", "Tailwind CSS", "Node.js", "Figma"]
-    }
-  },
-  {
-    id: 7,
-    title: "Recover.lk",
-    category: "UI/UX",
-    type: "web",
-    tag: "Healthcare UX",
-    image: RecoverImg,
-    summary: "Accessibility-first web app for migraine patients featuring doctor channeling and cognitive-safe dark UI.",
-    links: {
-      figma: "https://www.figma.com/proto/ai3v7JTZ7ZkN2V4lNasmEo/Recover.lk?page-id=0%3A1&node-id=63-163&p=f&viewport=522%2C154%2C0.12&t=A8iyX7QuN1ZMuSAR-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=63%3A163"
-    },
-    caseStudy: {
-      problem: "Migraine patients struggled to manage their daily tasks and office work during episodes, as most digital tools were not designed with their visual and cognitive sensitivity in mind.",
-      solution: "Built a web application with doctor channeling, symptom tracking, activity recording, a dark/light mode switcher, and a range of accessibility-focused features specifically designed for migraine patients.",
-      challenges: "Balancing high contrast ratios for readability while avoiding visual triggers like bright whites and sharp animations that could induce migraines.",
-      techStack: ["Research", "Figma", "Wireframe", "Prototyping"]
-    }
-  },
-  {
-    id: 8,
-    title: "Finance Tracker UX",
-    category: "UI/UX",
-    type: "mobile",
-    tag: "FinTech UX",
-    image: FinanceImg,
-    summary: "Mobile-first budget manager turning complex personal expenses into clear, digestible visual insights.",
-    links: { figma: "#" },
-    caseStudy: {
-      problem: "Personal finance apps often overwhelm users with excessive data and complex interfaces, making it difficult to understand their actual spending at a glance.",
-      solution: "Designed an intuitive, mobile-first experience that focuses on daily budget remaining, clean spending visualizations, and effortless expense categorization.",
-      challenges: "Simplifying complex financial data into digestible, bite-sized charts without losing crucial accounting details.",
-      techStack: ["Figma", "Prototyping", "Wireframing", "Mobile UI"]
     }
   }
 ];
