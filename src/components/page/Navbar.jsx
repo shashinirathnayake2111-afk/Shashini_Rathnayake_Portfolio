@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import '../styles/Navbar.css';
 
 const Navbar = ({ isLoaded, onContactClick, isInHero }) => {
   const [isDarkMode, setIsDarkMode] = useState(true);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isPillVisible, setIsPillVisible] = useState(true);
+  const hideTimerRef = useRef(null);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -15,6 +17,76 @@ const Navbar = ({ isLoaded, onContactClick, isInHero }) => {
       document.body.classList.add('light-mode');
     }
   }, [isDarkMode]);
+
+  // Auto-hide "AVAILABLE FOR WORK" pill after 2 seconds of inactivity outside hero.
+  // Reappears immediately whenever mouse, touchpad, or scroll movement occurs.
+  const isHoveredRef = useRef(false);
+  const lastMousePosRef = useRef({ x: 0, y: 0 });
+  const INACTIVITY_DELAY = 2000; // 2 seconds
+
+  useEffect(() => {
+    if (isInHero) {
+      setIsPillVisible(true);
+      if (hideTimerRef.current) {
+        clearTimeout(hideTimerRef.current);
+      }
+      return;
+    }
+
+    const startHideTimer = () => {
+      if (hideTimerRef.current) {
+        clearTimeout(hideTimerRef.current);
+      }
+      hideTimerRef.current = setTimeout(() => {
+        if (!isHoveredRef.current) {
+          setIsPillVisible(false);
+        }
+      }, INACTIVITY_DELAY);
+    };
+
+    const handleUserActivity = () => {
+      setIsPillVisible(true);
+      startHideTimer();
+    };
+
+    // Start 2s timer upon entering scrolled state
+    startHideTimer();
+
+    const handleMouseMove = (e) => {
+      const dx = Math.abs(e.clientX - lastMousePosRef.current.x);
+      const dy = Math.abs(e.clientY - lastMousePosRef.current.y);
+      // Filter micro-jitters to ensure reliable detection
+      if (dx > 2 || dy > 2) {
+        lastMousePosRef.current = { x: e.clientX, y: e.clientY };
+        handleUserActivity();
+      }
+    };
+
+    const handleTouch = () => {
+      handleUserActivity();
+    };
+
+    const handleWheelOrScroll = () => {
+      handleUserActivity();
+    };
+
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
+    window.addEventListener('touchmove', handleTouch, { passive: true });
+    window.addEventListener('touchstart', handleTouch, { passive: true });
+    window.addEventListener('wheel', handleWheelOrScroll, { passive: true });
+    window.addEventListener('scroll', handleWheelOrScroll, { passive: true });
+
+    return () => {
+      if (hideTimerRef.current) {
+        clearTimeout(hideTimerRef.current);
+      }
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('touchmove', handleTouch);
+      window.removeEventListener('touchstart', handleTouch);
+      window.removeEventListener('wheel', handleWheelOrScroll);
+      window.removeEventListener('scroll', handleWheelOrScroll);
+    };
+  }, [isInHero]);
   const toggleTheme = () => {
     setIsDarkMode(!isDarkMode);
   };
@@ -68,7 +140,23 @@ const Navbar = ({ isLoaded, onContactClick, isInHero }) => {
 
   return (
     <>
-      <nav className={`navbar-container ${isLoaded ? 'nav-enter' : ''} ${!isInHero ? 'nav-scrolled' : ''}`}>
+      <nav
+        className={`navbar-container ${isLoaded ? 'nav-enter' : ''} ${!isInHero ? 'nav-scrolled' : ''} ${(!isInHero && !isPillVisible) ? 'nav-fully-hidden' : ''}`}
+        onMouseEnter={() => {
+          isHoveredRef.current = true;
+          setIsPillVisible(true);
+          if (hideTimerRef.current) clearTimeout(hideTimerRef.current);
+        }}
+        onMouseLeave={() => {
+          isHoveredRef.current = false;
+          if (!isInHero) {
+            if (hideTimerRef.current) clearTimeout(hideTimerRef.current);
+            hideTimerRef.current = setTimeout(() => {
+              if (!isHoveredRef.current) setIsPillVisible(false);
+            }, INACTIVITY_DELAY);
+          }
+        }}
+      >
 
         <div className={`nav-full ${!isInHero ? 'nav-hidden' : ''}`}>
           <Link to="/" className="nav-logo" onClick={handleLogoClick}>
@@ -120,8 +208,8 @@ const Navbar = ({ isLoaded, onContactClick, isInHero }) => {
           </div>
         </div>
 
-        {/* Scrolled Pill — always visible when outside hero */}
-        <div className={`nav-pill ${isInHero ? 'nav-pill-hidden' : ''}`}
+        {/* Scrolled Pill — visible when outside hero, hides after 2 mins idle */}
+        <div className={`nav-pill ${(isInHero || !isPillVisible) ? 'nav-pill-hidden' : ''}`}
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
           <div className="status-dot"></div>
           <span className="status-text">AVAILABLE FOR WORK</span>
