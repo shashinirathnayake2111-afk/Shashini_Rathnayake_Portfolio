@@ -2,10 +2,6 @@
 
 <div align="center">
 
-  <img src="public/og-image.png" alt="Shashini Rathnayake Portfolio Preview" width="20%" style="border-radius: 12px; border: 1px solid rgba(230,201,168,0.2);" />
-
-  <br/><br/>
-
   <h3>✨ Full Stack Developer &amp; UI/UX Designer ✨</h3>
 
   <p align="center">
