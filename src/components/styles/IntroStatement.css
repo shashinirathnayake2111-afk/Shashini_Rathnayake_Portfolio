@@ -6,7 +6,7 @@
   justify-content: center;
   align-items: center;
   background-color: #070910;
-  padding: 120px 8% 100px;
+  padding: 120px 0 100px;
   position: relative;
   z-index: 10;
   overflow: hidden;
@@ -21,12 +21,10 @@
   transform: translate(-50%, -50%);
   width: 70vw;
   height: 60vh;
-  background: radial-gradient(
-    ellipse at center,
-    rgba(180, 140, 60, 0.07) 0%,
-    rgba(160, 120, 40, 0.04) 40%,
-    transparent 70%
-  );
+  background: radial-gradient(ellipse at center,
+      rgba(180, 140, 60, 0.07) 0%,
+      rgba(160, 120, 40, 0.04) 40%,
+      transparent 70%);
   pointer-events: none;
   z-index: 0;
 }
@@ -45,7 +43,7 @@
 .intro-anchor-left {
   position: absolute;
   top: 0;
-  left: 5.5%;
+  left: max(24px, calc((100% - 1380px) / 2 + 24px));
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -132,12 +130,14 @@
 }
 
 .intro-content {
-  max-width: 1120px;
+  width: 100%;
+  max-width: 1300px;
   text-align: center;
   position: relative;
   z-index: 5;
-  padding: 0 30px;
+  padding: 0 64px;
   margin: 0 auto;
+  box-sizing: border-box;
 }
 
 .intro-highlight {
@@ -319,7 +319,7 @@
 
   .intro-content {
     max-width: 100%;
-    padding: 0 12px;
+    padding: 0 32px;
   }
 
   .intro-highlight {
@@ -334,7 +334,11 @@
 
 @media (max-width: 480px) {
   .intro-statement-section {
-    padding: 85px 16px 55px;
+    padding: 85px 0 55px;
+  }
+
+  .intro-content {
+    padding: 0 20px;
   }
 
   .intro-highlight {

@@ -79,8 +79,7 @@
   z-index: 2;
   max-width: 1320px;
   margin: 0 auto 48px;
-  padding: 0 20px 0 20px;
-  /* match navbar hamburger left edge */
+  padding: 0 64px;
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -1017,7 +1016,7 @@
   }
 
   .projects-header-wrapper {
-    padding: 0 24px;
+    padding: 0 32px;
   }
 }
 
