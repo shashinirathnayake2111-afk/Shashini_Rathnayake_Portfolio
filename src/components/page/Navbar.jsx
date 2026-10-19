@@ -208,11 +208,18 @@ const Navbar = ({ isLoaded, onContactClick, isInHero }) => {
           </div>
         </div>
 
-        {/* Scrolled Pill — visible when outside hero, hides after 2 mins idle */}
-        <div className={`nav-pill ${(isInHero || !isPillVisible) ? 'nav-pill-hidden' : ''}`}
-          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-          <div className="status-dot"></div>
+        {/* Scrolled Pill — visible when outside hero, hides after inactivity */}
+        <div
+          className={`nav-pill ${(isInHero || !isPillVisible) ? 'nav-pill-hidden' : ''}`}
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          title="Back to top"
+        >
+          <div className="status-dot-wrap">
+            <span className="status-dot" />
+            <span className="status-dot-pulse" />
+          </div>
           <span className="status-text">AVAILABLE FOR WORK</span>
+          <span className="pill-arrow" aria-hidden="true">↑</span>
         </div>
       </nav>
 
