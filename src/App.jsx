@@ -197,9 +197,7 @@ function App() {
                 {/* ProjectsSection — has its own per-row entrance animations */}
                 <ProjectsSection />
 
-                <SectionReveal>
-                  <Footer onContactClick={() => setIsContactOpen(true)} />
-                </SectionReveal>
+                <Footer onContactClick={() => setIsContactOpen(true)} />
               </div>
             </motion.div>
           } />

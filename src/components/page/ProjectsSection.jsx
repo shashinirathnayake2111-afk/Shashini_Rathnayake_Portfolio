@@ -7,6 +7,7 @@ import LomieesImg from '../../assets/projects/lomiees.png';
 import ForgeImg from '../../assets/projects/forge.png';
 import RecoverImg from '../../assets/projects/recover.png';
 import FinanceImg from '../../assets/projects/finance_tracker.jpg';
+import BeanImg from '../../assets/projects/beancafe.png';
 
 const projectData = [
   {
@@ -51,7 +52,7 @@ const projectData = [
     category: "UI/UX",
     type: "mobile",
     tag: "UI/UX Design",
-    image: SahayaImg,
+    image:  BeanImg,
     summary: "Sustainable shopping app with verified eco-friendly brands and personal carbon footprint tracking.",
     links: {
       figma: "https://www.figma.com/proto/HujoDsKjzLU9OnmLvM8Cg2/Bean-Cafe?node-id=263-341&page-id=0%3A1&starting-point-node-id=263%3A341&t=H5vXhY8L9dUHxZPw-1"
@@ -66,9 +67,9 @@ const projectData = [
   {
     id: 4,
     title: "ForgeX Fitness",
-    category: "Full Stack",
+    category: "Full Stack / UI/UX",
     type: "web",
-    tag: "Full Stack",
+    tag: "Full Stack / UI/UX",
     image: ForgeImg,
     summary: "A modern fitness platform with workout tracking, coach diet plans, and live gym traffic monitoring.",
     links: {
@@ -107,8 +108,8 @@ const projectData = [
 
 const FILTERS = [
   { key: 'all', label: 'All Works' },
-  { key: 'UI/UX', label: 'UI / UX' },
-  { key: 'Full Stack', label: 'Full Stack' },
+  { key: 'UI/UX', label: 'UI / UX Designs' },
+  { key: 'Full Stack', label: 'Full Stack Development' },
 ];
 
 /* ── GitHubIcon ── */

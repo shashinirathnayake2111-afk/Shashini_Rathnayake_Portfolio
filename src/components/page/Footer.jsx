@@ -43,10 +43,11 @@ const Footer = ({ onContactClick }) => {
     <footer className="footer-section">
 
       <div className="footer-wave" aria-hidden="true">
-        <svg viewBox="0 0 1440 90" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <svg viewBox="0 0 1440 110" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          {/* Dark wave shape — only paints the dark portion; cream footer bg shows below */}
           <path
-            d="M0,45 C240,90 480,0 720,45 C960,90 1200,10 1440,45 L1440,0 L0,0 Z"
-            fill="#050505"
+            d="M0,0 L1440,0 L1440,65 C1200,30 960,95 720,60 C480,25 240,90 0,55 Z"
+            fill="#04060a"
           />
         </svg>
       </div>
