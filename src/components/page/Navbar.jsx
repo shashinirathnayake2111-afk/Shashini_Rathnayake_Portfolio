@@ -20,7 +20,7 @@ const Navbar = ({ isLoaded, onContactClick, isInHero }) => {
 
   const isHoveredRef = useRef(false);
   const lastMousePosRef = useRef({ x: 0, y: 0 });
-  const INACTIVITY_DELAY = 2000; 
+  const INACTIVITY_DELAY = 2000;
 
   useEffect(() => {
     if (isInHero) {
@@ -88,6 +88,25 @@ const Navbar = ({ isLoaded, onContactClick, isInHero }) => {
   const toggleTheme = () => {
     setIsDarkMode(!isDarkMode);
   };
+
+  // Lock body scroll and handle Escape key when full-screen menu is open
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+      const handleKeyDown = (e) => {
+        if (e.key === 'Escape') {
+          setIsMenuOpen(false);
+        }
+      };
+      window.addEventListener('keydown', handleKeyDown);
+      return () => {
+        document.body.style.overflow = '';
+        window.removeEventListener('keydown', handleKeyDown);
+      };
+    } else {
+      document.body.style.overflow = '';
+    }
+  }, [isMenuOpen]);
 
   const handleLogoClick = (e) => {
     if (e) e.preventDefault();
@@ -230,47 +249,147 @@ const Navbar = ({ isLoaded, onContactClick, isInHero }) => {
         <div className="hamburger-line"></div>
       </button>
 
-      {/* Backdrop */}
+      {/* Full-Screen Awwwards Overlay Menu */}
       <div
-        className={`nav-overlay-backdrop ${isMenuOpen ? 'open' : ''}`}
-        onClick={() => setIsMenuOpen(false)}
-      />
+        className={`nav-fullscreen-overlay ${isMenuOpen ? 'open' : ''}`}
+        aria-hidden={!isMenuOpen}
+      >
+        {/* Ambient Gold Glow & Background Depth */}
+        <div className="overlay-ambient-glow" />
+        <div className="overlay-mesh-lines" />
 
-      {/* Left Slide-in Drawer Menu */}
-      <div className={`nav-overlay-menu ${isMenuOpen ? 'open' : ''}`}>
-        <button className="menu-close-btn" onClick={() => setIsMenuOpen(false)}>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <line x1="18" y1="6" x2="6" y2="18"></line>
-            <line x1="6" y1="6" x2="18" y2="18"></line>
-          </svg>
-        </button>
+        <div className="overlay-inner-wrapper">
+          {/* Header Bar */}
+          <div className="overlay-header">
+            <Link to="/" className="overlay-header-logo" onClick={handleLogoClick}>
+              <span className="logo-text">Shashini Rathnayake</span>
+              <span className="nav-dot">.</span>
+            </Link>
 
-        <div className="overlay-content">
-          <Link to="/" className="overlay-logo" onClick={handleLogoClick}>
-            Shashini<span className="nav-dot">.</span>
-          </Link>
-          <ul className="overlay-links">
-            <li><Link to="/about" className={location.pathname === '/about' ? 'active' : ''} onClick={() => setIsMenuOpen(false)}>About</Link></li>
-            <li><Link to="/skills" className={location.pathname === '/skills' ? 'active' : ''} onClick={() => setIsMenuOpen(false)}>Skills</Link></li>
-            <li><Link to="/experience" className={location.pathname === '/experience' ? 'active' : ''} onClick={() => setIsMenuOpen(false)}>Experience</Link></li>
-            <li><a href="#projects" onClick={(e) => handleScrollToSection(e, 'projects')}>Projects</a></li>
-          </ul>
-        </div>
+            <button
+              className="menu-close-btn"
+              onClick={() => setIsMenuOpen(false)}
+              aria-label="Close Navigation Menu"
+            >
+              <span className="close-icon-circle">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+              </span>
+            </button>
+          </div>
 
-        <div className="overlay-bottom">
-          <a
-            href="/resume.pdf"
-            download="Shashini_Rathnayake_CV.pdf"
-            className="overlay-cv-btn"
-            onClick={() => setIsMenuOpen(false)}
-          >
-            <span>Download CV</span>
-            <span className="overlay-btn-arrow">↓</span>
-          </a>
-          <button className="overlay-cta" onClick={() => { setIsMenuOpen(false); onContactClick(); }}>
-            <span>Let's talk</span>
-            <span className="overlay-btn-arrow">↗</span>
-          </button>
+          {/* Main Layout: Navigation + Secondary Information */}
+          <div className="overlay-body">
+            <div className="overlay-nav-section">
+              <span className="overlay-subheading">// NAVIGATION</span>
+              <ul className="overlay-menu-links">
+                <li className="overlay-menu-item">
+                  <Link
+                    to="/about"
+                    className={`overlay-link ${location.pathname === '/about' ? 'active' : ''}`}
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    <span className="link-number">01.</span>
+                    <span className="link-text">About</span>
+                    <span className="link-hover-arrow">→</span>
+                  </Link>
+                </li>
+                <li className="overlay-menu-item">
+                  <Link
+                    to="/skills"
+                    className={`overlay-link ${location.pathname === '/skills' ? 'active' : ''}`}
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    <span className="link-number">02.</span>
+                    <span className="link-text">Skills</span>
+                    <span className="link-hover-arrow">→</span>
+                  </Link>
+                </li>
+                <li className="overlay-menu-item">
+                  <Link
+                    to="/experience"
+                    className={`overlay-link ${location.pathname === '/experience' ? 'active' : ''}`}
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    <span className="link-number">03.</span>
+                    <span className="link-text">Experience</span>
+                    <span className="link-hover-arrow">→</span>
+                  </Link>
+                </li>
+                <li className="overlay-menu-item">
+                  <a
+                    href="#projects"
+                    className="overlay-link"
+                    onClick={(e) => handleScrollToSection(e, 'projects')}
+                  >
+                    <span className="link-number">04.</span>
+                    <span className="link-text">Projects</span>
+                    <span className="link-hover-arrow">→</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            {/* Right / Secondary Info column for luxury depth */}
+            <div className="overlay-details-section">
+              <div className="overlay-detail-card">
+                <span className="detail-tag">// STATUS</span>
+                <div className="detail-status">
+                  <span className="status-gold-dot" />
+                  <span>Available for Full-time Roles &amp; Freelance</span>
+                </div>
+              </div>
+
+              <div className="overlay-detail-card">
+                <span className="detail-tag">// LOCATION</span>
+                <p className="detail-text">Colombo, Sri Lanka <span className="detail-meta">(UTC+5:30)</span></p>
+              </div>
+
+              <div className="overlay-detail-card">
+                <span className="detail-tag">// DIRECT INQUIRY</span>
+                <a href="mailto:shashinirathnayake2111@gmail.com" className="detail-email">
+                  shashinirathnayake2111@gmail.com
+                </a>
+              </div>
+
+              <div className="overlay-detail-card">
+                <span className="detail-tag">// SOCIAL ARCHIVE</span>
+                <div className="overlay-social-links">
+                  <a href="https://linkedin.com/in/shashini-rathnayake" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+                  <a href="https://github.com/shashini-rathnayake" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+                  <a href="https://www.behance.net/shashinimalsha" target="_blank" rel="noopener noreferrer">Behance ↗</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Bottom Bar: Action CTAs & Luxury Signature */}
+          <div className="overlay-footer">
+            <div className="overlay-action-buttons">
+              <a
+                href="/resume.pdf"
+                download="Shashini_Rathnayake_CV.pdf"
+                className="overlay-cv-btn"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                <span>Download CV</span>
+                <span className="overlay-btn-arrow">↓</span>
+              </a>
+              <button
+                className="overlay-cta"
+                onClick={() => { setIsMenuOpen(false); onContactClick(); }}
+              >
+                <span>Let's talk</span>
+                <span className="overlay-btn-arrow">↗</span>
+              </button>
+            </div>
+
+            <div className="overlay-footer-note">
+              <span>© {new Date().getFullYear()} SHASHINI RATHNAYAKE • ALL RIGHTS RESERVED</span>
+            </div>
+          </div>
         </div>
       </div>
     </>
