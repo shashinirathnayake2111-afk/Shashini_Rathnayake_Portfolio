@@ -43,6 +43,7 @@ const SectionReveal = ({ children, style }) => (
 function App() {
   const alreadyLoaded = sessionStorage.getItem(HAS_LOADED_KEY) === 'true'
   const [isLoading, setIsLoading] = useState(!alreadyLoaded)
+  const [isHomeRevealed, setIsHomeRevealed] = useState(alreadyLoaded)
   const [isInHero, setIsInHero] = useState(true)
   const [isContactOpen, setIsContactOpen] = useState(false)
   const location = useLocation()
@@ -81,8 +82,6 @@ function App() {
       '0 0px 0px rgba(0, 0, 0, 0)'
     ]
   )
-
-
 
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -144,6 +143,10 @@ function App() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [location.pathname])
 
+  const handleReveal = () => {
+    setIsHomeRevealed(true)
+  }
+
   const handleLoadingComplete = () => {
     sessionStorage.setItem(HAS_LOADED_KEY, 'true')
     setIsLoading(false)
@@ -152,8 +155,8 @@ function App() {
   return (
     <div className="app-container">
       <CustomCursor />
-      {isLoading && <LoadingScreen onComplete={handleLoadingComplete} />}
-      <Navbar isLoaded={!isLoading} onContactClick={() => setIsContactOpen(true)} isInHero={isInHero} />
+      {isLoading && <LoadingScreen onReveal={handleReveal} onComplete={handleLoadingComplete} />}
+      <Navbar isLoaded={isHomeRevealed} onContactClick={() => setIsContactOpen(true)} isInHero={isInHero} />
 
       <AnimatePresence mode="wait">
         <Routes location={location} key={location.pathname}>
@@ -165,7 +168,7 @@ function App() {
               transition={{ duration: 0.35, ease: 'easeInOut' }}
               className="home-scroll-container"
             >
-              <SocialSidebar isLoaded={!isLoading} isVisible={isInHero} />
+              <SocialSidebar isLoaded={isHomeRevealed} isVisible={isInHero} />
 
               {/* Fixed Hero Stage — stays behind during initial scroll, fades with depth */}
               <motion.div
@@ -178,7 +181,7 @@ function App() {
                   pointerEvents: heroPointerEvents,
                 }}
               >
-                <HeroSection isLoaded={!isLoading} />
+                <HeroSection isLoaded={isHomeRevealed} />
               </motion.div>
 
               {/* Elevated Intro Curtain — rises directly over Hero with curved glowing top, then docks */}

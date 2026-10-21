@@ -3,9 +3,10 @@ import '../styles/LoadingScreen.css';
 
 const TOTAL_DURATION = 2800;
 
-const LoadingScreen = ({ onComplete }) => {
+const LoadingScreen = ({ onReveal, onComplete }) => {
   const [progress, setProgress] = useState(0);
-  const [isHidden, setIsHidden] = useState(false);
+  const [isExiting, setIsExiting] = useState(false);
+  const [isComplete, setIsComplete] = useState(false);
 
   useEffect(() => {
     const startTime = performance.now();
@@ -25,16 +26,23 @@ const LoadingScreen = ({ onComplete }) => {
       if (t < 1) {
         animId = requestAnimationFrame(tick);
       } else {
-        setTimeout(() => setIsHidden(true), 400);
+        setIsComplete(true);
+        // Start curtain lift reveal and trigger Home entrance simultaneously
+        setTimeout(() => {
+          setIsExiting(true);
+          if (typeof onReveal === 'function') onReveal();
+        }, 300);
+
+        // Remove loading overlay once curtain has fully lifted out of view
         setTimeout(() => {
           if (typeof onComplete === 'function') onComplete();
-        }, 1150);
+        }, 1250);
       }
     };
 
     animId = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(animId);
-  }, [onComplete]);
+  }, [onReveal, onComplete]);
 
   const getStatusText = (val) => {
     if (val < 25) return "INITIALIZING CREATIVE SYSTEM";
@@ -44,7 +52,9 @@ const LoadingScreen = ({ onComplete }) => {
   };
 
   return (
-    <div className={`loading-container ${isHidden ? 'hidden' : ''}`}>
+    <div className={`loading-container ${isExiting ? 'curtain-lift' : ''} ${isComplete ? 'is-complete' : ''}`}>
+      {/* ── Radiant Curtain Edge Beam ── */}
+      <div className="lc-curtain-beam" aria-hidden="true" />
       {/* ── Ambient Background Glows ── */}
       <div className="lc-glow-mesh" aria-hidden="true" />
       <div className="lc-center-glow" aria-hidden="true" />

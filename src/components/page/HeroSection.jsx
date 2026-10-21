@@ -112,7 +112,7 @@ const HeroSection = ({ isLoaded }) => {
           filter: useTransform(profileBlur, (v) => `blur(${v}px)`),
         }}
       >
-        <div className={mounted ? 'hero-profile-enter' : ''}>
+        <div className={mounted ? 'hero-profile-enter' : 'hero-profile-initial'}>
           <div className="hero-profile-3d">
             <img src={profileImg} alt="Profile" className="hero-profile-img" />
             <div className="hero-profile-shadow" />
