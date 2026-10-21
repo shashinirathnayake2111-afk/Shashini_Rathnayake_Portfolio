@@ -1,90 +1,157 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/LoadingScreen.css';
 
-const MIN_DURATION = 1500;
+const TOTAL_DURATION = 2800;
 
 const LoadingScreen = ({ onComplete }) => {
   const [progress, setProgress] = useState(0);
   const [isHidden, setIsHidden] = useState(false);
 
   useEffect(() => {
-    const startTime = Date.now();
+    const startTime = performance.now();
+    let animId;
 
-    const interval = setInterval(() => {
-      setProgress((prev) => {
-        const elapsed = Date.now() - startTime;
+    const tick = (now) => {
+      const elapsed = now - startTime;
+      const t = Math.min(elapsed / TOTAL_DURATION, 1);
 
-        if (elapsed >= MIN_DURATION) {
-          clearInterval(interval);
-          setTimeout(() => setIsHidden(true), 300);
-          setTimeout(() => onComplete(), 1100);
-          return 100;
-        }
+      const eased = t < 0.65
+        ? (t / 0.65) * 0.78
+        : 0.78 + Math.pow((t - 0.65) / 0.35, 1.2) * 0.22;
 
-        // Cap growth so progress can't reach 100 before MIN_DURATION elapses
-        const timeCap = Math.floor((elapsed / MIN_DURATION) * 99);
-        const jump = Math.floor(Math.random() * 10) + 3;
-        return Math.min(prev + jump, timeCap, 99);
-      });
-    }, 90);
+      const current = Math.min(Math.round(eased * 100), 100);
+      setProgress(current);
 
-    return () => clearInterval(interval);
+      if (t < 1) {
+        animId = requestAnimationFrame(tick);
+      } else {
+        setTimeout(() => setIsHidden(true), 400);
+        setTimeout(() => {
+          if (typeof onComplete === 'function') onComplete();
+        }, 1150);
+      }
+    };
+
+    animId = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(animId);
   }, [onComplete]);
+
+  const getStatusText = (val) => {
+    if (val < 25) return "INITIALIZING CREATIVE SYSTEM";
+    if (val < 58) return "COMPILING FULL STACK ARCHITECTURE";
+    if (val < 90) return "CRAFTING UI / UX EXPERIENCES";
+    return "SYSTEM READY // WELCOME";
+  };
 
   return (
     <div className={`loading-container ${isHidden ? 'hidden' : ''}`}>
+      {/* ── Ambient Background Glows ── */}
+      <div className="lc-glow-mesh" aria-hidden="true" />
+      <div className="lc-center-glow" aria-hidden="true" />
 
-      {/* ── Awwwards corner labels ── */}
+      {/* ── Awwwards Corner Labels ── */}
       <div className="lc-corner lc-top-left">
-        <span className="lc-corner-sub">PORTFOLIO</span>
+        <div className="lc-status-pill">
+          <span className="lc-corner-sub">PORTFOLIO</span>
+        </div>
       </div>
+
       <div className="lc-corner lc-top-right">
-        <span className="lc-initials">SR</span>
+        <div className="lc-monogram-box">
+          <span className="lc-initials">SR</span>
+        </div>
       </div>
+
       <div className="lc-corner lc-bottom-left">
         <span className="lc-year">2026</span>
       </div>
 
-      <div className="loading-laptop-wrap">
-        <svg
-          viewBox="0 0 240 170"
-          className="loading-laptop-svg"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          {/* screen outline */}
-          <rect
-            className="draw-el screen-rect"
-            x="40" y="14" width="160" height="104" rx="8"
-            fill="none" stroke="#e9dfc7" strokeWidth="3"
-            style={{ '--len': 560, animationDelay: '0.05s' }}
-          />
-          {/* code lines, drawn one after another */}
-          <line className="draw-el" x1="56" y1="37" x2="126" y2="37" stroke="#e9dfc7" strokeWidth="5" strokeLinecap="round" style={{ '--len': 70, animationDelay: '0.4s' }} />
-          <line className="draw-el" x1="56" y1="51" x2="156" y2="51" stroke="#f5efe0" strokeWidth="5" strokeLinecap="round" opacity="0.75" style={{ '--len': 100, animationDelay: '0.47s' }} />
-          <line className="draw-el" x1="56" y1="65" x2="111" y2="65" stroke="#e9dfc7" strokeWidth="5" strokeLinecap="round" opacity="0.85" style={{ '--len': 55, animationDelay: '0.53s' }} />
-          <line className="draw-el" x1="56" y1="79" x2="141" y2="79" stroke="#f5efe0" strokeWidth="5" strokeLinecap="round" opacity="0.6" style={{ '--len': 85, animationDelay: '0.6s' }} />
-          <line className="draw-el" x1="56" y1="93" x2="96" y2="93" stroke="#e9dfc7" strokeWidth="5" strokeLinecap="round" opacity="0.75" style={{ '--len': 40, animationDelay: '0.67s' }} />
-          {/* base outline */}
-          <path
-            className="draw-el base-path"
-            d="M20 132 L220 132 L204 158 L36 158 Z"
-            fill="none" stroke="#e9dfc7" strokeWidth="3" strokeLinejoin="round"
-            style={{ '--len': 430, animationDelay: '0.76s' }}
-          />
-          {/* trackpad outline */}
-          <rect
-            className="draw-el"
-            x="104" y="140" width="32" height="10" rx="3"
-            fill="none" stroke="#e9dfc7" strokeWidth="1.5" opacity="0.5"
-            style={{ '--len': 84, animationDelay: '1.02s' }}
-          />
-        </svg>
+      {/* ── Main Centerpiece ── */}
+      <div className="lc-main-stage">
+        <div className="loading-laptop-wrap">
+          <div className="laptop-ambient-light" />
+          <svg
+            viewBox="0 0 240 170"
+            className="loading-laptop-svg"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <defs>
+              <linearGradient id="screenBgGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stopColor="#1a1612" stopOpacity="0.8" />
+                <stop offset="100%" stopColor="#0d0a08" stopOpacity="0.95" />
+              </linearGradient>
+              <linearGradient id="codeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="#d4a373" />
+                <stop offset="100%" stopColor="#e9dfc7" />
+              </linearGradient>
+            </defs>
+
+            {/* Screen inner glow panel */}
+            <rect
+              x="42" y="16" width="156" height="100" rx="6"
+              fill="url(#screenBgGrad)"
+            />
+
+            {/* Screen outer border */}
+            <rect
+              className="draw-el screen-rect"
+              x="40" y="14" width="160" height="104" rx="8"
+              fill="none" stroke="#e9dfc7" strokeWidth="2.8"
+              style={{ '--len': 560, animationDelay: '0.08s' }}
+            />
+
+            {/* Top camera dot */}
+            <circle cx="120" cy="20" r="1.5" fill="#e9dfc7" opacity="0.6" />
+
+            {/* Code lines drawn sequentially */}
+            <line className="draw-el" x1="56" y1="38" x2="130" y2="38" stroke="url(#codeGrad)" strokeWidth="4.5" strokeLinecap="round" style={{ '--len': 75, animationDelay: '0.45s' }} />
+            <line className="draw-el" x1="56" y1="52" x2="160" y2="52" stroke="#f5efe0" strokeWidth="4.5" strokeLinecap="round" opacity="0.75" style={{ '--len': 105, animationDelay: '0.62s' }} />
+            <line className="draw-el" x1="56" y1="66" x2="114" y2="66" stroke="url(#codeGrad)" strokeWidth="4.5" strokeLinecap="round" opacity="0.88" style={{ '--len': 60, animationDelay: '0.8s' }} />
+            <line className="draw-el" x1="56" y1="80" x2="146" y2="80" stroke="#f5efe0" strokeWidth="4.5" strokeLinecap="round" opacity="0.65" style={{ '--len': 90, animationDelay: '0.98s' }} />
+            <line className="draw-el" x1="56" y1="94" x2="100" y2="94" stroke="url(#codeGrad)" strokeWidth="4.5" strokeLinecap="round" opacity="0.8" style={{ '--len': 45, animationDelay: '1.16s' }} />
+
+            {/* Blinking code terminal cursor */}
+            <rect
+              className="code-cursor-pulse"
+              x="106" y="91" width="6" height="7" rx="1"
+              fill="#e9dfc7"
+            />
+
+            {/* Laptop base outline */}
+            <path
+              className="draw-el base-path"
+              d="M20 132 L220 132 L204 158 L36 158 Z"
+              fill="none" stroke="#e9dfc7" strokeWidth="2.8" strokeLinejoin="round"
+              style={{ '--len': 430, animationDelay: '1.25s' }}
+            />
+
+            {/* Trackpad outline */}
+            <rect
+              className="draw-el"
+              x="104" y="140" width="32" height="10" rx="3"
+              fill="none" stroke="#e9dfc7" strokeWidth="1.5" opacity="0.6"
+              style={{ '--len': 84, animationDelay: '1.45s' }}
+            />
+          </svg>
+        </div>
+
+        {/* Name and Designation */}
+        <div className="lc-brand-title">SHASHINI RATHNAYAKE</div>
+        <div className="loading-text">{getStatusText(progress)}</div>
+
+        {/* Progress Bar with glowing follower */}
+        <div className="loading-bar-wrapper">
+          <div className="loading-bar" style={{ width: `${progress}%` }}>
+            <div className="loading-bar-flare" />
+          </div>
+        </div>
+
+        {/* Percentage Counter */}
+        <div className="loading-percentage">
+          <span className="lc-pct-num">{String(progress).padStart(3, '0')}</span>
+          <span className="lc-pct-sym">%</span>
+        </div>
       </div>
-      <div className="loading-text">Full Stack Developer & UI/UX Designer</div>
-      <div className="loading-bar-wrapper">
-        <div className="loading-bar" style={{ width: `${progress}%` }}></div>
-      </div>
-      <div className="loading-percentage">{progress}%</div>
     </div>
   );
 };

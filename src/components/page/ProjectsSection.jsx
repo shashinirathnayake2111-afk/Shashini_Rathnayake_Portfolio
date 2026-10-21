@@ -14,6 +14,7 @@ const projectData = [
     id: 1,
     title: "Recover.lk",
     category: "UI/UX",
+    categories: ["UI/UX"],
     type: "web",
     tag: "Healthcare UX",
     image: RecoverImg,
@@ -32,6 +33,7 @@ const projectData = [
     id: 2,
     title: "Sahaya.lk",
     category: "UI/UX",
+    categories: ["UI/UX"],
     type: "mobile",
     tag: "Mobile App",
     image: SahayaImg,
@@ -50,6 +52,7 @@ const projectData = [
     id: 3,
     title: "Bean Cafe",
     category: "UI/UX",
+    categories: ["UI/UX"],
     type: "mobile",
     tag: "UI/UX Design",
     image:  BeanImg,
@@ -68,6 +71,7 @@ const projectData = [
     id: 4,
     title: "ForgeX Fitness",
     category: "Full Stack / UI/UX",
+    categories: ["Full Stack", "UI/UX"],
     type: "web",
     tag: "Full Stack / UI/UX",
     image: ForgeImg,
@@ -87,9 +91,10 @@ const projectData = [
   {
     id: 5,
     title: "Lomiees Store",
-    category: "Full Stack",
+    category: "Full Stack / UI/UX",
+    categories: ["Full Stack", "UI/UX"],
     type: "web",
-    tag: "E-Commerce",
+    tag: "E-Commerce / UI/UX",
     image: LomieesImg,
     summary: "Modern clothing e-commerce store with smooth catalog browsing, cart flows, and branded checkout.",
     links: {
@@ -101,7 +106,7 @@ const projectData = [
       problem: "Lomiees required a modern e-commerce platform to sell clothing online. The platform needed to be user-friendly, visually appealing, and easy to manage.",
       solution: "Developed a fully responsive e-commerce website with product browsing, cart management, and a seamless checkout experience tailored to the Lomiees brand identity.",
       challenges: "Optimizing product image loading times and creating a fluid, distraction-free checkout flow to maximize conversion rates.",
-      techStack: ["React", "Tailwind CSS", "Node.js", "Figma"]
+      techStack: ["React", "Tailwind CSS", "Node.js", "Figma", "UI/UX"]
     }
   }
 ];
@@ -329,9 +334,13 @@ const ProjectsSection = () => {
   const lastWheelTimeRef = useRef(0);
   const currentDragOffsetRef = useRef(0);
 
-  const filtered = projectData.filter(p =>
-    filter === 'all' ? true : p.category === filter
-  );
+  const filtered = projectData.filter(p => {
+    if (filter === 'all') return true;
+    if (p.categories && Array.isArray(p.categories)) {
+      return p.categories.includes(filter);
+    }
+    return p.category === filter || (typeof p.category === 'string' && p.category.includes(filter));
+  });
 
   const handleFilter = (key) => { setFilter(key); setActiveIdx(0); setDirection(SLIDE_DIR.NONE); };
 
@@ -481,16 +490,24 @@ const ProjectsSection = () => {
 
         {/* ── Filter Tabs ── */}
         <div className="projects-filter-bar">
-          {FILTERS.map(f => (
-            <button
-              key={f.key}
-              className={`filter-btn ${filter === f.key ? 'active' : ''}`}
-              onClick={() => handleFilter(f.key)}
-            >
-              {f.label}
-              <span>({f.key === 'all' ? projectData.length : projectData.filter(p => p.category === f.key).length})</span>
-            </button>
-          ))}
+          {FILTERS.map(f => {
+            const count = f.key === 'all'
+              ? projectData.length
+              : projectData.filter(p =>
+                  p.categories ? p.categories.includes(f.key) : (p.category === f.key || (typeof p.category === 'string' && p.category.includes(f.key)))
+                ).length;
+
+            return (
+              <button
+                key={f.key}
+                className={`filter-btn ${filter === f.key ? 'active' : ''}`}
+                onClick={() => handleFilter(f.key)}
+              >
+                {f.label}
+                <span>({count})</span>
+              </button>
+            );
+          })}
         </div>
       </div>
 

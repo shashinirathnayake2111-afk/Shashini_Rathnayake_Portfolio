@@ -1,5 +1,3 @@
-/* Fonts loaded globally via index.html */
-
 .loading-container {
   position: fixed;
   top: 0;
@@ -7,35 +5,88 @@
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  background: radial-gradient(ellipse at 50% 40%, #171310 0%, #0a0806 45%, #000000 100%);
+  background: radial-gradient(ellipse at 50% 40%, #15110d 0%, #0a0806 50%, #000000 100%);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   z-index: 9999;
-  transition: opacity 0.8s ease-out, visibility 0.8s ease-out;
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.85s ease;
+  user-select: none;
 }
 
 .loading-container.hidden {
   opacity: 0;
+  transform: scale(1.025);
   visibility: hidden;
+  pointer-events: none;
+}
+
+/* Ambient glow mesh in background */
+.lc-glow-mesh {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(233, 223, 199, 0.07) 0%, rgba(212, 163, 115, 0.03) 40%, transparent 70%);
+  filter: blur(50px);
+  pointer-events: none;
+  animation: lc-pulse 3s ease-in-out infinite alternate;
+}
+
+@keyframes lc-pulse {
+  0% {
+    opacity: 0.6;
+    transform: translate(-50%, -50%) scale(0.95);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.08);
+  }
+}
+
+/* Main stage */
+.lc-main-stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
 }
 
 .loading-laptop-wrap {
-  width: clamp(220px, 30vw, 340px);
-  margin-bottom: 1.8rem;
+  width: clamp(230px, 28vw, 350px);
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.laptop-ambient-light {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 140%;
+  height: 90%;
+  background: radial-gradient(ellipse, rgba(233, 223, 199, 0.12) 0%, rgba(233, 223, 199, 0) 70%);
+  pointer-events: none;
+  filter: blur(25px);
 }
 
 .loading-laptop-svg {
   width: 100%;
   display: block;
   overflow: visible;
+  filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.6));
 }
 
 .draw-el {
   stroke-dasharray: var(--len);
   stroke-dashoffset: var(--len);
-  animation: draw-line 0.38s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+  animation: draw-line 0.45s cubic-bezier(0.65, 0, 0.35, 1) forwards;
 }
 
 @keyframes draw-line {
@@ -44,43 +95,106 @@
   }
 }
 
+.code-cursor-pulse {
+  animation: blink-cursor 0.75s infinite steps(2, start);
+  opacity: 0;
+  animation-delay: 1.4s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes blink-cursor {
+
+  0%,
+  100% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 0.9;
+  }
+}
+
+/* Brand Title & Subtitle */
+.lc-brand-title {
+  font-family: 'Cinzel', 'Playfair Display', serif;
+  font-size: clamp(0.95rem, 2vw, 1.25rem);
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  color: #f5efe0;
+  margin-bottom: 0.55rem;
+  text-transform: uppercase;
+  text-align: center;
+  text-shadow: 0 2px 14px rgba(233, 223, 199, 0.22);
+}
+
 .loading-text {
-  font-family: 'Chakra Petch', sans-serif;
-  font-size: clamp(0.65rem, 1.4vw, 0.9rem);
+  font-family: 'Chakra Petch', 'Orbitron', sans-serif;
+  font-size: clamp(0.68rem, 1.2vw, 0.78rem);
   font-weight: 500;
   color: rgba(240, 230, 210, 0.55);
-  letter-spacing: 0.28em;
-  margin-bottom: 1.6rem;
+  letter-spacing: 0.24em;
+  margin-bottom: 1.5rem;
   text-transform: uppercase;
   text-align: center;
   white-space: nowrap;
+  min-height: 1.2em;
+  transition: color 0.3s ease;
 }
 
+/* Progress bar */
 .loading-bar-wrapper {
-  width: 260px;
-  height: 5px;
-  background-color: rgba(233, 223, 199, 0.12);
-  border-radius: 10px;
+  width: clamp(240px, 32vw, 320px);
+  height: 4px;
+  background-color: rgba(233, 223, 199, 0.1);
+  border-radius: 999px;
   overflow: hidden;
   position: relative;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.8), inset 0 1px 2px rgba(0, 0, 0, 0.4);
 }
 
 .loading-bar {
   height: 100%;
   width: 0%;
-  background: linear-gradient(90deg, #e9dfc7, #f5efe0);
-  border-radius: 10px;
-  transition: width 0.1s ease;
+  background: linear-gradient(90deg, #bfa075 0%, #e9dfc7 60%, #fff 100%);
+  border-radius: 999px;
+  position: relative;
+  box-shadow: 0 0 14px rgba(233, 223, 199, 0.65);
+  transition: width 0.08s linear;
 }
 
+.loading-bar-flare {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #ffffff 30%, rgba(233, 223, 199, 0.8) 70%, transparent 100%);
+  box-shadow: 0 0 10px #ffffff;
+}
+
+/* Percentage Display */
 .loading-percentage {
-  font-family: 'Chakra Petch', sans-serif;
-  font-size: 1rem;
-  color: rgba(240, 230, 210, 0.7);
-  margin-top: 1rem;
-  font-weight: 600;
-  letter-spacing: 0.1rem;
+  font-family: 'Chakra Petch', 'Orbitron', monospace, sans-serif;
+  margin-top: 1.1rem;
+  display: flex;
+  align-items: baseline;
+  gap: 2px;
+}
+
+.lc-pct-num {
+  font-size: clamp(1.2rem, 2.2vw, 1.5rem);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: #f5efe0;
+  text-shadow: 0 0 16px rgba(233, 223, 199, 0.35);
+}
+
+.lc-pct-sym {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: rgba(240, 230, 210, 0.5);
 }
 
 /* ── Awwwards corner labels ─────────────────────────────── */
@@ -90,76 +204,123 @@
   display: flex;
   flex-direction: column;
   opacity: 0;
-  animation: lc-fade-in 0.7s ease forwards;
+  animation: lc-fade-in 0.8s ease forwards;
+  z-index: 3;
 }
 
 @keyframes lc-fade-in {
-  to { opacity: 1; }
+  to {
+    opacity: 1;
+  }
 }
 
-/* top-left: thin horizontal rule + "PORTFOLIO" */
+/* top-left: Status Pill */
 .lc-top-left {
-  top: 2rem;
-  left: 2.2rem;
-  gap: 6px;
+  top: 2.2rem;
+  left: 2.5rem;
   animation-delay: 0.2s;
 }
 
-.lc-corner-line {
-  display: block;
-  width: 36px;
-  height: 1px;
-  background: rgba(240, 230, 210, 0.28);
+.lc-status-pill {
+  display: inline-flex;
+  align-items: center;
+  backdrop-filter: blur(8px);
+}
+
+@keyframes lc-beacon {
+
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.4;
+    transform: scale(0.85);
+  }
 }
 
 .lc-corner-sub {
   font-family: 'Chakra Petch', sans-serif;
-  font-size: 0.62rem;
+  font-size: 0.64rem;
   font-weight: 500;
-  letter-spacing: 0.22em;
-  color: rgba(240, 230, 210, 0.38);
+  letter-spacing: 0.2em;
+  color: rgba(240, 230, 210, 0.55);
   text-transform: uppercase;
 }
 
-/* top-right: "SR" bold initials */
+/* top-right: "SR" Monogram badge */
 .lc-top-right {
-  top: 1.8rem;
-  right: 2.2rem;
+  top: 2rem;
+  right: 2.5rem;
   align-items: flex-end;
+  gap: 4px;
   animation-delay: 0.3s;
+}
+
+.lc-monogram-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .lc-initials {
   font-family: 'Orbitron', 'Chakra Petch', sans-serif;
-  font-size: 1.5rem;
+  font-size: 1.1rem;
   font-weight: 700;
-  letter-spacing: 0.1em;
-  color: rgba(240, 230, 210, 0.82);
+  letter-spacing: 0.12em;
+  color: #f5efe0;
   line-height: 1;
 }
 
-/* bottom-left: large year */
+.lc-sub-id {
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 0.58rem;
+  letter-spacing: 0.22em;
+  color: rgba(240, 230, 210, 0.35);
+}
+
+/* bottom-left: location coordinates */
 .lc-bottom-left {
-  bottom: 2rem;
-  left: 2.2rem;
+  bottom: 2.2rem;
+  left: 2.5rem;
+  gap: 4px;
   animation-delay: 0.4s;
 }
 
 .lc-year {
   font-family: 'Orbitron', 'Chakra Petch', sans-serif;
-  font-size: clamp(1rem, 2vw, 1.3rem);
+  font-size: 0.95rem;
   font-weight: 600;
-  letter-spacing: 0.18em;
-  color: rgba(240, 230, 210, 0.32);
+  letter-spacing: 0.14em;
+  color: rgba(240, 230, 210, 0.7);
   line-height: 1;
 }
 
-/* bottom-right: full name tag */
+.lc-coords {
+  font-family: 'Chakra Petch', monospace, sans-serif;
+  font-size: 0.62rem;
+  letter-spacing: 0.16em;
+  color: rgba(240, 230, 210, 0.32);
+}
+
+/* bottom-right: Designer / Fullstack Tag */
 .lc-bottom-right {
-  bottom: 2rem;
-  right: 2.2rem;
+  bottom: 2.2rem;
+  right: 2.5rem;
   align-items: flex-end;
+  gap: 3px;
   animation-delay: 0.5s;
+}
+
+.lc-designer-title {
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: rgba(240, 230, 210, 0.75);
+  text-transform: uppercase;
 }
 
 .lc-corner-tag {
@@ -167,7 +328,47 @@
   font-size: 0.6rem;
   font-weight: 500;
   letter-spacing: 0.2em;
-  color: rgba(240, 230, 210, 0.28);
+  color: rgba(240, 230, 210, 0.38);
   text-transform: uppercase;
-  white-space: nowrap;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .lc-top-left {
+    top: 1.2rem;
+    left: 1.2rem;
+  }
+
+  .lc-top-right {
+    top: 1.2rem;
+    right: 1.2rem;
+  }
+
+  .lc-bottom-left {
+    bottom: 1.2rem;
+    left: 1.2rem;
+  }
+
+  .lc-bottom-right {
+    bottom: 1.2rem;
+    right: 1.2rem;
+  }
+
+  .lc-corner-sub {
+    font-size: 0.56rem;
+  }
+
+  .loading-laptop-wrap {
+    margin-bottom: 1.4rem;
+  }
+
+  .lc-brand-title {
+    font-size: 0.9rem;
+    letter-spacing: 0.2em;
+  }
+
+  .loading-text {
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+  }
 }

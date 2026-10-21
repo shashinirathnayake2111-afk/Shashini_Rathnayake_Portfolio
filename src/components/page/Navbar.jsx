@@ -18,11 +18,9 @@ const Navbar = ({ isLoaded, onContactClick, isInHero }) => {
     }
   }, [isDarkMode]);
 
-  // Auto-hide "AVAILABLE FOR WORK" pill after 2 seconds of inactivity outside hero.
-  // Reappears immediately whenever mouse, touchpad, or scroll movement occurs.
   const isHoveredRef = useRef(false);
   const lastMousePosRef = useRef({ x: 0, y: 0 });
-  const INACTIVITY_DELAY = 2000; // 2 seconds
+  const INACTIVITY_DELAY = 2000; 
 
   useEffect(() => {
     if (isInHero) {
