@@ -144,6 +144,7 @@ function App() {
   }, [location.pathname])
 
   const handleReveal = () => {
+    sessionStorage.setItem(HAS_LOADED_KEY, 'true')
     setIsHomeRevealed(true)
   }
 

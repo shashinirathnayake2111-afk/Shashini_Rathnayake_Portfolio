@@ -6,13 +6,13 @@ import profileImg from '../../assets/profile.png';
 import bgImg from '../../assets/bg.jpg';
 
 /* Split a word into animated letter spans */
-const AnimatedWord = ({ word, baseDelay = 0, className = '' }) => (
+const AnimatedWord = ({ word, baseDelay = 0, isMounted = false, className = '' }) => (
   <span className={`animated-word ${className}`}>
     {word.split('').map((char, i) => (
       <span
         key={i}
-        className="butterfly-letter"
-        style={{ animationDelay: `${baseDelay + i * 0.06}s` }}
+        className={`butterfly-letter ${isMounted ? 'animate-butterfly' : ''}`}
+        style={{ animationDelay: isMounted ? `${baseDelay + i * 0.05}s` : '0s' }}
       >
         {char}
       </span>
@@ -51,6 +51,8 @@ const HeroSection = ({ isLoaded }) => {
     if (isLoaded) {
       const t = setTimeout(() => setMounted(true), 100);
       return () => clearTimeout(t);
+    } else {
+      setMounted(false);
     }
   }, [isLoaded]);
 
@@ -135,13 +137,9 @@ const HeroSection = ({ isLoaded }) => {
         </div>
 
         <h1 className="hero-name">
-          {mounted && (
-            <AnimatedWord word="Shashini" baseDelay={0.3} className="name-first" />
-          )}
+          <AnimatedWord word="Shashini" baseDelay={0.18} isMounted={mounted} className="name-first" />
           <br />
-          {mounted && (
-            <AnimatedWord word="Rathnayake" baseDelay={0.72} className="name-last" />
-          )}
+          <AnimatedWord word="Rathnayake" baseDelay={0.5} isMounted={mounted} className="name-last" />
         </h1>
 
         <p className={`hero-role-subtitle ${mounted ? 'visible' : ''}`}>

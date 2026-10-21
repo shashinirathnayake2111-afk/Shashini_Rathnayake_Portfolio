@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/LoadingScreen.css';
+import profileImg from '../../assets/profile.png';
+import bgImg from '../../assets/bg.jpg';
 
 const TOTAL_DURATION = 2800;
 
@@ -9,6 +11,16 @@ const LoadingScreen = ({ onReveal, onComplete }) => {
   const [isComplete, setIsComplete] = useState(false);
 
   useEffect(() => {
+    // Preload hero images and ensure font readiness
+    const img1 = new Image();
+    img1.src = profileImg;
+    const img2 = new Image();
+    img2.src = bgImg;
+
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.catch(() => {});
+    }
+
     const startTime = performance.now();
     let animId;
 
