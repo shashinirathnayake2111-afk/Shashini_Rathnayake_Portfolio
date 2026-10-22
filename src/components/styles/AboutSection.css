@@ -1,5 +1,3 @@
-/* Fonts loaded globally via index.html */
-
 .about-page-wrapper {
   position: relative;
   width: 100%;
@@ -166,36 +164,36 @@
 
 .tab-panel-about.cinematic-grid {
   display: grid;
-  grid-template-columns: 1fr 420px;
+  grid-template-columns: 1fr 380px;
   gap: 80px;
   width: 100%;
-  align-items: center;
-  margin-top: -45px;
+  align-items: start;
+  margin-top: -10px;
 }
 
 .about-left-col {
   display: flex;
   flex-direction: column;
-  gap: 25px;
-  max-width: 800px;
+  gap: 36px;
+  max-width: 720px;
   padding-left: 2%;
 }
 
 .about-right-col {
   display: flex;
   flex-direction: column;
-  gap: 25px;
+  gap: 20px;
   align-items: center;
   justify-content: flex-start;
-  padding-right: 5%;
+  padding-right: 3%;
 }
 
 /* ── Eyebrow Label (Unified with Projects & Experience) ── */
 .about-eyebrow {
   display: flex;
   align-items: center;
-  gap: 14px;
-  margin-bottom: 20px;
+  gap: 12px;
+  margin-bottom: 0;
 }
 
 .about-eyebrow-line {
@@ -209,9 +207,10 @@
   font-family: 'Chakra Petch', sans-serif;
   font-size: 0.78rem;
   letter-spacing: 0.3em;
-  color: #a07840;
+  color: #D4AF37;
   text-transform: uppercase;
   font-weight: 600;
+  text-shadow: 0 0 18px rgba(212, 175, 55, 0.3);
 }
 
 .pencilart-wrapper {
@@ -325,11 +324,12 @@
   font-family: 'Bebas Neue', 'Bebas Neue Fallback', sans-serif;
   font-size: clamp(3rem, 6.5vw, 5.5rem);
   font-weight: 400;
-  line-height: 0.95;
-  letter-spacing: 0.02em;
+  line-height: 0.92;
+  letter-spacing: 0.01em;
   color: #f2ead9;
   margin: 0 0 20px;
   text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .title-accent-gold {
@@ -338,12 +338,12 @@
 
 .about-subtitle {
   font-family: 'Poppins', sans-serif;
-  font-size: clamp(0.95rem, 1.35vw, 1.15rem);
+  font-size: clamp(0.92rem, 1.2vw, 1.08rem);
   line-height: 1.7;
-  color: rgba(242, 234, 217, 0.65);
+  color: rgba(242, 234, 217, 0.75);
   font-weight: 300;
-  margin: 0 0 24px;
-  max-width: 680px;
+  margin: 0;
+  max-width: 640px;
 }
 
 .title-stroke {
@@ -355,52 +355,47 @@
 .about-bio-block {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 16px;
 }
 
 .about-bio {
   font-family: 'Poppins', sans-serif;
-  font-size: 0.98rem;
+  font-size: 0.93rem;
   line-height: 1.8;
-  color: rgba(242, 234, 217, 0.62);
+  color: rgba(242, 234, 217, 0.70);
   margin: 0;
   font-weight: 300;
 }
 
 .about-bio-secondary {
-  font-size: 0.92rem;
-  color: rgba(242, 234, 217, 0.45);
+  font-size: 0.87rem;
+  color: rgba(242, 234, 217, 0.42);
   font-style: italic;
 }
 
 .about-quote-box {
   background: rgba(242, 234, 217, 0.03);
-  border: 1px solid rgba(242, 234, 217, 0.08);
-  border-left: 3px solid rgba(230, 201, 168, 0.4);
-  border-radius: 0 12px 12px 0;
-  padding: 16px 20px;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  transition: all 0.35s ease;
+  border-left: 2px solid rgba(212, 175, 55, 0.45);
+  padding: 14px 18px;
+  transition: border-left-color 0.3s ease;
 }
 
 .about-quote-box:hover {
-  background: rgba(242, 234, 217, 0.05);
-  border-left-color: rgba(230, 201, 168, 0.75);
+  border-left-color: rgba(212, 175, 55, 0.75);
 }
 
 .about-quote-text {
   font-family: 'Poppins', sans-serif;
-  font-size: 0.92rem;
+  font-size: 0.9rem;
   line-height: 1.75;
-  color: rgba(242, 234, 217, 0.7);
+  color: rgba(242, 234, 217, 0.62);
   margin: 0;
   font-style: italic;
   font-weight: 300;
 }
 
 .highlight-text {
-  background: linear-gradient(135deg, #E6C9A8 0%, #B48C5A 100%);
+  background: linear-gradient(135deg, #FFF0D0 0%, #D4AF37 50%, #B8860B 100%);
   background-clip: text;
   -webkit-text-fill-color: transparent;
   font-weight: 600;
@@ -410,9 +405,9 @@
 /* ── CTA Buttons ── */
 .about-actions {
   display: flex;
-  gap: 14px;
+  gap: 12px;
   flex-wrap: wrap;
-  margin-top: 4px;
+  margin-top: 0;
 }
 
 .btn-primary {
@@ -469,8 +464,113 @@
   transition: transform 0.4s ease;
 }
 
+.btn-icon {
+  font-size: 0.85rem;
+  transition: transform 0.3s ease;
+}
+
+.btn-primary:hover .btn-icon {
+  transform: translateY(2px);
+}
+
 .btn-secondary:hover .btn-arrow {
   transform: translate(2px, -2px);
+}
+
+.btn-ghost {
+  border-color: rgba(242, 234, 217, 0.15);
+  color: rgba(242, 234, 217, 0.55);
+}
+
+.btn-ghost:hover {
+  border-color: rgba(242, 234, 217, 0.4);
+  color: rgba(242, 234, 217, 0.85);
+}
+
+/* ── Eyebrow Row with Availability Chip ── */
+.about-eyebrow-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.about-availability-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 14px 5px 10px;
+  border-radius: 100px;
+  background: rgba(34, 197, 94, 0.08);
+  border: 1px solid rgba(34, 197, 94, 0.25);
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: rgba(134, 239, 172, 0.9);
+  text-transform: uppercase;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  white-space: nowrap;
+}
+
+.avail-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #4ade80;
+  box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.4);
+  animation: avail-pulse 2s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+@keyframes avail-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.5); }
+  50% { box-shadow: 0 0 0 5px rgba(74, 222, 128, 0); }
+}
+
+/* ── Tech Stack Pills ── */
+.about-tech-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.tech-stack-label {
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  color: rgba(242, 234, 217, 0.3);
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.tech-pills-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+}
+
+.tech-pill {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 400;
+  padding: 7px 16px;
+  border-radius: 4px;
+  border: 1px solid rgba(242, 234, 217, 0.12);
+  background: rgba(242, 234, 217, 0.04);
+  color: rgba(242, 234, 217, 0.55);
+  cursor: default;
+  transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+  display: inline-block;
+  letter-spacing: 0.02em;
+}
+
+.tech-pill:hover {
+  border-color: rgba(242, 234, 217, 0.3);
+  background: rgba(242, 234, 217, 0.08);
+  color: rgba(242, 234, 217, 0.85);
 }
 
 .pencil-sketch-wrapper {
@@ -568,13 +668,13 @@
 .about-bento-stats {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 14px;
+  gap: 12px;
   width: 100%;
 }
 
 .bento-stat-card {
-  background: rgba(242, 234, 217, 0.03);
-  border: 1px solid rgba(242, 234, 217, 0.1);
+  background: rgba(212, 175, 55, 0.04);
+  border: 1px solid rgba(212, 175, 55, 0.14);
   border-radius: 16px;
   padding: 20px 16px;
   display: flex;
@@ -586,17 +686,19 @@
   overflow: hidden;
   will-change: transform;
   transform-style: preserve-3d;
-  transition: border-color 0.35s ease, background 0.35s ease;
+  transition: border-color 0.35s ease, background 0.35s ease, box-shadow 0.35s ease;
 }
 
 .bento-stat-card:hover {
-  background: rgba(242, 234, 217, 0.06);
-  border-color: rgba(230, 201, 168, 0.2);
+  background: rgba(212, 175, 55, 0.08);
+  border-color: rgba(212, 175, 55, 0.35);
+  box-shadow: 0 0 30px rgba(212, 175, 55, 0.12);
 }
 
 .bento-stat-card.highlight-card {
-  border-color: rgba(230, 201, 168, 0.18);
-  background: rgba(230, 201, 168, 0.045);
+  border-color: rgba(212, 175, 55, 0.25);
+  background: rgba(212, 175, 55, 0.07);
+  box-shadow: 0 0 25px rgba(212, 175, 55, 0.1);
 }
 
 /* Animated glare layer (mouse-tracked radial) */
@@ -640,16 +742,20 @@
   font-family: 'Bebas Neue', 'Bebas Neue Fallback', sans-serif;
   font-size: clamp(2.8rem, 4vw, 3.5rem);
   line-height: 0.95;
-  color: #f2ead9;
+  background: linear-gradient(135deg, #FFF0D0 0%, #D4AF37 55%, #B8860B 100%);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
   letter-spacing: 0.02em;
-  text-shadow: 0 2px 20px rgba(230, 201, 168, 0.3);
+  filter: drop-shadow(0 0 14px rgba(212, 175, 55, 0.45));
 }
 
 .bento-stat-unit {
   font-family: 'Chakra Petch', sans-serif;
   font-size: 1.1rem;
   font-weight: 600;
-  color: rgba(230, 201, 168, 0.7);
+  background: linear-gradient(135deg, #E6C9A8 0%, #D4AF37 100%);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
   margin-left: 2px;
 }
 
@@ -658,7 +764,7 @@
   font-size: 0.72rem;
   font-weight: 600;
   letter-spacing: 0.06em;
-  color: #f2ead9;
+  color: rgba(245, 230, 211, 0.92);
   text-transform: uppercase;
   margin-top: 10px;
 }
@@ -666,7 +772,7 @@
 .bento-stat-sub {
   font-family: 'Poppins', sans-serif;
   font-size: 0.66rem;
-  color: rgba(242, 234, 217, 0.32);
+  color: rgba(212, 175, 55, 0.5);
   margin-top: 4px;
   line-height: 1.4;
   font-weight: 300;

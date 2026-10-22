@@ -251,6 +251,11 @@ const AboutPanel = () => {
     return () => observer.disconnect();
   }, []);
 
+  const techStack = [
+    'React.js', 'Next.js', 'Python', 'Flask', 'Node.js',
+    'MySQL', 'SQLite', 'Figma', 'TailwindCSS',
+  ];
+
   return (
     <motion.div
       className="tab-panel-about cinematic-grid"
@@ -263,77 +268,111 @@ const AboutPanel = () => {
       {/* ── Left Column ── */}
       <div className="about-left-col">
 
-        {/* Eyebrow label matching Projects & Experience */}
+        {/* Eyebrow */}
         <motion.div
           className="about-eyebrow"
-          initial={{ opacity: 0, x: -20 }}
+          initial={{ opacity: 0, x: -16 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.5 }}
         >
           <span className="about-eyebrow-line" />
-          <span className="about-eyebrow-text">WHO I AM &amp; BACKGROUND</span>
+          <span className="about-eyebrow-text">ABOUT ME &amp; BACKGROUND</span>
         </motion.div>
 
+        {/* Main Heading */}
         <motion.h2
           className="about-main-title"
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.1 }}
+          transition={{ duration: 0.7, delay: 0.08 }}
         >
           BRIDGING DESIGN &amp; <span className="title-accent-gold">ROBUST CODE</span>
         </motion.h2>
 
-        <motion.p
-          className="about-subtitle"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-        >
-          I build the whole thing — from interactive prototypes in Figma to scalable backend architectures that run behind them.
-        </motion.p>
-
+        {/* Bio */}
         <div className="about-bio-block">
           <StaggeredText
             className="about-bio"
-            text="I'm a full stack developer and UI/UX designer, blending aesthetics with robust engineering. I enjoy taking projects from a rough sketch in Figma to building the scalable backend architecture that powers it, delivering solutions people can actually rely on."
-            delay={0.6}
+            text="Full-Stack Developer & UI/UX Designer based in Colombo, Sri Lanka — I craft end-to-end digital products from pixel-perfect Figma prototypes to production-grade backends. My work sits at the intersection of clean code and intentional design."
+            delay={0.3}
           />
           <StaggeredText
             className="about-bio about-bio-secondary"
-            text="I genuinely love learning new things — whether it's diving into a new framework, experimenting with AI tooling, or figuring out how something works under the hood. That curiosity is what keeps my work evolving."
-            delay={1.0}
+            text="Curious by nature, driven by impact. I thrive on learning new frameworks, experimenting with AI tooling, and solving real-world problems that make a difference."
+            delay={0.55}
           />
-
-          <motion.div
-            className="about-quote-box"
-            initial={{ opacity: 0, scale: 0.94, filter: 'blur(6px)' }}
-            whileInView={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.85, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <p className="about-quote-text">
-              &ldquo;Most of what I build starts from a real problem I&apos;ve noticed. <span className="highlight-text">I&apos;d rather ship something useful than something that just looks good in a screenshot.</span>&rdquo;
-            </p>
-          </motion.div>
         </div>
 
+        {/* Quote */}
+        <motion.div
+          className="about-quote-box"
+          initial={{ opacity: 0, x: -16 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+          whileHover={{ x: 3 }}
+        >
+          <p className="about-quote-text">
+            &ldquo;Most of what I build starts from a real problem I&apos;ve noticed.{' '}
+            <span className="highlight-text">I&apos;d rather ship something useful than something that just looks good in a screenshot.</span>&rdquo;
+          </p>
+        </motion.div>
+
+        {/* Tech Stack Pills */}
+        <motion.div
+          className="about-tech-stack"
+          initial={{ opacity: 0, y: 14 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+        >
+          <span className="tech-stack-label">TECH STACK</span>
+          <div className="tech-pills-row">
+            {techStack.map((tech, i) => (
+              <motion.span
+                key={tech}
+                className="tech-pill"
+                initial={{ opacity: 0, y: 6 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.35 + i * 0.055, duration: 0.35 }}
+                whileHover={{ y: -2 }}
+              >
+                {tech}
+              </motion.span>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* CTA Buttons */}
         <div className="about-actions">
-          <motion.a whileHover={{ scale: 1.05, y: -3 }} whileTap={{ scale: 0.95 }} href={resumePDF} download="Shashini_Rathnayake_CV.pdf" className="btn-primary">
+          <motion.a
+            whileHover={{ scale: 1.04, y: -2 }}
+            whileTap={{ scale: 0.96 }}
+            href={resumePDF}
+            download="Shashini_Rathnayake_CV.pdf"
+            className="btn-primary"
+          >
             <span>Download CV</span>
+            <span className="btn-icon">↓</span>
           </motion.a>
-          <motion.a whileHover={{ scale: 1.05, y: -3 }} whileTap={{ scale: 0.95 }} href="https://github.com/shashinirathnayake2111-afk" target="_blank" rel="noreferrer" className="btn-secondary">
-            <span>GitHub</span><span className="btn-arrow">↗</span>
+          <motion.a
+            whileHover={{ scale: 1.04, y: -2 }}
+            whileTap={{ scale: 0.96 }}
+            href="/#projects"
+            className="btn-secondary"
+          >
+            <span>View Projects</span>
+            <span className="btn-arrow">↗</span>
           </motion.a>
         </div>
+
       </div>
 
       {/* ── Right Column ── */}
       <div className="about-right-col">
-
-        {/* Pencil Art — above the cards */}
         <PencilArtReveal />
 
         {/* Stat Cards */}

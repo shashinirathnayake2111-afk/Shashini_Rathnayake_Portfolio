@@ -53,7 +53,6 @@ const Navbar = ({ isLoaded, onContactClick, isInHero }) => {
     const handleMouseMove = (e) => {
       const dx = Math.abs(e.clientX - lastMousePosRef.current.x);
       const dy = Math.abs(e.clientY - lastMousePosRef.current.y);
-      // Filter micro-jitters to ensure reliable detection
       if (dx > 2 || dy > 2) {
         lastMousePosRef.current = { x: e.clientX, y: e.clientY };
         handleUserActivity();
