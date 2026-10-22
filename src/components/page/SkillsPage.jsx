@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { PenTool, Smartphone } from 'lucide-react';
+import { PenTool, Smartphone, Layout, ClipboardList, Layers } from 'lucide-react';
 import '../styles/SkillsPage.css';
 import Footer from './Footer';
 
@@ -25,6 +25,7 @@ const skillsData = [
       { name: "Flask", devicon: "devicon-flask-original colored" },
       { name: "Django", devicon: "devicon-django-plain colored" },
       { name: "MySQL", devicon: "devicon-mysql-plain colored" },
+      { name: "SQLite", devicon: "devicon-sqlite-plain colored" },
       { name: "Supabase", devicon: "devicon-supabase-plain colored" },
     ]
   },
@@ -33,8 +34,12 @@ const skillsData = [
     number: "03",
     items: [
       { name: "Figma", devicon: "devicon-figma-plain colored" },
-      { name: "Wireframing", icon: <PenTool size={48} strokeWidth={1.5} /> },
-      { name: "Prototyping", icon: <Smartphone size={48} strokeWidth={1.5} /> },
+      { name: "Canva", devicon: "devicon-canva-original colored" },
+      { name: "Wireframing", icon: <PenTool size={26} strokeWidth={1.8} /> },
+      { name: "Prototyping", icon: <Smartphone size={26} strokeWidth={1.8} /> },
+      { name: "Mockups", icon: <Layout size={26} strokeWidth={1.8} /> },
+      { name: "Req. Gathering", icon: <ClipboardList size={26} strokeWidth={1.8} /> },
+      { name: "Google Stitch", icon: <Layers size={26} strokeWidth={1.8} /> },
     ]
   }
 ];
@@ -111,34 +116,29 @@ const SkillsPage = ({ onContactClick }) => {
           </p>
         </motion.div>
 
-        {/* Cinematic Sections Stack */}
-        <div className="cinematic-sections-stack">
-          {skillsData.map((section) => (
-            <div className="cinematic-section-row" key={section.category}>
-
-              <div className="cinematic-section-left">
-                <motion.div
-                  className="cinematic-section-title-wrap"
-                  initial={{ opacity: 0, x: -30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                >
-                  <h2 className="cinematic-section-title">
-                    {section.category}
-                  </h2>
-                </motion.div>
+        {/* Modern 3-Column Category Grid - All categories side-by-side without endless scrolling */}
+        <div className="skills-categories-grid">
+          {skillsData.map((section, sIdx) => (
+            <motion.div
+              className="skills-category-card"
+              key={section.category}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: sIdx * 0.1, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <div className="skills-category-header">
+                <span className="skills-category-num">{section.number}</span>
+                <h2 className="skills-category-title">{section.category}</h2>
               </div>
+              <div className="skills-category-divider" />
 
-              <div className="cinematic-section-right">
-                <div className="cinematic-skills-grid">
-                  {section.items.map((skill, index) => (
-                    <SkillCard skill={skill} index={index} key={skill.name} />
-                  ))}
-                </div>
+              <div className="skills-badges-grid">
+                {section.items.map((skill, index) => (
+                  <SkillCard skill={skill} index={index} key={skill.name} />
+                ))}
               </div>
-
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
