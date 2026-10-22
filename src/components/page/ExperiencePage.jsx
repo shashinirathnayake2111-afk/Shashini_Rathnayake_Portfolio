@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Building2, Calendar, MapPin, ShieldCheck, Accessibility, Layers, ArrowUpRight, FileText, CheckCircle2 } from 'lucide-react';
+import { Building2, Calendar, MapPin, ShieldCheck, Accessibility, Layers, ArrowUpRight, FileText, Presentation } from 'lucide-react';
 import '../styles/ExperiencePage.css';
 import Footer from './Footer';
 import resumePDF from '../../assets/resume.pdf';
@@ -8,52 +8,50 @@ import resumePDF from '../../assets/resume.pdf';
 const bankProjects = [
   {
     id: "01",
-    tag: "Banking Solution · Full Stack & UI/UX",
+    tag: "Banking Solution · Frontend & UI/UX",
     title: "Entrepreneurship Project Management System",
-    shortDesc: "A complete enterprise solution designed and engineered for Regional Development Bank to manage entrepreneurial development initiatives, applicant evaluations, and funding pipelines.",
+    shortDesc: "An internal enterprise solution built for Regional Development Bank to manage entrepreneurial development initiatives, applicant evaluations, and funding pipelines.",
     responsibilities: [
-      "Led end-to-end user research, user flows, and low-fidelity wireframing to high-fidelity Figma prototypes.",
-      "Developed responsive, modern React.js frontend interfaces tailored for bank officers.",
-      "Implemented role-based access control (RBAC) and streamlined complex application workflows.",
-      "Delivered an intuitive dashboard enabling transparent project tracking and automated status updates."
+      "Designed user journeys, low/high-fidelity wireframes, and interactive UI prototypes in Figma.",
+      "Engineered clean, responsive, and lightweight frontend interfaces using HTML5, CSS3, and JavaScript.",
+      "Personally conducted meetings with bank staff and presented the system, explaining the end-to-end operational workflow."
     ],
-    tech: ["React.js", "Figma", "JavaScript", "REST APIs", "CSS3 / Modern UI", "User Research"]
+    tech: ["HTML5", "CSS3", "JavaScript", "Figma", "User Research", "Workflow Presentation"]
   },
   {
     id: "02",
-    tag: "Enterprise Security · Access Governance",
+    tag: "Enterprise Security · Access Governance & UI/UX",
     title: "User Creation & Access Management System",
     shortDesc: "A mission-critical internal security portal handling user provisioning, authentication, role-based authorization, and credential governance across bank departments.",
     responsibilities: [
-      "Engineered secure authentication and authorization workflows with strict role-based access.",
-      "Crafted WCAG accessibility-compliant UI specifically designed for smooth adoption by non-technical staff.",
-      "Created reusable UI component systems and design tokens in Figma for rapid enterprise development.",
-      "Successfully launched the live system to non-technical bank staff with comprehensive usability testing."
+      "Designed WCAG 2.1 accessibility-compliant UI in Figma with high contrast for non-technical administrative staff.",
+      "Engineered frontend authentication workflows and Role-Based Access Control (RBAC) role governance.",
+      "Created reusable UI component standards and successfully delivered the system into live production use."
     ],
-    tech: ["React.js", "WCAG 2.1 Accessibility", "Figma", "Security UI", "Design Systems", "Prototyping"]
+    tech: ["Figma", "WCAG 2.1", "React.js", "RBAC Security", "Design Systems"]
   }
 ];
 
 const impactHighlights = [
   {
-    icon: <ShieldCheck size={28} className="impact-icon" />,
-    title: "Role-Based Access Control",
-    desc: "Architected secure authentication workflows, multi-tiered permission levels, and data privacy safeguards for sensitive banking operations."
-  },
-  {
-    icon: <Accessibility size={28} className="impact-icon" />,
-    title: "WCAG Accessibility Compliance",
-    desc: "Designed interfaces with clear typographic hierarchy and high-contrast accessibility standards to empower non-technical bank staff."
+    icon: <Presentation size={28} className="impact-icon" />,
+    title: "Stakeholder Presentations & Workflows",
+    desc: "Led walkthrough meetings directly with bank staff, effectively explaining system architectures and operational workflows."
   },
   {
     icon: <Layers size={28} className="impact-icon" />,
-    title: "High-Fidelity Design Systems",
-    desc: "Created structured Figma component libraries, responsive design standards, and interactive prototypes bridging design and engineering."
+    title: "Figma UI/UX & Design Systems",
+    desc: "Created structured wireframes, component libraries, and interactive prototypes tailored for banking operations."
   },
   {
-    icon: <CheckCircle2 size={28} className="impact-icon" />,
-    title: "Live Production Launch",
-    desc: "Delivered two full-stack internal enterprise systems directly into production use at Regional Development Bank Head Office."
+    icon: <Accessibility size={28} className="impact-icon" />,
+    title: "WCAG 2.1 Accessibility Standards",
+    desc: "Engineered ergonomic, high-contrast user interfaces tested to minimize error rates for non-technical bank officers."
+  },
+  {
+    icon: <ShieldCheck size={28} className="impact-icon" />,
+    title: "Role-Based Access & Frontend Logic",
+    desc: "Built secure frontend systems using HTML/CSS/JS and React, enforcing multi-tier permissions and data privacy."
   }
 ];
 
@@ -80,7 +78,7 @@ const ExperiencePage = ({ onContactClick }) => {
         >
           <div className="experience-eyebrow">
             <span className="eyebrow-line" />
-            <span>CAREER & INDUSTRY EXPERIENCE</span>
+            <span>CAREER &amp; INDUSTRY EXPERIENCE</span>
           </div>
 
           <h1 className="experience-main-title">
@@ -88,7 +86,7 @@ const ExperiencePage = ({ onContactClick }) => {
           </h1>
 
           <p className="experience-subtitle">
-            Hands-on software engineering and UI/UX architecture inside enterprise banking systems,
+            Hands-on software engineering and UI/UX design inside enterprise banking systems,
             transforming complex financial workflows into accessible, high-performance digital tools.
           </p>
         </motion.div>
@@ -132,10 +130,7 @@ const ExperiencePage = ({ onContactClick }) => {
           </div>
 
           <p className="company-summary">
-            At Regional Development Bank (RDB) Head Office, I led the UI/UX design, frontend development,
-            and responsive engineering for two full stack internal systems. My work spanned initial user research,
-            role-based access requirements, low to high-fidelity wireframing and interactive Figma prototyping,
-            through to production-ready React.js implementation and deployment to non-technical bank staff.
+            At Regional Development Bank (RDB) Head Office, I contributed as both a <strong>Frontend Developer</strong> and <strong>UI/UX Designer</strong> across two internal enterprise solutions. My responsibilities covered stakeholder requirement gathering, Figma UI/UX prototyping, conducting presentation meetings with bank staff to explain end-to-end workflows, and engineering robust frontends in HTML, CSS, JavaScript, and React.
           </p>
 
           {/* Quick Metrics Bento */}
@@ -211,7 +206,7 @@ const ExperiencePage = ({ onContactClick }) => {
         <div className="impact-section">
           <div className="section-sub-header">
             <span className="sub-header-line" />
-            <h3 className="sub-header-title">KEY ENGINEERING &amp; DESIGN COMPETENCIES</h3>
+            <h3 className="sub-header-title">KEY DESIGN &amp; ENGINEERING COMPETENCIES</h3>
           </div>
 
           <div className="impact-cards-grid">
@@ -241,8 +236,8 @@ const ExperiencePage = ({ onContactClick }) => {
           transition={{ duration: 0.8 }}
         >
           <div className="cta-left">
-            <h3 className="cta-title">Looking for a developer who understands real enterprise systems?</h3>
-            <p className="cta-sub">Let&apos;s build scalable, beautifully designed software together.</p>
+            <h3 className="cta-title">Looking for a developer &amp; designer who bridges code with intuitive UI/UX?</h3>
+            <p className="cta-sub">Let&apos;s build accessible, scalable, and beautifully crafted enterprise software together.</p>
           </div>
           <div className="cta-right">
             <a href={resumePDF} download="Shashini_Rathnayake_CV.pdf" className="btn-exp-download">
