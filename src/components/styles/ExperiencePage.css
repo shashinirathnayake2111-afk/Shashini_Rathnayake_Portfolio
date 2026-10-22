@@ -4,7 +4,7 @@
   color: #f2ead9;
   min-height: 100vh;
   overflow-x: hidden;
-  padding-top: 130px;
+  padding-top: 140px;
 }
 
 /* ── Ambient Glow Orbs ── */
@@ -47,22 +47,22 @@
 .experience-container {
   position: relative;
   z-index: 2;
-  max-width: 1280px;
+  max-width: 1300px;
   margin: 0 auto;
-  padding: 0 48px 120px;
+  padding: 0 64px 120px 64px;
 }
 
 /* ── Hero Header ── */
 .experience-hero {
-  margin-bottom: 70px;
-  max-width: 820px;
+  margin-bottom: 56px;
+  max-width: 100%;
 }
 
 .experience-eyebrow {
   display: flex;
   align-items: center;
   gap: 14px;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
 }
 
 .experience-eyebrow .eyebrow-line {
@@ -83,26 +83,28 @@
 
 .experience-main-title {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(3rem, 7vw, 6rem);
+  font-size: clamp(2.3rem, 4.8vw, 4.5rem);
   font-weight: 400;
-  line-height: 0.95;
+  line-height: 1.05;
   letter-spacing: 0.02em;
   color: #f2ead9;
-  margin: 0 0 24px;
+  margin: 0 0 20px;
   text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .title-accent-gold {
-  color: #a07840;
+  color: #c89d58;
 }
 
 .experience-subtitle {
   font-family: 'Poppins', sans-serif;
-  font-size: clamp(0.95rem, 1.4vw, 1.15rem);
-  line-height: 1.75;
-  color: rgba(242, 234, 217, 0.65);
+  font-size: clamp(0.95rem, 1.3vw, 1.1rem);
+  line-height: 1.7;
+  color: rgba(242, 234, 217, 0.7);
   font-weight: 300;
   margin: 0;
+  max-width: 780px;
 }
 
 /* ── Main Company Spotlight Card ── */
@@ -670,6 +672,10 @@
 @media (max-width: 640px) {
   .experience-page-wrapper {
     padding-top: 100px;
+  }
+
+  .experience-main-title {
+    white-space: normal;
   }
 
   .experience-container {
