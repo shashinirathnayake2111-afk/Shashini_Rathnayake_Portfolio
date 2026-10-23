@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import VanillaTilt from 'vanilla-tilt';
+import { X, ExternalLink, Layers, Target, Lightbulb, Zap, Palette, Type } from 'lucide-react';
 import '../styles/ProjectsSection.css';
 import SahayaImg from '../../assets/projects/sahaya.png';
 import LomieesImg from '../../assets/projects/lomiees.png';
@@ -18,15 +19,29 @@ const projectData = [
     type: "web",
     tag: "Healthcare UX",
     image: RecoverImg,
-    summary: "Accessibility-first web app for migraine patients featuring doctor channeling and cognitive-safe dark UI.",
+    summary: "Accessibility-first telehealth web application for migraine patients featuring doctor channeling, cognitive-safe dark UI, and sensory controls.",
     links: {
-      figma: "https://www.figma.com/proto/ai3v7JTZ7ZkN2V4lNasmEo/Recover.lk?page-id=0%3A1&node-id=63-163&p=f&viewport=522%2C154%2C0.12&t=A8iyX7QuN1ZMuSAR-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=63%3A163"
+      figma: "https://www.figma.com/proto/ai3v7JTZ7ZkN2V4lNasmEo/Recover.lk?page-id=0%3A1&node-id=63-163&p=f&viewport=522%2C154%2C0.12&t=A8iyX7QuN1ZMuSAR-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=63%3A163",
+      github: "https://github.com/shashinirathnayake2111-afk/Recover.lk"
     },
     caseStudy: {
-      problem: "Migraine patients struggled to manage their daily tasks and office work during episodes, as most digital tools were not designed with their visual and cognitive sensitivity in mind.",
-      solution: "Built a web application with doctor channeling, symptom tracking, activity recording, a dark/light mode switcher, and a range of accessibility-focused features specifically designed for migraine patients.",
-      challenges: "Balancing high contrast ratios for readability while avoiding visual triggers like bright whites and sharp animations that could induce migraines.",
-      techStack: ["Research", "Figma", "Wireframe", "Prototyping"]
+      problem: "Migraine sufferers faced severe visual strain and confusion when managing treatments or booking doctors online during acute episodes, as standard clinical websites use harsh white backgrounds, bright flashes, and dense typography.",
+      solution: "Engineered an accessibility-focused web application featuring doctor channeling, symptom severity tracking, a cognitive-safe dark mode toggle, and low-contrast soothing layouts designed to avoid sensory triggers.",
+      challenges: "Balancing WCAG AAA contrast readability with gentle low-glare palettes that prevent optical strain during migraine auras, alongside streamlined booking flows requiring minimal cognitive effort.",
+      techStack: ["User Research", "Figma", "Accessibility (WCAG)", "Wireframing", "Interactive Prototyping"],
+      designSystem: {
+        colors: [
+          { name: "Obsidian Navy", hex: "#0B132B", role: "Dark Canvas" },
+          { name: "Night Slate", hex: "#1C2541", role: "Surface Base" },
+          { name: "Steel Indigo", hex: "#3A506B", role: "Secondary Focus" },
+          { name: "Calm Cyan", hex: "#38BDF8", role: "Primary Accent" },
+          { name: "Pure White", hex: "#F8FAFC", role: "Clinical Contrast" }
+        ],
+        typography: [
+          { role: "Headings & Display", font: "Outfit", style: "Gentle rounded geometric sans" },
+          { role: "Body & Telehealth UI", font: "Plus Jakarta Sans", style: "Ultra-legible, low eye-fatigue" }
+        ]
+      }
     }
   },
   {
@@ -37,15 +52,28 @@ const projectData = [
     type: "mobile",
     tag: "Mobile App",
     image: SahayaImg,
-    summary: "Emergency safety application for women and vulnerable groups featuring one-tap SOS and live GPS sharing.",
+    summary: "Emergency personal safety application for women and vulnerable groups featuring rapid one-tap SOS and real-time GPS location dispatch.",
     links: {
       figma: "https://www.figma.com/proto/Lmjj8NYAtiheZRg9SwmolG/Sahaya.lk?node-id=60-129&p=f&viewport=886%2C99%2C0.21&t=fUGS9LUvvaQxlXwZ-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=63%3A145&page-id=0%3A1"
     },
     caseStudy: {
-      problem: "Women and vulnerable individuals lacked a reliable emergency safety app that could instantly alert the nearest police station or family members with their GPS location during a dangerous situation.",
-      solution: "Designed a fully scalable mobile app featuring a one-tap SOS button, real-time GPS location sharing, a 30-second audio recording feature, and additional personal safety tools.",
-      challenges: "Creating an interface that is extremely intuitive and accessible under high-stress situations while minimizing accidental triggers.",
-      techStack: ["Figma", "Prototyping", "Wireframing", "User Research"]
+      problem: "Women and vulnerable commuters faced high-stress emergency situations with no reliable single-action tool to immediately broadcast GPS coordinates and alert family or the nearest police station under duress.",
+      solution: "Designed an intuitive mobile safety app featuring a prominent one-tap SOS trigger, real-time live GPS broadcast, automatic 30-second discreet ambient audio capture, and quick emergency helpline dialing.",
+      challenges: "Designing an interface that can be triggered within milliseconds in panic or low-light conditions, while preventing accidental triggers through intuitive haptic confirmation.",
+      techStack: ["Figma", "User Journey Mapping", "Mobile Wireframing", "Interactive Prototyping"],
+      designSystem: {
+        colors: [
+          { name: "SOS Crimson", hex: "#DC2626", role: "Emergency Trigger" },
+          { name: "Deep Maroon", hex: "#881337", role: "Secondary Guard" },
+          { name: "Midnight Dark", hex: "#0F172A", role: "High-Contrast Base" },
+          { name: "Alert Amber", hex: "#F59E0B", role: "Active Broadcasting" },
+          { name: "Pure White", hex: "#FFFFFF", role: "Clarity Contrast" }
+        ],
+        typography: [
+          { role: "Emergency Action", font: "Poppins", style: "Bold, instantaneous visual recognition" },
+          { role: "Telemetry & Status", font: "Chakra Petch", style: "High-precision GPS coordinates & logs" }
+        ]
+      }
     }
   },
   {
@@ -55,16 +83,29 @@ const projectData = [
     categories: ["UI/UX"],
     type: "mobile",
     tag: "UI/UX Design",
-    image:  BeanImg,
-    summary: "Sustainable shopping app with verified eco-friendly brands and personal carbon footprint tracking.",
+    image: BeanImg,
+    summary: "Artisanal coffee ordering & table reservation mobile app designed with bean roast personalization, live brewing status, and digital bean rewards.",
     links: {
       figma: "https://www.figma.com/proto/HujoDsKjzLU9OnmLvM8Cg2/Bean-Cafe?node-id=263-341&page-id=0%3A1&starting-point-node-id=263%3A341&t=H5vXhY8L9dUHxZPw-1"
     },
     caseStudy: {
-      problem: "Consumers struggle to find authentic eco-friendly products and verify the sustainability claims of different brands while shopping online.",
-      solution: "Designed a mobile application that verifies eco-friendly brands, simplifies sustainable shopping, and provides a clear carbon footprint tracker for users.",
-      challenges: "Visualizing complex carbon footprint data in a way that is easy for everyday consumers to understand at a glance.",
-      techStack: ["Figma", "Prototyping", "UI/UX", "Design System"]
+      problem: "Specialty coffee lovers and busy morning commuters endure long cafe queues, cumbersome roast/milk customization menus, and easily misplaced paper loyalty cards that diminish customer retention.",
+      solution: "Engineered a warm, sensory mobile ordering experience allowing users to customize brew strength, milk alternatives, and syrup notes, place skip-the-line pre-orders, book tables, and earn digital bean loyalty points.",
+      challenges: "Infusing the digital interface with the cozy, artisanal sensory warmth of specialty cafe culture (espresso, latte crema, and wood tones) without sacrificing speed during peak morning coffee rushes.",
+      techStack: ["Figma", "Design Systems", "Mobile Wireframing", "User Research", "Prototyping"],
+      designSystem: {
+        colors: [
+          { name: "Dark Espresso", hex: "#3E2316", role: "Brand Core" },
+          { name: "Rich Roast", hex: "#6F4E37", role: "Secondary Coffee" },
+          { name: "Caramel Crema", hex: "#C67C4E", role: "Primary Ordering CTA" },
+          { name: "Steamed Oat", hex: "#EAD7C5", role: "Surface Accent" },
+          { name: "Froth Cream", hex: "#FFF9F2", role: "Light Contrast" }
+        ],
+        typography: [
+          { role: "Artisanal Display", font: "Playfair Display / Serif", style: "Sophisticated boutique cafe branding" },
+          { role: "Menu Navigation & UI", font: "Poppins", style: "Clean, frictionless ordering hierarchy" }
+        ]
+      }
     }
   },
   {
@@ -75,17 +116,30 @@ const projectData = [
     type: "web",
     tag: "Full Stack / UI/UX",
     image: ForgeImg,
-    summary: "A modern fitness platform with workout tracking, coach diet plans, and live gym traffic monitoring.",
+    summary: "High-energy fitness platform featuring custom workout logs, coach-guided diet plans, and real-time gym crowd traffic telemetry.",
     links: {
       figma: "https://www.figma.com/proto/48n3ngMXfR4CIYS1YkrCfh/Untitled?node-id=39-48&p=f&viewport=381%2C75%2C0.18&t=6EdjLAfq1DvFAplt-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=169%3A610&page-id=0%3A1",
       github: "https://github.com/shashinirathnayake2111-afk/ForgeX-Fitness-Website.git",
       live: "https://forge-x-fitness-website.vercel.app/"
     },
     caseStudy: {
-      problem: "Needed a website to manage home workouts with coaches, diet plans, and programs. Users required notifications and reminders for workouts, live gym traffic monitoring to choose less crowded times, and a progress tracking system.",
-      solution: "Developed a fully responsive fitness website featuring workout management, coach-guided programs, real-time gym traffic monitoring, push notifications, and a comprehensive progress tracking dashboard.",
-      challenges: "Integrating real-time gym traffic data and ensuring smooth state management across the dashboard without causing performance bottlenecks.",
-      techStack: ["React", "Tailwind CSS", "Node.js", "Figma", "Prototyping"]
+      problem: "Gym members struggled to coordinate workouts with coach guidance, frequently arrived at overcrowded gym facilities during peak rush hours, and lacked an all-in-one web dashboard to track exercise sets and nutrition.",
+      solution: "Developed a dynamic web application providing live gym traffic density meters, coach workout programs, structured macro diet plans, interactive set/rep tracking, and automatic schedule reminders.",
+      challenges: "Integrating live gym traffic telemetry without lag, while creating an aggressive, high-energy dark UI that motivates athletes and remains readable on gym floor mobile devices.",
+      techStack: ["React", "Tailwind CSS", "Node.js", "Figma", "Interactive Prototyping"],
+      designSystem: {
+        colors: [
+          { name: "Warm Gold", hex: "#DA9B0C", role: "Primary Accent" },
+          { name: "Dark Bronze", hex: "#282218", role: "Surface Depth" },
+          { name: "Pure Noir", hex: "#000000", role: "Dominant Canvas" },
+          { name: "Gunmetal Grey", hex: "#333537", role: "Card Surface" },
+          { name: "Off White", hex: "#F3F3F0", role: "Crisp Typography" }
+        ],
+        typography: [
+          { role: "Metrics & Timers", font: "Bebas Neue", style: "Aggressive athletic numbers & stats" },
+          { role: "Dashboard & Coaching", font: "Poppins", style: "Clean, structured workout tables" }
+        ]
+      }
     }
   },
   {
@@ -96,17 +150,30 @@ const projectData = [
     type: "web",
     tag: "E-Commerce / UI/UX",
     image: LomieesImg,
-    summary: "Modern clothing e-commerce store with smooth catalog browsing, cart flows, and branded checkout.",
+    summary: "Modern clothing e-commerce storefront with streamlined category navigation, interactive size selection, and friction-free checkout.",
     links: {
       figma: "https://www.figma.com/proto/RFj22fyDJfxZtQMBsDJWMU/Lomiees-Clouthing?node-id=2-2&p=f&viewport=501%2C92%2C0.11&t=WLN2iOpby0reg7zw-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=2%3A2&page-id=0%3A1",
       github: "https://github.com/shashinirathnayake2111-afk/Lomiees-Website",
       live: "https://lomiees-website.vercel.app/"
     },
     caseStudy: {
-      problem: "Lomiees required a modern e-commerce platform to sell clothing online. The platform needed to be user-friendly, visually appealing, and easy to manage.",
-      solution: "Developed a fully responsive e-commerce website with product browsing, cart management, and a seamless checkout experience tailored to the Lomiees brand identity.",
-      challenges: "Optimizing product image loading times and creating a fluid, distraction-free checkout flow to maximize conversion rates.",
-      techStack: ["React", "Tailwind CSS", "Node.js", "Figma", "UI/UX"]
+      problem: "The Lomiees clothing brand needed an online fashion boutique that reflected modern minimalism while tackling cart drop-offs caused by complicated multi-step checkouts and slow catalog rendering.",
+      solution: "Engineered a sleek responsive e-commerce web app with instant product filtering, interactive color/size variant pickers, an animated side-cart drawer, and a streamlined single-page checkout flow.",
+      challenges: "Balancing high-resolution editorial fashion photography with rapid load performance, alongside creating luxury subtle micro-animations that feel premium yet lightweight.",
+      techStack: ["React", "Node.js", "Tailwind CSS", "Figma", "UI/UX Design"],
+      designSystem: {
+        colors: [
+          { name: "Obsidian Noir", hex: "#0A0D14", role: "Luxury Canvas" },
+          { name: "Tailored Slate", hex: "#1E232E", role: "Surface Contrast" },
+          { name: "Champagne Gold", hex: "#E6C9A8", role: "Signature Accent" },
+          { name: "Warm Cashmere", hex: "#B89C7D", role: "Subtle Warmth" },
+          { name: "Clean White", hex: "#F8F9FA", role: "Typography & Clarity" }
+        ],
+        typography: [
+          { role: "Fashion Editorial", font: "Bebas Neue", style: "High-fashion editorial collection headers" },
+          { role: "Commerce & Navigation", font: "Poppins", style: "Frictionless pricing & checkout" }
+        ]
+      }
     }
   }
 ];
@@ -236,80 +303,276 @@ const ProjectCard = ({ project, index, isCenter, onClick }) => {
   );
 };
 
-/* ── Full Case Study Modal ── */
+/* ── Helper to check color luminance for auto text contrast ── */
+const isLightColor = (hex) => {
+  if (!hex) return false;
+  const cleanHex = hex.replace('#', '');
+  const r = parseInt(cleanHex.substring(0, 2), 16) || 0;
+  const g = parseInt(cleanHex.substring(2, 4), 16) || 0;
+  const b = parseInt(cleanHex.substring(4, 6), 16) || 0;
+  return (r * 299 + g * 587 + b * 114) / 1000 > 155;
+};
+
+/* ── Full Case Study Modal (Modern Magazine / Bento Showcase) ── */
 const CaseStudyModal = ({ project, onClose }) => {
   if (!project) return null;
+
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') onClose();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.body.style.overflow = '';
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [onClose]);
+
   return (
     <AnimatePresence>
       <motion.div
-        className="modal-backdrop"
+        className="case-study-backdrop"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
+        transition={{ duration: 0.3 }}
         onClick={onClose}
         data-lenis-prevent="true"
       >
-        <motion.div
-          className="modal-content laser-border-wrapper"
-          initial={{ opacity: 0, scale: 0.95, y: 20 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.95, y: 20 }}
-          transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-          onClick={e => e.stopPropagation()}
-        >
-          <div className="modal-inner">
-            <button className="modal-close" onClick={onClose} aria-label="Close modal">×</button>
+        {/* Ambient cosmic orbs for background depth */}
+        <div className="case-study-orb orb-gold" aria-hidden="true" />
+        <div className="case-study-orb orb-indigo" aria-hidden="true" />
 
-            <div className="modal-header-left">
-              <div className="modal-eyebrow">
-                <span className="modal-eyebrow-line" />
-                <span className="modal-eyebrow-text">{project.category.toUpperCase()}</span>
+        <motion.div
+          className="case-study-container"
+          initial={{ opacity: 0, y: 35, scale: 0.98 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          exit={{ opacity: 0, y: 25, scale: 0.98 }}
+          transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+          onClick={(e) => e.stopPropagation()}
+        >
+          {/* Top Sticky Navigation Bar */}
+          <div className="case-study-topbar">
+            <div className="case-study-breadcrumbs">
+              <span className="case-study-num">PROJECT 0{project.id}</span>
+              <span className="case-study-sep">/</span>
+              <span className="case-study-pill">{project.tag || project.category}</span>
+            </div>
+            <button className="case-study-close-btn" onClick={onClose} aria-label="Close">
+              <X size={18} />
+            </button>
+          </div>
+
+          {/* Hero Header */}
+          <div className="case-study-hero">
+            <div className="case-study-eyebrow">
+              <span className="case-study-eyebrow-line" />
+              <span className="case-study-eyebrow-text">IN-DEPTH CASE STUDY &amp; SYSTEM ARCHITECTURE</span>
+            </div>
+            <h1 className="case-study-title">{project.title}</h1>
+            <p className="case-study-summary">{project.summary}</p>
+
+            {/* Quick Action Link Pills */}
+            <div className="case-study-actions">
+              {project.links.figma && (
+                <a href={project.links.figma} target="_blank" rel="noreferrer" className="case-action-btn btn-figma">
+                  <IconFigma />
+                  <span>Interactive Figma Prototype</span>
+                  <ExternalLink size={13} className="action-arrow" />
+                </a>
+              )}
+              {project.links.live && (
+                <a href={project.links.live} target="_blank" rel="noreferrer" className="case-action-btn btn-live">
+                  <IconLive />
+                  <span>View Live Deployment</span>
+                  <ExternalLink size={13} className="action-arrow" />
+                </a>
+              )}
+              {project.links.github && (
+                <a href={project.links.github} target="_blank" rel="noreferrer" className="case-action-btn btn-github">
+                  <IconGithub />
+                  <span>GitHub Repository</span>
+                  <ExternalLink size={13} className="action-arrow" />
+                </a>
+              )}
+            </div>
+          </div>
+
+          {/* Hero Visual Preview Showcase */}
+          <div className="case-study-preview-frame">
+            <div className="preview-frame-top">
+              <div className="preview-dots">
+                <span className="p-dot" />
+                <span className="p-dot" />
+                <span className="p-dot" />
               </div>
-              <h1 className="modal-hero-title">{project.title}</h1>
+              <span className="preview-device-badge">
+                {project.type === 'mobile' ? 'Mobile App Interface' : 'Web Application Platform'}
+              </span>
+            </div>
+            <div className="preview-image-wrap">
+              <img
+                src={project.image}
+                alt={project.title}
+                className={`preview-hero-img ${project.type === 'mobile' ? 'is-mobile' : 'is-web'}`}
+              />
+            </div>
+          </div>
+
+          {/* Bento Narrative Cards Grid */}
+          <div className="case-study-bento-grid">
+            {/* 01. The Problem */}
+            <div className="case-bento-card bento-problem">
+              <div className="bento-card-header">
+                <div className="bento-icon-wrap">
+                  <Target size={20} />
+                </div>
+                <div>
+                  <span className="bento-card-step">01. CONTEXT &amp; PROBLEM</span>
+                  <h3 className="bento-card-title">The Challenge</h3>
+                </div>
+              </div>
+              <p className="bento-card-body">{project.caseStudy.problem}</p>
             </div>
 
-            <div className="modal-story-section">
-              <div className="story-full-row">
-                <div className="story-label">THE STORY & THE PROBLEM</div>
-                <div className="story-content"><p>{project.caseStudy.problem}</p></div>
+            {/* 02. The Solution */}
+            <div className="case-bento-card bento-solution">
+              <div className="bento-card-header">
+                <div className="bento-icon-wrap">
+                  <Lightbulb size={20} />
+                </div>
+                <div>
+                  <span className="bento-card-step">02. STRATEGY &amp; DESIGN</span>
+                  <h3 className="bento-card-title">The Solution</h3>
+                </div>
               </div>
+              <p className="bento-card-body">{project.caseStudy.solution}</p>
+            </div>
 
-              <div className="story-split-row">
-                <div className="story-split-left">
-                  <div className="modal-hero-image-wrap">
-                    <img src={project.image} alt={project.title} className={`modal-hero-image ${project.type}`} />
+            {/* 03. Key Hurdles */}
+            <div className="case-bento-card bento-challenges">
+              <div className="bento-card-header">
+                <div className="bento-icon-wrap">
+                  <Zap size={20} />
+                </div>
+                <div>
+                  <span className="bento-card-step">03. EXECUTION &amp; ACCESSIBILITY</span>
+                  <h3 className="bento-card-title">Key Challenges Overcome</h3>
+                </div>
+              </div>
+              <p className="bento-card-body">{project.caseStudy.challenges}</p>
+            </div>
+
+            {/* 04. Technology & Tools */}
+            <div className="case-bento-card bento-tech">
+              <div className="bento-card-header">
+                <div className="bento-icon-wrap">
+                  <Layers size={20} />
+                </div>
+                <div>
+                  <span className="bento-card-step">04. ARSENAL</span>
+                  <h3 className="bento-card-title">Tech &amp; Design Stack</h3>
+                </div>
+              </div>
+              <div className="case-tech-pills-row">
+                {project.caseStudy.techStack.map((tech) => (
+                  <span key={tech} className="case-tech-pill">
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* 05. Color Palette */}
+            {project.caseStudy.designSystem?.colors && (
+              <div className="case-bento-card bento-colors">
+                <div className="bento-card-header">
+                  <div className="bento-icon-wrap">
+                    <Palette size={20} />
+                  </div>
+                  <div>
+                    <span className="bento-card-step">05. VISUAL IDENTITY</span>
+                    <h3 className="bento-card-title">Color Palette</h3>
                   </div>
                 </div>
-                <div className="story-split-right">
-                  <div className="story-label">THE SOLUTION</div>
-                  <div className="story-content"><p>{project.caseStudy.solution}</p></div>
+                {/* Buddhist-flag inspired vertical color stripes with horizontal text */}
+                <div className="case-flag-palette">
+                  {project.caseStudy.designSystem.colors.map((c, i) => {
+                    const isLight = isLightColor(c.hex);
+                    return (
+                      <div
+                        key={i}
+                        className={`flag-stripe ${isLight ? 'is-light' : 'is-dark'}`}
+                        style={{ backgroundColor: c.hex }}
+                        title={`${c.name} (${c.hex}) - ${c.role}`}
+                      >
+                        <div className="flag-stripe-content">
+                          <span className="flag-stripe-hex">{c.hex}</span>
+                          <span className="flag-stripe-name">{c.name}</span>
+                        </div>
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
+            )}
 
-              <div className="story-row">
-                <div className="story-label">KEY CHALLENGES</div>
-                <div className="story-content"><p>{project.caseStudy.challenges}</p></div>
-              </div>
-
-              <div className="story-row">
-                <div className="story-label">TECH STACK</div>
-                <div className="story-content">
-                  <div className="tech-stack-tags">
-                    {project.caseStudy.techStack.map(t => (
-                      <span key={t} className="tech-tag">{t}</span>
-                    ))}
+            {/* 06. Typography System */}
+            {project.caseStudy.designSystem?.typography && (
+              <div className="case-bento-card bento-typography">
+                <div className="bento-card-header">
+                  <div className="bento-icon-wrap">
+                    <Type size={20} />
+                  </div>
+                  <div>
+                    <span className="bento-card-step">06. TYPE SYSTEM</span>
+                    <h3 className="bento-card-title">Typography &amp; Hierarchy</h3>
                   </div>
                 </div>
-              </div>
-
-              <div className="story-row">
-                <div className="story-label">LINKS & ACCESS</div>
-                <div className="story-content modal-actions-inline">
-                  {project.links.github && <a href={project.links.github} target="_blank" rel="noreferrer" className="btn-modal-link">GitHub Repo ↗</a>}
-                  {project.links.live && <a href={project.links.live} target="_blank" rel="noreferrer" className="btn-modal-link">Live Site ↗</a>}
-                  {project.links.figma && <a href={project.links.figma} target="_blank" rel="noreferrer" className="btn-modal-link">Figma Prototype ↗</a>}
+                <div className="case-typography-list">
+                  {project.caseStudy.designSystem.typography.map((t, i) => (
+                    <div key={i} className="typography-item">
+                      <div className="typography-item-top">
+                        <span className="typography-item-role">{t.role}</span>
+                        <span className="typography-item-font">{t.font}</span>
+                      </div>
+                      <p className="typography-item-style">{t.style}</p>
+                    </div>
+                  ))}
                 </div>
               </div>
+            )}
+          </div>
+
+          {/* Bottom Docked CTA Bar */}
+          <div className="case-study-bottom-bar">
+            <div className="bottom-bar-left">
+              <span className="bottom-bar-label">Interested in similar work?</span>
+              <span className="bottom-bar-sub">Let&apos;s build intuitive interfaces and resilient web apps together.</span>
+            </div>
+            <div className="bottom-bar-actions">
+              {project.links.figma && (
+                <a href={project.links.figma} target="_blank" rel="noreferrer" className="btn-bottom-primary">
+                  <span>Explore Figma File</span>
+                  <ExternalLink size={14} />
+                </a>
+              )}
+              {project.links.github && (
+                <a href={project.links.github} target="_blank" rel="noreferrer" className="btn-bottom-secondary">
+                  <span>GitHub Repository</span>
+                  <ExternalLink size={14} />
+                </a>
+              )}
+              {project.links.live && (
+                <a href={project.links.live} target="_blank" rel="noreferrer" className="btn-bottom-secondary">
+                  <span>Launch Live Site</span>
+                  <ExternalLink size={14} />
+                </a>
+              )}
+              <button className="btn-bottom-close" onClick={onClose} aria-label="Close" title="Close Case Study">
+                <X size={18} />
+              </button>
             </div>
           </div>
         </motion.div>
@@ -494,8 +757,8 @@ const ProjectsSection = () => {
             const count = f.key === 'all'
               ? projectData.length
               : projectData.filter(p =>
-                  p.categories ? p.categories.includes(f.key) : (p.category === f.key || (typeof p.category === 'string' && p.category.includes(f.key)))
-                ).length;
+                p.categories ? p.categories.includes(f.key) : (p.category === f.key || (typeof p.category === 'string' && p.category.includes(f.key)))
+              ).length;
 
             return (
               <button
