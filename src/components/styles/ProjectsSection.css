@@ -11,9 +11,10 @@
     radial-gradient(circle at 15% 85%, rgba(15, 25, 52, 0.30) 0%, transparent 50%),
     linear-gradient(180deg, #050508 0%, #060913 45%, #04060a 100%);
   color: #f2ead9;
-  padding: 120px 0 100px;
+  padding: 85px 0 100px;
   overflow: hidden;
   cursor: default;
+  scroll-margin-top: 0;
 }
 
 .projects-showcase-section.celestial-night-theme::before {

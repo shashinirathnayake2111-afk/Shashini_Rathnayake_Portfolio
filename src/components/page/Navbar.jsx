@@ -139,10 +139,10 @@ const Navbar = ({ isLoaded, onContactClick, isInHero }) => {
         if (el) {
           requestAnimationFrame(() => {
             if (window.lenis) {
-              window.lenis.scrollTo(el, { offset: -20, duration: 1.2, immediate: false });
+              window.lenis.scrollTo(el, { offset: 5, duration: 1.2, immediate: false });
             } else {
               const rect = el.getBoundingClientRect();
-              const absoluteY = rect.top + window.pageYOffset - 20;
+              const absoluteY = rect.top + window.pageYOffset + 5;
               window.scrollTo({ top: absoluteY, behavior: 'smooth' });
             }
           });
