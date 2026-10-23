@@ -132,25 +132,34 @@ const Navbar = ({ isLoaded, onContactClick, isInHero }) => {
     if (e) e.preventDefault();
     setIsMenuOpen(false);
 
-    const doScroll = () => {
-      const el = document.getElementById(id);
-      if (!el) return;
-      // Compute absolute page Y so it works regardless of fixed/sticky ancestors
-      const rect = el.getBoundingClientRect();
-      const absoluteY = rect.top + window.pageYOffset + 20;
-      if (window.lenis) {
-        window.lenis.scrollTo(absoluteY, { duration: 1.4 });
-      } else {
-        window.scrollTo({ top: absoluteY, behavior: 'smooth' });
-      }
+    const performScroll = () => {
+      let attempts = 0;
+      const checkAndScroll = () => {
+        const el = document.getElementById(id);
+        if (el) {
+          requestAnimationFrame(() => {
+            if (window.lenis) {
+              window.lenis.scrollTo(el, { offset: -20, duration: 1.2, immediate: false });
+            } else {
+              const rect = el.getBoundingClientRect();
+              const absoluteY = rect.top + window.pageYOffset - 20;
+              window.scrollTo({ top: absoluteY, behavior: 'smooth' });
+            }
+          });
+        } else if (attempts < 40) {
+          attempts++;
+          setTimeout(checkAndScroll, 50);
+        }
+      };
+
+      checkAndScroll();
     };
 
     if (location.pathname !== '/') {
-      navigate('/');
-      // Wait for the new route to render then scroll
-      setTimeout(doScroll, 300);
+      navigate('/#projects', { state: { scrollTo: id } });
+      setTimeout(performScroll, 60);
     } else {
-      doScroll();
+      performScroll();
     }
   };
 

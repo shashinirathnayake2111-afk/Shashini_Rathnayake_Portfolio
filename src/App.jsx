@@ -125,9 +125,6 @@ function App() {
     }
   }, [isLoading])
 
-  // On all pages (Hero, About, Skills, Experience), show full navbar at page top (scrollY < 50).
-  // When scrolling down past 50px (into intro, education, projects, etc.),
-  // hide full navbar and show hamburger menu + "AVAILABLE FOR WORK" pill.
   useMotionValueEvent(scrollY, 'change', (latest) => {
     setIsInHero(latest < 50)
   })
@@ -142,6 +139,31 @@ function App() {
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [location.pathname])
+
+  // Handle direct navigation to #projects on first click from any page
+  useEffect(() => {
+    if (location.pathname === '/' && (location.hash === '#projects' || location.state?.scrollTo === 'projects')) {
+      let attempts = 0;
+      const checkAndScroll = () => {
+        const el = document.getElementById('projects');
+        if (el) {
+          setTimeout(() => {
+            if (window.lenis) {
+              window.lenis.scrollTo(el, { offset: -20, duration: 1.2, immediate: false });
+            } else {
+              const rect = el.getBoundingClientRect();
+              const absoluteY = rect.top + window.pageYOffset - 20;
+              window.scrollTo({ top: absoluteY, behavior: 'smooth' });
+            }
+          }, 80);
+        } else if (attempts < 40) {
+          attempts++;
+          setTimeout(checkAndScroll, 50);
+        }
+      };
+      checkAndScroll();
+    }
+  }, [location.pathname, location.hash, location.state]);
 
   const handleReveal = () => {
     sessionStorage.setItem(HAS_LOADED_KEY, 'true')
