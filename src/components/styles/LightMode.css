@@ -1,9 +1,3 @@
-/* ═════════════════════════════════════════════════════════════
-   LIGHT MODE DESIGN SYSTEM
-   Palette: Warm Ivory / Alabaster (#F7F5EF), Rich Charcoal (#18181B),
-   Champagne Antique Gold (#B48332 / #A16207), Soft White (#FFFFFF)
-   ═════════════════════════════════════════════════════════════ */
-
 body.light-mode {
   background-color: #f7f5ef;
   color: #18181b;
@@ -913,4 +907,3 @@ body.light-mode .footer-back-to-top:hover .btt-circle {
 body.light-mode .footer-watermark {
   color: rgba(180, 140, 75, 0.05);
 }
-
