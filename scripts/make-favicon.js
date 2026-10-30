@@ -27,3 +27,4 @@ const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
 
 fs.writeFileSync(outPath, svg, 'utf8');
 console.log('favicon.svg created! Size:', Math.round(svg.length / 1024), 'KB');
+

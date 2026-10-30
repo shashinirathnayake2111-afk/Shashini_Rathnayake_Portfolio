@@ -72,7 +72,6 @@ body.light-mode .scrolled-hamburger:hover {
 /* ── Fullscreen Overlay Menu in Light Mode ── */
 body.light-mode .nav-fullscreen-overlay {
   background-color: #f8f6f0;
-  background-image: light_bg.jpg;
 }
 
 body.light-mode .overlay-header-logo .logo-text {
@@ -176,12 +175,27 @@ body.light-mode .sidebar-line {
 
 /* ─── 03. HERO SECTION ───────────────────────────────────── */
 body.light-mode .hero-section {
-  background: linear-gradient(180deg, #f3efe6 0%, #faf8f5 100%);
+  background: transparent;
+  position: relative;
 }
 
-body.light-mode .hero-cinematic-bg {
-  opacity: 0.18;
-  filter: saturate(0.8) contrast(1.1) brightness(1.2);
+/* light_bg.jpg as full hero background — sits behind all content */
+body.light-mode .hero-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('/light_bg.jpg') center/cover no-repeat;
+  z-index: 0;
+}
+
+/* All hero content must sit above the ::before layer - image shown clean */
+body.light-mode .hero-background-effects,
+body.light-mode .hero-bg-role,
+body.light-mode .hero-profile-wrapper,
+body.light-mode .hero-overlay-text,
+body.light-mode .scroll-down-indicator {
+  position: relative;
+  z-index: 2;
 }
 
 body.light-mode .moon-pulse-glow {
