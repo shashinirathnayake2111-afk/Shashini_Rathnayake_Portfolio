@@ -64,10 +64,6 @@ function App() {
   )
 
   useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [location.pathname])
-
-  useEffect(() => {
     if (isLoading || isContactOpen) {
       document.body.style.overflow = 'hidden'
     } else {
@@ -105,20 +101,10 @@ function App() {
     }
   }, [isLoading])
 
+  // Single scroll tracker — avoids duplicate listeners
   useMotionValueEvent(scrollY, 'change', (latest) => {
     setIsInHero(latest < 50)
   })
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsInHero(window.scrollY < 50)
-    }
-
-    handleScroll()
-
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [location.pathname])
 
   // Handle direct navigation to #projects on first click from any page
   useEffect(() => {

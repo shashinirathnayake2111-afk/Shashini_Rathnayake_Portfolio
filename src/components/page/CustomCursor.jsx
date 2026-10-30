@@ -91,6 +91,7 @@ const SplashCursor = () => {
         prevX = clientX;
         prevY = clientY;
         addSplash(clientX, clientY, 3, 1.2);
+        startLoop();
         return;
       }
 
@@ -106,6 +107,7 @@ const SplashCursor = () => {
           const py = prevY + dy * t;
           addSplash(px, py, 2, 1.2);
         }
+        startLoop();
       }
 
       prevX = clientX;
@@ -115,28 +117,40 @@ const SplashCursor = () => {
     const handlePointerDown = (e) => {
       // Gentle burst on click
       addSplash(e.clientX, e.clientY, 16, 3.2);
+      startLoop();
     };
 
     window.addEventListener('mousemove', handlePointerMove, { passive: true });
     window.addEventListener('pointerdown', handlePointerDown, { passive: true });
 
     let animId;
-    const loop = () => {
-      ctx.clearRect(0, 0, width, height);
+    let isRunning = false;
 
-      for (let i = particles.length - 1; i >= 0; i--) {
-        const p = particles[i];
-        p.update();
-        p.draw(ctx);
-        if (p.life <= 0) {
-          particles.splice(i, 1);
+    const startLoop = () => {
+      if (isRunning) return;
+      isRunning = true;
+      const loop = () => {
+        ctx.clearRect(0, 0, width, height);
+        let hasAlive = false;
+        for (let i = particles.length - 1; i >= 0; i--) {
+          const p = particles[i];
+          p.update();
+          p.draw(ctx);
+          if (p.life <= 0) {
+            particles.splice(i, 1);
+          } else {
+            hasAlive = true;
+          }
         }
-      }
-
+        if (hasAlive) {
+          animId = requestAnimationFrame(loop);
+        } else {
+          // No particles left — stop rAF to save GPU
+          isRunning = false;
+        }
+      };
       animId = requestAnimationFrame(loop);
     };
-
-    loop();
 
     return () => {
       window.removeEventListener('resize', onResize);

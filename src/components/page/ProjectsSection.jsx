@@ -452,6 +452,8 @@ const CaseStudyModal = ({ project, onClose }) => {
                 src={project.image}
                 alt={project.title}
                 className={`preview-hero-img ${project.type === 'mobile' ? 'is-mobile' : 'is-web'}`}
+                loading="lazy"
+                decoding="async"
               />
             </div>
           </div>
