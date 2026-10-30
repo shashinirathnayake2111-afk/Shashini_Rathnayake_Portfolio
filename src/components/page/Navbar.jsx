@@ -3,7 +3,9 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 import '../styles/Navbar.css';
 
 const Navbar = ({ isLoaded, onContactClick, isInHero }) => {
-  const [isDarkMode, setIsDarkMode] = useState(true);
+  const [isDarkMode, setIsDarkMode] = useState(() => {
+    return localStorage.getItem('portfolioTheme') !== 'light';
+  });
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isPillVisible, setIsPillVisible] = useState(true);
   const hideTimerRef = useRef(null);
@@ -13,8 +15,10 @@ const Navbar = ({ isLoaded, onContactClick, isInHero }) => {
   useEffect(() => {
     if (isDarkMode) {
       document.body.classList.remove('light-mode');
+      localStorage.setItem('portfolioTheme', 'dark');
     } else {
       document.body.classList.add('light-mode');
+      localStorage.setItem('portfolioTheme', 'light');
     }
   }, [isDarkMode]);
 
@@ -365,8 +369,8 @@ const Navbar = ({ isLoaded, onContactClick, isInHero }) => {
               <div className="overlay-detail-card">
                 <span className="detail-tag">// SOCIAL ARCHIVE</span>
                 <div className="overlay-social-links">
-                  <a href="https://linkedin.com/in/shashini-rathnayake" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
-                  <a href="https://github.com/shashini-rathnayake" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+                  <a href="https://www.linkedin.com/in/shashini-rathnayake-628983326/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+                  <a href="https://github.com/shashinirathnayake2111-afk" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
                   <a href="https://www.behance.net/shashinimalsha" target="_blank" rel="noopener noreferrer">Behance ↗</a>
                 </div>
               </div>

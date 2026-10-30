@@ -1,39 +1,16 @@
-import React, { useState } from 'react';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowUp, Copy, Check, FileDown, Sparkles, Mail } from 'lucide-react';
+import { ArrowUp, FileDown, Mail } from 'lucide-react';
 import '../styles/Footer.css';
 
 const Footer = ({ onContactClick }) => {
   const currentYear = new Date().getFullYear();
-  const [copied, setCopied] = useState(false);
-  const navigate = useNavigate();
-  const location = useLocation();
-
-  const handleCopyEmail = (e) => {
-    e.preventDefault();
-    navigator.clipboard.writeText('shashinirathnayake2111@gmail.com');
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2200);
-  };
 
   const handleScrollTop = () => {
     if (window.lenis) {
       window.lenis.scrollTo(0, { immediate: false, duration: 1.2 });
     } else {
       window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-  };
-
-  const handleScrollToProjects = (e) => {
-    e.preventDefault();
-    if (location.pathname !== '/') {
-      navigate('/');
-      setTimeout(() => {
-        document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
-      }, 120);
-    } else {
-      document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
     }
   };
 

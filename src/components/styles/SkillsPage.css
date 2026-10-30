@@ -118,10 +118,10 @@ body .cinematic-skills-wrapper {
   max-width: 780px;
 }
 
-/* ── 3-Column Categories Grid ── */
+/* ── Categories Grid (2x2 Balanced Layout) ── */
 .skills-categories-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 28px;
   align-items: stretch;
 }

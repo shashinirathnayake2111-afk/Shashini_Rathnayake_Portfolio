@@ -7,7 +7,7 @@ import SahayaImg from '../../assets/projects/sahaya.png';
 import LomieesImg from '../../assets/projects/lomiees.png';
 import ForgeImg from '../../assets/projects/forge.png';
 import RecoverImg from '../../assets/projects/recover.png';
-import FinanceImg from '../../assets/projects/finance_tracker.jpg';
+import WaveImg from '../../assets/projects/waves.png';
 import BeanImg from '../../assets/projects/beancafe.png';
 
 const projectData = [
@@ -175,8 +175,43 @@ const projectData = [
         ]
       }
     }
+  },
+  {
+    id: 6,
+    title: "Waves.lk",
+    category: "Full Stack",
+    categories: ["Full Stack"],
+    type: "web",
+    tag: "E-Commerce / UI/UX",
+    image: WaveImg,
+    summary: "Modern clothing e-commerce storefront with streamlined category navigation, interactive size selection, and friction-free checkout.",
+    links: {
+      figma: "https://www.figma.com/proto/RFj22fyDJfxZtQMBsDJWMU/Lomiees-Clouthing?node-id=2-2&p=f&viewport=501%2C92%2C0.11&t=WLN2iOpby0reg7zw-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=2%3A2&page-id=0%3A1",
+      github: "https://github.com/shashinirathnayake2111-afk/Lomiees-Website",
+      live: "https://lomiees-website.vercel.app/"
+    },
+    caseStudy: {
+      problem: "The Lomiees clothing brand needed an online fashion boutique that reflected modern minimalism while tackling cart drop-offs caused by complicated multi-step checkouts and slow catalog rendering.",
+      solution: "Engineered a sleek responsive e-commerce web app with instant product filtering, interactive color/size variant pickers, an animated side-cart drawer, and a streamlined single-page checkout flow.",
+      challenges: "Balancing high-resolution editorial fashion photography with rapid load performance, alongside creating luxury subtle micro-animations that feel premium yet lightweight.",
+      techStack: ["React", "Node.js", "Tailwind CSS", "Figma", "UI/UX Design"],
+      designSystem: {
+        colors: [
+          { name: "Obsidian Noir", hex: "#0A0D14", role: "Luxury Canvas" },
+          { name: "Tailored Slate", hex: "#1E232E", role: "Surface Contrast" },
+          { name: "Champagne Gold", hex: "#E6C9A8", role: "Signature Accent" },
+          { name: "Warm Cashmere", hex: "#B89C7D", role: "Subtle Warmth" },
+          { name: "Clean White", hex: "#F8F9FA", role: "Typography & Clarity" }
+        ],
+        typography: [
+          { role: "Fashion Editorial", font: "Bebas Neue", style: "High-fashion editorial collection headers" },
+          { role: "Commerce & Navigation", font: "Poppins", style: "Frictionless pricing & checkout" }
+        ]
+      }
+    }
   }
 ];
+
 
 const FILTERS = [
   { key: 'all', label: 'All Works' },
@@ -315,9 +350,8 @@ const isLightColor = (hex) => {
 
 /* ── Full Case Study Modal (Modern Magazine / Bento Showcase) ── */
 const CaseStudyModal = ({ project, onClose }) => {
-  if (!project) return null;
-
   useEffect(() => {
+    if (!project) return;
     document.body.style.overflow = 'hidden';
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') onClose();
@@ -327,7 +361,9 @@ const CaseStudyModal = ({ project, onClose }) => {
       document.body.style.overflow = '';
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [onClose]);
+  }, [project, onClose]);
+
+  if (!project) return null;
 
   return (
     <AnimatePresence>

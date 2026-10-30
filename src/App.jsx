@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
 import Lenis from 'lenis'
 import { useScroll, useTransform, useMotionValueEvent, motion, AnimatePresence } from 'framer-motion'
@@ -19,26 +19,6 @@ import SkillsPage from './components/page/SkillsPage'
 import ExperiencePage from './components/page/ExperiencePage'
 
 const HAS_LOADED_KEY = 'portfolioHasLoaded'
-
-/* ── Cinematic scroll-reveal wrapper for sections below hero ── */
-const SectionReveal = ({ children, style }) => (
-  <motion.div
-    initial={{ opacity: 0, y: 60, clipPath: 'inset(8% 0% 0% 0% round 24px)' }}
-    whileInView={{
-      opacity: 1,
-      y: 0,
-      clipPath: 'inset(0% 0% 0% 0% round 0px)',
-    }}
-    viewport={{ once: true, margin: '-80px' }}
-    transition={{
-      duration: 1.1,
-      ease: [0.16, 1, 0.3, 1],
-    }}
-    style={style}
-  >
-    {children}
-  </motion.div>
-)
 
 function App() {
   const alreadyLoaded = sessionStorage.getItem(HAS_LOADED_KEY) === 'true'

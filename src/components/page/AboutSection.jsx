@@ -70,10 +70,24 @@ const BentoCard3D = ({ num, unit, label, sub, highlight, delay, href }) => {
   );
 
   if (href) {
+    const handleClick = (e) => {
+      if (href.includes('#education')) {
+        e.preventDefault();
+        const el = document.getElementById('education');
+        if (el) {
+          if (window.lenis) {
+            window.lenis.scrollTo(el, { offset: -30, duration: 1.2 });
+          } else {
+            el.scrollIntoView({ behavior: 'smooth' });
+          }
+        }
+      }
+    };
+
     if (href.startsWith('/')) {
-      return <Link to={href} className="bento-card-link">{cardInner}</Link>;
+      return <Link to={href} onClick={handleClick} className="bento-card-link">{cardInner}</Link>;
     }
-    return <a href={href} className="bento-card-link">{cardInner}</a>;
+    return <a href={href} onClick={handleClick} className="bento-card-link">{cardInner}</a>;
   }
   return cardInner;
 };
@@ -176,46 +190,6 @@ const StaggeredText = ({ text, className, delay = 0 }) => {
   );
 };
 
-/* ── Cinematic Title ── */
-const CinematicTitle = ({ text }) => {
-  const words = text.split(' ');
-  const strokeWords = ['behind', 'it.'];
-
-  const containerVariants = {
-    hidden: {},
-    visible: { transition: { staggerChildren: 0.065, delayChildren: 0.15 } },
-  };
-
-  const wordVariants = {
-    hidden: { opacity: 0, y: 24, filter: 'blur(12px)', scale: 0.96 },
-    visible: {
-      opacity: 1, y: 0, filter: 'blur(0px)', scale: 1,
-      transition: { duration: 0.75, ease: [0.22, 1, 0.36, 1] },
-    },
-  };
-
-  return (
-    <motion.h2
-      className="about-title"
-      variants={containerVariants}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: '-60px' }}
-    >
-      {words.map((word, i) => (
-        <motion.span
-          key={i}
-          variants={wordVariants}
-          className={strokeWords.includes(word) ? 'title-stroke' : ''}
-          style={{ display: 'inline-block', marginRight: '0.28em' }}
-        >
-          {word}
-        </motion.span>
-      ))}
-    </motion.h2>
-  );
-};
-
 /* ── About Panel ── */
 const AboutPanel = () => {
   const [counts, setCounts] = useState({ exp: 0, projects: 0, certs: 0 });
@@ -241,7 +215,7 @@ const AboutPanel = () => {
             }, delay);
           };
           animate(1, 'exp', 1000, 100);
-          animate(7, 'projects', 1600, 250);
+          animate(5, 'projects', 1600, 250);
           animate(5, 'certs', 1800, 400);
         }
       },

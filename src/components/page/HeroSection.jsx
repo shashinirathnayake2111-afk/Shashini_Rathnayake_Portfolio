@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { MapPin, ChevronDown } from 'lucide-react';
+import { MapPin } from 'lucide-react';
 import '../styles/HeroSection.css';
 import profileImg from '../../assets/profile.png';
 import bgImg from '../../assets/bg.jpg';

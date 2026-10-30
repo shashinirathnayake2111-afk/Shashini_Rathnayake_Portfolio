@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { PenTool, Smartphone, Layout, ClipboardList, Layers } from 'lucide-react';
+import { PenTool, Smartphone, Layout, ClipboardList, Layers, Globe } from 'lucide-react';
 import '../styles/SkillsPage.css';
 import Footer from './Footer';
 
@@ -34,12 +34,36 @@ const skillsData = [
     number: "03",
     items: [
       { name: "Figma", devicon: "devicon-figma-plain colored" },
-      { name: "Canva", devicon: "devicon-canva-original colored" },
       { name: "Wireframing", icon: <PenTool size={26} strokeWidth={1.8} /> },
       { name: "Prototyping", icon: <Smartphone size={26} strokeWidth={1.8} /> },
       { name: "Mockups", icon: <Layout size={26} strokeWidth={1.8} /> },
       { name: "Req. Gathering", icon: <ClipboardList size={26} strokeWidth={1.8} /> },
       { name: "Google Stitch", icon: <Layers size={26} strokeWidth={1.8} /> },
+    ]
+  },
+  {
+    category: "Tools & Platforms",
+    number: "04",
+    items: [
+      { name: "Git", devicon: "devicon-git-plain colored" },
+      { name: "GitHub", devicon: "devicon-github-original colored" },
+      { name: "VS Code", devicon: "devicon-vscode-plain colored" },
+      { name: "Vercel", devicon: "devicon-vercel-original" },
+      { name: "REST APIs", icon: <Globe size={26} strokeWidth={1.8} /> },
+      { name: "NPM & Vite", devicon: "devicon-npm-original-wordmark colored" },
+    ]
+  },
+  {
+    category: "Tools & Platforms",
+    number: "04",
+    items: [
+      { name: "Git", devicon: "devicon-git-plain colored" },
+      { name: "GitHub", devicon: "devicon-github-original colored" },
+      { name: "VS Code", devicon: "devicon-vscode-plain colored" },
+      { name: "Postman", devicon: "devicon-postman-plain colored" },
+      { name: "Vercel", devicon: "devicon-vercel-original" },
+      { name: "REST APIs", icon: <Globe size={26} strokeWidth={1.8} /> },
+      { name: "NPM & Vite", devicon: "devicon-npm-original-wordmark colored" },
     ]
   }
 ];

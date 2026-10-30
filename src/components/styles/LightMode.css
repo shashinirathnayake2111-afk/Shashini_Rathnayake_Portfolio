@@ -1,0 +1,916 @@
+/* ═════════════════════════════════════════════════════════════
+   LIGHT MODE DESIGN SYSTEM
+   Palette: Warm Ivory / Alabaster (#F7F5EF), Rich Charcoal (#18181B),
+   Champagne Antique Gold (#B48332 / #A16207), Soft White (#FFFFFF)
+   ═════════════════════════════════════════════════════════════ */
+
+body.light-mode {
+  background-color: #f7f5ef;
+  color: #18181b;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+body.light-mode .app-container,
+body.light-mode .home-scroll-container,
+body.light-mode .home-subsequent-content,
+body.light-mode .intro-elevation-stage,
+body.light-mode .about-page-wrapper,
+body.light-mode .cinematic-skills-wrapper,
+body.light-mode .experience-page-wrapper {
+  background-color: #f7f5ef !important;
+  color: #18181b;
+}
+
+/* ─── 01. NAVBAR ─────────────────────────────────────────── */
+body.light-mode .navbar-container {
+  background: rgba(255, 255, 255, 0.85);
+  border-color: rgba(180, 140, 75, 0.25);
+  box-shadow: 0 10px 30px rgba(160, 120, 60, 0.08);
+}
+
+body.light-mode .nav-logo {
+  color: #18181b;
+}
+
+body.light-mode .nav-dot {
+  color: #b48332;
+}
+
+body.light-mode .nav-link {
+  color: #52525b;
+}
+
+body.light-mode .nav-link:hover,
+body.light-mode .nav-link.active {
+  color: #b48332;
+}
+
+body.light-mode .nav-cta {
+  background-color: #18181b;
+  color: #f8f6f0;
+}
+
+body.light-mode .nav-cta:hover {
+  background-color: #b48332;
+  color: #ffffff;
+}
+
+body.light-mode .status-text {
+  color: #27272a;
+}
+
+body.light-mode .hamburger-line {
+  background-color: #18181b;
+}
+
+body.light-mode .scrolled-hamburger {
+  background: rgba(255, 255, 255, 0.92);
+  border-color: rgba(180, 140, 75, 0.3);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+}
+
+body.light-mode .scrolled-hamburger:hover {
+  background: #ffffff;
+  border-color: #b48332;
+  box-shadow: 0 0 15px rgba(180, 140, 75, 0.25);
+}
+
+/* ── Fullscreen Overlay Menu in Light Mode ── */
+body.light-mode .nav-fullscreen-overlay {
+  background-color: #f8f6f0;
+  background-image:
+    radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.12) 0%, rgba(248, 246, 240, 0.96) 60%, #f8f6f0 100%),
+    linear-gradient(rgba(180, 140, 75, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(180, 140, 75, 0.06) 1px, transparent 1px);
+}
+
+body.light-mode .overlay-header-logo .logo-text {
+  color: #18181b;
+}
+
+body.light-mode .menu-close-btn {
+  color: #18181b;
+  background: rgba(0, 0, 0, 0.05);
+  border-color: rgba(180, 140, 75, 0.2);
+}
+
+body.light-mode .menu-close-btn:hover {
+  background: #18181b;
+  color: #ffffff;
+}
+
+body.light-mode .overlay-subheading {
+  color: #a16207;
+}
+
+body.light-mode .overlay-link .link-text {
+  color: #18181b;
+}
+
+body.light-mode .overlay-link .link-number {
+  color: #b48332;
+}
+
+body.light-mode .overlay-link:hover .link-text,
+body.light-mode .overlay-link.active .link-text {
+  color: #a16207;
+}
+
+body.light-mode .overlay-detail-card {
+  background: rgba(255, 255, 255, 0.88);
+  border-color: rgba(180, 140, 75, 0.2);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+}
+
+body.light-mode .detail-tag {
+  color: #a16207;
+}
+
+body.light-mode .detail-status {
+  color: #27272a;
+}
+
+body.light-mode .detail-text {
+  color: #52525b;
+}
+
+body.light-mode .detail-email {
+  color: #18181b;
+}
+
+body.light-mode .detail-email:hover {
+  color: #a16207;
+}
+
+body.light-mode .overlay-social-links a {
+  color: #52525b;
+}
+
+body.light-mode .overlay-social-links a:hover {
+  color: #a16207;
+}
+
+body.light-mode .overlay-cv-btn {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: rgba(180, 140, 75, 0.3);
+  color: #18181b;
+}
+
+body.light-mode .overlay-cta {
+  background: #18181b;
+  color: #ffffff;
+}
+
+body.light-mode .overlay-footer-note {
+  color: #71717a;
+}
+
+/* ─── 02. SOCIAL SIDEBAR ─────────────────────────────────── */
+body.light-mode .social-sidebar .social-link {
+  color: #52525b;
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(180, 140, 75, 0.25);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+body.light-mode .social-sidebar .social-link:hover {
+  color: #b48332;
+  border-color: #b48332;
+  background: #ffffff;
+}
+
+body.light-mode .sidebar-line {
+  background: linear-gradient(to bottom, rgba(180, 140, 75, 0.4), transparent);
+}
+
+/* ─── 03. HERO SECTION ───────────────────────────────────── */
+body.light-mode .hero-section {
+  background: linear-gradient(180deg, #f3efe6 0%, #faf8f5 100%);
+}
+
+body.light-mode .hero-cinematic-bg {
+  opacity: 0.18;
+  filter: saturate(0.8) contrast(1.1) brightness(1.2);
+}
+
+body.light-mode .moon-pulse-glow {
+  background: radial-gradient(circle at 65% 32%, rgba(255, 215, 120, 0.35) 0%, transparent 65%);
+}
+
+body.light-mode .hero-bg-role {
+  color: rgba(180, 140, 60, 0.08);
+  text-shadow: none;
+}
+
+body.light-mode .bg-hover-letter:hover {
+  color: rgba(180, 140, 60, 0.28);
+}
+
+body.light-mode .hero-eyebrow-line {
+  background: #b48332;
+}
+
+body.light-mode .hero-hello {
+  color: #92632b;
+}
+
+body.light-mode .hero-name {
+  color: #18181b;
+  text-shadow: none;
+}
+
+body.light-mode .hero-role-subtitle {
+  color: #52525b;
+}
+
+body.light-mode .hero-projects-btn {
+  background: rgba(255, 255, 255, 0.95);
+  color: #18181b;
+  border-color: rgba(180, 140, 75, 0.35);
+  box-shadow: 0 6px 22px rgba(180, 140, 75, 0.12);
+}
+
+body.light-mode .hero-projects-btn:hover {
+  background: #18181b;
+  color: #ffffff;
+  border-color: #18181b;
+}
+
+body.light-mode .hero-profile-label {
+  background: rgba(255, 255, 255, 0.94);
+  color: #1f2937;
+  border-color: rgba(180, 140, 75, 0.3);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
+}
+
+body.light-mode .scroll-mouse {
+  border-color: rgba(40, 40, 40, 0.45);
+}
+
+body.light-mode .scroll-dot {
+  background-color: #b48332;
+}
+
+body.light-mode .scroll-label {
+  color: #71717a;
+}
+
+/* ─── 04. INTRO STATEMENT ────────────────────────────────── */
+body.light-mode .intro-statement-section {
+  background-color: #f7f5ef;
+}
+
+body.light-mode .intro-highlight {
+  color: #18181b;
+  text-shadow: none;
+}
+
+body.light-mode .intro-highlight span.highlighted-word {
+  color: #a16207;
+}
+
+body.light-mode .intro-anchor-line {
+  background: linear-gradient(to bottom, transparent, rgba(180, 140, 75, 0.45));
+}
+
+body.light-mode .intro-anchor-text {
+  color: rgba(160, 115, 45, 0.75);
+}
+
+/* ─── 05. ABOUT SECTION ──────────────────────────────────── */
+body.light-mode .about-section {
+  background: linear-gradient(180deg, #f7f5ef 0%, #ede8dc 60%, #f4f0e6 100%);
+  color: #18181b;
+}
+
+body.light-mode .about-watermark {
+  -webkit-text-stroke: 1px rgba(160, 120, 60, 0.08);
+}
+
+body.light-mode .about-eyebrow-text {
+  color: #b48332;
+}
+
+body.light-mode .about-eyebrow-line {
+  background: #b48332;
+}
+
+body.light-mode .about-main-title {
+  color: #18181b;
+}
+
+body.light-mode .title-accent-gold {
+  color: #a16207;
+}
+
+body.light-mode .about-bio {
+  color: #3f3f46;
+}
+
+body.light-mode .about-quote-box {
+  background: rgba(255, 255, 255, 0.9);
+  border-left-color: #b48332;
+  box-shadow: 0 6px 24px rgba(180, 140, 75, 0.07);
+}
+
+body.light-mode .about-quote-text {
+  color: #27272a;
+}
+
+body.light-mode .tech-stack-label {
+  color: #71717a;
+}
+
+body.light-mode .tech-pill {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: rgba(180, 140, 75, 0.25);
+  color: #27272a;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+body.light-mode .tech-pill:hover {
+  background: #b48332;
+  color: #ffffff;
+  border-color: #b48332;
+}
+
+body.light-mode .btn-primary {
+  background: #18181b;
+  color: #ffffff;
+}
+
+body.light-mode .btn-primary:hover {
+  background: #b48332;
+}
+
+body.light-mode .btn-secondary {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(180, 140, 75, 0.35);
+  color: #18181b;
+}
+
+body.light-mode .btn-secondary:hover {
+  background: #18181b;
+  color: #ffffff;
+}
+
+body.light-mode .bento-stat-card {
+  background: rgba(255, 255, 255, 0.92);
+  border-color: rgba(180, 140, 75, 0.22);
+  box-shadow: 0 10px 30px rgba(180, 140, 75, 0.08);
+}
+
+body.light-mode .bento-stat-card.highlight-card {
+  border-color: rgba(180, 140, 75, 0.45);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(250, 240, 220, 0.9));
+}
+
+body.light-mode .bento-stat-num {
+  color: #18181b;
+}
+
+body.light-mode .bento-stat-unit {
+  color: #b48332;
+}
+
+body.light-mode .bento-stat-label {
+  color: #27272a;
+}
+
+body.light-mode .bento-stat-sub {
+  color: #71717a;
+}
+
+body.light-mode .bento-nav-hint {
+  color: #b48332;
+}
+
+body.light-mode .pencilart-frame {
+  border-color: rgba(180, 140, 75, 0.35);
+  box-shadow: 0 12px 36px rgba(180, 140, 75, 0.12);
+}
+
+body.light-mode .pencilart-label-text {
+  color: #52525b;
+}
+
+body.light-mode .pencilart-line {
+  background: rgba(180, 140, 75, 0.35);
+}
+
+/* ─── 06. SKILLS MARQUEE ─────────────────────────────────── */
+body.light-mode .skills-marquee-section {
+  background: #faf8f5;
+  border-color: rgba(180, 140, 75, 0.18);
+}
+
+body.light-mode .marquee-item {
+  color: #52525b;
+}
+
+body.light-mode .marquee-dot {
+  background: #b48332;
+}
+
+/* ─── 07. PROJECTS SHOWCASE ──────────────────────────────── */
+body.light-mode .projects-showcase-section.celestial-night-theme {
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(245, 230, 200, 0.45) 0%, transparent 65%),
+    radial-gradient(circle at 85% 65%, rgba(235, 220, 195, 0.3) 0%, transparent 55%),
+    linear-gradient(180deg, #f4f0e6 0%, #ede7d8 45%, #f6f3ea 100%);
+  color: #18181b;
+}
+
+body.light-mode .projects-eyebrow-text {
+  color: #b48332;
+}
+
+body.light-mode .projects-eyebrow-line {
+  background: #b48332;
+}
+
+body.light-mode .projects-main-title {
+  color: #18181b;
+}
+
+body.light-mode .filter-btn {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(180, 140, 75, 0.22);
+  color: #52525b;
+}
+
+body.light-mode .filter-btn.active {
+  background: #b48332;
+  border-color: #b48332;
+  color: #ffffff;
+}
+
+body.light-mode .filter-btn:hover:not(.active) {
+  border-color: #b48332;
+  color: #18181b;
+}
+
+body.light-mode .pcard {
+  background: #ffffff;
+  border-color: rgba(180, 140, 75, 0.22);
+  box-shadow: 0 12px 35px rgba(180, 140, 75, 0.09);
+}
+
+body.light-mode .pcard__title {
+  color: #18181b;
+}
+
+body.light-mode .pcard__category {
+  color: #b48332;
+}
+
+body.light-mode .pcard__index {
+  color: #71717a;
+  background: rgba(255, 255, 255, 0.88);
+}
+
+body.light-mode .pcard__icon-btn {
+  background: #f4f0e6;
+  border-color: rgba(180, 140, 75, 0.22);
+  color: #27272a;
+}
+
+body.light-mode .pcard__icon-btn:hover {
+  background: #b48332;
+  color: #ffffff;
+}
+
+body.light-mode .carousel-nav {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: rgba(180, 140, 75, 0.28);
+  color: #18181b;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+}
+
+body.light-mode .carousel-counter {
+  color: #71717a;
+}
+
+body.light-mode .counter-current {
+  color: #18181b;
+}
+
+body.light-mode .carousel-drag-hint span {
+  color: #71717a;
+}
+
+/* Modal in Light Mode */
+body.light-mode .case-study-backdrop {
+  background: rgba(20, 18, 15, 0.65);
+}
+
+body.light-mode .case-study-container {
+  background: #faf8f5;
+  border-color: rgba(180, 140, 75, 0.3);
+  color: #18181b;
+}
+
+body.light-mode .case-study-topbar {
+  background: rgba(255, 255, 255, 0.92);
+  border-color: rgba(180, 140, 75, 0.2);
+}
+
+body.light-mode .case-study-close-btn {
+  background: rgba(0, 0, 0, 0.05);
+  color: #18181b;
+}
+
+body.light-mode .case-study-title {
+  color: #18181b;
+}
+
+body.light-mode .case-study-summary {
+  color: #3f3f46;
+}
+
+body.light-mode .case-bento-card {
+  background: #ffffff;
+  border-color: rgba(180, 140, 75, 0.18);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
+}
+
+body.light-mode .bento-card-title {
+  color: #18181b;
+}
+
+body.light-mode .bento-card-body {
+  color: #3f3f46;
+}
+
+body.light-mode .case-tech-pill {
+  background: #f4f0e6;
+  color: #27272a;
+  border-color: rgba(180, 140, 75, 0.2);
+}
+
+body.light-mode .case-study-bottom-bar {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: rgba(180, 140, 75, 0.2);
+}
+
+body.light-mode .bottom-bar-label {
+  color: #18181b;
+}
+
+body.light-mode .bottom-bar-sub {
+  color: #71717a;
+}
+
+/* ─── 08. SKILLS PAGE ────────────────────────────────────── */
+body.light-mode .skills-eyebrow-text {
+  color: #b48332;
+}
+
+body.light-mode .skills-eyebrow-line {
+  background: #b48332;
+}
+
+body.light-mode .skills-main-title {
+  color: #18181b;
+}
+
+body.light-mode .skills-subtitle {
+  color: #52525b;
+}
+
+body.light-mode .skills-category-card {
+  background: #ffffff;
+  border-color: rgba(180, 140, 75, 0.2);
+  box-shadow: 0 10px 30px rgba(180, 140, 75, 0.07);
+}
+
+body.light-mode .skills-category-num {
+  color: #b48332;
+}
+
+body.light-mode .skills-category-title {
+  color: #18181b;
+}
+
+body.light-mode .cinematic-skill-card {
+  background: #f8f6f0;
+  border-color: rgba(180, 140, 75, 0.18);
+}
+
+body.light-mode .cinematic-skill-card:hover {
+  background: rgba(180, 140, 75, 0.14);
+  border-color: #b48332;
+}
+
+body.light-mode .cinematic-skill-name {
+  color: #27272a;
+}
+
+body.light-mode .cinematic-skill-card:hover .cinematic-skill-name {
+  color: #000000;
+}
+
+/* ─── 09. EXPERIENCE PAGE ────────────────────────────────── */
+body.light-mode .experience-hero .experience-eyebrow span {
+  color: #b48332;
+}
+
+body.light-mode .eyebrow-line {
+  background: #b48332;
+}
+
+body.light-mode .experience-main-title {
+  color: #18181b;
+}
+
+body.light-mode .experience-subtitle {
+  color: #52525b;
+}
+
+body.light-mode .company-spotlight-card {
+  background: #ffffff;
+  border-color: rgba(180, 140, 75, 0.22);
+  box-shadow: 0 12px 35px rgba(180, 140, 75, 0.08);
+}
+
+body.light-mode .company-title {
+  color: #18181b;
+}
+
+body.light-mode .company-role {
+  color: #b48332;
+}
+
+body.light-mode .company-location,
+body.light-mode .company-duration {
+  color: #71717a;
+}
+
+body.light-mode .company-summary {
+  color: #3f3f46;
+}
+
+body.light-mode .company-icon-frame {
+  background: #f4f0e6;
+  border-color: rgba(180, 140, 75, 0.25);
+  color: #b48332;
+}
+
+body.light-mode .exp-stat-box {
+  background: #f8f6f0;
+  border-color: rgba(180, 140, 75, 0.18);
+}
+
+body.light-mode .exp-stat-num {
+  color: #18181b;
+}
+
+body.light-mode .exp-stat-label {
+  color: #27272a;
+}
+
+body.light-mode .exp-stat-desc {
+  color: #71717a;
+}
+
+body.light-mode .sub-header-title {
+  color: #18181b;
+}
+
+body.light-mode .bank-project-card {
+  background: #ffffff;
+  border-color: rgba(180, 140, 75, 0.2);
+  box-shadow: 0 8px 25px rgba(180, 140, 75, 0.06);
+}
+
+body.light-mode .project-title {
+  color: #18181b;
+}
+
+body.light-mode .project-desc {
+  color: #3f3f46;
+}
+
+body.light-mode .key-list-heading {
+  color: #71717a;
+}
+
+body.light-mode .project-key-list ul li {
+  color: #3f3f46;
+}
+
+body.light-mode .bank-project-card .tech-pill {
+  background: #f4f0e6;
+  color: #27272a;
+  border-color: rgba(180, 140, 75, 0.2);
+}
+
+body.light-mode .impact-card {
+  background: #ffffff;
+  border-color: rgba(180, 140, 75, 0.18);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
+}
+
+body.light-mode .impact-title {
+  color: #18181b;
+}
+
+body.light-mode .impact-desc {
+  color: #52525b;
+}
+
+body.light-mode .experience-cta-strip {
+  background: #ffffff;
+  border-color: rgba(180, 140, 75, 0.22);
+  box-shadow: 0 10px 30px rgba(180, 140, 75, 0.08);
+}
+
+body.light-mode .cta-title {
+  color: #18181b;
+}
+
+body.light-mode .cta-sub {
+  color: #52525b;
+}
+
+body.light-mode .btn-exp-download {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: rgba(180, 140, 75, 0.3);
+  color: #18181b;
+}
+
+body.light-mode .btn-exp-contact {
+  background: #18181b;
+  color: #ffffff;
+}
+
+/* ─── 10. EDUCATION SECTION ──────────────────────────────── */
+body.light-mode .edu-section {
+  background-color: #f7f5ef;
+  color: #18181b;
+}
+
+body.light-mode .edu-heading {
+  color: #18181b;
+}
+
+body.light-mode .timeline-item .timeline-title {
+  color: #18181b;
+}
+
+body.light-mode .timeline-inst {
+  color: #a16207;
+}
+
+body.light-mode .timeline-desc {
+  color: #52525b;
+}
+
+body.light-mode .timeline-year {
+  background: rgba(180, 140, 75, 0.15);
+  color: #854d0e;
+}
+
+body.light-mode .timeline:before {
+  background: rgba(180, 140, 75, 0.3);
+}
+
+body.light-mode .timeline-dot {
+  background: #b48332;
+  border-color: #faf8f5;
+}
+
+body.light-mode .stacked-card {
+  border: 1px solid rgba(180, 140, 75, 0.3);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.18);
+}
+
+/* ─── 11. CONTACT DRAWER ─────────────────────────────────── */
+body.light-mode .contact-drawer {
+  background: #faf8f5;
+  color: #18181b;
+  border-left-color: rgba(180, 140, 75, 0.25);
+}
+
+body.light-mode .drawer-title {
+  color: #18181b;
+}
+
+body.light-mode .drawer-subtitle {
+  color: #52525b;
+}
+
+body.light-mode .form-group input,
+body.light-mode .form-group textarea {
+  background: #ffffff;
+  border-color: rgba(180, 140, 75, 0.28);
+  color: #18181b;
+}
+
+body.light-mode .form-group input:focus,
+body.light-mode .form-group textarea:focus {
+  border-color: #b48332;
+  box-shadow: 0 0 12px rgba(180, 140, 75, 0.2);
+}
+
+body.light-mode .form-group label {
+  color: #3f3f46;
+}
+
+body.light-mode .submit-btn {
+  background: #18181b;
+  color: #ffffff;
+}
+
+body.light-mode .submit-btn:hover {
+  background: #b48332;
+}
+
+body.light-mode .contact-icon-btn {
+  background: #ffffff;
+  border-color: rgba(180, 140, 75, 0.22);
+  color: #27272a;
+}
+
+body.light-mode .contact-icon-btn:hover {
+  background: #f4f0e6;
+  color: #b48332;
+}
+
+/* ─── 12. FOOTER ─────────────────────────────────────────── */
+body.light-mode .footer-section {
+  background: #ede8dc;
+  color: #18181b;
+}
+
+body.light-mode .footer-wave svg path {
+  fill: #f7f5ef;
+}
+
+body.light-mode .footer-headline {
+  color: #18181b;
+}
+
+body.light-mode .footer-headline-accent {
+  color: #a16207;
+}
+
+body.light-mode .footer-cta-btn {
+  background: #18181b;
+  color: #ffffff;
+}
+
+body.light-mode .footer-cta-btn:hover {
+  background: #b48332;
+}
+
+body.light-mode .footer-cv-btn {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: rgba(180, 140, 75, 0.3);
+  color: #18181b;
+}
+
+body.light-mode .footer-cv-btn:hover {
+  background: #18181b;
+  color: #ffffff;
+}
+
+body.light-mode .footer-divider {
+  background: rgba(180, 140, 75, 0.2);
+}
+
+body.light-mode .footer-copy {
+  color: #71717a;
+}
+
+body.light-mode .footer-social-pill {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(180, 140, 75, 0.25);
+  color: #27272a;
+}
+
+body.light-mode .footer-social-pill:hover {
+  background: #b48332;
+  color: #ffffff;
+  border-color: #b48332;
+}
+
+body.light-mode .btt-label {
+  color: #52525b;
+}
+
+body.light-mode .btt-circle {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: rgba(180, 140, 75, 0.28);
+  color: #18181b;
+}
+
+body.light-mode .footer-back-to-top:hover .btt-circle {
+  background: #b48332;
+  color: #ffffff;
+}
+
+body.light-mode .footer-watermark {
+  color: rgba(180, 140, 75, 0.05);
+}
+

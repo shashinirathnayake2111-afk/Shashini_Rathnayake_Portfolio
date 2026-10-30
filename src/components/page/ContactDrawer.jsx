@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Mail, Phone, CheckCircle, Send, AlertCircle, Copy, Check } from 'lucide-react';
+import { Mail, Phone, CheckCircle, Send, AlertCircle, Check } from 'lucide-react';
 import '../styles/ContactDrawer.css';
 
 const ContactDrawer = ({ isOpen, onClose }) => {
@@ -24,7 +24,7 @@ const ContactDrawer = ({ isOpen, onClose }) => {
       setStatus('idle');
       setFormData({ name: '', email: '', message: '' });
     }
-  }, [isOpen]);
+  }, [isOpen, status]);
 
   const handleChange = (e) => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));

@@ -1,3 +1,5 @@
+@import './components/styles/LightMode.css';
+
 @font-face {
   font-family: 'Bebas Neue';
   src: url('https://fonts.gstatic.com/s/bebasneu/v21/JTUSjIg69CK48gW7PXooxWtrzw.woff2') format('woff2');
