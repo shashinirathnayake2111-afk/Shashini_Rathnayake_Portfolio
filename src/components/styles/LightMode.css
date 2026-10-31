@@ -175,89 +175,159 @@ body.light-mode .sidebar-line {
 
 /* ─── 03. HERO SECTION ───────────────────────────────────── */
 body.light-mode .hero-section {
-  background: transparent;
-  position: relative;
+  background:
+    linear-gradient(180deg, rgba(12, 10, 9, 0.28) 0%, rgba(18, 14, 11, 0.38) 100%),
+    url('/light_bg.jpg') center/cover no-repeat !important;
 }
 
-/* light_bg.jpg as full hero background — sits behind all content */
-body.light-mode .hero-section::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: url('/light_bg.jpg') center/cover no-repeat;
-  z-index: 0;
-}
-
-/* All hero content must sit above the ::before layer - image shown clean */
+/* ── Hide dark-mode-only cinematic sky, moon, clouds, stars, mist & dark glows ── */
+body.light-mode .hero-cinematic-bg,
+body.light-mode .hero-cinematic-img,
+body.light-mode .moon-pulse-glow,
+body.light-mode .drifting-cloud-layer,
+body.light-mode .sky-stars,
+body.light-mode .hero-cinematic-vignette,
 body.light-mode .hero-background-effects,
-body.light-mode .hero-bg-role,
-body.light-mode .hero-profile-wrapper,
-body.light-mode .hero-overlay-text,
-body.light-mode .scroll-down-indicator {
-  position: relative;
-  z-index: 2;
+body.light-mode .noise-overlay,
+body.light-mode .glow-orb {
+  display: none !important;
 }
 
-body.light-mode .moon-pulse-glow {
-  background: radial-gradient(circle at 65% 32%, rgba(255, 215, 120, 0.35) 0%, transparent 65%);
-}
+/* ── Note: Exact positions preserved from HeroSection.css ──
+   - .hero-bg-role: position: absolute; top: 15% (centered watermark)
+   - .hero-profile-wrapper: transform: translateX(-10.5vw)
+   - .hero-overlay-text: position: absolute; bottom: 7%; right: 8%
+   - .scroll-down-indicator: position: absolute; bottom: 30px; left: 50%
+── */
 
+/* ── Background watermark text: BUILD. DESIGN. INSPIRE. ── */
 body.light-mode .hero-bg-role {
-  color: rgba(180, 140, 60, 0.08);
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(245, 158, 11, 0.28);
   text-shadow: none;
 }
 
 body.light-mode .bg-hover-letter:hover {
-  color: rgba(180, 140, 60, 0.28);
+  color: #fbbf24;
+  -webkit-text-stroke: 1.5px #fbbf24;
+  text-shadow: 0 0 25px rgba(251, 191, 36, 0.45);
 }
 
+/* ── HELLO, I'M eyebrow ── */
 body.light-mode .hero-eyebrow-line {
-  background: #b48332;
+  background: #fbbf24;
+  height: 2px;
 }
 
 body.light-mode .hero-hello {
-  color: #92632b;
+  color: #fbbf24;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
 }
 
+/* ── Name Heading: SHASHINI RATHNAYAKE ──
+   Crisp White + Radiant Sunset Gold = 100% visible, sharp & cinematic on darkened sky!
+*/
 body.light-mode .hero-name {
-  color: #18181b;
-  text-shadow: none;
+  color: #ffffff;
+  text-shadow:
+    0 2px 14px rgba(0, 0, 0, 0.65),
+    0 4px 30px rgba(0, 0, 0, 0.4);
 }
 
+body.light-mode .hero-name .name-first {
+  color: #ffffff;
+  text-shadow:
+    0 2px 14px rgba(0, 0, 0, 0.65),
+    0 4px 30px rgba(0, 0, 0, 0.4);
+}
+
+body.light-mode .hero-name .name-last {
+  color: #fbbf24;
+  text-shadow:
+    0 2px 16px rgba(0, 0, 0, 0.65),
+    0 0 35px rgba(251, 191, 36, 0.45);
+}
+
+/* ── Role Subtitle ── */
 body.light-mode .hero-role-subtitle {
-  color: #52525b;
+  color: rgba(255, 255, 255, 0.95);
+  font-weight: 500;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
 }
 
+/* ── CTA Button: VIEW MY PROJECTS ──
+   Frosted Glass with glowing gold arrow & border!
+*/
 body.light-mode .hero-projects-btn {
-  background: rgba(255, 255, 255, 0.95);
-  color: #18181b;
-  border-color: rgba(180, 140, 75, 0.35);
-  box-shadow: 0 6px 22px rgba(180, 140, 75, 0.12);
+  background: rgba(255, 255, 255, 0.16);
+  color: #ffffff;
+  border: 1.5px solid rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+}
+
+body.light-mode .hero-projects-btn .btn-arrow {
+  color: #fbbf24;
 }
 
 body.light-mode .hero-projects-btn:hover {
-  background: #18181b;
-  color: #ffffff;
-  border-color: #18181b;
+  background: #ffffff;
+  color: #0f172a;
+  border-color: #ffffff;
+  box-shadow: 0 12px 30px rgba(255, 255, 255, 0.35);
+  transform: translateY(-2px);
 }
 
+body.light-mode .hero-projects-btn:hover .btn-arrow {
+  color: #a16207;
+}
+
+/* ── Profile Image & Shadow ── */
+body.light-mode .hero-profile-3d {
+  filter: drop-shadow(0 20px 45px rgba(0, 0, 0, 0.45));
+}
+
+body.light-mode .hero-profile-shadow {
+  opacity: 0.22;
+  filter: blur(12px);
+}
+
+/* ── Location Label: COLOMBO, SRI LANKA ── */
 body.light-mode .hero-profile-label {
-  background: rgba(255, 255, 255, 0.94);
-  color: #1f2937;
-  border-color: rgba(180, 140, 75, 0.3);
-  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
+  background: rgba(15, 23, 42, 0.65);
+  color: #ffffff;
+  font-weight: 600;
+  border: 1px solid rgba(251, 191, 36, 0.4);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
+body.light-mode .hero-profile-label svg {
+  color: #fbbf24;
+}
+
+body.light-mode .hero-profile-label:hover {
+  background: rgba(15, 23, 42, 0.85);
+  border-color: #fbbf24;
+  color: #fbbf24;
+}
+
+/* ── Scroll Indicator: EXPLORE ── */
 body.light-mode .scroll-mouse {
-  border-color: rgba(40, 40, 40, 0.45);
+  border-color: rgba(255, 255, 255, 0.7);
 }
 
 body.light-mode .scroll-dot {
-  background-color: #b48332;
+  background-color: #fbbf24;
 }
 
 body.light-mode .scroll-label {
-  color: #71717a;
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 600;
 }
 
 /* ─── 04. INTRO STATEMENT ────────────────────────────────── */
