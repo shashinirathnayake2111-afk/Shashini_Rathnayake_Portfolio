@@ -176,7 +176,8 @@ body.light-mode .sidebar-line {
 /* ─── 03. HERO SECTION ───────────────────────────────────── */
 body.light-mode .hero-section {
   background:
-    linear-gradient(180deg, rgba(12, 10, 9, 0.28) 0%, rgba(18, 14, 11, 0.38) 100%),
+    radial-gradient(ellipse at 55% 45%, rgba(10, 8, 12, 0.35) 0%, rgba(8, 7, 10, 0.65) 100%),
+    linear-gradient(180deg, rgba(15, 12, 10, 0.38) 0%, rgba(12, 10, 14, 0.55) 100%),
     url('/light_bg.jpg') center/cover no-repeat !important;
 }
 
@@ -258,15 +259,15 @@ body.light-mode .hero-role-subtitle {
 }
 
 /* ── CTA Button: VIEW MY PROJECTS ──
-   Frosted Glass with glowing gold arrow & border!
+   Dark glassmorphism pill with warm gold border & glowing arrow
 */
 body.light-mode .hero-projects-btn {
-  background: rgba(255, 255, 255, 0.16);
+  background: rgba(15, 20, 32, 0.72);
   color: #ffffff;
-  border: 1.5px solid rgba(255, 255, 255, 0.65);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+  border: 1.5px solid rgba(251, 191, 36, 0.55);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
 }
 
 body.light-mode .hero-projects-btn .btn-arrow {
@@ -274,15 +275,15 @@ body.light-mode .hero-projects-btn .btn-arrow {
 }
 
 body.light-mode .hero-projects-btn:hover {
-  background: #ffffff;
+  background: #fbbf24;
   color: #0f172a;
-  border-color: #ffffff;
-  box-shadow: 0 12px 30px rgba(255, 255, 255, 0.35);
+  border-color: #fbbf24;
+  box-shadow: 0 12px 32px rgba(251, 191, 36, 0.45);
   transform: translateY(-2px);
 }
 
 body.light-mode .hero-projects-btn:hover .btn-arrow {
-  color: #a16207;
+  color: #0f172a;
 }
 
 /* ── Profile Image & Shadow ── */
