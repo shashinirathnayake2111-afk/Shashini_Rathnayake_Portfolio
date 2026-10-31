@@ -157,20 +157,25 @@ body.light-mode .overlay-footer-note {
 
 /* ─── 02. SOCIAL SIDEBAR ─────────────────────────────────── */
 body.light-mode .social-sidebar .social-link {
-  color: #52525b;
-  background: rgba(255, 255, 255, 0.88);
-  border: 1px solid rgba(180, 140, 75, 0.25);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+  color: #f5efe6;
+  background: rgba(15, 20, 32, 0.65);
+  border: 1px solid rgba(230, 201, 168, 0.35);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
 }
 
 body.light-mode .social-sidebar .social-link:hover {
-  color: #b48332;
-  border-color: #b48332;
-  background: #ffffff;
+  color: #E6C9A8;
+  border-color: #E6C9A8;
+  background: rgba(230, 201, 168, 0.18);
+  box-shadow: 0 0 22px rgba(230, 201, 168, 0.4);
+  transform: translateY(-2px) scale(1.12);
 }
 
 body.light-mode .sidebar-line {
-  background: linear-gradient(to bottom, rgba(180, 140, 75, 0.4), transparent);
+  background: linear-gradient(180deg, #E6C9A8 0%, rgba(230, 201, 168, 0.12) 100%);
+  box-shadow: 0 0 8px rgba(230, 201, 168, 0.3);
 }
 
 /* ─── 03. HERO SECTION ───────────────────────────────────── */
@@ -204,130 +209,146 @@ body.light-mode .glow-orb {
 /* ── Background watermark text: BUILD. DESIGN. INSPIRE. ── */
 body.light-mode .hero-bg-role {
   color: transparent;
-  -webkit-text-stroke: 1.5px rgba(245, 158, 11, 0.28);
+  -webkit-text-stroke: 1.5px rgba(230, 201, 168, 0.22);
   text-shadow: none;
 }
 
 body.light-mode .bg-hover-letter:hover {
-  color: #fbbf24;
-  -webkit-text-stroke: 1.5px #fbbf24;
-  text-shadow: 0 0 25px rgba(251, 191, 36, 0.45);
+  color: #E6C9A8;
+  -webkit-text-stroke: 1.5px #E6C9A8;
+  text-shadow: 0 0 28px rgba(230, 201, 168, 0.45);
 }
 
 /* ── HELLO, I'M eyebrow ── */
 body.light-mode .hero-eyebrow-line {
-  background: #fbbf24;
-  height: 2px;
+  background: #E6C9A8;
+  height: 1.5px;
 }
 
 body.light-mode .hero-hello {
-  color: #fbbf24;
-  font-weight: 700;
+  color: #E6C9A8;
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: clamp(0.74rem, 1.1vw, 0.88rem);
+  font-weight: 600;
   letter-spacing: 0.28em;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.55);
 }
 
 /* ── Name Heading: SHASHINI RATHNAYAKE ──
-   Crisp White + Radiant Sunset Gold = 100% visible, sharp & cinematic on darkened sky!
+   Soft Silk Ivory + Signature Royal Gold (#D4AF37)
 */
 body.light-mode .hero-name {
-  color: #ffffff;
+  color: #f5efe6;
   text-shadow:
-    0 2px 14px rgba(0, 0, 0, 0.65),
-    0 4px 30px rgba(0, 0, 0, 0.4);
+    0 4px 24px rgba(0, 0, 0, 0.7),
+    0 2px 8px rgba(0, 0, 0, 0.5);
 }
 
 body.light-mode .hero-name .name-first {
-  color: #ffffff;
+  color: #f5efe6;
   text-shadow:
-    0 2px 14px rgba(0, 0, 0, 0.65),
-    0 4px 30px rgba(0, 0, 0, 0.4);
+    0 4px 24px rgba(0, 0, 0, 0.7),
+    0 2px 8px rgba(0, 0, 0, 0.5);
 }
 
 body.light-mode .hero-name .name-last {
-  color: #fbbf24;
+  color: #D4AF37;
   text-shadow:
-    0 2px 16px rgba(0, 0, 0, 0.65),
-    0 0 35px rgba(251, 191, 36, 0.45);
+    0 4px 24px rgba(0, 0, 0, 0.7),
+    0 0 32px rgba(212, 175, 55, 0.35);
 }
 
 /* ── Role Subtitle ── */
 body.light-mode .hero-role-subtitle {
-  color: rgba(255, 255, 255, 0.95);
-  font-weight: 500;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+  color: rgba(245, 239, 230, 0.88);
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.65);
 }
 
 /* ── CTA Button: VIEW MY PROJECTS ──
-   Dark glassmorphism pill with warm gold border & glowing arrow
+   Luxury dark glass pill with signature gold border and arrow
 */
 body.light-mode .hero-projects-btn {
-  background: rgba(15, 20, 32, 0.72);
-  color: #ffffff;
-  border: 1.5px solid rgba(251, 191, 36, 0.55);
+  background: rgba(15, 20, 32, 0.68);
+  color: #f5efe6;
+  border: 1.5px solid rgba(230, 201, 168, 0.45);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
 }
 
 body.light-mode .hero-projects-btn .btn-arrow {
-  color: #fbbf24;
+  color: #E6C9A8;
 }
 
 body.light-mode .hero-projects-btn:hover {
-  background: #fbbf24;
-  color: #0f172a;
-  border-color: #fbbf24;
-  box-shadow: 0 12px 32px rgba(251, 191, 36, 0.45);
+  background: rgba(230, 201, 168, 0.18);
+  color: #ffffff;
+  border-color: #E6C9A8;
+  box-shadow: 0 0 25px rgba(230, 201, 168, 0.35), 0 8px 30px rgba(0, 0, 0, 0.4);
   transform: translateY(-2px);
 }
 
 body.light-mode .hero-projects-btn:hover .btn-arrow {
-  color: #0f172a;
+  color: #fff0d4;
+  transform: translate(3px, -3px) rotate(15deg);
 }
 
 /* ── Profile Image & Shadow ── */
 body.light-mode .hero-profile-3d {
-  filter: drop-shadow(0 20px 45px rgba(0, 0, 0, 0.45));
+  filter: drop-shadow(0 20px 45px rgba(0, 0, 0, 0.55));
 }
 
 body.light-mode .hero-profile-shadow {
   opacity: 0.22;
-  filter: blur(12px);
+  filter: blur(14px);
 }
 
 /* ── Location Label: COLOMBO, SRI LANKA ── */
 body.light-mode .hero-profile-label {
-  background: rgba(15, 23, 42, 0.65);
-  color: #ffffff;
+  background: rgba(15, 20, 32, 0.72);
+  color: #f5efe6;
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: clamp(0.72rem, 1vw, 0.82rem);
   font-weight: 600;
-  border: 1px solid rgba(251, 191, 36, 0.4);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+  letter-spacing: 0.18em;
+  border: 1px solid rgba(230, 201, 168, 0.35);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 }
 
 body.light-mode .hero-profile-label svg {
-  color: #fbbf24;
+  color: #E6C9A8;
 }
 
 body.light-mode .hero-profile-label:hover {
-  background: rgba(15, 23, 42, 0.85);
-  border-color: #fbbf24;
-  color: #fbbf24;
+  background: rgba(15, 20, 32, 0.88);
+  border-color: #E6C9A8;
+  color: #E6C9A8;
 }
 
 /* ── Scroll Indicator: EXPLORE ── */
 body.light-mode .scroll-mouse {
-  border-color: rgba(255, 255, 255, 0.7);
+  border-color: rgba(245, 239, 230, 0.55);
 }
 
 body.light-mode .scroll-dot {
-  background-color: #fbbf24;
+  background-color: #E6C9A8;
+  box-shadow: 0 0 8px rgba(230, 201, 168, 0.6);
 }
 
 body.light-mode .scroll-label {
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(245, 239, 230, 0.8);
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.25em;
   font-weight: 600;
 }
 
