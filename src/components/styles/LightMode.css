@@ -24,7 +24,7 @@ body.light-mode .navbar-container {
 
 body.light-mode .nav-logo {
   color: #18181b;
-  font-weight: 500;
+  font-weight: 700;
   letter-spacing: 0.03rem;
 }
 
@@ -174,8 +174,6 @@ body.light-mode .overlay-footer-note {
 /* ─── 02. SOCIAL SIDEBAR ─────────────────────────────────── */
 body.light-mode .social-sidebar .social-link {
   color: #f5efe6;
-  background: rgba(15, 20, 32, 0.65);
-  border: 1px solid rgba(230, 201, 168, 0.35);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
@@ -992,8 +990,11 @@ body.light-mode .contact-icon-btn:hover {
   color: #854d0e;
 }
 
+/* ─── 12. FOOTER (Luxury Midnight Obsidian Anchor) ───────── */
 /* ─── 12. FOOTER (Warm Roasted Coffee Brown Anchor) ───────── */
 body.light-mode .footer-section {
+  background: #0d0f14;
+  color: #f5efe6;
   background: linear-gradient(180deg, #241b16 0%, #1a130f 100%);
   color: #fbf7f2;
 }
@@ -1003,6 +1004,7 @@ body.light-mode .footer-wave svg path {
 }
 
 body.light-mode .footer-headline {
+  color: #f5efe6;
   color: #fbf7f2;
   font-weight: 700;
 }
@@ -1013,13 +1015,19 @@ body.light-mode .footer-headline-accent {
 
 body.light-mode .footer-cta-btn {
   background: #E6C9A8;
+  color: #0d0f14;
   color: #241b16;
   font-weight: 600;
   border: 1px solid #E6C9A8;
+  box-shadow: 0 8px 24px rgba(230, 201, 168, 0.25);
   box-shadow: 0 8px 24px rgba(36, 27, 22, 0.4);
 }
 
 body.light-mode .footer-cta-btn:hover {
+  background: #ffffff;
+  color: #000000;
+  border-color: #ffffff;
+  box-shadow: 0 12px 30px rgba(255, 255, 255, 0.35);
   background: #fbf7f2;
   color: #1a130f;
   border-color: #fbf7f2;
@@ -1028,6 +1036,9 @@ body.light-mode .footer-cta-btn:hover {
 }
 
 body.light-mode .footer-cv-btn {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(230, 201, 168, 0.4);
+  color: #f5efe6;
   background: rgba(251, 247, 242, 0.08);
   border: 1px solid rgba(230, 201, 168, 0.38);
   color: #fbf7f2;
@@ -1044,15 +1055,20 @@ body.light-mode .footer-cv-btn:hover {
 }
 
 body.light-mode .footer-divider {
+  background: rgba(230, 201, 168, 0.2);
   background: rgba(230, 201, 168, 0.22);
 }
 
 body.light-mode .footer-copy {
+  color: #a1a1aa;
   color: #c4b5a5;
   font-weight: 450;
 }
 
 body.light-mode .footer-social-pill {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(230, 201, 168, 0.25);
+  color: #e4e4e7;
   background: rgba(251, 247, 242, 0.07);
   border: 1px solid rgba(230, 201, 168, 0.28);
   color: #eee5db;
@@ -1063,6 +1079,7 @@ body.light-mode .footer-social-pill {
 
 body.light-mode .footer-social-pill:hover {
   background: #E6C9A8;
+  color: #0d0f14;
   color: #241b16;
   border-color: #E6C9A8;
   box-shadow: 0 0 18px rgba(230, 201, 168, 0.35);
@@ -1070,6 +1087,7 @@ body.light-mode .footer-social-pill:hover {
 }
 
 body.light-mode .btt-label {
+  color: #d4d4d8;
   color: #dfd4c7;
   font-weight: 600;
   letter-spacing: 0.14em;
@@ -1078,6 +1096,8 @@ body.light-mode .btt-label {
 body.light-mode .btt-circle {
   background: #E6C9A8;
   border-color: #E6C9A8;
+  color: #0d0f14;
+  box-shadow: 0 4px 16px rgba(230, 201, 168, 0.3);
   color: #241b16;
   box-shadow: 0 4px 16px rgba(36, 27, 22, 0.35);
 }
@@ -1087,6 +1107,9 @@ body.light-mode .footer-back-to-top:hover .btt-label {
 }
 
 body.light-mode .footer-back-to-top:hover .btt-circle {
+  background: #ffffff;
+  color: #000000;
+  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.4);
   background: #fbf7f2;
   color: #1a130f;
   box-shadow: 0 6px 20px rgba(230, 201, 168, 0.4);
