@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
 import Lenis from 'lenis'
-import { useScroll, useTransform, useMotionValueEvent, motion, AnimatePresence } from 'framer-motion'
+import { useScroll, useMotionValueEvent, motion, AnimatePresence } from 'framer-motion'
 import './App.css'
 import LoadingScreen from './components/page/LoadingScreen'
 import HeroSection from './components/page/HeroSection'
@@ -42,26 +42,6 @@ function App() {
 
   /* Scroll progress driven by window scroll */
   const { scrollY } = useScroll()
-
-  // ── Hero layer: fades + blurs out with cinematic camera pushback & depth ──
-  const heroOpacity = useTransform(scrollY, [0, viewportH * 0.75], [1, 0])
-  const heroFilter  = useTransform(scrollY, [0, viewportH * 0.8], ['blur(0px) brightness(1)', 'blur(10px) brightness(0.35)'])
-  const heroScale   = useTransform(scrollY, [0, viewportH], [1, 0.92])
-  // Hard-hide hero once covered so it never consumes GPU or interferes with page
-  const heroVisibility = useTransform(scrollY, (y) => y >= viewportH ? 'hidden' : 'visible')
-  const heroPointerEvents = useTransform(scrollY, (y) => y > 40 ? 'none' : 'auto')
-
-  // ── Intro layer: Awwwards elevated card reveal with subtle horizon rim ──
-  const introBorderRadius = useTransform(scrollY, [0, viewportH * 0.9], ['28px 28px 0px 0px', '0px 0px 0px 0px'])
-  const introBoxShadow    = useTransform(
-    scrollY,
-    [0, viewportH * 0.7, viewportH],
-    [
-      '0 -5px 18px rgba(230, 201, 168, 0.05), 0 -12px 30px rgba(0, 0, 0, 0.7)',
-      '0 -3px 10px rgba(230, 201, 168, 0.03), 0 -6px 15px rgba(0, 0, 0, 0.4)',
-      '0 0px 0px rgba(0, 0, 0, 0)'
-    ]
-  )
 
   useEffect(() => {
     if (isLoading || isContactOpen) {
@@ -159,30 +139,15 @@ function App() {
             >
               <SocialSidebar isLoaded={isHomeRevealed} isVisible={isInHero} />
 
-              {/* Fixed Hero Stage — stays behind during initial scroll, fades with depth */}
-              <motion.div
-                className="hero-fixed-stage"
-                style={{
-                  scale: heroScale,
-                  opacity: heroOpacity,
-                  filter: heroFilter,
-                  visibility: heroVisibility,
-                  pointerEvents: heroPointerEvents,
-                }}
-              >
+              {/* Hero Stage — scrolls naturally down the page */}
+              <div className="hero-scroll-stage">
                 <HeroSection isLoaded={isHomeRevealed} />
-              </motion.div>
+              </div>
 
-              {/* Elevated Intro Curtain — rises directly over Hero with curved glowing top, then docks */}
-              <motion.div
-                className="intro-elevation-stage"
-                style={{
-                  borderRadius: introBorderRadius,
-                  boxShadow: introBoxShadow,
-                }}
-              >
+              {/* Intro Statement — sits directly below Hero in natural document flow */}
+              <div className="intro-elevation-stage">
                 <IntroStatement />
-              </motion.div>
+              </div>
 
               {/* Subsequent Homepage Sections — follow immediately with zero black screen gap */}
               <div className="home-subsequent-content">

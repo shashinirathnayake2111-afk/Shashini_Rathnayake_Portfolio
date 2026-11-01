@@ -10,27 +10,22 @@
   background-color: #050505;
 }
 
-/* Fixed Hero Stage — stays behind during initial scroll */
-.hero-fixed-stage {
-  position: fixed;
-  top: 0;
-  left: 0;
+/* Normal scrolling Hero Stage */
+.hero-scroll-stage {
+  position: relative;
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   z-index: 1;
   overflow: hidden;
-  transform-origin: center center;
-  will-change: transform, opacity, filter, visibility;
 }
 
-/* Elevated Intro Curtain — sits at margin-top: 100vh, rises directly over Hero */
+/* Intro Stage — follows naturally immediately below Hero */
 .intro-elevation-stage {
   position: relative;
   z-index: 2;
   width: 100%;
-  margin-top: 100vh;
+  margin-top: 0;
   background-color: #050505;
-  will-change: border-radius, box-shadow;
   display: flex;
   align-items: center;
   justify-content: center;
