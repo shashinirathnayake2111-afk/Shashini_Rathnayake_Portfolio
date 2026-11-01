@@ -17,14 +17,14 @@ body.light-mode .experience-page-wrapper {
 
 /* ─── 01. NAVBAR ─────────────────────────────────────────── */
 body.light-mode .navbar-container {
-  background: rgba(255, 255, 255, 0.88);
-  border-color: rgba(180, 140, 75, 0.28);
+  background: rgba(255, 255, 255, 0.85);
+  border-color: rgba(180, 140, 75, 0.25);
   box-shadow: 0 10px 30px rgba(160, 120, 60, 0.08);
 }
 
 body.light-mode .nav-logo {
   color: #18181b;
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: 0.03rem;
 }
 
@@ -33,14 +33,12 @@ body.light-mode .nav-dot {
 }
 
 body.light-mode .nav-link {
-  color: #18181b;
-  font-weight: 500;
+  color: #52525b;
 }
 
 body.light-mode .nav-link:hover,
 body.light-mode .nav-link.active {
   color: #b48332;
-  font-weight: 600;
 }
 
 body.light-mode .nav-cta {
@@ -55,21 +53,20 @@ body.light-mode .nav-cta:hover {
 
 body.light-mode .theme-toggle-btn {
   background: rgba(0, 0, 0, 0.04);
-  border: 1px solid rgba(180, 140, 75, 0.35);
-  color: #854d0e;
+  border: 1px solid rgba(180, 140, 75, 0.32);
+  color: #a16207;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
 }
 
 body.light-mode .theme-toggle-btn:hover {
-  background: rgba(180, 140, 75, 0.16);
+  background: rgba(180, 140, 75, 0.14);
   border-color: #b48332;
   color: #18181b;
-  box-shadow: 0 4px 16px rgba(180, 140, 75, 0.28);
+  box-shadow: 0 4px 16px rgba(180, 140, 75, 0.25);
 }
 
 body.light-mode .status-text {
-  color: #18181b;
-  font-weight: 500;
+  color: #27272a;
 }
 
 body.light-mode .hamburger-line {
@@ -77,8 +74,8 @@ body.light-mode .hamburger-line {
 }
 
 body.light-mode .scrolled-hamburger {
-  background: rgba(255, 255, 255, 0.95);
-  border-color: rgba(180, 140, 75, 0.35);
+  background: rgba(255, 255, 255, 0.92);
+  border-color: rgba(180, 140, 75, 0.3);
   box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
 }
 
@@ -100,7 +97,7 @@ body.light-mode .overlay-header-logo .logo-text {
 body.light-mode .menu-close-btn {
   color: #18181b;
   background: rgba(0, 0, 0, 0.05);
-  border-color: rgba(180, 140, 75, 0.25);
+  border-color: rgba(180, 140, 75, 0.2);
 }
 
 body.light-mode .menu-close-btn:hover {
@@ -109,69 +106,60 @@ body.light-mode .menu-close-btn:hover {
 }
 
 body.light-mode .overlay-subheading {
-  color: #854d0e;
-  font-weight: 600;
+  color: #a16207;
 }
 
 body.light-mode .overlay-link .link-text {
   color: #18181b;
-  font-weight: 600;
 }
 
 body.light-mode .overlay-link .link-number {
   color: #b48332;
-  font-weight: 700;
 }
 
 body.light-mode .overlay-link:hover .link-text,
 body.light-mode .overlay-link.active .link-text {
-  color: #854d0e;
+  color: #a16207;
 }
 
 body.light-mode .overlay-detail-card {
-  background: rgba(255, 255, 255, 0.95);
-  border-color: rgba(180, 140, 75, 0.25);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
+  background: rgba(255, 255, 255, 0.88);
+  border-color: rgba(180, 140, 75, 0.2);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
 }
 
 body.light-mode .detail-tag {
-  color: #854d0e;
-  font-weight: 600;
+  color: #a16207;
 }
 
 body.light-mode .detail-status {
-  color: #18181b;
-  font-weight: 600;
+  color: #27272a;
 }
 
 body.light-mode .detail-text {
-  color: #27272a;
-  font-weight: 450;
+  color: #52525b;
 }
 
 body.light-mode .detail-email {
   color: #18181b;
-  font-weight: 600;
 }
 
 body.light-mode .detail-email:hover {
-  color: #854d0e;
+  color: #a16207;
 }
 
 body.light-mode .overlay-social-links a {
-  color: #27272a;
-  font-weight: 500;
+  color: #52525b;
 }
 
 body.light-mode .overlay-social-links a:hover {
-  color: #854d0e;
+  color: #a16207;
 }
 
 body.light-mode .overlay-cv-btn {
   background: rgba(255, 255, 255, 0.95);
-  border-color: rgba(180, 140, 75, 0.35);
+  border-color: rgba(180, 140, 75, 0.3);
   color: #18181b;
-  font-weight: 600;
 }
 
 body.light-mode .overlay-cta {
@@ -180,8 +168,7 @@ body.light-mode .overlay-cta {
 }
 
 body.light-mode .overlay-footer-note {
-  color: #374151;
-  font-weight: 500;
+  color: #71717a;
 }
 
 /* ─── 02. SOCIAL SIDEBAR ─────────────────────────────────── */
@@ -207,7 +194,6 @@ body.light-mode .sidebar-line {
   box-shadow: 0 0 8px rgba(230, 201, 168, 0.3);
 }
 
-/* ─── 03. HERO SECTION ───────────────────────────────────── */
 body.light-mode .hero-section {
   background:
     radial-gradient(ellipse at 55% 45%, rgba(10, 8, 12, 0.35) 0%, rgba(8, 7, 10, 0.65) 100%),
@@ -215,7 +201,6 @@ body.light-mode .hero-section {
     url('/light_bg.jpg') center/cover no-repeat !important;
 }
 
-/* ── Hide dark-mode-only cinematic sky, moon, clouds, stars, mist & dark glows ── */
 body.light-mode .hero-cinematic-bg,
 body.light-mode .hero-cinematic-img,
 body.light-mode .moon-pulse-glow,
@@ -228,14 +213,6 @@ body.light-mode .glow-orb {
   display: none !important;
 }
 
-/* ── Note: Exact positions preserved from HeroSection.css ──
-   - .hero-bg-role: position: absolute; top: 15% (centered watermark)
-   - .hero-profile-wrapper: transform: translateX(-10.5vw)
-   - .hero-overlay-text: position: absolute; bottom: 7%; right: 8%
-   - .scroll-down-indicator: position: absolute; bottom: 30px; left: 50%
-── */
-
-/* ── Background watermark text: BUILD. DESIGN. INSPIRE. ── */
 body.light-mode .hero-bg-role {
   color: transparent;
   -webkit-text-stroke: 1.5px rgba(230, 201, 168, 0.22);
@@ -248,7 +225,6 @@ body.light-mode .bg-hover-letter:hover {
   text-shadow: 0 0 28px rgba(230, 201, 168, 0.45);
 }
 
-/* ── HELLO, I'M eyebrow ── */
 body.light-mode .hero-eyebrow-line {
   background: #E6C9A8;
   height: 1.5px;
@@ -263,9 +239,6 @@ body.light-mode .hero-hello {
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.55);
 }
 
-/* ── Name Heading: SHASHINI RATHNAYAKE ──
-   Soft Silk Ivory + Signature Royal Gold (#D4AF37)
-*/
 body.light-mode .hero-name {
   color: #f5efe6;
   text-shadow:
@@ -296,9 +269,6 @@ body.light-mode .hero-role-subtitle {
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.65);
 }
 
-/* ── CTA Button: VIEW MY PROJECTS ──
-   Luxury dark glass pill with signature gold border and arrow
-*/
 body.light-mode .hero-projects-btn {
   background: rgba(15, 20, 32, 0.68);
   color: #f5efe6;

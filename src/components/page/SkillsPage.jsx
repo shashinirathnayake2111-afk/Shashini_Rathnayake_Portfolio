@@ -52,19 +52,6 @@ const skillsData = [
       { name: "REST APIs", icon: <Globe size={26} strokeWidth={1.8} /> },
       { name: "NPM & Vite", devicon: "devicon-npm-original-wordmark colored" },
     ]
-  },
-  {
-    category: "Tools & Platforms",
-    number: "04",
-    items: [
-      { name: "Git", devicon: "devicon-git-plain colored" },
-      { name: "GitHub", devicon: "devicon-github-original colored" },
-      { name: "VS Code", devicon: "devicon-vscode-plain colored" },
-      { name: "Postman", devicon: "devicon-postman-plain colored" },
-      { name: "Vercel", devicon: "devicon-vercel-original" },
-      { name: "REST APIs", icon: <Globe size={26} strokeWidth={1.8} /> },
-      { name: "NPM & Vite", devicon: "devicon-npm-original-wordmark colored" },
-    ]
   }
 ];
 
