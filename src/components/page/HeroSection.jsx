@@ -68,7 +68,7 @@ const HeroSection = ({ isLoaded }) => {
         }}
       >
         <img src={bgImg} alt="Dark Moon Sky" className="hero-cinematic-img live-sky" />
-        
+
         {/* Living Moonlight Aura & Drifting Mist */}
         <div className="moon-pulse-glow"></div>
         <div className="drifting-cloud-layer"></div>

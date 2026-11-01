@@ -1149,10 +1149,10 @@ body.light-mode .footer-back-to-top:hover .btt-label {
   color: #f3d082;
 }
 
-/* ── Viewport Canvas Frame Margin (Light Mode: Deep Noir Velvet) ── */
+/* ── Viewport Canvas Frame Margin (Light Mode: Top, Left, Right Only — No Bottom Margin, No Hairline Border) ── */
 body.light-mode .portfolio-viewport-frame {
   box-shadow: 0 0 0 12px #120e0a;
-  border-color: rgba(180, 140, 75, 0.4);
+  border: none;
 }
 
 @media (max-width: 1024px) {

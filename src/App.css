@@ -4,31 +4,44 @@
   position: relative;
 }
 
-/* ── Luxury Viewport Canvas Frame Margin (Both Dark & Light Mode) ── */
+/* ── Luxury Viewport Canvas Frame Margin (Top, Left, Right Only — No Bottom Margin, No Hairline Border) ── */
 .portfolio-viewport-frame {
   position: fixed;
-  inset: 12px;
-  border-radius: 24px;
+  top: 12px;
+  left: 12px;
+  right: 12px;
+  bottom: -40px;
+  border-top-left-radius: 24px;
+  border-top-right-radius: 24px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
   pointer-events: none;
   z-index: 9998;
-  /* Thick black margin around the viewport with rounded inner corners */
+  border: none;
   box-shadow: 0 0 0 12px #000000;
-  border: 1px solid rgba(230, 201, 168, 0.24);
-  transition: box-shadow 0.4s ease, border-color 0.4s ease;
+  transition: box-shadow 0.4s ease;
 }
 
 @media (max-width: 1024px) {
   .portfolio-viewport-frame {
-    inset: 8px;
-    border-radius: 18px;
+    top: 8px;
+    left: 8px;
+    right: 8px;
+    bottom: -30px;
+    border-top-left-radius: 18px;
+    border-top-right-radius: 18px;
     box-shadow: 0 0 0 8px #000000;
   }
 }
 
 @media (max-width: 640px) {
   .portfolio-viewport-frame {
-    inset: 4px;
-    border-radius: 12px;
+    top: 4px;
+    left: 4px;
+    right: 4px;
+    bottom: -20px;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
     box-shadow: 0 0 0 4px #000000;
   }
 }
