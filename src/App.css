@@ -4,6 +4,35 @@
   position: relative;
 }
 
+/* ── Luxury Viewport Canvas Frame Margin (Both Dark & Light Mode) ── */
+.portfolio-viewport-frame {
+  position: fixed;
+  inset: 12px;
+  border-radius: 24px;
+  pointer-events: none;
+  z-index: 9998;
+  /* Thick black margin around the viewport with rounded inner corners */
+  box-shadow: 0 0 0 12px #000000;
+  border: 1px solid rgba(230, 201, 168, 0.24);
+  transition: box-shadow 0.4s ease, border-color 0.4s ease;
+}
+
+@media (max-width: 1024px) {
+  .portfolio-viewport-frame {
+    inset: 8px;
+    border-radius: 18px;
+    box-shadow: 0 0 0 8px #000000;
+  }
+}
+
+@media (max-width: 640px) {
+  .portfolio-viewport-frame {
+    inset: 4px;
+    border-radius: 12px;
+    box-shadow: 0 0 0 4px #000000;
+  }
+}
+
 .home-scroll-container {
   position: relative;
   width: 100%;

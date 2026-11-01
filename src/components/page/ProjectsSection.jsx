@@ -93,7 +93,7 @@ const projectData = [
       problem: "Waves.lk required a vibrant, ocean-inspired digital storefront that encapsulated the island's coastal surf lifestyle while overcoming sluggish mobile browsing during peak apparel drops.",
       solution: "Engineered a high-performance web app with real-time stock availability, instant ocean gear categorization, an interactive sizing matrix, and streamlined one-click checkout.",
       challenges: "Delivering fluid wave-inspired micro-interactions and high-definition lookbook assets without compromising load speeds on mobile networks.",
-      techStack: ["React", "Tailwind CSS", "Node.js", "Figma", "UI/UX Design"],
+      techStack: ["Next.js", "Tailwind CSS", "Node.js"],
       designSystem: {
         colors: [
           { name: "Ocean Deep", hex: "#061A23", role: "Coastal Canvas" },

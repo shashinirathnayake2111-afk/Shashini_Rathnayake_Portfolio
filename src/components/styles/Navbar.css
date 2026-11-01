@@ -1,6 +1,6 @@
 .navbar-container {
   position: fixed;
-  top: 20px;
+  top: 24px;
   left: 50%;
   transform: translateX(-50%) translateY(-35px);
   width: 72%;
@@ -35,7 +35,7 @@
 }
 
 .navbar-container.nav-scrolled {
-  top: 15px;
+  top: 20px;
   width: fit-content;
   min-width: 198px;
   max-width: 218px;

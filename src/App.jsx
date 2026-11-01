@@ -123,6 +123,9 @@ function App() {
 
   return (
     <div className="app-container">
+      {/* Luxury Canvas Viewport Frame (Rounded border margin) */}
+      <div className="portfolio-viewport-frame" aria-hidden="true" />
+
       <CustomCursor />
       {isLoading && <LoadingScreen onReveal={handleReveal} onComplete={handleLoadingComplete} />}
       <Navbar isLoaded={isHomeRevealed} onContactClick={() => setIsContactOpen(true)} isInHero={isInHero} />

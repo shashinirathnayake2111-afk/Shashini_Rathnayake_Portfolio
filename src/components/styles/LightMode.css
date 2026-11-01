@@ -1149,6 +1149,24 @@ body.light-mode .footer-back-to-top:hover .btt-label {
   color: #f3d082;
 }
 
+/* ── Viewport Canvas Frame Margin (Light Mode: Deep Noir Velvet) ── */
+body.light-mode .portfolio-viewport-frame {
+  box-shadow: 0 0 0 12px #120e0a;
+  border-color: rgba(180, 140, 75, 0.4);
+}
+
+@media (max-width: 1024px) {
+  body.light-mode .portfolio-viewport-frame {
+    box-shadow: 0 0 0 8px #120e0a;
+  }
+}
+
+@media (max-width: 640px) {
+  body.light-mode .portfolio-viewport-frame {
+    box-shadow: 0 0 0 4px #120e0a;
+  }
+}
+
 body.light-mode .footer-back-to-top:hover .btt-circle {
   background: #fbf7f2;
   color: #1a130f;
