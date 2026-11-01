@@ -86,7 +86,7 @@ const projectData = [
     image: WaveImg,
     summary: "Coastal lifestyle and surf apparel e-commerce platform featuring dynamic tidal collections, size advisors, and seamless mobile checkout.",
     links: {
-      github: "https://github.com/shashinirathnayake2111-afk/Waves-lk",
+      github: "https://github.com/shashinirathnayake2111-afk/Waves-Premium_Music_Website",
       live: "https://waves-lk.vercel.app/"
     },
     caseStudy: {
@@ -719,10 +719,7 @@ const ProjectsSection = () => {
     };
   }, []);
 
-  /* Only horizontal gestures (scroll left/right or trackpad swipe) change project cards.
-     Vertical scrolling (page scroll up/down) passes through untouched so the page scrolls naturally. */
   const handleWheel = (e) => {
-    // If the scroll has any vertical dominance, do NOT capture it — let the page scroll naturally
     if (Math.abs(e.deltaX) <= Math.abs(e.deltaY) || Math.abs(e.deltaX) < 15) {
       return;
     }
@@ -731,11 +728,9 @@ const ProjectsSection = () => {
     if (now - lastWheelTimeRef.current < 320) return;
 
     if (e.deltaX > 0) {
-      // Horizontal scroll right / swipe left -> Next Card
       lastWheelTimeRef.current = now;
       next();
     } else if (e.deltaX < 0) {
-      // Horizontal scroll left / swipe right -> Prev Card
       lastWheelTimeRef.current = now;
       prev();
     }
