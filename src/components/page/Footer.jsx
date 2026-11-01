@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowUp, FileDown, Mail } from 'lucide-react';
 import '../styles/Footer.css';
+import resumePDF from '../../assets/resume.pdf';
 
 const Footer = ({ onContactClick }) => {
   const currentYear = new Date().getFullYear();
@@ -48,7 +49,7 @@ const Footer = ({ onContactClick }) => {
             </button>
 
             <a
-              href="/resume.pdf"
+              href={resumePDF}
               download="Shashini_Rathnayake_CV.pdf"
               className="footer-cv-btn"
             >

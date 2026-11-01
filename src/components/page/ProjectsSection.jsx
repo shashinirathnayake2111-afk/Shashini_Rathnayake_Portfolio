@@ -79,33 +79,32 @@ const projectData = [
   {
     id: 3,
     title: "Waves.lk",
-    category: "Full Stack",
-    categories: ["Full Stack"],
+    category: "Full Stack / UI/UX",
+    categories: ["Full Stack", "UI/UX"],
     type: "web",
-    tag: "E-Commerce / UI/UX",
+    tag: "Surf & Coastal Apparel",
     image: WaveImg,
-    summary: "Modern clothing e-commerce storefront with streamlined category navigation, interactive size selection, and friction-free checkout.",
+    summary: "Coastal lifestyle and surf apparel e-commerce platform featuring dynamic tidal collections, size advisors, and seamless mobile checkout.",
     links: {
-      figma: "https://www.figma.com/proto/RFj22fyDJfxZtQMBsDJWMU/Lomiees-Clouthing?node-id=2-2&p=f&viewport=501%2C92%2C0.11&t=WLN2iOpby0reg7zw-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=2%3A2&page-id=0%3A1",
-      github: "https://github.com/shashinirathnayake2111-afk/Lomiees-Website",
-      live: "https://lomiees-website.vercel.app/"
+      github: "https://github.com/shashinirathnayake2111-afk/Waves-lk",
+      live: "https://waves-lk.vercel.app/"
     },
     caseStudy: {
-      problem: "The Lomiees clothing brand needed an online fashion boutique that reflected modern minimalism while tackling cart drop-offs caused by complicated multi-step checkouts and slow catalog rendering.",
-      solution: "Engineered a sleek responsive e-commerce web app with instant product filtering, interactive color/size variant pickers, an animated side-cart drawer, and a streamlined single-page checkout flow.",
-      challenges: "Balancing high-resolution editorial fashion photography with rapid load performance, alongside creating luxury subtle micro-animations that feel premium yet lightweight.",
-      techStack: ["React", "Node.js", "Tailwind CSS", "Figma", "UI/UX Design"],
+      problem: "Waves.lk required a vibrant, ocean-inspired digital storefront that encapsulated the island's coastal surf lifestyle while overcoming sluggish mobile browsing during peak apparel drops.",
+      solution: "Engineered a high-performance web app with real-time stock availability, instant ocean gear categorization, an interactive sizing matrix, and streamlined one-click checkout.",
+      challenges: "Delivering fluid wave-inspired micro-interactions and high-definition lookbook assets without compromising load speeds on mobile networks.",
+      techStack: ["React", "Tailwind CSS", "Node.js", "Figma", "UI/UX Design"],
       designSystem: {
         colors: [
-          { name: "Obsidian Noir", hex: "#0A0D14", role: "Luxury Canvas" },
-          { name: "Tailored Slate", hex: "#1E232E", role: "Surface Contrast" },
-          { name: "Champagne Gold", hex: "#E6C9A8", role: "Signature Accent" },
-          { name: "Warm Cashmere", hex: "#B89C7D", role: "Subtle Warmth" },
-          { name: "Clean White", hex: "#F8F9FA", role: "Typography & Clarity" }
+          { name: "Ocean Deep", hex: "#061A23", role: "Coastal Canvas" },
+          { name: "Seafoam Teal", hex: "#0D9488", role: "Primary Accent" },
+          { name: "Aqua Marine", hex: "#2DD4BF", role: "Action Accent" },
+          { name: "Warm Sand", hex: "#E6C9A8", role: "Natural Warmth" },
+          { name: "Clean Foam", hex: "#F8FAFC", role: "Typography Contrast" }
         ],
         typography: [
-          { role: "Fashion Editorial", font: "Bebas Neue", style: "High-fashion editorial collection headers" },
-          { role: "Commerce & Navigation", font: "Poppins", style: "Frictionless pricing & checkout" }
+          { role: "Coastal Display", font: "Bebas Neue", style: "Bold, adventurous surf editorial headers" },
+          { role: "Product Details & UI", font: "Poppins", style: "Ultra-clear product specs and checkout flow" }
         ]
       }
     }
