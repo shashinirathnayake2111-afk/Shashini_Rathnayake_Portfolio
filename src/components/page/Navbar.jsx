@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { Sun, Moon } from 'lucide-react';
 import '../styles/Navbar.css';
 
 const Navbar = ({ isLoaded, onContactClick, isInHero }) => {
@@ -209,20 +210,16 @@ const Navbar = ({ isLoaded, onContactClick, isInHero }) => {
 
           <div className="nav-actions">
             <button
-              className={`theme-toggle-btn moon-toggle ${isDarkMode ? 'is-dark' : 'is-light'}`}
+              className={`theme-toggle-btn ${isDarkMode ? 'is-dark' : 'is-light'}`}
               onClick={toggleTheme}
               aria-label={isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
               title={isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
             >
-              <span className="moon-toggle-inner">
-                {/* Moon disc + shadow = crescent */}
-                <span className="moon-disc" />
-                <span className="moon-shadow" />
-                {/* Stars — visible in dark mode */}
-                <span className="moon-star ms-1" />
-                <span className="moon-star ms-2" />
-                <span className="moon-star ms-3" />
-              </span>
+              {isDarkMode ? (
+                <Sun className="theme-toggle-icon icon-sun" size={19} strokeWidth={2} />
+              ) : (
+                <Moon className="theme-toggle-icon icon-moon" size={19} strokeWidth={2} />
+              )}
             </button>
             <button className="nav-cta desktop-only-cta" onClick={onContactClick}>Let's talk</button>
             <button
