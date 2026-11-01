@@ -727,7 +727,21 @@ body.light-mode .cinematic-skill-name {
 }
 
 body.light-mode .cinematic-skill-card:hover .cinematic-skill-name {
-  color: #000000;
+  color: #18181b;
+}
+
+/* Skills page — Lucide icon stroke in light mode */
+body.light-mode .cinematic-skill-icon svg {
+  stroke: #854d0e;
+}
+
+body.light-mode .cinematic-skill-card:hover .cinematic-skill-icon svg {
+  stroke: #18181b;
+}
+
+/* Skills page — devicon color fix (GitHub dark icon on white bg) */
+body.light-mode .cinematic-skill-icon .devicon-github-original {
+  color: #18181b !important;
 }
 
 /* ─── 09. EXPERIENCE PAGE ────────────────────────────────── */
@@ -794,6 +808,11 @@ body.light-mode .exp-stat-num {
   font-weight: 700;
 }
 
+/* gold-unit: "2.1", "+ Yr", "Auth" suffix inside stat numbers */
+body.light-mode .gold-unit {
+  color: #b48332;
+}
+
 body.light-mode .exp-stat-label {
   color: #18181b;
   font-weight: 600;
@@ -807,6 +826,25 @@ body.light-mode .exp-stat-desc {
 body.light-mode .sub-header-title {
   color: #18181b;
   font-weight: 700;
+}
+
+/* tenure badge (top-right "2024 - 2025") */
+body.light-mode .tenure-badge {
+  color: #374151;
+  background: rgba(180, 140, 75, 0.08);
+  border-color: rgba(180, 140, 75, 0.22);
+}
+
+/* project card tag (top-right corner pill: "Banking Solution…") */
+body.light-mode .project-tag {
+  color: #374151;
+  background: rgba(180, 140, 75, 0.08);
+  border-color: rgba(180, 140, 75, 0.2);
+}
+
+/* project card number label (PROJECT 01) */
+body.light-mode .project-num {
+  color: #854d0e;
 }
 
 body.light-mode .bank-project-card {
