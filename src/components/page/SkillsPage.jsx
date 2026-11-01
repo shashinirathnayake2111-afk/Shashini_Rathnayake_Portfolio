@@ -9,48 +9,48 @@ const skillsData = [
     category: "Frontend Development",
     number: "01",
     items: [
-      { name: "HTML", devicon: "devicon-html5-plain colored" },
-      { name: "CSS", devicon: "devicon-css3-plain colored" },
-      { name: "JavaScript", devicon: "devicon-javascript-plain colored" },
-      { name: "React", devicon: "devicon-react-original colored" },
-      { name: "Next.js", devicon: "devicon-nextjs-plain colored" },
-      { name: "Tailwind", devicon: "devicon-tailwindcss-original colored" },
+      { name: "HTML", devicon: "devicon-html5-plain colored", level: 98 },
+      { name: "CSS", devicon: "devicon-css3-plain colored", level: 98 },
+      { name: "JavaScript", devicon: "devicon-javascript-plain colored", level: 90 },
+      { name: "React", devicon: "devicon-react-original colored", level: 92 },
+      { name: "Next.js", devicon: "devicon-nextjs-plain colored", level: 88 },
+      { name: "Tailwind", devicon: "devicon-tailwindcss-original colored", level: 92 },
     ]
   },
   {
     category: "Backend & Database",
     number: "02",
     items: [
-      { name: "Python", devicon: "devicon-python-plain colored" },
-      { name: "Flask", devicon: "devicon-flask-original colored" },
-      { name: "Django", devicon: "devicon-django-plain colored" },
-      { name: "MySQL", devicon: "devicon-mysql-plain colored" },
-      { name: "SQLite", devicon: "devicon-sqlite-plain colored" },
-      { name: "Supabase", devicon: "devicon-supabase-plain colored" },
+      { name: "Python", devicon: "devicon-python-plain colored", level: 92 },
+      { name: "Flask", devicon: "devicon-flask-original colored", level: 88 },
+      { name: "Django", devicon: "devicon-django-plain colored", level: 86 },
+      { name: "MySQL", devicon: "devicon-mysql-plain colored", level: 88 },
+      { name: "SQLite", devicon: "devicon-sqlite-plain colored", level: 86 },
+      { name: "Supabase", devicon: "devicon-supabase-plain colored", level: 84 },
     ]
   },
   {
     category: "Creative & UI",
     number: "03",
     items: [
-      { name: "Figma", devicon: "devicon-figma-plain colored" },
-      { name: "Wireframing", icon: <PenTool size={26} strokeWidth={1.8} /> },
-      { name: "Prototyping", icon: <Smartphone size={26} strokeWidth={1.8} /> },
-      { name: "Mockups", icon: <Layout size={26} strokeWidth={1.8} /> },
-      { name: "Req. Gathering", icon: <ClipboardList size={26} strokeWidth={1.8} /> },
-      { name: "Google Stitch", icon: <Layers size={26} strokeWidth={1.8} /> },
+      { name: "Figma", devicon: "devicon-figma-plain colored", level: 98 },
+      { name: "Wireframing", icon: <PenTool size={22} strokeWidth={1.8} />, level: 96 },
+      { name: "Prototyping", icon: <Smartphone size={22} strokeWidth={1.8} />, level: 96 },
+      { name: "Mockups", icon: <Layout size={22} strokeWidth={1.8} />, level: 96 },
+      { name: "Req. Gathering", icon: <ClipboardList size={22} strokeWidth={1.8} />, level: 90 },
+      { name: "Google Stitch", icon: <Layers size={22} strokeWidth={1.8} />, level: 94 },
     ]
   },
   {
     category: "Tools & Platforms",
     number: "04",
     items: [
-      { name: "Git", devicon: "devicon-git-plain colored" },
-      { name: "GitHub", devicon: "devicon-github-original colored" },
-      { name: "VS Code", devicon: "devicon-vscode-plain colored" },
-      { name: "Vercel", devicon: "devicon-vercel-original" },
-      { name: "REST APIs", icon: <Globe size={26} strokeWidth={1.8} /> },
-      { name: "NPM & Vite", devicon: "devicon-npm-original-wordmark colored" },
+      { name: "Git", devicon: "devicon-git-plain colored", level: 94 },
+      { name: "GitHub", devicon: "devicon-github-original colored", level: 94 },
+      { name: "VS Code", devicon: "devicon-vscode-plain colored", level: 96 },
+      { name: "Vercel", devicon: "devicon-vercel-original", level: 96 },
+      { name: "REST APIs", icon: <Globe size={22} strokeWidth={1.8} />, level: 90 },
+      { name: "NPM & Vite", devicon: "devicon-npm-original-wordmark colored", level: 92 },
     ]
   }
 ];
@@ -73,26 +73,42 @@ const SkillCard = ({ skill, index }) => {
       ref={cardRef}
       onMouseMove={handleMouseMove}
       className="cinematic-skill-card"
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 25 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.6, delay: index * 0.05, ease: [0.16, 1, 0.3, 1] }}
+      viewport={{ once: true, margin: "-40px" }}
+      transition={{ duration: 0.5, delay: index * 0.04, ease: [0.16, 1, 0.3, 1] }}
     >
       <div
         className="cinematic-skill-glow"
         style={{
-          background: `radial-gradient(circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(255,255,255,0.08) 0%, transparent 60%)`
+          background: `radial-gradient(circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(200,157,88,0.14) 0%, transparent 65%)`
         }}
       />
       <div className="cinematic-skill-content">
-        <div className="cinematic-skill-icon">
-          {skill.devicon ? (
-            <i className={skill.devicon}></i>
-          ) : (
-            skill.icon
-          )}
+        <div className="cinematic-skill-top">
+          <div className="cinematic-skill-main">
+            <div className="cinematic-skill-icon">
+              {skill.devicon ? (
+                <i className={skill.devicon}></i>
+              ) : (
+                skill.icon
+              )}
+            </div>
+            <div className="cinematic-skill-name">{skill.name}</div>
+          </div>
+          <span className="cinematic-skill-pct">{skill.level}%</span>
         </div>
-        <div className="cinematic-skill-name">{skill.name}</div>
+
+        {/* Dynamic Animated Proficiency Track */}
+        <div className="cinematic-skill-track" title={`${skill.name}: ${skill.level}% Proficiency`}>
+          <motion.div
+            className="cinematic-skill-bar"
+            initial={{ width: 0 }}
+            whileInView={{ width: `${skill.level}%` }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.9, delay: 0.15 + (index * 0.03), ease: [0.16, 1, 0.3, 1] }}
+          />
+        </div>
       </div>
     </motion.div>
   );

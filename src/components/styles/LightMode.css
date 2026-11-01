@@ -744,6 +744,33 @@ body.light-mode .cinematic-skill-icon .devicon-github-original {
   color: #18181b !important;
 }
 
+/* Skills page — proficiency level percentage pill */
+body.light-mode .cinematic-skill-pct {
+  color: #854d0e;
+  background: rgba(180, 140, 75, 0.12);
+  border-color: rgba(180, 140, 75, 0.3);
+}
+
+body.light-mode .cinematic-skill-card:hover .cinematic-skill-pct {
+  color: #ffffff;
+  background: #854d0e;
+  border-color: #854d0e;
+}
+
+/* Skills page — progress track & bar */
+body.light-mode .cinematic-skill-track {
+  background: rgba(180, 140, 75, 0.16);
+}
+
+body.light-mode .cinematic-skill-bar {
+  background: linear-gradient(90deg, #b48332 0%, #854d0e 100%);
+  box-shadow: 0 0 6px rgba(180, 140, 75, 0.3);
+}
+
+body.light-mode .cinematic-skill-card:hover .cinematic-skill-bar {
+  box-shadow: 0 0 10px rgba(133, 77, 14, 0.5);
+}
+
 /* ─── 09. EXPERIENCE PAGE ────────────────────────────────── */
 body.light-mode .experience-hero .experience-eyebrow span {
   color: #854d0e;

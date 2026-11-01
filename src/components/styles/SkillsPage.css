@@ -190,13 +190,14 @@ body .cinematic-skills-wrapper {
   position: relative;
   background: rgba(242, 234, 217, 0.035);
   border: 1px solid rgba(242, 234, 217, 0.09);
-  border-radius: 10px;
+  border-radius: 12px;
   overflow: hidden;
   backdrop-filter: blur(8px);
   cursor: pointer;
   display: flex;
-  align-items: center;
-  padding: 12px 14px;
+  flex-direction: column;
+  padding: 14px 16px;
+  gap: 10px;
   transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -204,7 +205,7 @@ body .cinematic-skills-wrapper {
   border-color: rgba(200, 157, 88, 0.45);
   background: rgba(200, 157, 88, 0.09);
   transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4), 0 0 15px rgba(200, 157, 88, 0.15);
 }
 
 .cinematic-skill-glow {
@@ -223,14 +224,28 @@ body .cinematic-skills-wrapper {
   position: relative;
   z-index: 2;
   display: flex;
-  flex-direction: row;
-  align-items: center;
+  flex-direction: column;
   gap: 10px;
   width: 100%;
 }
 
+.cinematic-skill-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 8px;
+}
+
+.cinematic-skill-main {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
 .cinematic-skill-icon {
-  font-size: 26px;
+  font-size: 24px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -241,8 +256,8 @@ body .cinematic-skills-wrapper {
 }
 
 .cinematic-skill-icon svg {
-  width: 24px;
-  height: 24px;
+  width: 22px;
+  height: 22px;
   stroke: #c89d58;
   transition: stroke 0.3s ease;
 }
@@ -259,7 +274,7 @@ body .cinematic-skills-wrapper {
   font-family: 'Poppins', sans-serif;
   font-size: 0.9rem;
   letter-spacing: 0.01em;
-  color: rgba(242, 234, 217, 0.85);
+  color: rgba(242, 234, 217, 0.9);
   transition: color 0.3s ease;
   font-weight: 500;
   white-space: nowrap;
@@ -269,6 +284,49 @@ body .cinematic-skills-wrapper {
 
 .cinematic-skill-card:hover .cinematic-skill-name {
   color: #ffffff;
+}
+
+/* Percentage Pill Indicator */
+.cinematic-skill-pct {
+  font-family: 'Chakra Petch', monospace, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #E6C9A8;
+  background: rgba(230, 201, 168, 0.08);
+  border: 1px solid rgba(230, 201, 168, 0.16);
+  padding: 2px 7px;
+  border-radius: 100px;
+  letter-spacing: 0.05em;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+
+.cinematic-skill-card:hover .cinematic-skill-pct {
+  color: #f3d082;
+  background: rgba(243, 208, 130, 0.18);
+  border-color: rgba(243, 208, 130, 0.4);
+}
+
+/* Proficiency Progress Track & Animated Bar */
+.cinematic-skill-track {
+  width: 100%;
+  height: 4px;
+  background: rgba(242, 234, 217, 0.08);
+  border-radius: 99px;
+  overflow: hidden;
+  position: relative;
+}
+
+.cinematic-skill-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #b48332 0%, #E6C9A8 70%, #f7dfbe 100%);
+  border-radius: 99px;
+  box-shadow: 0 0 8px rgba(230, 201, 168, 0.4);
+  transition: box-shadow 0.3s ease;
+}
+
+.cinematic-skill-card:hover .cinematic-skill-bar {
+  box-shadow: 0 0 12px rgba(243, 208, 130, 0.75);
 }
 
 /* ── Responsive ── */
