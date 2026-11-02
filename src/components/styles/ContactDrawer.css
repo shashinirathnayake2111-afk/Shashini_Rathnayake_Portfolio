@@ -332,6 +332,16 @@
   color: #0a0a0a;
 }
 
+.contact-icon-btn.contact-icon-btn--wa:hover {
+  background: #25D366;
+  border-color: #25D366;
+  color: #050505;
+}
+
+.contact-icon-btn.contact-icon-btn--wa:hover svg {
+  color: #050505;
+}
+
 .contact-text {
   font-family: 'Poppins', sans-serif;
   font-size: 0.82rem;

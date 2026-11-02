@@ -27,8 +27,8 @@
     </filter>
   </defs>
 
-  <!-- Squircle Base with Gold Rim -->
-  <rect x="2" y="2" width="60" height="60" rx="16" fill="url(#bgGrad)" stroke="url(#rimGrad)" stroke-width="1.8" />
+  <!-- Squircle Base without Gold Rim Border -->
+  <rect x="0" y="0" width="64" height="64" rx="16" fill="url(#bgGrad)" />
 
   <!-- Monogram Group (SR.) centered optically -->
   <g filter="url(#glow)">

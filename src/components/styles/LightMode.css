@@ -267,6 +267,18 @@ body.light-mode .hero-role-subtitle {
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.65);
 }
 
+/* ── Hero Availability Badge ── */
+body.light-mode .hero-availability-badge {
+  background: rgba(6, 95, 70, 0.12);
+  border-color: rgba(5, 150, 105, 0.35);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
+}
+
+body.light-mode .availability-badge-text {
+  color: #047857;
+  font-weight: 700;
+}
+
 body.light-mode .hero-projects-btn {
   background: rgba(15, 20, 32, 0.68);
   color: #f5efe6;
@@ -1167,13 +1179,252 @@ body.light-mode .portfolio-viewport-frame {
   }
 }
 
-body.light-mode .footer-back-to-top:hover .btt-circle {
-  background: #fbf7f2;
-  color: #1a130f;
-  box-shadow: 0 6px 20px rgba(243, 208, 130, 0.4);
-  transform: translateY(-4px);
+/* ── Home Highlights Section (Light Mode: Clean Luxury Bento Strip) ── */
+body.light-mode .home-highlights-section {
+  background-color: #f7f5ef;
+}
+
+body.light-mode .highlight-clean-card {
+  background: #ffffff;
+  border-color: rgba(180, 140, 75, 0.22);
+  box-shadow: 0 8px 25px rgba(180, 140, 75, 0.06);
+}
+
+body.light-mode .highlight-clean-card:hover {
+  background: #ffffff;
+  border-color: #b48332;
+  box-shadow: 0 14px 35px rgba(180, 140, 75, 0.12);
+}
+
+body.light-mode .card-num-big {
+  color: #18181b;
+}
+
+body.light-mode .card-num-unit {
+  color: #b48332;
+}
+
+body.light-mode .card-badge-pill {
+  color: #854d0e;
+  background: rgba(180, 140, 75, 0.12);
+  border-color: rgba(180, 140, 75, 0.3);
+}
+
+body.light-mode .card-title {
+  color: #18181b;
+}
+
+body.light-mode .card-description {
+  color: #374151;
+}
+
+body.light-mode .clean-tag {
+  color: #18181b;
+  background: #f4f0e6;
+  border-color: rgba(180, 140, 75, 0.2);
+}
+
+body.light-mode .clean-tag:hover {
+  background: #18181b;
+  color: #ffffff;
+  border-color: #18181b;
+}
+
+body.light-mode .card-clean-link {
+  color: #854d0e;
+  border-top-color: rgba(180, 140, 75, 0.16);
+}
+
+body.light-mode .card-clean-link:hover {
+  color: #b48332;
 }
 
 body.light-mode .footer-watermark {
   color: rgba(243, 208, 130, 0.035);
+}
+
+
+/* ─── HOME HIGHLIGHTS — Light Mode ────────────────────────────────── */
+body.light-mode .hh-section {
+  background: transparent;
+}
+
+body.light-mode .hh-label {
+  color: #b48332;
+  opacity: 0.8;
+}
+
+body.light-mode .hh-card {
+  background: rgba(255, 255, 255, 0.65);
+  border-color: rgba(180, 131, 50, 0.22);
+  box-shadow: 0 4px 24px rgba(160, 120, 50, 0.06);
+}
+
+body.light-mode .hh-card::before {
+  background: radial-gradient(circle at top left, rgba(243, 208, 130, 0.1) 0%, transparent 65%);
+}
+
+body.light-mode .hh-card:hover {
+  border-color: rgba(180, 131, 50, 0.45);
+  box-shadow: 0 6px 32px rgba(160, 120, 50, 0.12);
+}
+
+body.light-mode .hh-card-number {
+  color: #b48332;
+}
+
+body.light-mode .hh-card-unit {
+  color: #b48332;
+  opacity: 0.7;
+}
+
+body.light-mode .hh-card-label {
+  color: rgba(30, 20, 5, 0.6);
+}
+
+body.light-mode .hh-card-label strong {
+  color: #18181b;
+}
+
+body.light-mode .hh-card-cta {
+  background: rgba(180, 131, 50, 0.1);
+  border-color: rgba(180, 131, 50, 0.35);
+  color: #b48332;
+}
+
+body.light-mode .hh-card-cta:hover {
+  background: rgba(180, 131, 50, 0.2);
+  border-color: #b48332;
+}
+
+body.light-mode .hh-ring {
+  border-color: rgba(180, 131, 50, 0.15);
+}
+
+body.light-mode .hh-ring-1 {
+  border-color: rgba(180, 131, 50, 0.22);
+}
+
+body.light-mode .hh-ring-3 {
+  border-color: rgba(180, 131, 50, 0.08);
+}
+
+body.light-mode .hh-orbit-dot-1 {
+  background: #b48332;
+  box-shadow: 0 0 12px 4px rgba(180, 131, 50, 0.5);
+}
+
+body.light-mode .hh-orbit-dot-2 {
+  background: #c9973e;
+  box-shadow: 0 0 10px 3px rgba(201, 151, 62, 0.4);
+}
+
+body.light-mode .hh-orbit-dot-3 {
+  background: #a07840;
+  box-shadow: 0 0 8px 2px rgba(160, 120, 64, 0.35);
+}
+
+body.light-mode .hh-tag {
+  background: rgba(255, 255, 255, 0.75);
+  border-color: rgba(180, 131, 50, 0.25);
+  color: #3d2a0a;
+}
+
+body.light-mode .hh-tag:hover {
+  border-color: #b48332;
+  color: #b48332;
+  box-shadow: 0 0 14px rgba(180, 131, 50, 0.15);
+}
+
+
+/* ─── HOME HIGHLIGHTS — Light Mode ────────────────────────────────── */
+body.light-mode .hh-section {
+  background: transparent;
+}
+
+body.light-mode .hh-label {
+  color: #b48332;
+  opacity: 0.8;
+}
+
+body.light-mode .hh-card {
+  background: rgba(255, 255, 255, 0.65);
+  border-color: rgba(180, 131, 50, 0.22);
+  box-shadow: 0 4px 24px rgba(160, 120, 50, 0.06);
+}
+
+body.light-mode .hh-card::before {
+  background: radial-gradient(circle at top left, rgba(243, 208, 130, 0.1) 0%, transparent 65%);
+}
+
+body.light-mode .hh-card:hover {
+  border-color: rgba(180, 131, 50, 0.45);
+  box-shadow: 0 6px 32px rgba(160, 120, 50, 0.12);
+}
+
+body.light-mode .hh-card-number {
+  color: #b48332;
+}
+
+body.light-mode .hh-card-unit {
+  color: #b48332;
+  opacity: 0.7;
+}
+
+body.light-mode .hh-card-label {
+  color: rgba(30, 20, 5, 0.6);
+}
+
+body.light-mode .hh-card-label strong {
+  color: #18181b;
+}
+
+body.light-mode .hh-card-cta {
+  background: rgba(180, 131, 50, 0.1);
+  border-color: rgba(180, 131, 50, 0.35);
+  color: #b48332;
+}
+
+body.light-mode .hh-card-cta:hover {
+  background: rgba(180, 131, 50, 0.2);
+  border-color: #b48332;
+}
+
+body.light-mode .hh-ring {
+  border-color: rgba(180, 131, 50, 0.15);
+}
+
+body.light-mode .hh-ring-1 {
+  border-color: rgba(180, 131, 50, 0.22);
+}
+
+body.light-mode .hh-ring-3 {
+  border-color: rgba(180, 131, 50, 0.08);
+}
+
+body.light-mode .hh-orbit-dot-1 {
+  background: #b48332;
+  box-shadow: 0 0 12px 4px rgba(180, 131, 50, 0.5);
+}
+
+body.light-mode .hh-orbit-dot-2 {
+  background: #c9973e;
+  box-shadow: 0 0 10px 3px rgba(201, 151, 62, 0.4);
+}
+
+body.light-mode .hh-orbit-dot-3 {
+  background: #a07840;
+  box-shadow: 0 0 8px 2px rgba(160, 120, 64, 0.35);
+}
+
+body.light-mode .hh-tag {
+  background: rgba(255, 255, 255, 0.75);
+  border-color: rgba(180, 131, 50, 0.25);
+  color: #3d2a0a;
+}
+
+body.light-mode .hh-tag:hover {
+  border-color: #b48332;
+  color: #b48332;
+  box-shadow: 0 0 14px rgba(180, 131, 50, 0.15);
 }

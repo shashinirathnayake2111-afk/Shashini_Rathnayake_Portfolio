@@ -132,8 +132,10 @@ const HeroSection = ({ isLoaded }) => {
       >
 
         <div className={`hero-eyebrow-wrap hello-fly-in ${mounted ? 'visible' : ''}`}>
-          <span className="hero-eyebrow-line" />
-          <span className="hero-hello">HELLO, I&apos;M</span>
+          <div className="hero-eyebrow-row">
+            <span className="hero-eyebrow-line" />
+            <span className="hero-hello">HELLO, I&apos;M</span>
+          </div>
         </div>
 
         <h1 className="hero-name">

@@ -11,7 +11,6 @@ import Navbar from './components/page/Navbar'
 import SocialSidebar from './components/page/SocialSidebar'
 import ContactDrawer from './components/page/ContactDrawer'
 import CustomCursor from './components/page/CustomCursor'
-import SkillsMarquee from './components/page/SkillsMarquee'
 import EducationSection from './components/page/EducationSection'
 import ProjectsSection from './components/page/ProjectsSection'
 import Footer from './components/page/Footer'
@@ -123,7 +122,6 @@ function App() {
 
   return (
     <div className="app-container">
-      {/* Luxury Canvas Viewport Frame (Rounded border margin) */}
       <div className="portfolio-viewport-frame" aria-hidden="true" />
 
       <CustomCursor />
@@ -142,19 +140,15 @@ function App() {
             >
               <SocialSidebar isLoaded={isHomeRevealed} isVisible={isInHero} />
 
-              {/* Hero Stage — scrolls naturally down the page */}
               <div className="hero-scroll-stage">
                 <HeroSection isLoaded={isHomeRevealed} />
               </div>
 
-              {/* Intro Statement — sits directly below Hero in natural document flow */}
               <div className="intro-elevation-stage">
                 <IntroStatement />
               </div>
 
-              {/* Subsequent Homepage Sections — follow immediately with zero black screen gap */}
               <div className="home-subsequent-content">
-                {/* ProjectsSection — has its own per-row entrance animations */}
                 <ProjectsSection />
 
                 <Footer onContactClick={() => setIsContactOpen(true)} />
@@ -170,7 +164,6 @@ function App() {
               className="about-page-wrapper"
             >
               <AboutSection />
-              <SkillsMarquee />
               <EducationSection />
               <Footer onContactClick={() => setIsContactOpen(true)} />
             </motion.div>
