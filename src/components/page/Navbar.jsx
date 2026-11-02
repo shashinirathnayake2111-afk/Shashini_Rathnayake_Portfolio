@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { Sun, Moon } from 'lucide-react';
+import { Sun, Moon, User, Code2, Briefcase, Layers } from 'lucide-react';
 import '../styles/Navbar.css';
 
 const Navbar = ({ isLoaded, onContactClick, isInHero }) => {
@@ -189,8 +189,9 @@ const Navbar = ({ isLoaded, onContactClick, isInHero }) => {
       >
 
         <div className={`nav-full ${!isInHero ? 'nav-hidden' : ''}`}>
-          <Link to="/" className="nav-logo" onClick={handleLogoClick}>
-            Shashini Rathnayake<span className="nav-dot">.</span>
+          <Link to="/" className="nav-logo" onClick={handleLogoClick} title="Home">
+            <span className="logo-full">Shashini Rathnayake<span className="nav-dot">.</span></span>
+            <span className="logo-mobile">SR<span className="nav-dot">.</span></span>
           </Link>
 
           <ul className="nav-links">
@@ -221,7 +222,10 @@ const Navbar = ({ isLoaded, onContactClick, isInHero }) => {
                 <Moon className="theme-toggle-icon icon-moon" size={19} strokeWidth={2} />
               )}
             </button>
-            <button className="nav-cta desktop-only-cta" onClick={onContactClick}>Let's talk</button>
+            <button className="nav-cta" onClick={onContactClick}>
+              <span>Let's connect</span>
+              <span className="nav-cta-arrow">↗</span>
+            </button>
             <button
               className="mobile-hamburger-btn"
               onClick={() => setIsMenuOpen(true)}
@@ -246,6 +250,69 @@ const Navbar = ({ isLoaded, onContactClick, isInHero }) => {
           </div>
           <span className="status-text">AVAILABLE FOR WORK</span>
           <span className="pill-arrow" aria-hidden="true">↑</span>
+        </div>
+      </nav>
+
+      {/* Fixed Bottom Mobile Navigation Bar */}
+      <nav className="mobile-bottom-nav" aria-label="Mobile Navigation">
+        <div className="mobile-bottom-nav-inner">
+          <Link
+            to="/about"
+            className={`mobile-nav-item ${location.pathname === '/about' ? 'active' : ''}`}
+            onClick={() => {
+              if (window.lenis) {
+                window.lenis.scrollTo(0, { immediate: false, duration: 0.8 });
+              } else {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }
+            }}
+          >
+            <User size={18} className="mobile-nav-icon" />
+            <span className="mobile-nav-label">About</span>
+            {location.pathname === '/about' && <span className="mobile-nav-indicator" />}
+          </Link>
+
+          <Link
+            to="/skills"
+            className={`mobile-nav-item ${location.pathname === '/skills' ? 'active' : ''}`}
+            onClick={() => {
+              if (window.lenis) {
+                window.lenis.scrollTo(0, { immediate: false, duration: 0.8 });
+              } else {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }
+            }}
+          >
+            <Code2 size={18} className="mobile-nav-icon" />
+            <span className="mobile-nav-label">Skills</span>
+            {location.pathname === '/skills' && <span className="mobile-nav-indicator" />}
+          </Link>
+
+          <Link
+            to="/experience"
+            className={`mobile-nav-item ${location.pathname === '/experience' ? 'active' : ''}`}
+            onClick={() => {
+              if (window.lenis) {
+                window.lenis.scrollTo(0, { immediate: false, duration: 0.8 });
+              } else {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }
+            }}
+          >
+            <Briefcase size={18} className="mobile-nav-icon" />
+            <span className="mobile-nav-label">Experience</span>
+            {location.pathname === '/experience' && <span className="mobile-nav-indicator" />}
+          </Link>
+
+          <a
+            href="#projects"
+            className={`mobile-nav-item ${location.pathname === '/' && location.hash === '#projects' ? 'active' : ''}`}
+            onClick={(e) => handleScrollToSection(e, 'projects')}
+          >
+            <Layers size={18} className="mobile-nav-icon" />
+            <span className="mobile-nav-label">Projects</span>
+            {location.pathname === '/' && location.hash === '#projects' && <span className="mobile-nav-indicator" />}
+          </a>
         </div>
       </nav>
 

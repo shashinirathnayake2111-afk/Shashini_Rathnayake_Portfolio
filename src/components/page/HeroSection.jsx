@@ -22,7 +22,14 @@ const AnimatedWord = ({ word, baseDelay = 0, isMounted = false, className = '' }
 
 const HeroSection = ({ isLoaded }) => {
   const [mounted, setMounted] = useState(false);
+  const [isMobile, setIsMobile] = useState(typeof window !== 'undefined' ? window.innerWidth <= 768 : false);
   const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -96,7 +103,11 @@ const HeroSection = ({ isLoaded }) => {
 
       <motion.div
         className="hero-bg-role"
-        style={{ y: bgRoleY, opacity: bgRoleOpacity, scale: bgRoleScale }}
+        style={{
+          y: isMobile ? 0 : bgRoleY,
+          opacity: isMobile ? 1 : bgRoleOpacity,
+          scale: isMobile ? 1 : bgRoleScale,
+        }}
       >
         {"BUILD. DESIGN. INSPIRE.".split('').map((char, index) => (
           <span key={index} className="bg-hover-letter">
@@ -108,10 +119,10 @@ const HeroSection = ({ isLoaded }) => {
       <motion.div
         className="hero-profile-wrapper"
         style={{
-          scale: profileScale,
-          opacity: profileOpacity,
-          y: profileY,
-          filter: useTransform(profileBlur, (v) => `blur(${v}px)`),
+          scale: isMobile ? 1 : profileScale,
+          opacity: isMobile ? 1 : profileOpacity,
+          y: isMobile ? 0 : profileY,
+          filter: useTransform(profileBlur, (v) => isMobile ? 'none' : `blur(${v}px)`),
         }}
       >
         <div className={mounted ? 'hero-profile-enter' : 'hero-profile-initial'}>
@@ -120,7 +131,7 @@ const HeroSection = ({ isLoaded }) => {
             <div className="hero-profile-shadow" />
           </div>
           <div className="hero-profile-label">
-            <MapPin size={18} strokeWidth={2.5} /> COLOMBO, SRI LANKA
+            <MapPin size={isMobile ? 20 : 18} strokeWidth={2.5} /> COLOMBO, SRI LANKA
           </div>
         </div>
       </motion.div>
@@ -128,7 +139,11 @@ const HeroSection = ({ isLoaded }) => {
       {/* Text — butterfly letter-by-letter flutter, parallax drift on scroll */}
       <motion.div
         className="hero-overlay-text"
-        style={{ y: textY, opacity: textOpacity, scale: textScale }}
+        style={{
+          y: isMobile ? 0 : textY,
+          opacity: isMobile ? 1 : textOpacity,
+          scale: isMobile ? 1 : textScale,
+        }}
       >
 
         <div className={`hero-eyebrow-wrap hello-fly-in ${mounted ? 'visible' : ''}`}>

@@ -767,93 +767,196 @@
 
 @media (max-width: 768px) {
   .hero-section {
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: center;
-    padding-bottom: 70px;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+    height: auto !important;
+    min-height: 100vh !important;
+    min-height: 100svh !important;
+    padding-top: 86px !important;
+    padding-bottom: 95px !important;
+    overflow: visible !important;
   }
 
+  /* "BUILD. DESIGN. INSPIRE." positioned directly above profile image */
   .hero-bg-role {
-    top: 10%;
-    font-size: clamp(2.4rem, 7vw, 4.2rem);
-    opacity: 0.5;
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    transform: none !important;
+    display: block !important;
+    font-family: 'Bebas Neue', sans-serif !important;
+    font-size: clamp(2rem, 7.8vw, 3.4rem) !important;
+    letter-spacing: 0.12em !important;
+    text-align: center !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto 12px auto !important;
+    color: transparent !important;
+    -webkit-text-stroke: 1.2px rgba(212, 175, 55, 0.45) !important;
+    text-shadow: 0 0 24px rgba(212, 175, 55, 0.22) !important;
+    z-index: 2 !important;
+    white-space: nowrap !important;
+    opacity: 0.9 !important;
   }
 
+  /* Profile Image Centered */
   .hero-profile-wrapper {
-    transform: translateX(0) !important;
-    margin-bottom: 18px;
+    position: relative !important;
+    transform: none !important;
+    margin: 0 auto 12px auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    z-index: 2 !important;
   }
 
   .hero-profile-3d {
-    width: clamp(180px, 48vw, 240px) !important;
+    width: clamp(170px, 46vw, 230px) !important;
+    margin: 0 auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
   }
 
+  .hero-profile-img {
+    margin: 0 auto !important;
+  }
+
+  /* "COLOMBO, SRI LANKA" - Big, prominent, NO background */
   .hero-profile-label {
-    font-size: 0.85rem;
-    transform: translateY(-5px);
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    font-size: clamp(0.92rem, 3.8vw, 1.12rem) !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.24em !important;
+    color: #f2ead9 !important;
+    padding: 6px 0 !important;
+    margin-top: 10px !important;
+    transform: none !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    text-shadow: 0 2px 14px rgba(0, 0, 0, 0.95);
   }
 
+  .hero-profile-label svg {
+    color: #D4AF37 !important;
+    width: 20px !important;
+    height: 20px !important;
+    filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.7));
+  }
+
+  /* Left-aligned Text Content */
   .hero-overlay-text {
-    position: relative;
-    right: auto;
-    bottom: auto;
-    left: auto;
-    align-items: center;
-    text-align: center;
-    width: 100%;
-    padding: 0 16px;
+    position: relative !important;
+    right: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    align-items: flex-start !important;
+    text-align: left !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 26px !important;
+    margin-top: 12px !important;
+    box-sizing: border-box !important;
+    z-index: 5 !important;
   }
 
-  .hero-name {
-    font-size: clamp(2.4rem, 9.5vw, 3.8rem);
+  .hero-eyebrow-wrap {
+    align-items: flex-start !important;
+    width: 100% !important;
+    margin-bottom: 2px !important;
+  }
+
+  .hero-eyebrow-row {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 12px !important;
+  }
+
+  .hero-eyebrow-line {
+    display: block !important;
+    width: 28px !important;
+    height: 1.5px !important;
+    background: #E6C9A8 !important;
   }
 
   .hero-hello {
-    font-size: 1.05rem;
+    font-size: clamp(0.78rem, 2.6vw, 0.92rem) !important;
+    letter-spacing: 0.26em !important;
+    color: #a07840 !important;
+    text-align: left !important;
+    font-weight: 600 !important;
+  }
+
+  .hero-name {
+    font-size: clamp(2.6rem, 10.5vw, 4.4rem) !important;
+    text-align: left !important;
+    line-height: 0.94 !important;
+    margin: 8px 0 10px 0 !important;
+    letter-spacing: 0.02em !important;
   }
 
   .hero-role-subtitle {
-    font-size: 0.85rem;
-    margin-top: 4px;
+    font-size: clamp(0.85rem, 3.4vw, 1rem) !important;
+    text-align: left !important;
+    margin-top: 2px !important;
+    color: rgba(242, 234, 217, 0.75) !important;
   }
 
   .hero-projects-btn {
-    align-self: center;
-    margin-top: 18px;
-    padding: 10px 24px;
-    font-size: 0.78rem;
+    align-self: flex-start !important;
+    margin-top: 20px !important;
+    padding: 12px 28px !important;
+    font-size: 0.82rem !important;
+    border-radius: 50px !important;
   }
 
   .scroll-down-indicator {
-    bottom: 14px;
-  }
-
-  .scroll-mouse {
-    width: 22px;
-    height: 34px;
+    display: none !important;
   }
 }
 
 @media (max-width: 480px) {
   .hero-section {
-    padding-bottom: 60px;
+    padding-top: 78px !important;
+    padding-bottom: 90px !important;
   }
 
   .hero-bg-role {
-    display: none;
+    font-size: clamp(1.7rem, 7.5vw, 2.4rem) !important;
+    letter-spacing: 0.1em !important;
+    margin-bottom: 8px !important;
   }
 
   .hero-profile-3d {
-    width: clamp(160px, 46vw, 210px) !important;
+    width: clamp(155px, 45vw, 200px) !important;
+  }
+
+  .hero-profile-label {
+    font-size: 0.88rem !important;
+    letter-spacing: 0.2em !important;
+  }
+
+  .hero-overlay-text {
+    padding: 0 20px !important;
   }
 
   .hero-name {
-    font-size: clamp(2.1rem, 9vw, 3.2rem);
+    font-size: clamp(2.3rem, 10.2vw, 3.4rem) !important;
   }
 
   .hero-projects-btn {
-    padding: 9px 20px;
-    font-size: 0.75rem;
-    margin-top: 14px;
+    padding: 10px 22px !important;
+    font-size: 0.78rem !important;
+    margin-top: 16px !important;
   }
 }
