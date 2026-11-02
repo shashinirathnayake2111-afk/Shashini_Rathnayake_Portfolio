@@ -1543,11 +1543,15 @@ body.light-mode .mobile-nav-item.active .mobile-nav-icon {
   filter: drop-shadow(0 0 6px rgba(180, 131, 50, 0.4)) !important;
 }
 
-body.light-mode .mobile-nav-item.active .mobile-nav-label {
-  color: #b48332 !important;
+body.light-mode .mobile-nav-active-pill {
+  background: linear-gradient(135deg, rgba(180, 131, 50, 0.16) 0%, rgba(243, 208, 130, 0.12) 100%) !important;
+  border-color: rgba(180, 131, 50, 0.35) !important;
+  box-shadow: 
+    0 2px 12px rgba(180, 131, 50, 0.15),
+    inset 0 1px 1px rgba(255, 255, 255, 0.6) !important;
 }
 
-body.light-mode .mobile-nav-indicator {
-  background: #b48332 !important;
-  box-shadow: 0 0 6px rgba(180, 131, 50, 0.5) !important;
+body.light-mode .mobile-nav-item.active .mobile-nav-label {
+  color: #a16207 !important;
+  text-shadow: none !important;
 }

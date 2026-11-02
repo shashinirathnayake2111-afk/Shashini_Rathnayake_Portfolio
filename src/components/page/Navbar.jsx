@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { Sun, Moon, User, Code2, Briefcase, Layers } from 'lucide-react';
 import '../styles/Navbar.css';
 
@@ -253,66 +254,62 @@ const Navbar = ({ isLoaded, onContactClick, isInHero }) => {
         </div>
       </nav>
 
-      {/* Fixed Bottom Mobile Navigation Bar */}
+      {/* iOS-Style Floating Glass Bottom Navigation Bar */}
       <nav className="mobile-bottom-nav" aria-label="Mobile Navigation">
         <div className="mobile-bottom-nav-inner">
-          <Link
-            to="/about"
-            className={`mobile-nav-item ${location.pathname === '/about' ? 'active' : ''}`}
-            onClick={() => {
-              if (window.lenis) {
-                window.lenis.scrollTo(0, { immediate: false, duration: 0.8 });
-              } else {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-              }
-            }}
-          >
-            <User size={18} className="mobile-nav-icon" />
-            <span className="mobile-nav-label">About</span>
-            {location.pathname === '/about' && <span className="mobile-nav-indicator" />}
-          </Link>
+          {[
+            { label: 'About', path: '/about', icon: User },
+            { label: 'Skills', path: '/skills', icon: Code2 },
+            { label: 'Experience', path: '/experience', icon: Briefcase },
+            { label: 'Projects', path: '#projects', icon: Layers, isAnchor: true },
+          ].map((item) => {
+            const isActive = item.isAnchor
+              ? location.pathname === '/' && location.hash === '#projects'
+              : location.pathname === item.path;
+            const Icon = item.icon;
 
-          <Link
-            to="/skills"
-            className={`mobile-nav-item ${location.pathname === '/skills' ? 'active' : ''}`}
-            onClick={() => {
-              if (window.lenis) {
-                window.lenis.scrollTo(0, { immediate: false, duration: 0.8 });
-              } else {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-              }
-            }}
-          >
-            <Code2 size={18} className="mobile-nav-icon" />
-            <span className="mobile-nav-label">Skills</span>
-            {location.pathname === '/skills' && <span className="mobile-nav-indicator" />}
-          </Link>
+            const content = (
+              <>
+                {isActive && (
+                  <motion.div
+                    layoutId="mobileActiveDockPill"
+                    className="mobile-nav-active-pill"
+                    transition={{ type: 'spring', stiffness: 450, damping: 35 }}
+                  />
+                )}
+                <div className="mobile-nav-content">
+                  <Icon size={19} className="mobile-nav-icon" />
+                  <span className="mobile-nav-label">{item.label}</span>
+                </div>
+              </>
+            );
 
-          <Link
-            to="/experience"
-            className={`mobile-nav-item ${location.pathname === '/experience' ? 'active' : ''}`}
-            onClick={() => {
-              if (window.lenis) {
-                window.lenis.scrollTo(0, { immediate: false, duration: 0.8 });
-              } else {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-              }
-            }}
-          >
-            <Briefcase size={18} className="mobile-nav-icon" />
-            <span className="mobile-nav-label">Experience</span>
-            {location.pathname === '/experience' && <span className="mobile-nav-indicator" />}
-          </Link>
-
-          <a
-            href="#projects"
-            className={`mobile-nav-item ${location.pathname === '/' && location.hash === '#projects' ? 'active' : ''}`}
-            onClick={(e) => handleScrollToSection(e, 'projects')}
-          >
-            <Layers size={18} className="mobile-nav-icon" />
-            <span className="mobile-nav-label">Projects</span>
-            {location.pathname === '/' && location.hash === '#projects' && <span className="mobile-nav-indicator" />}
-          </a>
+            return item.isAnchor ? (
+              <a
+                key={item.label}
+                href="#projects"
+                className={`mobile-nav-item ${isActive ? 'active' : ''}`}
+                onClick={(e) => handleScrollToSection(e, 'projects')}
+              >
+                {content}
+              </a>
+            ) : (
+              <Link
+                key={item.label}
+                to={item.path}
+                className={`mobile-nav-item ${isActive ? 'active' : ''}`}
+                onClick={() => {
+                  if (window.lenis) {
+                    window.lenis.scrollTo(0, { immediate: false, duration: 0.8 });
+                  } else {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }
+                }}
+              >
+                {content}
+              </Link>
+            );
+          })}
         </div>
       </nav>
 

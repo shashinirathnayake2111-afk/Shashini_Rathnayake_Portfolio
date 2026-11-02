@@ -781,13 +781,73 @@
     align-items: center !important;
     height: auto !important;
     min-height: 100vh !important;
-    min-height: 100svh !important;
-    padding-top: 86px !important;
-    padding-bottom: 95px !important;
+    min-height: 100dvh !important;
+    padding-top: max(76px, env(safe-area-inset-top, 76px)) !important;
+    padding-bottom: 96px !important;
     overflow: visible !important;
   }
 
-  /* "BUILD. DESIGN. INSPIRE." positioned directly above profile image */
+  /* ── Background & Celestial Atmosphere on Mobile ── */
+  .hero-cinematic-bg {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    top: 0 !important;
+    left: 0 !important;
+    z-index: 0 !important;
+    overflow: hidden !important;
+  }
+
+  /* Center the moon, glowing clouds and sky right behind the profile avatar */
+  .hero-cinematic-img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center 12% !important;
+    filter: contrast(1.15) brightness(1.05) !important;
+    opacity: 0.92 !important;
+  }
+
+  /* Center living moonlight aura on mobile */
+  .moon-pulse-glow {
+    top: 14% !important;
+    left: 50% !important;
+    right: auto !important;
+    transform: translateX(-50%) !important;
+    width: 290px !important;
+    height: 290px !important;
+    background: radial-gradient(circle, rgba(242, 234, 217, 0.32) 0%, rgba(212, 175, 55, 0.16) 45%, transparent 72%) !important;
+    filter: blur(34px) !important;
+    opacity: 0.95 !important;
+  }
+
+  /* Drifting cloud mist on mobile */
+  .drifting-cloud-layer {
+    opacity: 0.75 !important;
+    filter: blur(24px) !important;
+  }
+
+  /* Mobile vignette: lets the moon, clouds and twinkling stars shine vividly at top */
+  .hero-cinematic-vignette {
+    background:
+      linear-gradient(to bottom, rgba(5, 5, 5, 0.1) 0%, transparent 22%, rgba(5, 5, 5, 0.6) 72%, #050505 100%),
+      radial-gradient(ellipse at 50% 25%, transparent 52%, rgba(5, 5, 5, 0.78) 100%) !important;
+  }
+
+  /* Sparkling stars halo effect on mobile OLED/Retina screens */
+  .sky-stars {
+    display: block !important;
+    z-index: 1 !important;
+  }
+
+  .star {
+    width: 2.5px !important;
+    height: 2.5px !important;
+    box-shadow: 0 0 8px 2px rgba(242, 234, 217, 1), 0 0 16px 4px rgba(212, 175, 55, 0.65) !important;
+  }
+
+  /* ── "BUILD. DESIGN. INSPIRE." displayed directly above profile ── */
   .hero-bg-role {
     position: relative !important;
     top: auto !important;
@@ -795,25 +855,25 @@
     transform: none !important;
     display: block !important;
     font-family: 'Bebas Neue', sans-serif !important;
-    font-size: clamp(2rem, 7.8vw, 3.4rem) !important;
-    letter-spacing: 0.12em !important;
+    font-size: clamp(2rem, 7.6vw, 3.2rem) !important;
+    letter-spacing: 0.14em !important;
     text-align: center !important;
     width: 100% !important;
     max-width: 100% !important;
-    margin: 0 auto 12px auto !important;
+    margin: 0 auto 10px auto !important;
     color: transparent !important;
-    -webkit-text-stroke: 1.2px rgba(212, 175, 55, 0.45) !important;
-    text-shadow: 0 0 24px rgba(212, 175, 55, 0.22) !important;
+    -webkit-text-stroke: 1.2px rgba(212, 175, 55, 0.5) !important;
+    text-shadow: 0 0 20px rgba(212, 175, 55, 0.25) !important;
     z-index: 2 !important;
     white-space: nowrap !important;
-    opacity: 0.9 !important;
+    opacity: 0.95 !important;
   }
 
-  /* Profile Image Centered */
+  /* ── Profile Image Centered ── */
   .hero-profile-wrapper {
     position: relative !important;
     transform: none !important;
-    margin: 0 auto 12px auto !important;
+    margin: 0 auto 8px auto !important;
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
@@ -823,7 +883,7 @@
   }
 
   .hero-profile-3d {
-    width: clamp(170px, 46vw, 230px) !important;
+    width: clamp(165px, 46vw, 220px) !important;
     margin: 0 auto !important;
     display: flex !important;
     flex-direction: column !important;
@@ -834,19 +894,19 @@
     margin: 0 auto !important;
   }
 
-  /* "COLOMBO, SRI LANKA" - Big, prominent, NO background */
+  /* ── "COLOMBO, SRI LANKA" - Clean, Prominent, NO background box ── */
   .hero-profile-label {
     background: transparent !important;
     border: none !important;
     box-shadow: none !important;
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
-    font-size: clamp(0.92rem, 3.8vw, 1.12rem) !important;
+    font-size: clamp(0.92rem, 3.6vw, 1.1rem) !important;
     font-weight: 700 !important;
     letter-spacing: 0.24em !important;
     color: #f2ead9 !important;
     padding: 6px 0 !important;
-    margin-top: 10px !important;
+    margin-top: 8px !important;
     transform: none !important;
     display: inline-flex !important;
     align-items: center !important;
@@ -859,10 +919,10 @@
     color: #D4AF37 !important;
     width: 20px !important;
     height: 20px !important;
-    filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.7));
+    filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.75));
   }
 
-  /* Left-aligned Text Content */
+  /* ── Left-aligned Text Content ── */
   .hero-overlay-text {
     position: relative !important;
     right: auto !important;
@@ -872,8 +932,8 @@
     text-align: left !important;
     width: 100% !important;
     max-width: 100% !important;
-    padding: 0 26px !important;
-    margin-top: 12px !important;
+    padding: 0 24px !important;
+    margin-top: 10px !important;
     box-sizing: border-box !important;
     z-index: 5 !important;
   }
@@ -899,7 +959,7 @@
   }
 
   .hero-hello {
-    font-size: clamp(0.78rem, 2.6vw, 0.92rem) !important;
+    font-size: clamp(0.78rem, 2.5vw, 0.9rem) !important;
     letter-spacing: 0.26em !important;
     color: #a07840 !important;
     text-align: left !important;
@@ -907,10 +967,10 @@
   }
 
   .hero-name {
-    font-size: clamp(2.6rem, 10.5vw, 4.4rem) !important;
+    font-size: clamp(2.5rem, 10vw, 4.2rem) !important;
     text-align: left !important;
     line-height: 0.94 !important;
-    margin: 8px 0 10px 0 !important;
+    margin: 6px 0 10px 0 !important;
     letter-spacing: 0.02em !important;
   }
 
@@ -919,11 +979,12 @@
     text-align: left !important;
     margin-top: 2px !important;
     color: rgba(242, 234, 217, 0.75) !important;
+    line-height: 1.45 !important;
   }
 
   .hero-projects-btn {
     align-self: flex-start !important;
-    margin-top: 20px !important;
+    margin-top: 18px !important;
     padding: 12px 28px !important;
     font-size: 0.82rem !important;
     border-radius: 50px !important;
@@ -934,25 +995,26 @@
   }
 }
 
+/* ── Specific Fine-Tuning for iPhone 16 Pro & Samsung A55 (width ≤ 480px) ── */
 @media (max-width: 480px) {
   .hero-section {
-    padding-top: 78px !important;
-    padding-bottom: 90px !important;
+    padding-top: max(74px, env(safe-area-inset-top, 74px)) !important;
+    padding-bottom: 92px !important;
   }
 
   .hero-bg-role {
-    font-size: clamp(2.0rem, 8.0vw, 3.0rem) !important;
-    letter-spacing: 0.1em !important;
+    font-size: clamp(1.8rem, 7.6vw, 2.7rem) !important;
+    letter-spacing: 0.11em !important;
     margin-bottom: 8px !important;
   }
 
   .hero-profile-3d {
-    width: clamp(155px, 45vw, 200px) !important;
+    width: clamp(155px, 45vw, 205px) !important;
   }
 
   .hero-profile-label {
     font-size: 0.88rem !important;
-    letter-spacing: 0.2em !important;
+    letter-spacing: 0.22em !important;
   }
 
   .hero-overlay-text {
@@ -960,12 +1022,66 @@
   }
 
   .hero-name {
-    font-size: clamp(2.3rem, 10.2vw, 3.4rem) !important;
+    font-size: clamp(2.3rem, 10vw, 3.4rem) !important;
   }
 
   .hero-projects-btn {
-    padding: 10px 22px !important;
+    padding: 11px 24px !important;
     font-size: 0.78rem !important;
-    margin-top: 16px !important;
+    margin-top: 15px !important;
+  }
+}
+
+/* ── Specific Fine-Tuning for iPhone SE & Short Viewport Phones (height ≤ 720px) ── */
+@media (max-width: 480px) and (max-height: 720px) {
+  .hero-section {
+    padding-top: 60px !important;
+    padding-bottom: 78px !important;
+    justify-content: center !important;
+  }
+
+  .hero-bg-role {
+    font-size: 1.55rem !important;
+    letter-spacing: 0.1em !important;
+    margin-bottom: 4px !important;
+  }
+
+  .hero-profile-3d {
+    width: 135px !important;
+  }
+
+  .hero-profile-label {
+    font-size: 0.78rem !important;
+    margin-top: 4px !important;
+    letter-spacing: 0.18em !important;
+  }
+
+  .hero-profile-label svg {
+    width: 16px !important;
+    height: 16px !important;
+  }
+
+  .hero-overlay-text {
+    margin-top: 6px !important;
+    padding: 0 16px !important;
+  }
+
+  .hero-hello {
+    font-size: 0.72rem !important;
+  }
+
+  .hero-name {
+    font-size: 2.1rem !important;
+    margin: 4px 0 6px 0 !important;
+  }
+
+  .hero-role-subtitle {
+    font-size: 0.78rem !important;
+  }
+
+  .hero-projects-btn {
+    padding: 8px 18px !important;
+    font-size: 0.72rem !important;
+    margin-top: 10px !important;
   }
 }

@@ -1125,28 +1125,28 @@
 }
 
 /* ═══════════════════════════════════════════════════════════
-   BOTTOM MOBILE NAVIGATION BAR (Dock)
+   BOTTOM MOBILE NAVIGATION BAR (iOS Dynamic Glass Dock)
    ═══════════════════════════════════════════════════════════ */
 .mobile-bottom-nav {
   display: none;
   position: fixed;
-  bottom: 18px;
+  bottom: max(16px, env(safe-area-inset-bottom, 16px));
   left: 50%;
   transform: translateX(-50%);
-  width: calc(100% - 32px);
-  max-width: 420px;
-  height: 60px;
+  width: calc(100% - 28px);
+  max-width: 390px;
+  height: 62px;
   border-radius: 100px;
-  background: rgba(12, 10, 8, 0.92);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  background: rgba(12, 10, 8, 0.86);
+  backdrop-filter: blur(28px) saturate(210%);
+  -webkit-backdrop-filter: blur(28px) saturate(210%);
   border: 1px solid rgba(230, 201, 168, 0.28);
   box-shadow: 
-    0 12px 32px -4px rgba(0, 0, 0, 0.8),
-    0 0 20px rgba(230, 201, 168, 0.12),
-    inset 0 1px 1px rgba(255, 255, 255, 0.08);
+    0 16px 36px -4px rgba(0, 0, 0, 0.88),
+    0 0 24px rgba(230, 201, 168, 0.14),
+    inset 0 1px 1px rgba(255, 255, 255, 0.12);
   z-index: 9999;
-  padding: 0 8px;
+  padding: 4px;
   box-sizing: border-box;
 }
 
@@ -1156,39 +1156,71 @@
   height: 100%;
   align-items: center;
   justify-content: space-around;
-  gap: 4px;
+  gap: 2px;
+  position: relative;
 }
 
 .mobile-nav-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  padding: 6px 10px;
+  border-radius: 100px;
+  flex: 1;
+  color: rgba(242, 234, 217, 0.58);
+  transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1), color 0.25s ease;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  cursor: pointer;
+}
+
+/* iOS-Style Sliding Active Pill Indicator */
+.mobile-nav-active-pill {
+  position: absolute;
+  inset: 2px 4px;
+  background: linear-gradient(135deg, rgba(243, 208, 130, 0.22) 0%, rgba(200, 157, 88, 0.12) 100%);
+  border: 1px solid rgba(243, 208, 130, 0.42);
+  border-radius: 100px;
+  box-shadow: 
+    0 2px 14px rgba(243, 208, 130, 0.25),
+    inset 0 1px 1px rgba(255, 255, 255, 0.25);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.mobile-nav-content {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 3px;
-  text-decoration: none;
-  color: rgba(242, 234, 217, 0.65);
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  position: relative;
-  padding: 7px 10px;
-  border-radius: 20px;
-  flex: 1;
+}
+
+/* iOS haptic tap feel */
+.mobile-nav-item:active {
+  transform: scale(0.92);
 }
 
 .mobile-nav-icon {
   width: 18px;
   height: 18px;
-  stroke: rgba(242, 234, 217, 0.65);
+  stroke: currentColor;
   stroke-width: 2;
-  transition: all 0.25s ease;
+  transition: stroke 0.25s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), filter 0.25s ease;
 }
 
 .mobile-nav-label {
   font-family: 'Chakra Petch', sans-serif;
-  font-size: 0.66rem;
-  letter-spacing: 0.06em;
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
   font-weight: 500;
   text-transform: uppercase;
-  transition: color 0.25s ease;
+  transition: color 0.25s ease, font-weight 0.25s ease;
 }
 
 .mobile-nav-item:hover {
@@ -1196,28 +1228,20 @@
 }
 
 .mobile-nav-item.active {
-  color: #E6C9A8;
+  color: #ffffff;
 }
 
 .mobile-nav-item.active .mobile-nav-icon {
   stroke: #f3d082;
-  filter: drop-shadow(0 0 8px rgba(243, 208, 130, 0.65));
-  transform: translateY(-1px);
+  filter: drop-shadow(0 0 8px rgba(243, 208, 130, 0.8));
+  transform: scale(1.08) translateY(-1px);
 }
 
 .mobile-nav-item.active .mobile-nav-label {
-  color: #f3d082;
+  color: #f7dfbe;
   font-weight: 700;
-}
-
-.mobile-nav-indicator {
-  position: absolute;
-  bottom: 3px;
-  width: 14px;
-  height: 2px;
-  border-radius: 2px;
-  background: #f3d082;
-  box-shadow: 0 0 8px rgba(243, 208, 130, 0.85);
+  letter-spacing: 0.09em;
+  text-shadow: 0 0 10px rgba(243, 208, 130, 0.45);
 }
 
 /* ─── Responsive Queries ───────────────────────────────── */
