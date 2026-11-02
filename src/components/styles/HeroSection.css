@@ -310,7 +310,9 @@
 }
 
 @keyframes ping {
-  75%, 100% {
+
+  75%,
+  100% {
     transform: scale(2.4);
     opacity: 0;
   }
@@ -562,7 +564,7 @@
   border-radius: 50%;
   /* Crescent: bright disc with shadow disc cut into it */
   background: radial-gradient(circle at 38% 50%, #1a1e2e 48%, transparent 49%),
-              radial-gradient(circle, #e8d5b0 0%, #c9a96e 55%, #a07840 80%, transparent 100%);
+    radial-gradient(circle, #e8d5b0 0%, #c9a96e 55%, #a07840 80%, transparent 100%);
   box-shadow:
     0 0 18px rgba(212, 175, 55, 0.35),
     0 0 40px rgba(212, 175, 55, 0.12),
@@ -580,8 +582,15 @@
 }
 
 @keyframes moon-gentle-float {
-  0%, 100% { transform: translateY(0px) rotate(-5deg); }
-  50%       { transform: translateY(-7px) rotate(3deg); }
+
+  0%,
+  100% {
+    transform: translateY(0px) rotate(-5deg);
+  }
+
+  50% {
+    transform: translateY(-7px) rotate(3deg);
+  }
 }
 
 .hero-profile-initial {
@@ -932,7 +941,7 @@
   }
 
   .hero-bg-role {
-    font-size: clamp(1.7rem, 7.5vw, 2.4rem) !important;
+    font-size: clamp(2.0rem, 8.0vw, 3.0rem) !important;
     letter-spacing: 0.1em !important;
     margin-bottom: 8px !important;
   }
