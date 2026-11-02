@@ -1488,3 +1488,66 @@ body.light-mode .hh-tag:hover {
   color: #b48332;
   box-shadow: 0 0 12px rgba(180,131,50,0.14);
 }
+
+
+/* ─── BOTTOM MOBILE NAV & MOBILE TOP BAR — Light Mode ─────────── */
+body.light-mode .logo-mobile {
+  color: #18181b !important;
+}
+
+body.light-mode .logo-mobile .nav-dot {
+  color: #b48332 !important;
+}
+
+body.light-mode .hero-profile-label {
+  color: #18181b !important;
+  text-shadow: none !important;
+}
+
+body.light-mode .hero-profile-label svg {
+  color: #b48332 !important;
+  filter: drop-shadow(0 0 8px rgba(180, 131, 50, 0.4)) !important;
+}
+
+body.light-mode .hero-bg-role {
+  -webkit-text-stroke: 1.2px rgba(180, 131, 50, 0.5) !important;
+  text-shadow: 0 0 20px rgba(180, 131, 50, 0.15) !important;
+}
+
+body.light-mode .mobile-bottom-nav {
+  background: rgba(255, 255, 255, 0.92) !important;
+  border-color: rgba(180, 131, 50, 0.28) !important;
+  box-shadow: 
+    0 12px 32px -4px rgba(160, 120, 50, 0.18),
+    0 0 15px rgba(180, 131, 50, 0.1) !important;
+}
+
+body.light-mode .mobile-nav-item {
+  color: rgba(24, 24, 27, 0.6) !important;
+}
+
+body.light-mode .mobile-nav-icon {
+  stroke: rgba(24, 24, 27, 0.6) !important;
+}
+
+body.light-mode .mobile-nav-item:hover {
+  color: #18181b !important;
+}
+
+body.light-mode .mobile-nav-item.active {
+  color: #b48332 !important;
+}
+
+body.light-mode .mobile-nav-item.active .mobile-nav-icon {
+  stroke: #b48332 !important;
+  filter: drop-shadow(0 0 6px rgba(180, 131, 50, 0.4)) !important;
+}
+
+body.light-mode .mobile-nav-item.active .mobile-nav-label {
+  color: #b48332 !important;
+}
+
+body.light-mode .mobile-nav-indicator {
+  background: #b48332 !important;
+  box-shadow: 0 0 6px rgba(180, 131, 50, 0.5) !important;
+}
