@@ -715,10 +715,6 @@
   letter-spacing: .05em;
 }
 
-/* ══════════════════════════════════════════════════════════════════════
-   ── Case Study Modal (Modern Cosmic Bento / Magazine Showcase) ──
-   ══════════════════════════════════════════════════════════════════════ */
-
 .case-study-backdrop {
   position: fixed;
   inset: 0;
@@ -1608,10 +1604,12 @@
   .projects-showcase-section.celestial-night-theme {
     padding: 60px 0 70px;
   }
+
   .projects-header-wrapper {
     padding: 0 20px;
     margin-bottom: 32px;
   }
+
   .projects-main-title {
     font-size: clamp(2.2rem, 7.5vw, 3rem);
   }
@@ -1623,9 +1621,11 @@
     gap: 16px;
     margin-bottom: 24px;
   }
+
   .projects-main-title {
     font-size: clamp(2rem, 8vw, 2.6rem);
   }
+
   .projects-eyebrow {
     gap: 10px;
     margin-bottom: 12px;

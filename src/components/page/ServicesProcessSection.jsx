@@ -189,7 +189,7 @@ export default function ServicesProcessSection({ onContactClick }) {
                     aria-label={step.label}
                   >
                     <div className="proc-icon-ring">
-                      <Icon size={20} />
+                      <Icon size={30} />
                     </div>
                     <span className="proc-label">{step.label}</span>
                     {isActive && (
