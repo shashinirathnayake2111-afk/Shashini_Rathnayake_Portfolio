@@ -13,6 +13,7 @@ import ContactDrawer from './components/page/ContactDrawer'
 import CustomCursor from './components/page/CustomCursor'
 import EducationSection from './components/page/EducationSection'
 import ProjectsSection from './components/page/ProjectsSection'
+import HomeHighlights from './components/page/HomeHighlights'
 import Footer from './components/page/Footer'
 import SkillsPage from './components/page/SkillsPage'
 import ExperiencePage from './components/page/ExperiencePage'
@@ -149,6 +150,7 @@ function App() {
               </div>
 
               <div className="home-subsequent-content">
+                <HomeHighlights onContactClick={() => setIsContactOpen(true)} />
                 <ProjectsSection />
 
                 <Footer onContactClick={() => setIsContactOpen(true)} />

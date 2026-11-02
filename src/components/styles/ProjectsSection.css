@@ -1600,3 +1600,34 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* ════════════════════════════════
+   EXTRA MOBILE — PROJECTS SECTION
+   ════════════════════════════════ */
+@media (max-width: 768px) {
+  .projects-showcase-section.celestial-night-theme {
+    padding: 60px 0 70px;
+  }
+  .projects-header-wrapper {
+    padding: 0 20px;
+    margin-bottom: 32px;
+  }
+  .projects-main-title {
+    font-size: clamp(2.2rem, 7.5vw, 3rem);
+  }
+}
+
+@media (max-width: 480px) {
+  .projects-header-wrapper {
+    padding: 0 14px;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .projects-main-title {
+    font-size: clamp(2rem, 8vw, 2.6rem);
+  }
+  .projects-eyebrow {
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+}

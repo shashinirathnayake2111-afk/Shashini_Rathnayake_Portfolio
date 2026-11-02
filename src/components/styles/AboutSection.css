@@ -907,3 +907,107 @@
     justify-content: center;
   }
 }
+
+/*mobile response*/
+@media (max-width: 768px) {
+  .about-page-wrapper {
+    padding-top: 24px;
+  }
+
+  .aww-layout {
+    padding: 72px 20px 60px;
+  }
+
+  .about-main-title,
+  .about-title {
+    white-space: normal;
+    font-size: clamp(2rem, 8vw, 3.2rem);
+  }
+
+  .about-subtitle {
+    font-size: 0.9rem;
+  }
+
+  .floating-tabs {
+    gap: 2px;
+    padding: 5px 6px;
+  }
+
+  .tab-btn {
+    padding: 8px 14px;
+  }
+
+  .tab-label {
+    font-size: 0.68rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .aww-layout {
+    padding: 64px 16px 48px;
+  }
+
+  .about-main-title,
+  .about-title {
+    font-size: clamp(1.8rem, 7.5vw, 2.6rem);
+  }
+
+  .floating-tabs-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .floating-tabs-wrapper::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   COMPREHENSIVE MOBILE RESPONSIVE — GLOBAL ADDITIONS
+   Breakpoints: 1024px | 768px | 640px | 480px | 380px
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── About Section: aww-layout padding ── */
+@media (max-width: 768px) {
+  .about-page-wrapper {
+    padding-top: 24px;
+  }
+  .aww-layout {
+    padding: 72px 20px 60px;
+  }
+  .about-main-title,
+  .about-title {
+    white-space: normal;
+    font-size: clamp(2rem, 8vw, 3.2rem);
+  }
+  .about-subtitle {
+    font-size: 0.9rem;
+  }
+  .floating-tabs {
+    gap: 2px;
+    padding: 5px 6px;
+  }
+  .tab-btn {
+    padding: 8px 14px;
+  }
+  .tab-label {
+    font-size: 0.68rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .aww-layout {
+    padding: 64px 16px 48px;
+  }
+  .about-main-title,
+  .about-title {
+    font-size: clamp(1.8rem, 7.5vw, 2.6rem);
+  }
+  .floating-tabs-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .floating-tabs-wrapper::-webkit-scrollbar { display: none; }
+}
