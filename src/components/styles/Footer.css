@@ -502,6 +502,12 @@
   }
 }
 
+@media (max-width: 768px) {
+  .footer-section {
+    padding-bottom: max(96px, calc(82px + env(safe-area-inset-bottom, 20px))) !important;
+  }
+}
+
 @media (max-width: 640px) {
   .footer-inner {
     padding: 0 20px;

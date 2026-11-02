@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Routes, Route, useLocation } from 'react-router-dom'
+import { Routes, Route, useLocation, Link } from 'react-router-dom'
 import Lenis from 'lenis'
 import { useScroll, useMotionValueEvent, motion, AnimatePresence } from 'framer-motion'
 import './App.css'
@@ -16,6 +16,7 @@ import ProjectsSection from './components/page/ProjectsSection'
 import Footer from './components/page/Footer'
 import SkillsPage from './components/page/SkillsPage'
 import ExperiencePage from './components/page/ExperiencePage'
+import ServicesProcessSection from './components/page/ServicesProcessSection'
 
 const HAS_LOADED_KEY = 'portfolioHasLoaded'
 
@@ -150,7 +151,7 @@ function App() {
 
               <div className="home-subsequent-content">
                 <ProjectsSection />
-
+                <ServicesProcessSection onContactClick={() => setIsContactOpen(true)} />
                 <Footer onContactClick={() => setIsContactOpen(true)} />
               </div>
             </motion.div>
@@ -187,6 +188,39 @@ function App() {
             >
               <ExperiencePage onContactClick={() => setIsContactOpen(true)} />
             </motion.div>
+          } />
+          <Route path="*" element={
+            <div className="not-found-container" style={{
+              minHeight: '75vh',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+              textAlign: 'center',
+              padding: '120px 24px 60px',
+              color: '#f2ead9'
+            }}>
+              <h1 style={{ fontFamily: 'Bebas Neue', fontSize: 'clamp(5rem, 14vw, 9rem)', color: '#D4AF37', margin: 0, lineHeight: 1 }}>404</h1>
+              <h2 style={{ fontFamily: 'Poppins', fontSize: 'clamp(1.2rem, 3vw, 1.8rem)', fontWeight: 600, margin: '14px 0 8px' }}>Page Not Found</h2>
+              <p style={{ color: 'rgba(242, 234, 217, 0.7)', maxWidth: '420px', fontSize: '0.95rem', marginBottom: '28px' }}>
+                The page you are looking for doesn't exist or has been moved.
+              </p>
+              <Link to="/" style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '8px',
+                padding: '12px 28px',
+                borderRadius: '50px',
+                background: 'linear-gradient(135deg, #e9dfc7 0%, #caa468 100%)',
+                color: '#080604',
+                fontWeight: 700,
+                textDecoration: 'none',
+                fontSize: '0.88rem',
+                boxShadow: '0 4px 18px rgba(202, 164, 104, 0.3)'
+              }}>
+                Back to Home ↗
+              </Link>
+            </div>
           } />
         </Routes>
       </AnimatePresence>

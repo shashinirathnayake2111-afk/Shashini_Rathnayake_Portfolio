@@ -4,22 +4,23 @@
   position: relative;
 }
 
-/* ── Luxury Viewport Canvas Frame Margin (Top, Left, Right Only — No Bottom Margin, No Hairline Border) ── */
+/* ── Luxury Viewport Canvas Frame Margin (Refined modern frame that protects corners) ── */
 .portfolio-viewport-frame {
   position: fixed;
-  top: 12px;
-  left: 12px;
-  right: 12px;
-  bottom: -40px;
-  border-top-left-radius: 24px;
-  border-top-right-radius: 24px;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  bottom: 0;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
   pointer-events: none;
   z-index: 9998;
-  border: none;
-  box-shadow: 0 0 0 12px #000000;
-  transition: box-shadow 0.4s ease;
+  border: 1px solid rgba(212, 175, 55, 0.12);
+  border-bottom: none;
+  box-shadow: 0 0 0 10px #000000;
+  transition: box-shadow 0.4s ease, border-color 0.4s ease;
 }
 
 @media (max-width: 1024px) {
@@ -27,22 +28,24 @@
     top: 8px;
     left: 8px;
     right: 8px;
-    bottom: -30px;
-    border-top-left-radius: 18px;
-    border-top-right-radius: 18px;
+    bottom: 0;
+    border-top-left-radius: 14px;
+    border-top-right-radius: 14px;
     box-shadow: 0 0 0 8px #000000;
+    border: 1px solid rgba(212, 175, 55, 0.14);
+    border-bottom: none;
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .portfolio-viewport-frame {
-    top: 4px;
-    left: 4px;
-    right: 4px;
-    bottom: -20px;
-    border-top-left-radius: 12px;
-    border-top-right-radius: 12px;
-    box-shadow: 0 0 0 4px #000000;
+    top: 6px;
+    left: 6px;
+    right: 6px;
+    bottom: 6px;
+    border-radius: 14px;
+    box-shadow: 0 0 0 6px #000000;
+    border: 1px solid rgba(212, 175, 55, 0.16);
   }
 }
 

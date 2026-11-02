@@ -1,0 +1,427 @@
+.sps-section {
+  position: relative;
+  width: 100%;
+  padding: 110px 0 90px;
+  background: #050505;
+  color: #f2ead9;
+  overflow: hidden;
+}
+
+/* ambient glows */
+.sps-glow {
+  position: absolute;
+  width: 420px;
+  height: 420px;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(110px);
+  opacity: 0.09;
+  z-index: 0;
+}
+
+.sps-glow-l {
+  top: 6%;
+  left: -140px;
+  background: radial-gradient(circle, #D4AF37, transparent 70%);
+}
+
+.sps-glow-r {
+  bottom: 8%;
+  right: -140px;
+  background: radial-gradient(circle, #E6C9A8, transparent 70%);
+}
+
+.sps-inner {
+  position: relative;
+  width: min(90%, 1200px);
+  margin: 0 auto;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 90px;
+}
+
+/* ── Shared block header ── */
+.sps-block {
+  width: 100%;
+}
+
+.sps-eyebrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 0.76rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #a07840;
+  margin-bottom: 14px;
+}
+
+.sps-line {
+  display: block;
+  width: 30px;
+  height: 1.5px;
+  background: rgba(212, 175, 55, 0.55);
+  flex-shrink: 0;
+}
+
+.sps-heading {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.8rem, 6vw, 4.4rem);
+  letter-spacing: 0.045em;
+  color: #f2ead9;
+  text-align: center;
+  margin: 0 0 44px;
+  line-height: 1.05;
+}
+
+.sps-gold {
+  background: linear-gradient(135deg, #fcefd2 0%, #D4AF37 55%, #b88a4c 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.svc-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.svc-card {
+  position: relative;
+  background: linear-gradient(160deg, rgba(20, 16, 11, 0.78) 0%, rgba(9, 7, 5, 0.94) 100%);
+  border: 1px solid rgba(212, 175, 55, 0.14);
+  border-radius: 18px;
+  padding: 30px 26px 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  box-sizing: border-box;
+  cursor: default;
+  transition: border-color 0.35s ease, box-shadow 0.35s ease;
+  overflow: hidden;
+}
+
+.svc-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 0%, rgba(212, 175, 55, 0.1) 0%, transparent 65%);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.svc-card:hover {
+  border-color: rgba(212, 175, 55, 0.38);
+  box-shadow: 0 18px 46px -10px rgba(0, 0, 0, 0.75), 0 0 20px rgba(212, 175, 55, 0.09);
+}
+
+.svc-card:hover::before {
+  opacity: 1;
+}
+
+.svc-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.svc-icon-box {
+  width: 46px;
+  height: 46px;
+  border-radius: 11px;
+  background: rgba(212, 175, 55, 0.14);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #D4AF37;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.svc-card:hover .svc-icon-box {
+  transform: rotate(4deg) scale(1.08);
+  background: rgba(212, 175, 55, 0.24);
+}
+
+.svc-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2rem;
+  color: rgba(212, 175, 55, 0.22);
+  transition: color 0.3s ease;
+}
+
+.svc-card:hover .svc-num {
+  color: rgba(212, 175, 55, 0.65);
+}
+
+.svc-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.18rem;
+  font-weight: 700;
+  color: #f2ead9;
+  margin: 0;
+}
+
+.svc-desc {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.86rem;
+  line-height: 1.62;
+  color: rgba(242, 234, 217, 0.65);
+  margin: 0;
+  flex: 1;
+}
+
+.svc-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.svc-pill {
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  padding: 3px 10px;
+  border-radius: 20px;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  color: rgba(242, 234, 217, 0.72);
+  background: rgba(212, 175, 55, 0.06);
+}
+
+.svc-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 18px;
+  border-radius: 50px;
+  background: transparent;
+  border: 1px solid rgba(212, 175, 55, 0.28);
+  color: #E6C9A8;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.28s ease;
+  align-self: flex-start;
+  margin-top: 2px;
+}
+
+.svc-btn:hover {
+  background: linear-gradient(135deg, #e9dfc7 0%, #caa468 100%);
+  color: #080604;
+  border-color: transparent;
+  box-shadow: 0 4px 16px rgba(202, 164, 104, 0.35);
+}
+
+/* Outer scrollable track wrapper */
+.proc-track {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  margin-bottom: 36px;
+  overflow-x: auto;
+  padding: 8px 4px 14px;
+  scrollbar-width: none;
+}
+
+.proc-track::-webkit-scrollbar {
+  display: none;
+}
+
+/* ── Step node ── */
+.proc-node {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px 6px 8px;
+  flex-shrink: 0;
+  z-index: 1;
+}
+
+.proc-icon-ring {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: rgba(18, 14, 10, 0.9);
+  border: 1.5px solid rgba(212, 175, 55, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(242, 234, 217, 0.55);
+  position: relative;
+  transition: border-color 0.3s ease, color 0.3s ease, background 0.3s ease;
+  z-index: 2;
+}
+
+.proc-node.is-done .proc-icon-ring {
+  border-color: rgba(212, 175, 55, 0.55);
+  color: #D4AF37;
+  background: rgba(212, 175, 55, 0.08);
+}
+
+.proc-node.is-active .proc-icon-ring {
+  border-color: #D4AF37;
+  color: #fcefd2;
+  background: rgba(212, 175, 55, 0.15);
+  box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.12), 0 0 18px rgba(212, 175, 55, 0.2);
+}
+
+.proc-active-halo {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.18) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.proc-label {
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(242, 234, 217, 0.5);
+  white-space: nowrap;
+  transition: color 0.3s ease;
+}
+
+.proc-node.is-done .proc-label {
+  color: rgba(212, 175, 55, 0.75);
+}
+
+.proc-node.is-active .proc-label {
+  color: #fcefd2;
+  font-weight: 700;
+}
+
+/* ── Arrow connector between nodes ── */
+.proc-arrow {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding-bottom: 22px;
+  /* aligns with label row */
+  flex-shrink: 0;
+  opacity: 0.35;
+  transition: opacity 0.35s ease;
+}
+
+.proc-arrow.arrow-lit {
+  opacity: 1;
+}
+
+.proc-arrow-line {
+  display: block;
+  width: 36px;
+  height: 1.5px;
+  background: linear-gradient(to right, rgba(212, 175, 55, 0.6), rgba(212, 175, 55, 0.3));
+}
+
+.proc-arrow-head {
+  color: rgba(212, 175, 55, 0.75);
+  margin-left: -2px;
+}
+
+body.light-mode .sps-section {
+  background: #f7f5ef !important;
+  color: #1a1208 !important;
+}
+
+body.light-mode .sps-heading {
+  color: #1a1208 !important;
+}
+
+body.light-mode .sps-eyebrow {
+  color: #a07840 !important;
+}
+
+body.light-mode .sps-line {
+  background: rgba(160, 120, 64, 0.6) !important;
+}
+
+/* light service cards */
+body.light-mode .svc-card {
+  background: linear-gradient(160deg, #ffffff 0%, #faf7f2 100%) !important;
+  border-color: rgba(180, 140, 75, 0.18) !important;
+  box-shadow: 0 6px 22px -5px rgba(180, 140, 75, 0.1) !important;
+}
+
+body.light-mode .svc-card:hover {
+  border-color: rgba(180, 140, 75, 0.4) !important;
+  box-shadow: 0 14px 38px -8px rgba(180, 140, 75, 0.18) !important;
+}
+
+body.light-mode .svc-title {
+  color: #1a1208 !important;
+}
+
+body.light-mode .svc-desc {
+  color: rgba(26, 18, 8, 0.68) !important;
+}
+
+body.light-mode .svc-num {
+  color: rgba(160, 120, 64, 0.28) !important;
+}
+
+body.light-mode .svc-card:hover .svc-num {
+  color: rgba(160, 120, 64, 0.6) !important;
+}
+
+body.light-mode .svc-pill {
+  border-color: rgba(160, 120, 64, 0.2) !important;
+  color: #7a5828 !important;
+  background: rgba(160, 120, 64, 0.06) !important;
+}
+
+body.light-mode .svc-btn {
+  border-color: rgba(160, 120, 64, 0.3) !important;
+  color: #7a5828 !important;
+}
+
+body.light-mode .svc-btn:hover {
+  background: linear-gradient(135deg, #1a1208, #3a2010) !important;
+  color: #fcefd2 !important;
+  border-color: transparent !important;
+}
+
+/* light process nodes */
+body.light-mode .proc-node .proc-icon-ring {
+  background: #ffffff !important;
+  border-color: rgba(180, 140, 75, 0.25) !important;
+  color: rgba(26, 18, 8, 0.45) !important;
+}
+
+body.light-mode .proc-node.is-done .proc-icon-ring {
+  background: rgba(180, 140, 75, 0.08) !important;
+  border-color: rgba(180, 140, 75, 0.5) !important;
+  color: #a07840 !important;
+}
+
+body.light-mode .proc-node.is-active .proc-icon-ring {
+  background: rgba(180, 140, 75, 0.14) !important;
+  border-color: #a07840 !important;
+  color: #1a1208 !important;
+  box-shadow: 0 0 0 4px rgba(160, 120, 64, 0.12), 0 0 16px rgba(160, 120, 64, 0.18) !important;
+}
+
+body.light-mode .proc-label {
+  color: rgba(26, 18, 8, 0.42) !important;
+}
+
+body.light-mode .proc-node.is-done .proc-label {
+  color: rgba(160, 120, 64, 0.8) !important;
+}
+
+body.light-mode .proc-node.is-active .proc-label {
+  color: #1a1208 !important;
+}
