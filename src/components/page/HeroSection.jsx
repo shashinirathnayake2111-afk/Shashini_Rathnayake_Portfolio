@@ -137,7 +137,7 @@ const HeroSection = ({ isLoaded }) => {
             <div className="hero-profile-shadow" />
           </div>
           <div className="hero-profile-label">
-            <MapPin size={isMobile ? 20 : 18} strokeWidth={2.5} /> COLOMBO, SRI LANKA
+            <MapPin size={isMobile ? 20 : 18} strokeWidth={2.5} />Open to work
           </div>
         </div>
       </motion.div>

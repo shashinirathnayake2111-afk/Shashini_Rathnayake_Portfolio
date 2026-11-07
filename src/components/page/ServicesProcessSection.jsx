@@ -1,19 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence, useInView } from 'framer-motion';
-import {
-  Palette,
-  Code2,
-  Layers,
-  MessageSquare,
-  Search,
-  PenTool,
-  Terminal,
-  GitBranch,
-  Rocket,
-  ArrowRight,
-  ArrowUpRight,
-  ChevronRight,
-} from 'lucide-react';
+import { Palette, Code2, Layers, MessageSquare, Search, PenTool, Terminal, GitBranch, Rocket, ArrowRight, ArrowUpRight, ChevronRight } from 'lucide-react';
 import '../styles/ServicesProcessSection.css';
 
 /* ── Services ── */
@@ -138,7 +125,7 @@ export default function ServicesProcessSection({ onContactClick }) {
                     ))}
                   </div>
                   <button className="svc-btn" onClick={onContactClick}>
-                    Discuss project <ArrowUpRight size={14} />
+                    Discuss project <ArrowUpRight size={14} link='/contact' />
                   </button>
                 </motion.div>
               );
