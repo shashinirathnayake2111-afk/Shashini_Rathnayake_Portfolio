@@ -3,7 +3,6 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { MapPin } from 'lucide-react';
 import '../styles/HeroSection.css';
 import profileImg from '../../assets/profile.png';
-import bgImg from '../../assets/bg.jpg';
 
 /* Split a word into animated letter spans */
 const AnimatedWord = ({ word, baseDelay = 0, isMounted = false, className = '' }) => (
@@ -49,7 +48,6 @@ const HeroSection = ({ isLoaded }) => {
   const bgRoleOpacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
   const bgRoleScale = useTransform(scrollYProgress, [0, 1], [1, 1.3]);
 
-  // Parallax for the moon & clouds background image
   const bgImageY = useTransform(scrollYProgress, [0, 1], [0, 100]);
   const bgImageScale = useTransform(scrollYProgress, [0, 1], [1.05, 1.15]);
   const bgImageOpacity = useTransform(scrollYProgress, [0, 0.8], [0.6, 0.1]);
@@ -65,7 +63,7 @@ const HeroSection = ({ isLoaded }) => {
 
   return (
     <section className="hero-section" ref={sectionRef}>
-      {/* Cinematic Living Dark Moon & Cloud Atmosphere Background */}
+      {/* Pure CSS Gradient Atmosphere Background */}
       <motion.div
         className="hero-cinematic-bg"
         style={{
@@ -74,7 +72,8 @@ const HeroSection = ({ isLoaded }) => {
           opacity: isMobile ? 0.95 : bgImageOpacity,
         }}
       >
-        <img src={bgImg} alt="Dark Moon Sky" className="hero-cinematic-img live-sky" />
+        {/* Pure gradient atmosphere — no image needed */}
+        <div className="hero-atmosphere" />
 
         {/* Living Moonlight Aura & Drifting Mist */}
         <div className="moon-pulse-glow"></div>
@@ -137,7 +136,7 @@ const HeroSection = ({ isLoaded }) => {
             <div className="hero-profile-shadow" />
           </div>
           <div className="hero-profile-label">
-            <MapPin size={isMobile ? 20 : 18} strokeWidth={2.5} />Open to work
+            <MapPin size={isMobile ? 20 : 18} strokeWidth={2.5} /> COLOMBO, SRI LANKA
           </div>
         </div>
       </motion.div>

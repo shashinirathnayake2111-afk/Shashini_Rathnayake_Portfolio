@@ -10,7 +10,7 @@
   overflow: hidden;
 }
 
-/* --- Cinematic Moon & Clouds Background --- */
+/* --- Cinematic Gradient Atmosphere Background --- */
 .hero-cinematic-bg {
   position: absolute;
   top: -5%;
@@ -20,6 +20,17 @@
   z-index: 0;
   pointer-events: none;
   overflow: hidden;
+}
+
+/* Pure CSS gradient atmosphere — replaces moon photo */
+.hero-atmosphere {
+  width: 100%;
+  height: 100%;
+  background:
+    radial-gradient(ellipse at 30% 25%, rgba(212, 175, 55, 0.08) 0%, transparent 55%),
+    radial-gradient(ellipse at 70% 15%, rgba(242, 234, 217, 0.06) 0%, transparent 45%),
+    radial-gradient(ellipse at 50% 50%, rgba(5, 5, 5, 0) 0%, #050505 85%),
+    linear-gradient(180deg, #0a0806 0%, #050505 60%, #030303 100%);
 }
 
 .hero-cinematic-img {
@@ -64,41 +75,6 @@
   filter: blur(40px);
   pointer-events: none;
   animation: moonPulse 7s ease-in-out infinite alternate;
-}
-
-@keyframes moonPulse {
-  0% {
-    opacity: 0.4;
-    transform: scale(0.95);
-  }
-
-  100% {
-    opacity: 0.85;
-    transform: scale(1.15);
-  }
-}
-
-/* Drifting Cloud Mist */
-.drifting-cloud-layer {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse at 40% 60%, rgba(242, 234, 217, 0.04) 0%, transparent 60%);
-  mix-blend-mode: screen;
-  filter: blur(30px);
-  animation: cloudDrift 28s ease-in-out infinite alternate;
-  pointer-events: none;
-}
-
-@keyframes cloudDrift {
-  0% {
-    transform: translateX(-40px) translateY(10px);
-    opacity: 0.3;
-  }
-
-  100% {
-    transform: translateX(40px) translateY(-15px);
-    opacity: 0.7;
-  }
 }
 
 /* Twinkling Stars */
@@ -261,7 +237,7 @@
 .hero-overlay-text {
   position: absolute;
   bottom: 7%;
-  left: 10%;
+  right: 10%;
   display: flex;
   flex-direction: column;
   align-items: right;
@@ -1017,6 +993,22 @@
 
   .scroll-down-indicator {
     display: none !important;
+  }
+
+  /* Open to Work badge — mobile size */
+  .open-to-work-badge {
+    top: 8% !important;
+    right: -4px !important;
+    padding: 4px 10px 4px 8px !important;
+  }
+
+  .open-to-work-badge .otw-text {
+    font-size: 0.65rem !important;
+  }
+
+  .otw-dot {
+    width: 6px !important;
+    height: 6px !important;
   }
 }
 
