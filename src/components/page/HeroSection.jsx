@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { MapPin } from 'lucide-react';
 import '../styles/HeroSection.css';
 import profileImg from '../../assets/profile.png';
 
@@ -135,8 +134,12 @@ const HeroSection = ({ isLoaded }) => {
             <img src={profileImg} alt="Profile" className="hero-profile-img" />
             <div className="hero-profile-shadow" />
           </div>
-          <div className="hero-profile-label">
-            <MapPin size={isMobile ? 20 : 18} strokeWidth={2.5} /> COLOMBO, SRI LANKA
+          <div className="hero-profile-badge">
+            <span className="badge-pulse-wrap">
+              <span className="badge-ping" />
+              <span className="badge-dot" />
+            </span>
+            <span className="badge-text">OPEN TO WORK</span>
           </div>
         </div>
       </motion.div>

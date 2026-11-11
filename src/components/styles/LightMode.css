@@ -338,28 +338,24 @@ body.light-mode .hero-profile-shadow {
   filter: blur(14px);
 }
 
-/* ── Location Label: COLOMBO, SRI LANKA ── */
-body.light-mode .hero-profile-label {
-  background: rgba(15, 20, 32, 0.72);
-  color: #f5efe6;
-  font-family: 'Chakra Petch', sans-serif;
-  font-size: clamp(0.72rem, 1vw, 0.82rem);
-  font-weight: 600;
-  letter-spacing: 0.18em;
-  border: 1px solid rgba(243, 208, 130, 0.35);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+/* ── Open to Work Badge ── */
+body.light-mode .hero-profile-badge {
+  background: rgba(10, 8, 4, 0.78) !important;
+  border-color: rgba(212, 175, 55, 0.4) !important;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.18), 0 0 14px rgba(212, 175, 55, 0.22) !important;
 }
 
-body.light-mode .hero-profile-label svg {
-  color: #f3d082;
+body.light-mode .badge-text {
+  color: #f5efe6 !important;
 }
 
-body.light-mode .hero-profile-label:hover {
-  background: rgba(15, 20, 32, 0.88);
-  border-color: #f3d082;
-  color: #f3d082;
+body.light-mode .badge-dot {
+  background: #f3d082 !important;
+  box-shadow: 0 0 8px rgba(243, 208, 130, 0.9), 0 0 16px rgba(212, 175, 55, 0.5) !important;
+}
+
+body.light-mode .badge-ping {
+  background: #f3d082 !important;
 }
 
 /* ── Scroll Indicator: EXPLORE ── */
@@ -1518,16 +1514,6 @@ body.light-mode .logo-mobile {
 
 body.light-mode .logo-mobile .nav-dot {
   color: #b48332 !important;
-}
-
-body.light-mode .hero-profile-label {
-  color: #18181b !important;
-  text-shadow: none !important;
-}
-
-body.light-mode .hero-profile-label svg {
-  color: #b48332 !important;
-  filter: drop-shadow(0 0 8px rgba(180, 131, 50, 0.4)) !important;
 }
 
 body.light-mode .hero-bg-role {
