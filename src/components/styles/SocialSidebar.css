@@ -61,7 +61,6 @@
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), fill 0.3s ease, filter 0.3s ease;
 }
 
-/* Hover: Shashini font color (#f5efe6 / cream-white) with soft luminous glow */
 .art-social-btn:hover {
   color: #f5efe6 !important;
   background: transparent !important;
@@ -78,7 +77,7 @@
 /* ── Bottom Chuti Hairline Stem ── */
 .art-bottom-hairline {
   width: 1px;
-  height: 40px;
+  height: 70px;
   margin-top: 14px;
   background: linear-gradient(180deg, rgba(212, 175, 55, 0.6) 0%, transparent 100%);
   opacity: 0.75;
