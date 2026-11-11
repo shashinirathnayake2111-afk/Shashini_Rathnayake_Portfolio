@@ -124,9 +124,6 @@ export default function ServicesProcessSection({ onContactClick }) {
                       <span key={t} className="svc-pill">{t}</span>
                     ))}
                   </div>
-                  <button className="svc-btn" onClick={onContactClick}>
-                    Discuss project <ArrowUpRight size={14} link='/contact' />
-                  </button>
                 </motion.div>
               );
             })}
