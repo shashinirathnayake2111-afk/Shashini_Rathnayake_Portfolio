@@ -1,4 +1,5 @@
 .social-sidebar {
+  display: none !important;
   position: fixed;
   left: 50px;
   top: 60%;
