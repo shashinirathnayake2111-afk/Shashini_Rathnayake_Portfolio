@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+﻿import { useState, useEffect } from 'react'
 import { Routes, Route, useLocation, Link } from 'react-router-dom'
 import Lenis from 'lenis'
 import { useScroll, useMotionValueEvent, motion, AnimatePresence } from 'framer-motion'
@@ -83,7 +83,7 @@ function App() {
 
   // Single scroll tracker — avoids duplicate listeners
   useMotionValueEvent(scrollY, 'change', (latest) => {
-    setIsInHero(latest < 50)
+    setIsInHero(latest < viewportH * 0.8)
   })
 
   // Handle direct navigation to #projects on first click from any page

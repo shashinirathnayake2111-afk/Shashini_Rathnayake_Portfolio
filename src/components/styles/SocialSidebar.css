@@ -10,18 +10,22 @@
   z-index: 50;
   pointer-events: auto;
   user-select: none;
-  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              visibility 0.6s;
 }
 
 .artistic-social-sidebar.is-hidden {
   opacity: 0;
   pointer-events: none;
-  transform: translateY(-50%) translateX(24px);
+  visibility: hidden;
+  transform: translateY(-50%) translateX(32px);
 }
 
 .artistic-social-sidebar.is-visible {
   opacity: 1;
   pointer-events: auto;
+  visibility: visible;
   transform: translateY(-50%) translateX(0);
 }
 
@@ -120,14 +124,29 @@
   transform: translateY(-50%) translateX(0);
 }
 
-/* ── Entrance Animation ── */
-.artistic-social-sidebar {
+/* ── Entrance Animation — only on first load ── */
+.artistic-social-sidebar:not(.sidebar-enter) {
   opacity: 0;
   transform: translateY(-50%) translateX(35px);
 }
 
 .sidebar-enter {
   animation: artSidebarSlideIn 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.4s;
+}
+
+/* After entrance anim done, is-hidden/is-visible take over via transition */
+.sidebar-enter.is-hidden {
+  animation: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-50%) translateX(32px);
+}
+
+.sidebar-enter.is-visible {
+  animation: none;
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(-50%) translateX(0);
 }
 
 @keyframes artSidebarSlideIn {

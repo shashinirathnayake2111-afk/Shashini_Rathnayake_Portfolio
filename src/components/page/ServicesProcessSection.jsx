@@ -78,14 +78,13 @@ export default function ServicesProcessSection({ onContactClick }) {
         <div className="sps-block">
           <motion.div
             className="sps-eyebrow"
-            initial={{ opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.55 }}
+            transition={{ duration: 0.6 }}
           >
             <span className="sps-line" />
-            WHAT I DO
-            <span className="sps-line" />
+            <span className="sps-eyebrow-text">WHAT I DO</span>
           </motion.div>
 
           <motion.h2
@@ -133,14 +132,13 @@ export default function ServicesProcessSection({ onContactClick }) {
         <div className="sps-block" ref={processRef}>
           <motion.div
             className="sps-eyebrow"
-            initial={{ opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.55 }}
+            transition={{ duration: 0.6 }}
           >
             <span className="sps-line" />
-            HOW I WORK
-            <span className="sps-line" />
+            <span className="sps-eyebrow-text">HOW I WORK</span>
           </motion.div>
 
           <motion.h2
