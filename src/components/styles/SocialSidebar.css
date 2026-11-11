@@ -1,151 +1,171 @@
-.social-sidebar {
-  display: none !important;
+/* ─── Minimalist Floating Right-Hand Social Dock ──────────────── */
+.artistic-social-sidebar {
   position: fixed;
-  left: 50px;
-  top: 60%;
-  transform: translateY(-50%);
+  right: clamp(24px, 3.2vw, 44px);
+  top: 65%;
+  transform: translateY(-50%) translateX(0);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 35px;
   z-index: 50;
+  pointer-events: auto;
+  user-select: none;
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.app-container {
-  min-height: 100vh;
-  width: 100%;
+.artistic-social-sidebar.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-50%) translateX(24px);
+}
+
+.artistic-social-sidebar.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(-50%) translateX(0);
+}
+
+/* ── Minimalist Capsule (No Borders) ── */
+.art-social-capsule {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+/* ── Floating Icons Without Outer Box Borders ── */
+.art-social-btn {
   position: relative;
-}
-
-.sidebar-line {
-  position: absolute;
-  top: 100%;
-  margin-top: 35px;
-  width: 1px;
-  height: 160px;
-  background: linear-gradient(180deg, #E6C9A8 0%, rgba(230, 201, 168, 0.15) 100%);
-  opacity: 0.65;
-  box-shadow: 0 0 8px rgba(230, 201, 168, 0.3);
-}
-
-.social-link {
-  color: rgba(242, 234, 217, 0.7);
-  transition: all 0.3s ease;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: transparent;
+  color: rgba(242, 234, 217, 0.65);
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none;
 }
 
-.social-link::after {
-  content: attr(aria-label);
+.art-icon {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), fill 0.3s ease, filter 0.3s ease;
+}
+
+/* Hover: Shashini font color (#f5efe6 / cream-white) with soft luminous glow */
+.art-social-btn:hover {
+  color: #f5efe6 !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  transform: scale(1.22);
+}
+
+.art-social-btn:hover .art-icon {
+  fill: #f5efe6 !important;
+  filter: drop-shadow(0 0 8px rgba(245, 239, 230, 0.85)) drop-shadow(0 0 16px rgba(212, 175, 55, 0.5));
+}
+
+/* ── Bottom Chuti Hairline Stem ── */
+.art-bottom-hairline {
+  width: 1px;
+  height: 40px;
+  margin-top: 14px;
+  background: linear-gradient(180deg, rgba(212, 175, 55, 0.6) 0%, transparent 100%);
+  opacity: 0.75;
+}
+
+/* ── Clean Tooltip (No Border, No Arrow) ── */
+.art-social-btn::after {
+  content: attr(data-tooltip);
   position: absolute;
-  left: 100%;
+  right: calc(100% + 12px);
   top: 50%;
-  transform: translateY(-50%) translateX(15px);
-  background-color: #E6C9A8;
-  color: #0b0e1a;
-  padding: 4px 10px;
-  border-radius: 4px;
+  transform: translateY(-50%) translateX(10px);
+  background: rgba(18, 22, 34, 0.88);
+  color: #f5efe6;
+  border: none !important;
+  padding: 5px 12px;
+  border-radius: 6px;
   font-family: 'Poppins', sans-serif;
-  font-size: 0.75rem;
-  font-weight: 600;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
   white-space: nowrap;
   opacity: 0;
   visibility: hidden;
-  transition: all 0.3s ease;
   pointer-events: none;
-  box-shadow: 0 4px 15px rgba(230, 201, 168, 0.35);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: opacity 0.25s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.25s ease;
 }
 
-.social-link::before {
-  content: '';
-  position: absolute;
-  left: 100%;
-  top: 50%;
-  transform: translateY(-50%) translateX(5px);
-  border-width: 5px;
-  border-style: solid;
-  border-color: transparent #E6C9A8 transparent transparent;
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.3s ease;
-  pointer-events: none;
+/* Completely remove the arrow */
+.art-social-btn::before {
+  display: none !important;
 }
 
-.social-link:hover::after {
+.art-social-btn:hover::after {
   opacity: 1;
   visibility: visible;
-  transform: translateY(-50%) translateX(15px);
-}
-
-.social-link:hover::before {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(-50%) translateX(5px);
-}
-
-.social-link svg {
-  width: 22px;
-  height: 22px;
-  fill: currentColor;
-}
-
-.social-link:hover {
-  color: #E6C9A8;
-  transform: translateY(-2px) scale(1.15);
-  background: rgba(230, 201, 168, 0.12);
-  box-shadow: 0 0 16px rgba(230, 201, 168, 0.28);
+  transform: translateY(-50%) translateX(0);
 }
 
 /* ── Entrance Animation ── */
-.social-sidebar {
-  /* add initial hidden state here to existing .social-sidebar */
+.artistic-social-sidebar {
   opacity: 0;
-  transform: translateY(-50%) translateX(-20px);
+  transform: translateY(-50%) translateX(35px);
 }
 
 .sidebar-enter {
-  animation: sidebar-slide-right 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
-  animation-delay: 0.4s;
+  animation: artSidebarSlideIn 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.4s;
 }
 
-@keyframes sidebar-slide-right {
+@keyframes artSidebarSlideIn {
   to {
     opacity: 1;
     transform: translateY(-50%) translateX(0);
   }
 }
 
-/* ── Show / Hide based on hero section visibility ── */
-.sidebar-visible {
-  opacity: 1;
-  pointer-events: auto;
-  transform: translateY(-50%) translateX(0);
-  transition: opacity 0.5s ease, transform 0.5s ease;
-}
-
-.sidebar-hidden {
-  opacity: 0;
-  pointer-events: none;
-  transform: translateY(-50%) translateX(-15px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
-}
-
-/* ── Responsive ── */
-@media (max-width: 1100px) {
-  .social-sidebar {
-    left: 20px;
-    gap: 25px;
-  }
-}
-
-@media (max-width: 820px) {
-  .social-sidebar {
+/* ── Responsive Hiding on Mobile/Tablet ── */
+@media (max-width: 900px) {
+  .artistic-social-sidebar {
     display: none !important;
   }
+}
+
+/* ── Light Mode Overrides ── */
+body.light-mode .art-social-btn {
+  color: rgba(26, 18, 8, 0.65);
+}
+
+body.light-mode .art-social-btn:hover {
+  color: #1a1208 !important;
+}
+
+body.light-mode .art-social-btn:hover .art-icon {
+  fill: #1a1208 !important;
+  filter: drop-shadow(0 0 6px rgba(180, 140, 75, 0.4));
+}
+
+body.light-mode .art-bottom-hairline {
+  background: linear-gradient(180deg, rgba(180, 140, 75, 0.55) 0%, transparent 100%);
+}
+
+body.light-mode .art-social-btn::after {
+  background: rgba(255, 255, 255, 0.92);
+  color: #1a1208;
+  border: none !important;
+  box-shadow: 0 4px 14px rgba(180, 140, 75, 0.18);
 }
