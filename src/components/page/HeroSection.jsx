@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import '../styles/HeroSection.css';
 import profileImg from '../../assets/profile.png';
+import resumePdf from '../../assets/resume.pdf';
 
 /* Split a word into animated letter spans */
 const AnimatedWord = ({ word, baseDelay = 0, isMounted = false, className = '' }) => (
@@ -172,7 +173,7 @@ const HeroSection = ({ isLoaded }) => {
         </p>
 
         <p className={`hero-description ${mounted ? 'visible' : ''}`}>
-          I Design and build beautiful and user-friendly websites and mobile applications.
+          Crafting intuitive digital experiences and robust full-stack applications with an eye for detail and performance.
         </p>
 
         <div className={`hero-action-row ${mounted ? 'visible' : ''}`}>
@@ -184,7 +185,33 @@ const HeroSection = ({ isLoaded }) => {
               document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
             }}
           >
-            View My Projects <span className="btn-arrow">↗</span>
+            View Projects <span className="btn-arrow">↗</span>
+          </a>
+
+          <a
+            href={resumePdf}
+            download="Shashini_Rathnayake_CV.pdf"
+            target="_blank"
+            rel="noreferrer"
+            className="hero-cv-btn"
+            aria-label="Download CV"
+          >
+            <svg
+              className="cv-icon"
+              viewBox="0 0 24 24"
+              width="15"
+              height="15"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+              <polyline points="7 10 12 15 17 10" />
+              <line x1="12" y1="15" x2="12" y2="3" />
+            </svg>
+            <span>Download CV</span>
           </a>
         </div>
       </motion.div>

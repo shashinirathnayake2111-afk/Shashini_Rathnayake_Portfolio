@@ -443,40 +443,78 @@
   align-self: flex-start;
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   margin-top: 0;
-  padding: 12px 30px;
+  padding: 11px 26px;
   font-family: 'Chakra Petch', sans-serif;
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   font-weight: 600;
   letter-spacing: 0.1em;
-  color: #f2ead9;
+  color: #080604;
   text-decoration: none;
   text-transform: uppercase;
-  border: 1.5px solid #f2ead9;
+  border: 1.5px solid #d4af37;
   border-radius: 50px;
-  background: rgba(12, 16, 28, 0.6);
-  backdrop-filter: blur(8px);
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  background: linear-gradient(135deg, #f5efe6 0%, #caa468 100%);
+  box-shadow: 0 4px 18px rgba(202, 164, 104, 0.28);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .hero-projects-btn .btn-arrow {
-  color: #E6C9A8;
-  font-size: 1.1rem;
-  transition: transform 0.4s ease, color 0.4s ease;
+  color: #080604;
+  font-size: 1rem;
+  transition: transform 0.35s ease;
 }
 
 .hero-projects-btn:hover {
-  background: rgba(230, 201, 168, 0.12);
-  color: #E6C9A8;
-  border-color: #f2ead9;
-  box-shadow: 0 0 24px rgba(230, 201, 168, 0.25), inset 0 0 12px rgba(230, 201, 168, 0.08);
+  background: linear-gradient(135deg, #ffffff 0%, #d4af37 100%);
+  color: #000000;
+  border-color: #f3d082;
+  box-shadow: 0 6px 26px rgba(212, 175, 55, 0.45);
   transform: translateY(-2px);
 }
 
 .hero-projects-btn:hover .btn-arrow {
-  color: #fff0d4;
   transform: translate(3px, -3px) rotate(15deg);
+}
+
+/* Secondary Button: Download CV */
+.hero-cv-btn {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 14px 26px;
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: #f5efe6;
+  text-decoration: none;
+  text-transform: uppercase;
+  border: 1.5px solid rgba(243, 208, 130, 0.4);
+  border-radius: 50px;
+  background: rgba(12, 16, 28, 0.55);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-cv-btn .cv-icon {
+  color: #f3d082;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-cv-btn:hover {
+  background: rgba(243, 208, 130, 0.12);
+  color: #ffffff;
+  border-color: #f3d082;
+  transform: translateY(-2px);
+}
+
+.hero-cv-btn:hover .cv-icon {
+  transform: translateY(2px);
 }
 
 /* Embedded Social Links */
@@ -866,6 +904,17 @@
     font-size: clamp(0.88rem, 1.6vw, 1.05rem) !important;
     color: #ffffff !important;
   }
+
+  .hero-action-row {
+    gap: 12px !important;
+    margin-top: 18px !important;
+  }
+
+  .hero-projects-btn,
+  .hero-cv-btn {
+    padding: 10px 20px !important;
+    font-size: 0.78rem !important;
+  }
 }
 
 @media (max-width: 768px) {
@@ -1067,12 +1116,35 @@
     line-height: 1.4 !important;
   }
 
-  .hero-projects-btn {
+  .hero-description {
+    font-size: clamp(0.78rem, min(3.1vw, 1.6vh), 0.88rem) !important;
+    line-height: 1.5 !important;
+    margin: clamp(6px, 1vh, 10px) 0 0 0 !important;
+    max-width: 100% !important;
+  }
+
+  .hero-action-row {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    flex-wrap: wrap !important;
+    gap: 10px !important;
+    margin-top: clamp(10px, 1.8vh, 16px) !important;
+    width: 100% !important;
+  }
+
+  .hero-projects-btn,
+  .hero-cv-btn {
     align-self: flex-start !important;
-    margin-top: clamp(12px, 2vh, 20px) !important;
-    padding: clamp(9px, 1.5vh, 13px) clamp(22px, 5.5vw, 30px) !important;
-    font-size: clamp(0.76rem, min(2.8vw, 1.6vh), 0.84rem) !important;
+    margin-top: 0 !important;
+    padding: clamp(8px, 1.3vh, 11px) clamp(16px, 4vw, 22px) !important;
+    font-size: clamp(0.72rem, min(2.7vw, 1.5vh), 0.8rem) !important;
     border-radius: 50px !important;
+  }
+
+  .hero-cv-btn .cv-icon {
+    width: 13px !important;
+    height: 13px !important;
   }
 
   .scroll-down-indicator {
@@ -1113,15 +1185,11 @@
     width: 135px !important;
   }
 
-  .hero-profile-label {
-    font-size: 0.78rem !important;
+  .hero-profile-badge {
+    font-size: 0.72rem !important;
     margin-top: 3px !important;
-    letter-spacing: 0.16em !important;
-  }
-
-  .hero-profile-label svg {
-    width: 15px !important;
-    height: 15px !important;
+    letter-spacing: 0.14em !important;
+    padding: 4px 12px !important;
   }
 
   .hero-overlay-text {
@@ -1130,7 +1198,7 @@
   }
 
   .hero-eyebrow-row {
-    margin-top: 2rem !important;
+    margin-top: 1rem !important;
   }
 
   .hero-hello {
@@ -1148,9 +1216,20 @@
     color: #ffffff !important;
   }
 
-  .hero-projects-btn {
-    padding: 8px 18px !important;
-    font-size: 0.72rem !important;
-    margin-top: 10px !important;
+  .hero-description {
+    display: none !important;
+    /* hide on very small phones like iPhone SE to prevent overlap */
+  }
+
+  .hero-action-row {
+    gap: 8px !important;
+    margin-top: 8px !important;
+  }
+
+  .hero-projects-btn,
+  .hero-cv-btn {
+    padding: 7px 14px !important;
+    font-size: 0.7rem !important;
+    margin-top: 0 !important;
   }
 }

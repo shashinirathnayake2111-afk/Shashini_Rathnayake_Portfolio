@@ -299,33 +299,56 @@ body.light-mode .availability-badge-text {
 }
 
 body.light-mode .hero-projects-btn {
-  background: rgba(15, 20, 32, 0.68);
-  color: #f5efe6;
-  border: 1.5px solid rgba(243, 208, 130, 0.45);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
+  background: linear-gradient(135deg, #f5efe6 0%, #caa468 100%) !important;
+  color: #080604 !important;
+  border: 1.5px solid #b48332 !important;
+  box-shadow: 0 4px 18px rgba(180, 131, 50, 0.28) !important;
   font-family: 'Chakra Petch', sans-serif;
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   font-weight: 600;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
 }
 
 body.light-mode .hero-projects-btn .btn-arrow {
-  color: #f3d082;
+  color: #080604 !important;
 }
 
 body.light-mode .hero-projects-btn:hover {
-  background: rgba(243, 208, 130, 0.18);
-  color: #ffffff;
-  border-color: #f3d082;
-  box-shadow: 0 0 25px rgba(243, 208, 130, 0.35), 0 8px 30px rgba(0, 0, 0, 0.4);
+  background: linear-gradient(135deg, #ffffff 0%, #d4af37 100%) !important;
+  color: #000000 !important;
+  border-color: #b48332 !important;
+  box-shadow: 0 6px 24px rgba(180, 131, 50, 0.4) !important;
   transform: translateY(-2px);
 }
 
 body.light-mode .hero-projects-btn:hover .btn-arrow {
-  color: #fff0d4;
   transform: translate(3px, -3px) rotate(15deg);
+}
+
+/* Secondary Button: Download CV in Light Mode */
+body.light-mode .hero-cv-btn {
+  background: rgba(255, 255, 255, 0.85) !important;
+  color: #1a1208 !important;
+  border: 1.5px solid rgba(180, 131, 50, 0.45) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 4px 16px rgba(180, 131, 50, 0.15) !important;
+}
+
+body.light-mode .hero-cv-btn .cv-icon {
+  color: #a07840 !important;
+}
+
+body.light-mode .hero-cv-btn:hover {
+  background: rgba(243, 208, 130, 0.22) !important;
+  color: #080604 !important;
+  border-color: #b48332 !important;
+  box-shadow: 0 6px 20px rgba(180, 131, 50, 0.28) !important;
+  transform: translateY(-2px);
+}
+
+body.light-mode .hero-cv-btn:hover .cv-icon {
+  transform: translateY(2px);
 }
 
 /* ── Profile Image & Shadow ── */
