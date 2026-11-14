@@ -75,26 +75,6 @@ const HeroSection = ({ isLoaded }) => {
         {/* Pure gradient atmosphere — no image needed */}
         <div className="hero-atmosphere" />
 
-        {/* Living Moonlight Aura & Drifting Mist */}
-        <div className="moon-pulse-glow"></div>
-        <div className="drifting-cloud-layer"></div>
-
-        {/* Twinkling Stardust Elements */}
-        <div className="sky-stars">
-          <span className="star star-1" style={{ top: '15%', left: '15%', '--d': '3.2s' }}></span>
-          <span className="star star-2" style={{ top: '22%', left: '82%', '--d': '4.5s' }}></span>
-          <span className="star star-3" style={{ top: '10%', left: '50%', '--d': '2.8s' }}></span>
-          <span className="star star-4" style={{ top: '32%', left: '28%', '--d': '3.9s' }}></span>
-          <span className="star star-5" style={{ top: '18%', left: '88%', '--d': '5.1s' }}></span>
-          <span className="star star-6" style={{ top: '38%', left: '76%', '--d': '3.4s' }}></span>
-          <span className="star star-7" style={{ top: '8%', left: '72%', '--d': '4.1s' }}></span>
-          <span className="star star-8" style={{ top: '28%', left: '10%', '--d': '3.6s' }}></span>
-          <span className="star star-9" style={{ top: '45%', left: '18%', '--d': '4.8s' }}></span>
-          <span className="star star-10" style={{ top: '48%', left: '86%', '--d': '3.1s' }}></span>
-          <span className="star star-11" style={{ top: '5%', left: '32%', '--d': '2.5s' }}></span>
-          <span className="star star-12" style={{ top: '2%', left: '85%', '--d': '4.0s' }}></span>
-        </div>
-
         <div className="hero-cinematic-vignette"></div>
       </motion.div>
 
@@ -164,7 +144,8 @@ const HeroSection = ({ isLoaded }) => {
 
         <h1 className="hero-name">
           <AnimatedWord word="Shashini" baseDelay={0.18} isMounted={mounted} className="name-first" />
-          <br />
+          <span className="hero-name-space">&nbsp;</span>
+          <br className="hero-name-br" />
           <AnimatedWord word="Rathnayake" baseDelay={0.5} isMounted={mounted} className="name-last" />
         </h1>
 

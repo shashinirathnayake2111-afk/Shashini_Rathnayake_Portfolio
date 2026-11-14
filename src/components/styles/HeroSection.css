@@ -379,6 +379,14 @@
   color: #f5efe6;
 }
 
+.hero-name-space {
+  display: none;
+}
+
+.hero-name-br {
+  display: block;
+}
+
 .hero-name .name-last {
   color: #a07840;
 }
@@ -921,18 +929,20 @@
   .hero-section {
     display: flex !important;
     flex-direction: column !important;
-    justify-content: space-between !important;
+    justify-content: flex-start !important;
     align-items: center !important;
     height: 100dvh !important;
     min-height: 100dvh !important;
     max-height: 100dvh !important;
-    padding-top: max(56px, env(safe-area-inset-top, 56px)) !important;
-    padding-bottom: max(86px, calc(72px + env(safe-area-inset-bottom, 16px))) !important;
+    background: #050505 !important;
+    padding-top: max(58px, calc(env(safe-area-inset-top, 0px) + 54px)) !important;
+    background: #000000 !important;
+    padding-top: max(56px, calc(env(safe-area-inset-top, 0px) + 52px)) !important;
+    padding-bottom: max(96px, calc(env(safe-area-inset-bottom, 0px) + 88px)) !important;
     box-sizing: border-box !important;
     overflow: hidden !important;
   }
 
-  /* ── Background & Celestial Atmosphere on Mobile ── */
   .hero-cinematic-bg {
     position: absolute !important;
     inset: 0 !important;
@@ -942,57 +952,21 @@
     left: 0 !important;
     z-index: 0 !important;
     overflow: hidden !important;
+    background: #050505 !important;
+    background: #000000 !important;
   }
 
-  /* Moon positioned towards top-left corner (~3/4ths visible) */
+  .hero-atmosphere {
+    background: radial-gradient(circle at 50% 20%, rgba(212, 175, 55, 0.05) 0%, transparent 60%),
+      #050505 !important;
+    background: #000000 !important;
+  }
+
   .hero-cinematic-img {
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: cover !important;
-    object-position: 70% 8% !important;
-    filter: contrast(1.15) brightness(1.02) !important;
-    opacity: 0.95 !important;
+    display: none !important;
   }
 
-  /* Moonlight aura concentrated around the top-left moon */
-  .moon-pulse-glow {
-    top: 6% !important;
-    left: 14% !important;
-    right: auto !important;
-    transform: translate(-20%, -10%) !important;
-    width: 220px !important;
-    height: 220px !important;
-    background: radial-gradient(circle, rgba(242, 234, 217, 0.28) 0%, rgba(212, 175, 55, 0.12) 45%, transparent 72%) !important;
-    filter: blur(30px) !important;
-    opacity: 0.85 !important;
-  }
-
-  /* Drifting cloud mist on mobile */
-  .drifting-cloud-layer {
-    opacity: 0.7 !important;
-    filter: blur(24px) !important;
-  }
-
-  /* Mobile vignette */
-  .hero-cinematic-vignette {
-    background:
-      linear-gradient(to bottom, rgba(5, 5, 5, 0.08) 0%, transparent 25%, rgba(5, 5, 5, 0.6) 72%, #050505 100%),
-      radial-gradient(ellipse at 50% 25%, transparent 52%, rgba(5, 5, 5, 0.78) 100%) !important;
-  }
-
-  /* Refined, delicate pin-point stars on mobile */
-  .sky-stars {
-    display: block !important;
-    z-index: 1 !important;
-  }
-
-  .star {
-    width: 1.5px !important;
-    height: 1.5px !important;
-    box-shadow: 0 0 3px 0.5px rgba(242, 234, 217, 0.45) !important;
-  }
-
-  /* ── "BUILD. DESIGN. INSPIRE." displayed directly above profile ── */
+  /* ── "BUILD. DESIGN. INSPIRE." ── */
   .hero-bg-role {
     position: relative !important;
     top: auto !important;
@@ -1000,28 +974,28 @@
     transform: none !important;
     display: block !important;
     font-family: 'Bebas Neue', sans-serif !important;
-    font-size: clamp(1.8rem, min(7.2vw, 3.8vh), 2.8rem) !important;
-    letter-spacing: 0.13em !important;
+    font-size: clamp(1.35rem, 5vw, 1.85rem) !important;
+    letter-spacing: 0.14em !important;
     text-align: center !important;
     width: 100% !important;
     max-width: 100% !important;
-    margin: 4px auto clamp(4px, 1vh, 12px) auto !important;
+    margin: 0 auto 4px auto !important;
     color: transparent !important;
-    -webkit-text-stroke: 1.2px rgba(212, 175, 55, 0.48) !important;
-    text-shadow: 0 0 16px rgba(212, 175, 55, 0.2) !important;
+    -webkit-text-stroke: 1px rgba(212, 175, 55, 0.42) !important;
+    text-shadow: 0 0 12px rgba(212, 175, 55, 0.15) !important;
     z-index: 2 !important;
     white-space: nowrap !important;
-    opacity: 0.95 !important;
+    opacity: 0.88 !important;
     flex-shrink: 0 !important;
   }
 
-  /* ── Profile Image Centered with Fluid Proportions ── */
+  /* ── Profile Image & Badge ── */
   .hero-profile-wrapper {
     position: relative !important;
     transform: none !important;
     margin: 0 auto !important;
     display: flex !important;
-    flex: 1 1 auto !important;
+    flex: 0 0 auto !important;
     flex-direction: column !important;
     align-items: center !important;
     justify-content: center !important;
@@ -1029,8 +1003,18 @@
     z-index: 2 !important;
   }
 
+  .hero-profile-enter,
+  .hero-profile-initial {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+  }
+
   .hero-profile-3d {
-    width: clamp(165px, min(48vw, 30vh), 240px) !important;
+    width: clamp(140px, 22vh, 185px) !important;
+    max-width: 52vw !important;
     margin: 0 auto !important;
     display: flex !important;
     flex-direction: column !important;
@@ -1039,22 +1023,25 @@
 
   .hero-profile-img {
     margin: 0 auto !important;
-  }
-
-  /* ── "OPEN TO WORK" Badge on Mobile ── */
-  .hero-profile-badge {
-    margin-top: clamp(6px, 1.2vh, 14px) !important;
-    padding: 5px 16px 5px 12px !important;
-    font-size: clamp(0.68rem, min(2.8vw, 1.6vh), 0.78rem) !important;
-    letter-spacing: 0.16em !important;
-    border-radius: 100px !important;
-    background: rgba(10, 16, 26, 0.85) !important;
-    border: 1px solid rgba(16, 185, 129, 0.4) !important;
-    display: inline-flex !important;
     transform: none !important;
   }
 
-  /* ── Left-aligned Text Content with Balanced Viewport Scaling ── */
+  /* ── "OPEN TO WORK" Badge ── */
+  .hero-profile-badge {
+    margin: 6px auto 0 auto !important;
+    padding: 4px 14px 4px 12px !important;
+    font-size: 0.7rem !important;
+    letter-spacing: 0.16em !important;
+    border-radius: 100px !important;
+    background: rgba(14, 12, 10, 0.88) !important;
+    border: 1px solid rgba(212, 175, 55, 0.35) !important;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.6), 0 0 12px rgba(212, 175, 55, 0.18) !important;
+    display: inline-flex !important;
+    transform: none !important;
+    align-self: center !important;
+  }
+
+  /* ── Left-aligned Text Content ── */
   .hero-overlay-text {
     position: relative !important;
     right: auto !important;
@@ -1064,9 +1051,10 @@
     text-align: left !important;
     width: 100% !important;
     max-width: 100% !important;
-    padding: 0 clamp(20px, 6vw, 36px) !important;
-    margin: 0 !important;
-    margin-bottom: clamp(6px, 1.5vh, 16px) !important;
+    padding: 0 clamp(20px, 5.5vw, 28px) !important;
+    margin-top: clamp(14px, 2.8vh, 26px) !important;
+    margin-top: clamp(14px, 2.5vh, 24px) !important;
+    margin-bottom: 0 !important;
     box-sizing: border-box !important;
     flex-shrink: 0 !important;
     z-index: 5 !important;
@@ -1075,7 +1063,7 @@
   .hero-eyebrow-wrap {
     align-items: flex-start !important;
     width: 100% !important;
-    margin-bottom: 2px !important;
+    margin-bottom: 12px !important;
   }
 
   .hero-eyebrow-row {
@@ -1087,59 +1075,74 @@
 
   .hero-eyebrow-line {
     display: block !important;
-    width: 28px !important;
-    height: 1.5px !important;
+    width: 26px !important;
+    height: 1px !important;
     background: #E6C9A8 !important;
   }
 
   .hero-hello {
-    font-size: clamp(0.72rem, min(2.5vw, 1.5vh), 0.88rem) !important;
-    letter-spacing: 0.24em !important;
+    font-size: 0.74rem !important;
+    letter-spacing: 0.22em !important;
     color: #a07840 !important;
     text-align: left !important;
     font-weight: 600 !important;
   }
 
   .hero-name {
-    font-size: clamp(2.4rem, min(10vw, 5.2vh), 3.8rem) !important;
+    font-size: clamp(1.48rem, 5.6vw, 1.95rem) !important;
     text-align: left !important;
-    line-height: 0.94 !important;
-    margin: clamp(4px, 0.8vh, 8px) 0 clamp(6px, 1.2vh, 10px) 0 !important;
-    letter-spacing: 0.02em !important;
+    line-height: 1.05 !important;
+    margin: 0 0 12px 0 !important;
+    letter-spacing: 0.025em !important;
+    white-space: nowrap !important;
+  }
+
+  .hero-name-space {
+    display: inline !important;
+  }
+
+  .hero-name-br {
+    display: none !important;
   }
 
   .hero-role-subtitle {
-    font-size: clamp(0.82rem, min(3.3vw, 1.8vh), 1rem) !important;
+    font-size: clamp(0.84rem, 3vw, 0.96rem) !important;
     text-align: left !important;
     margin-top: 0 !important;
+    margin-bottom: 14px !important;
     color: #ffffff !important;
     line-height: 1.4 !important;
   }
 
   .hero-description {
-    font-size: clamp(0.78rem, min(3.1vw, 1.6vh), 0.88rem) !important;
-    line-height: 1.5 !important;
-    margin: clamp(6px, 1vh, 10px) 0 0 0 !important;
+    font-size: clamp(0.76rem, 2.7vw, 0.84rem) !important;
+    line-height: 1.55 !important;
+    margin: 0 !important;
     max-width: 100% !important;
+    color: rgba(242, 234, 217, 0.75) !important;
   }
 
   .hero-action-row {
     display: flex !important;
     flex-direction: row !important;
     align-items: center !important;
-    flex-wrap: wrap !important;
-    gap: 10px !important;
-    margin-top: clamp(10px, 1.8vh, 16px) !important;
+    flex-wrap: nowrap !important;
+    gap: 12px !important;
+    margin-top: clamp(20px, 3vh, 28px) !important;
     width: 100% !important;
   }
 
   .hero-projects-btn,
   .hero-cv-btn {
-    align-self: flex-start !important;
+    flex: 1 1 0 !important;
+    justify-content: center !important;
+    align-self: center !important;
     margin-top: 0 !important;
-    padding: clamp(8px, 1.3vh, 11px) clamp(16px, 4vw, 22px) !important;
-    font-size: clamp(0.72rem, min(2.7vw, 1.5vh), 0.8rem) !important;
+    padding: clamp(9px, 1.4vh, 12px) 14px !important;
+    font-size: clamp(0.72rem, 2.5vw, 0.78rem) !important;
     border-radius: 50px !important;
+    white-space: nowrap !important;
+    box-sizing: border-box !important;
   }
 
   .hero-cv-btn .cv-icon {
@@ -1178,11 +1181,16 @@
   .hero-bg-role {
     font-size: 2.2rem !important;
     letter-spacing: 0.1em !important;
-    margin-bottom: 2px !important;
+    margin-top: -10px !important;
+    margin-bottom: 10px !important;
   }
 
   .hero-profile-3d {
     width: 135px !important;
+  }
+
+  .hero-profile-shadow {
+    display: none;
   }
 
   .hero-profile-badge {
@@ -1218,7 +1226,6 @@
 
   .hero-description {
     display: none !important;
-    /* hide on very small phones like iPhone SE to prevent overlap */
   }
 
   .hero-action-row {
