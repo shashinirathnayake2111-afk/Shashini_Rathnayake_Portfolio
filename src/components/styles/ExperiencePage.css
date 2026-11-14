@@ -1,6 +1,6 @@
 .experience-page-wrapper {
   position: relative;
-  background: #030303;
+  background: #050505;
   color: #f2ead9;
   min-height: 100vh;
   overflow-x: hidden;
@@ -19,8 +19,7 @@
 .exp-orb-1 {
   width: 600px;
   height: 600px;
-  background: rgba(160, 120, 64, 0.12);
-  /* Warm Gold */
+  background: rgba(212, 175, 55, 0.08);
   top: 100px;
   left: -200px;
 }
@@ -28,8 +27,7 @@
 .exp-orb-2 {
   width: 550px;
   height: 550px;
-  background: rgba(30, 60, 140, 0.10);
-  /* Deep Celestial Blue */
+  background: rgba(242, 234, 217, 0.05);
   top: 45%;
   right: -150px;
 }

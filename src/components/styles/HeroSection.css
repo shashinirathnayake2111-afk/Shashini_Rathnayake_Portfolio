@@ -1196,8 +1196,9 @@
 
   .hero-profile-badge {
     font-size: 0.66rem !important;
-    padding: 3px 12px !important;
+    padding: 5px 12px !important;
     margin-top: 4px !important;
+    border: none !important;
   }
 
   .hero-overlay-text {

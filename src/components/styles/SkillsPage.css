@@ -1,7 +1,6 @@
 .cinematic-skills-wrapper {
   position: relative;
-  background: #020202;
-  /* Extremely dark */
+  background: #050505;
   color: #fff;
   min-height: 100vh;
   overflow: hidden;
@@ -10,7 +9,7 @@
 
 /* Force dark mode behavior for this specific page */
 body .cinematic-skills-wrapper {
-  background: #020202;
+  background: #050505;
 }
 
 /* ── Ambient Orbs ── */
@@ -25,8 +24,7 @@ body .cinematic-skills-wrapper {
 .orb-1 {
   width: 600px;
   height: 600px;
-  background: rgba(160, 120, 64, 0.12);
-  /* Subtle Gold */
+  background: rgba(212, 175, 55, 0.08);
   top: 50px;
   left: -200px;
 }
@@ -34,8 +32,7 @@ body .cinematic-skills-wrapper {
 .orb-2 {
   width: 500px;
   height: 500px;
-  background: rgba(100, 50, 200, 0.08);
-  /* Subtle Purple */
+  background: rgba(242, 234, 217, 0.05);
   bottom: 200px;
   right: -150px;
 }

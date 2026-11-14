@@ -5,14 +5,14 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #070910;
+  background-color: #050505;
   padding: 120px 0 100px;
   position: relative;
   z-index: 10;
   overflow: hidden;
 }
 
-/* Subtle center ambient gold glow behind the text cluster */
+/* Subtle center ambient gold glow behind the text cluster matching hero ambiance */
 .intro-statement-section::before {
   content: '';
   position: absolute;
@@ -22,8 +22,8 @@
   width: 70vw;
   height: 60vh;
   background: radial-gradient(ellipse at center,
-      rgba(180, 140, 60, 0.07) 0%,
-      rgba(160, 120, 40, 0.04) 40%,
+      rgba(212, 175, 55, 0.06) 0%,
+      rgba(242, 234, 217, 0.03) 40%,
       transparent 70%);
   pointer-events: none;
   z-index: 0;
