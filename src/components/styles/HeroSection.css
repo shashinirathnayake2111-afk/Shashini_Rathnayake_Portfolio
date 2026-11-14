@@ -925,6 +925,7 @@
   }
 }
 
+/* ── Mobile Layout (< 768px): Unified, Proportional & Adaptive ── */
 @media (max-width: 768px) {
   .hero-section {
     display: flex !important;
@@ -934,11 +935,9 @@
     height: 100dvh !important;
     min-height: 100dvh !important;
     max-height: 100dvh !important;
-    background: #050505 !important;
-    padding-top: max(58px, calc(env(safe-area-inset-top, 0px) + 54px)) !important;
     background: #000000 !important;
-    padding-top: max(56px, calc(env(safe-area-inset-top, 0px) + 52px)) !important;
-    padding-bottom: max(96px, calc(env(safe-area-inset-bottom, 0px) + 88px)) !important;
+    padding-top: max(88px, calc(env(safe-area-inset-top, 0px) + 84px)) !important;
+    padding-bottom: max(104px, calc(env(safe-area-inset-bottom, 0px) + 96px)) !important;
     box-sizing: border-box !important;
     overflow: hidden !important;
   }
@@ -952,13 +951,10 @@
     left: 0 !important;
     z-index: 0 !important;
     overflow: hidden !important;
-    background: #050505 !important;
     background: #000000 !important;
   }
 
   .hero-atmosphere {
-    background: radial-gradient(circle at 50% 20%, rgba(212, 175, 55, 0.05) 0%, transparent 60%),
-      #050505 !important;
     background: #000000 !important;
   }
 
@@ -966,7 +962,26 @@
     display: none !important;
   }
 
-  /* ── "BUILD. DESIGN. INSPIRE." ── */
+  .moon-pulse-glow,
+  .drifting-cloud-layer,
+  .hero-cinematic-vignette {
+    display: none !important;
+  }
+
+  /* Refined subtle stars on mobile */
+  .sky-stars {
+    display: block !important;
+    z-index: 1 !important;
+    opacity: 0.35 !important;
+  }
+
+  .star {
+    width: 1.5px !important;
+    height: 1.5px !important;
+    box-shadow: 0 0 3px 0.5px rgba(242, 234, 217, 0.45) !important;
+  }
+
+  /* ── Top Hero Stage (BUILD. DESIGN. INSPIRE. + Profile Image + Badge) ── */
   .hero-bg-role {
     position: relative !important;
     top: auto !important;
@@ -974,22 +989,21 @@
     transform: none !important;
     display: block !important;
     font-family: 'Bebas Neue', sans-serif !important;
-    font-size: clamp(1.35rem, 5vw, 1.85rem) !important;
-    letter-spacing: 0.14em !important;
+    font-size: clamp(2.3rem, 8.8vw, 3.4rem) !important;
+    letter-spacing: 0.16em !important;
     text-align: center !important;
     width: 100% !important;
     max-width: 100% !important;
-    margin: 0 auto 4px auto !important;
+    margin: 0 auto clamp(8px, 1.4vh, 16px) auto !important;
     color: transparent !important;
-    -webkit-text-stroke: 1px rgba(212, 175, 55, 0.42) !important;
-    text-shadow: 0 0 12px rgba(212, 175, 55, 0.15) !important;
+    -webkit-text-stroke: 1.3px rgba(212, 175, 55, 0.58) !important;
+    text-shadow: 0 0 18px rgba(212, 175, 55, 0.28) !important;
     z-index: 2 !important;
     white-space: nowrap !important;
-    opacity: 0.88 !important;
+    opacity: 0.95 !important;
     flex-shrink: 0 !important;
   }
 
-  /* ── Profile Image & Badge ── */
   .hero-profile-wrapper {
     position: relative !important;
     transform: none !important;
@@ -1013,8 +1027,8 @@
   }
 
   .hero-profile-3d {
-    width: clamp(140px, 22vh, 185px) !important;
-    max-width: 52vw !important;
+    width: clamp(140px, min(42vw, 22vh), 180px) !important;
+    max-width: 48vw !important;
     margin: 0 auto !important;
     display: flex !important;
     flex-direction: column !important;
@@ -1026,9 +1040,13 @@
     transform: none !important;
   }
 
+  .hero-profile-shadow {
+    display: none !important;
+  }
+
   /* ── "OPEN TO WORK" Badge ── */
   .hero-profile-badge {
-    margin: 6px auto 0 auto !important;
+    margin: clamp(4px, 0.8vh, 8px) auto 0 auto !important;
     padding: 4px 14px 4px 12px !important;
     font-size: 0.7rem !important;
     letter-spacing: 0.16em !important;
@@ -1039,9 +1057,10 @@
     display: inline-flex !important;
     transform: none !important;
     align-self: center !important;
+    flex-shrink: 0 !important;
   }
 
-  /* ── Left-aligned Text Content ── */
+  /* ── Bottom Text Section (Even, Balanced Distribution) ── */
   .hero-overlay-text {
     position: relative !important;
     right: auto !important;
@@ -1052,8 +1071,7 @@
     width: 100% !important;
     max-width: 100% !important;
     padding: 0 clamp(20px, 5.5vw, 28px) !important;
-    margin-top: clamp(14px, 2.8vh, 26px) !important;
-    margin-top: clamp(14px, 2.5vh, 24px) !important;
+    margin-top: clamp(14px, 2.5vh, 26px) !important;
     margin-bottom: 0 !important;
     box-sizing: border-box !important;
     flex-shrink: 0 !important;
@@ -1063,25 +1081,25 @@
   .hero-eyebrow-wrap {
     align-items: flex-start !important;
     width: 100% !important;
-    margin-bottom: 12px !important;
+    margin-bottom: clamp(10px, 1.5vh, 16px) !important;
   }
 
   .hero-eyebrow-row {
     display: flex !important;
     align-items: center !important;
     justify-content: flex-start !important;
-    gap: 12px !important;
+    gap: 10px !important;
   }
 
   .hero-eyebrow-line {
     display: block !important;
-    width: 26px !important;
+    width: 24px !important;
     height: 1px !important;
     background: #E6C9A8 !important;
   }
 
   .hero-hello {
-    font-size: 0.74rem !important;
+    font-size: 0.72rem !important;
     letter-spacing: 0.22em !important;
     color: #a07840 !important;
     text-align: left !important;
@@ -1089,10 +1107,10 @@
   }
 
   .hero-name {
-    font-size: clamp(1.48rem, 5.6vw, 1.95rem) !important;
+    font-size: clamp(1.5rem, 5.8vw, 2rem) !important;
     text-align: left !important;
     line-height: 1.05 !important;
-    margin: 0 0 12px 0 !important;
+    margin: 0 0 clamp(12px, 1.8vh, 18px) 0 !important;
     letter-spacing: 0.025em !important;
     white-space: nowrap !important;
   }
@@ -1106,17 +1124,18 @@
   }
 
   .hero-role-subtitle {
-    font-size: clamp(0.84rem, 3vw, 0.96rem) !important;
+    font-size: clamp(0.82rem, 3vw, 0.94rem) !important;
     text-align: left !important;
     margin-top: 0 !important;
-    margin-bottom: 14px !important;
+    margin-bottom: clamp(10px, 1.5vh, 16px) !important;
     color: #ffffff !important;
-    line-height: 1.4 !important;
+    line-height: 1.35 !important;
   }
 
   .hero-description {
-    font-size: clamp(0.76rem, 2.7vw, 0.84rem) !important;
-    line-height: 1.55 !important;
+    display: block !important;
+    font-size: clamp(0.74rem, 2.7vw, 0.84rem) !important;
+    line-height: 1.5 !important;
     margin: 0 !important;
     max-width: 100% !important;
     color: rgba(242, 234, 217, 0.75) !important;
@@ -1128,7 +1147,7 @@
     align-items: center !important;
     flex-wrap: nowrap !important;
     gap: 12px !important;
-    margin-top: clamp(20px, 3vh, 28px) !important;
+    margin-top: clamp(18px, 2.8vh, 26px) !important;
     width: 100% !important;
   }
 
@@ -1138,7 +1157,7 @@
     justify-content: center !important;
     align-self: center !important;
     margin-top: 0 !important;
-    padding: clamp(9px, 1.4vh, 12px) 14px !important;
+    padding: clamp(9px, 1.3vh, 12px) 14px !important;
     font-size: clamp(0.72rem, 2.5vw, 0.78rem) !important;
     border-radius: 50px !important;
     white-space: nowrap !important;
@@ -1154,89 +1173,66 @@
     display: none !important;
   }
 
-  /* Open to Work badge — mobile size */
   .open-to-work-badge {
-    top: 8% !important;
-    right: -4px !important;
-    padding: 4px 10px 4px 8px !important;
-  }
-
-  .open-to-work-badge .otw-text {
-    font-size: 0.65rem !important;
-  }
-
-  .otw-dot {
-    width: 6px !important;
-    height: 6px !important;
+    display: none !important;
   }
 }
 
 /* ── Specific Fine-Tuning for iPhone SE & Short Viewport Phones (height ≤ 700px) ── */
 @media (max-width: 768px) and (max-height: 700px) {
   .hero-section {
-    padding-top: 90px !important;
-    padding-bottom: 74px !important;
+    padding-top: 70px !important;
+    padding-bottom: 84px !important;
   }
 
   .hero-bg-role {
-    font-size: 2.2rem !important;
-    letter-spacing: 0.1em !important;
-    margin-top: -10px !important;
-    margin-bottom: 10px !important;
+    font-size: 2rem !important;
+    margin-bottom: 6px !important;
   }
 
   .hero-profile-3d {
-    width: 135px !important;
-  }
-
-  .hero-profile-shadow {
-    display: none;
+    width: clamp(150px, 20vh, 150px) !important;
   }
 
   .hero-profile-badge {
-    font-size: 0.72rem !important;
-    margin-top: 3px !important;
-    letter-spacing: 0.14em !important;
-    padding: 4px 12px !important;
+    font-size: 0.66rem !important;
+    padding: 3px 12px !important;
+    margin-top: 4px !important;
   }
 
   .hero-overlay-text {
-    padding: 0 16px !important;
-    margin-bottom: 4px !important;
-  }
-
-  .hero-eyebrow-row {
-    margin-top: 1rem !important;
-  }
-
-  .hero-hello {
-    font-size: 0.68rem !important;
+    padding: 0px 18px !important;
+    margin-top: 60px !important;
+    gap: 1px;
   }
 
   .hero-name {
-    font-size: 2rem !important;
-    margin: 4px 0 6px 0 !important;
+    font-size: clamp(1.4rem, 5.2vw, 1.65rem) !important;
+    margin-bottom: 8px !important;
   }
 
   .hero-role-subtitle {
-    font-size: 0.76rem !important;
-    margin-top: 0 !important;
-    color: #ffffff !important;
+    font-size: 0.8rem !important;
+    margin-bottom: 8px !important;
   }
 
   .hero-description {
-    display: none !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2 !important;
+    line-clamp: 2 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+    font-size: 0.72rem !important;
+    line-height: 1.38 !important;
   }
 
   .hero-action-row {
-    gap: 8px !important;
-    margin-top: 8px !important;
+    margin-top: 12px !important;
   }
 
   .hero-projects-btn,
   .hero-cv-btn {
-    padding: 7px 14px !important;
+    padding: 8px 10px !important;
     font-size: 0.7rem !important;
-    margin-top: 0 !important;
   }
 }
