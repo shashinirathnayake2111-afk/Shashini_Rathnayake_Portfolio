@@ -428,3 +428,191 @@ body.light-mode .proc-node.is-done .proc-label {
 body.light-mode .proc-node.is-active .proc-label {
   color: #1a1208 !important;
 }
+
+/* ═══════════════════════════════════════════════
+   RESPONSIVE — Tablet  (769px – 1024px)
+═══════════════════════════════════════════════ */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .sps-section {
+    padding: 80px 0 70px !important;
+  }
+
+  .sps-inner {
+    gap: 70px !important;
+    width: min(92%, 1200px) !important;
+  }
+
+  .sps-heading {
+    font-size: clamp(2.4rem, 5vw, 3.6rem) !important;
+    margin-bottom: 32px !important;
+  }
+
+  /* 2-column service grid on tablet */
+  .svc-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 18px !important;
+  }
+
+  /* Process track – shrink gap & icon ring a bit */
+  .proc-track {
+    gap: 24px !important;
+  }
+
+  .proc-icon-ring {
+    width: 54px !important;
+    height: 54px !important;
+  }
+
+  .proc-arrow-line {
+    width: 24px !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════
+   RESPONSIVE — Mobile  (≤ 768px)
+═══════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .sps-section {
+    padding: 60px 0 52px !important;
+  }
+
+  .sps-inner {
+    gap: 52px !important;
+    width: 90% !important;
+  }
+
+  /* ── Block header ── */
+  .sps-eyebrow {
+    gap: 10px !important;
+    margin-bottom: 10px !important;
+  }
+
+  .sps-eyebrow-text {
+    font-size: 0.65rem !important;
+    letter-spacing: 0.25em !important;
+  }
+
+  .sps-line {
+    width: 26px !important;
+  }
+
+  .sps-heading {
+    font-size: clamp(2rem, 7.5vw, 2.8rem) !important;
+    margin-bottom: 24px !important;
+    letter-spacing: 0.03em !important;
+  }
+
+  /* ── Service cards: single column ── */
+  .svc-grid {
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+  }
+
+  .svc-card {
+    padding: 22px 18px 20px !important;
+    gap: 10px !important;
+    border-radius: 14px !important;
+  }
+
+  .svc-icon-box {
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 9px !important;
+  }
+
+  .svc-num {
+    font-size: 1.6rem !important;
+  }
+
+  .svc-title {
+    font-size: 1.05rem !important;
+  }
+
+  .svc-desc {
+    font-size: 0.82rem !important;
+    line-height: 1.58 !important;
+  }
+
+  .svc-pill {
+    font-size: 0.63rem !important;
+    padding: 2px 8px !important;
+  }
+
+  /* ── Process track: horizontal scroll, compact ── */
+  .proc-track {
+    gap: 10px !important;
+    padding: 8px 2px 12px !important;
+    justify-content: flex-start !important;
+  }
+
+  .proc-icon-ring {
+    width: 48px !important;
+    height: 48px !important;
+  }
+
+  .proc-node {
+    gap: 6px !important;
+    padding: 4px 2px 6px !important;
+  }
+
+  .proc-label {
+    font-size: 0.6rem !important;
+    letter-spacing: 0.08em !important;
+  }
+
+  .proc-arrow {
+    padding-bottom: 18px !important;
+  }
+
+  .proc-arrow-line {
+    width: 14px !important;
+  }
+
+  /* Ambient glows – tone down on mobile */
+  .sps-glow {
+    width: 240px !important;
+    height: 240px !important;
+    filter: blur(70px) !important;
+    opacity: 0.07 !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════
+   RESPONSIVE — Small mobile  (≤ 390px / iPhone SE)
+═══════════════════════════════════════════════ */
+@media (max-width: 390px) {
+  .sps-section {
+    padding: 50px 0 44px !important;
+  }
+
+  .sps-inner {
+    gap: 44px !important;
+    width: 92% !important;
+  }
+
+  .sps-heading {
+    font-size: clamp(1.85rem, 8vw, 2.4rem) !important;
+    margin-bottom: 20px !important;
+  }
+
+  .svc-card {
+    padding: 18px 14px 16px !important;
+  }
+
+  .proc-track {
+    gap: 8px !important;
+  }
+
+  .proc-icon-ring {
+    width: 42px !important;
+    height: 42px !important;
+  }
+
+  .proc-label {
+    font-size: 0.57rem !important;
+  }
+
+  .proc-arrow-line {
+    width: 10px !important;
+  }
+}
